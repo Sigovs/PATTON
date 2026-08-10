@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Rare Exotics For Sale | Buy, Sell, &amp; Trade | Patton Motors</title>
+<meta name="description" content="Rare exotic and collector cars in Pompano Beach, Florida. Buy, sell, trade and consign with Patton Motors.">
+
+<!-- Base layer: the real compiled theme stylesheet (Bootstrap 4.0.0 + the whole
+     aanWordpress theme, already kit-branded). Custom layer loads after it. -->
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/patton.css">
+</head>
+
+<body class="home">
+
+<!-- ============================================================== header ==
+     Structural hook #header. [TIDY 2] one row, no two-line nav items, SHOP
+     listed once instead of twice, and the two icon-only utilities carry
+     visible labels so their destination is legible before commitment. -->
+<header id="header" class="pm-header">
+  <div class="pm-container">
+    <div class="pm-header__bar">
+
+      <div class="pm-brand">
+        <a href="/" class="pm-brand__logo" aria-label="Patton Motors — home">
+          <img src="assets/site/2LogoAUGUST2025.png" alt="Patton Motors Collection">
+          <span class="pm-brand__tag">Buy / Sell&#8209;Trade</span>
+        </a>
+        <a href="/s-klub/" class="pm-brand__sklub" aria-label="S-Klub LA">
+          <img src="assets/site/sklubb.png" alt="S-Klub LA">
+        </a>
+        <span class="pm-brand__ww">World Wide<br>24/7 By Appointment</span>
+      </div>
+
+      <nav aria-label="Primary">
+        <ul class="pm-nav" id="pm-nav">
+          <li><a href="/inventory/">Inventory</a></li>
+          <li><a href="/our-collection/">Collection</a></li>
+          <li><a href="/s-klub/">S&#8209;Klub</a></li>
+          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/sell-your-car/">Sell</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/testimonials/">Testimonials</a></li>
+          <li><a href="/blog/">News</a></li>
+          <li><a href="/contact-us/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="pm-util">
+        <a href="/directions/"><img src="assets/icons/location.svg" alt="">Pompano Beach</a>
+        <a href="/contact-us/"><img src="assets/icons/mail.svg" alt="">Email</a>
+      </div>
+
+      <button type="button" class="pm-burger" id="pm-burger"
+              aria-expanded="false" aria-controls="pm-nav">Menu</button>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- ================================================================ hero ==
+     Structural hook .banner-section — the live hero is a single-slide Owl
+     carousel holding the welcome film. Kept as a film, with the transport
+     given to the visitor. -->
+<div class="banner-section pm-hero">
+  <div class="slider">
+    <div class="home-slider owl-carousel owl-theme">
+      <div class="item">
+        <video id="home-video" class="w-100 slide-image pm-hero__media"
+               preload="metadata" playsinline loop muted
+               poster="assets/site/homeInventory.jpg"
+               aria-label="Inside the Patton Motors showroom, Pompano Beach">
+          <source src="assets/site/welcomevid.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="pm-hero__transport" id="pm-hero-transport"
+          data-label-play="Play" data-label-pause="Pause">Pause</button>
+
+<!-- ========================================================= route cards ==
+     .browse_stock — four routes floated over the film's lower edge.
+     [TIDY 3] equal heights, balanced wraps, one scrim rule for all four. -->
+<section class="browse_stock">
+  <div class="pm-container">
+    <div class="pm-routes">
+
+      <a class="pm-route" href="/inventory/"
+         style="background-image:url('assets/site/browse_bg_1.png')">
+        <h2 class="pm-route__h"><span>Browse</span> our stock</h2>
+        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
+      </a>
+
+      <a class="pm-route" href="/sell-your-car/"
+         style="background-image:url('assets/site/browse_bg_2.png')">
+        <h2 class="pm-route__h"><span>Sell</span> your car</h2>
+        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
+      </a>
+
+      <a class="pm-route" href="/contact-us/"
+         style="background-image:url('assets/site/browse_bg_3.png')">
+        <h2 class="pm-route__h"><span>Get in touch</span> with us</h2>
+        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
+      </a>
+
+      <a class="pm-route pm-route--logo" href="/s-klub/"
+         style="background-image:url('assets/site/browse_bg_5.png')">
+        <img class="pm-route__mark" src="assets/site/newbox.png"
+             alt="Patton Motors Collection — S-Klub LA">
+      </a>
+
+    </div>
+  </div>
+</section>
+</div>
+
+
+<!-- =========================================================== inventory ==
+     .homeInventory — "A Showcase of Distinction". Real vehicles, real
+     photographs, pulled from the live /api/cars feed. -->
+<section class="homeInventory pm-section pm-section--photo" id="collection">
+  <span class="pm-bg" style="background-image:url('assets/site/homeInventory.jpg')"></span>
+  <div class="pm-container">
+
+    <div class="pm-h pm-h--split">
+      <h2>
+        <span class="pm-h__gold">A Showcase</span>
+        <span class="pm-h__white">of Distinction</span>
+      </h2>
+      <a class="btn-1 pm-pill" href="/our-collection/">View All Collection</a>
+    </div>
+
+    <div class="pm-cards">
+
+      <a class="pm-card" href="/used-vehicle-1955-mercedes-benz-300-slr-658-by-scuderia-bucci-c-41/">
+        <img class="pm-card__img" src="assets/img/car-41.jpg" loading="lazy"
+             alt="1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci at Patton Motors">
+        <h3 class="pm-card__title">1955 MERCEDES-BENZ 300 SLR #658 BY SCUDERIA BUCCI</h3>
+        <p class="pm-card__price">$475,000</p>
+      </a>
+
+      <a class="pm-card" href="/used-vehicle-2023-ferrari-296-gts-assetto-fiorano-c-48/">
+        <img class="pm-card__img" src="assets/img/car-48.jpg" loading="lazy"
+             alt="2023 Ferrari 296 GTS Assetto Fiorano at Patton Motors">
+        <h3 class="pm-card__title">2023 Ferrari 296 GTS Assetto Fiorano</h3>
+        <p class="pm-card__price">$475,000</p>
+      </a>
+
+      <a class="pm-card" href="/used-vehicle-1955-porsche-356-outlaw-speedster-tiff-co.-by-s-klub-c-7/">
+        <img class="pm-card__img" src="assets/img/car-7.jpg" loading="lazy"
+             alt="1955 Porsche 356 Outlaw Speedster Tiff &amp; Co. by S-Klub at Patton Motors">
+        <h3 class="pm-card__title">1955 Porsche 356 Outlaw Speedster Tiff &amp; Co. by S&#8209;Klub</h3>
+        <p class="pm-card__price">$349,995</p>
+      </a>
+
+      <a class="pm-card" href="/used-vehicle-1974-boss-429-powered-detomaso-pantera-c-76/">
+        <img class="pm-card__img" src="assets/img/car-76.jpg" loading="lazy"
+             alt="1974 Boss 429-powered De Tomaso Pantera at Patton Motors">
+        <h3 class="pm-card__title">1974 Boss 429&#8209;Powered De&nbsp;Tomaso Pantera</h3>
+        <p class="pm-card__price">$299,999</p>
+      </a>
+
+      <a class="pm-card" href="/used-vehicle-1971-detomaso-pantera-c-72/">
+        <img class="pm-card__img" src="assets/img/car-72.jpg" loading="lazy"
+             alt="1971 De Tomaso Pantera at Patton Motors">
+        <h3 class="pm-card__title">1971 De&nbsp;Tomaso Pantera</h3>
+        <p class="pm-card__price">$265,000</p>
+      </a>
+
+    </div>
+
+    <div class="pm-inventory__foot">
+      <a class="btn-1 pm-pill" href="/our-collection/">View All Collection</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ====================================================== where prestige == -->
+<section class="where_prestige pm-section pm-section--photo" id="about">
+  <span class="pm-bg pm-bg--right" style="background-image:url('assets/site/where_prestige_img.jpg')"></span>
+  <div class="pm-container">
+    <div class="pm-prestige__grid">
+
+      <figure class="pm-prestige__media">
+        <video class="pm-prestige__video" id="pm-prestige-video"
+               poster="assets/site/where_prestige_still.jpg"
+               muted playsinline loop preload="metadata"
+               aria-label="Inside the Patton Motors showroom, Pompano Beach">
+          <source src="assets/site/where_prestige.mp4" type="video/mp4">
+        </video>
+        <button type="button" class="pm-media__transport" id="pm-prestige-transport"
+                data-label-play="Play" data-label-pause="Pause">Pause</button>
+      </figure>
+
+      <div class="pm-prestige__body">
+        <h2 class="pm-h">
+          <span class="pm-h__gold">Where Prestige</span>
+          <span class="pm-h__white">Takes the Wheel</span>
+        </h2>
+
+        <p class="pm-italic">Where Curated Craftsmanship Meets Uncompromising
+          Performance</p>
+        <hr class="pm-rule">
+
+        <p class="pm-lead">At the intersection of legacy and innovation, our
+          dealership stands as a beacon for automotive connoisseurs. Founded by
+          Martin Patton with deep roots in luxury and sports industries, our
+          showroom offers more than just rare vehicles. Our inventory is
+          handpicked for those who demand excellence, rarity, and a story behind
+          every engine.</p>
+
+        <a class="btn-3 pm-pill" href="/about/">More</a>
+
+        <div class="pm-panel">
+          <a class="btn-3 pm-pill" href="/contact-us/">
+            <img src="assets/icons/drop_line.svg" alt="">Drop Me a Line</a>
+          <a class="btn-3 pm-pill" href="/directions/">
+            <img src="assets/icons/Pompano.svg" alt="">Pompano Beach, FL</a>
+          <div class="pm-social">
+            <a href="https://www.instagram.com/" aria-label="Patton Motors on Instagram">
+              <img src="assets/icons/insta.svg" alt=""></a>
+            <a href="https://www.tiktok.com/" aria-label="Patton Motors on TikTok">
+              <img src="assets/icons/tiktok.svg" alt=""></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================== cash offer == -->
+<section class="cash_offer pm-section pm-section--photo" id="sell">
+  <span class="pm-bg" style="background-image:url('assets/site/ivaylo_aan.jpg')"></span>
+  <div class="pm-container">
+
+    <h2 class="pm-h">
+      <span class="pm-h__gold">Get a Cash Offer</span>
+      <span class="pm-h__white">Luxury Car Selling &mdash; Where Prestige Meets Performance</span>
+    </h2>
+
+    <ol class="pm-steps">
+      <li class="pm-step">
+        <img class="pm-step__img" src="assets/site/image-1.png" loading="lazy"
+             alt="A collector photographing a Porsche 911 to begin a valuation">
+        <span class="pm-step__no">step<br>01</span>
+        <h3 class="pm-step__h">Share Your Car's Story</h3>
+        <p>Tell us what makes your vehicle exceptional. From its specs to
+          mileage, every detail helps us spotlight its true value.</p>
+      </li>
+      <li class="pm-step">
+        <img class="pm-step__img" src="assets/site/step2.png" loading="lazy"
+             alt="A Patton Motors specialist preparing a valuation">
+        <span class="pm-step__no">step<br>02</span>
+        <h3 class="pm-step__h">Get a Curated Offer</h3>
+        <p>Our valuation experts craft a personalized offer based on market
+          trends and your car's prestige &mdash; no generic estimates.</p>
+      </li>
+      <li class="pm-step">
+        <img class="pm-step__img" src="assets/site/step3.png" loading="lazy"
+             alt="Closing a sale at the Patton Motors reception desk">
+        <span class="pm-step__no">step<br>03</span>
+        <h3 class="pm-step__h">Close with Ease</h3>
+        <p>No pressure. No fees. No commissions. Just a fast, secure transaction
+          with white-glove service from start to finish.</p>
+      </li>
+    </ol>
+
+    <div class="pm-cash__foot">
+      <a class="btn-2 pm-pill" href="/sell-your-car/">Start Selling Today</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== testimonials == -->
+<section class="unmatched_service pm-section pm-section--photo" id="testimonials">
+  <span class="pm-bg pm-bg--08" style="background-image:url('assets/site/unmatched_service.jpg')"></span>
+  <div class="pm-container">
+
+    <h2 class="pm-h">
+      <span class="pm-h__gold">Unmatched Service</span>
+      <span class="pm-h__white">Our Clients Are Saying</span>
+    </h2>
+
+    <div class="pm-quotes testimonials-slider owl-carousel owl-theme">
+
+      <blockquote class="pm-quote">
+        <div class="pm-quote__stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="pm-quote__q">&ldquo;Selling a rare vehicle is usually a headache.
+          At Patton, it felt like a luxury experience in itself.&rdquo;</p>
+        <p class="pm-quote__b">I was hesitant to consign my Aston Martin Vanquish
+          at first, but the team put me at ease. They didn't just list my car
+          &mdash; they presented it like a masterpiece, with professional
+          photography and a write-up that captured its story. No tyre-kickers,
+          only serious, qualified leads.</p>
+        <footer class="pm-quote__by">&mdash; Daniel K., Fort Lauderdale</footer>
+      </blockquote>
+
+      <blockquote class="pm-quote">
+        <div class="pm-quote__stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="pm-quote__q">&ldquo;Patton Motors exceeded every expectation
+          I had.&rdquo;</p>
+        <p class="pm-quote__b">I had been searching for the right Porsche
+          Speedster for nearly a year. Communication was prompt and personal.
+          They arranged a virtual walkaround, coordinated with my bank, and
+          organized enclosed transport to my home in California.</p>
+        <footer class="pm-quote__by">&mdash; Rachel M., San Francisco</footer>
+      </blockquote>
+
+      <blockquote class="pm-quote">
+        <div class="pm-quote__stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="pm-quote__q">&ldquo;Buying my dream car through Patton Motors
+          was an experience I'll never forget.&rdquo;</p>
+        <p class="pm-quote__b">The quality of the listing stood out immediately:
+          clear, artistic photos, detailed specs, and even a video tour. It felt
+          less like buying a car, and more like being handed the keys to a dream.</p>
+        <footer class="pm-quote__by">&mdash; Jonathan M., Palm Beach</footer>
+      </blockquote>
+
+    </div>
+
+    <div class="pm-voices__foot">
+      <a class="btn-3 pm-pill" href="/testimonials/">Share Your Experience</a>
+      <a class="btn-2 pm-pill" href="/testimonials/">View All Reviews</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================== instagram == -->
+<section class="Instagram_section pm-insta">
+  <div class="pm-container">
+    <img class="pm-insta__img" src="assets/site/insta-section-1.jpg" loading="lazy"
+         alt="Patton Motors on Instagram — cars, coffee and the showroom floor">
+    <div class="pm-insta__foot">
+      <a class="btn-3 pm-pill"
+         href="https://www.instagram.com/pattonmotors">Follow us</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= moments ==
+     [TIDY] the live grid runs five equal cards in a four-column row, which
+     leaves one card alone against three empty columns. The feature article
+     becomes a lead, the four events fill one row, and nothing is dropped. -->
+<section class="motors_moments pm-section" id="news">
+  <div class="pm-container">
+
+    <h2 class="pm-h">
+      <span class="pm-h__gold">Motors &amp; Moments</span>
+      <span class="pm-h__white">Patton Pulse</span>
+    </h2>
+
+    <div class="pm-posts">
+
+      <article class="pm-post">
+        <img src="assets/site/download-2025-08-07T155034.812-750x375-1.jpeg" loading="lazy"
+             alt="A red Ferrari competition car on the Patton Motors showroom floor">
+        <h3 class="pm-post__h">Dealer Spotlight: 10 Must-See Exotic And Collector
+          Cars For Sale At Patton Motors</h3>
+        <p>Located between Miami and Palm Beach, Patton Motors brings together
+          rare exotics, automotive art, and a growing community of car
+          enthusiasts. It's the [&hellip;]</p>
+        <a class="pm-more" href="/dealer-spotlight-10-must-see-exotic-and-collector-cars-for-sale-at-patton-motors/">More
+          <span aria-hidden="true">&rarr;</span></a>
+      </article>
+
+      <article class="pm-post">
+        <img src="assets/site/DSC_2147.jpg" loading="lazy"
+             alt="The bar at the Patton Motors showroom set up for an evening event">
+        <h3 class="pm-post__h">Cocktails &amp; Cars &mdash; By Invitation Only</h3>
+        <p>The showroom becomes a lounge as designers and engineers from across
+          the automotive world unveil upcoming concept vehicles.</p>
+        <a class="pm-more" href="/blog/">More <span aria-hidden="true">&rarr;</span></a>
+      </article>
+
+      <article class="pm-post">
+        <img src="assets/site/DSC_2124.jpg" loading="lazy"
+             alt="An espresso machine at the Patton Motors showroom">
+        <h3 class="pm-post__h">Exotics &amp; Espresso &mdash; By Invitation Only</h3>
+        <p>Seasoned collectors share their stories, from barn finds to auction
+          battles, over a rich cup of espresso.</p>
+        <a class="pm-more" href="/blog/">More <span aria-hidden="true">&rarr;</span></a>
+      </article>
+
+      <article class="pm-post">
+        <img src="assets/site/Used-2015-Ferrari-LaFerrari-1750433272.jpg" loading="lazy"
+             alt="A Ferrari on the showroom floor at Patton Motors">
+        <h3 class="pm-post__h">Ferrari &amp; Flat Whites &mdash; By Invitation Only</h3>
+        <p>Italian engineering and espresso culture, with a showcase of the
+          latest Ferrari inventory and exclusive pre-release previews.</p>
+        <a class="pm-more" href="/blog/">More <span aria-hidden="true">&rarr;</span></a>
+      </article>
+
+      <article class="pm-post">
+        <img src="assets/site/DSC_2140.jpg" loading="lazy"
+             alt="The lounge at the Patton Motors showroom">
+        <h3 class="pm-post__h">Cars, Coffee, Cocktails &amp; Conversation</h3>
+        <p>Every Saturday at Patton Motors, 9am to 1pm. Where the engines purr,
+          the espresso flows, and every conversation feels cinematic.</p>
+        <a class="pm-more" href="/blog/">More <span aria-hidden="true">&rarr;</span></a>
+      </article>
+
+    </div>
+
+    <div class="pm-moments__foot">
+      <a class="btn-2 pm-pill" href="/blog/">View All Articles</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================== footer == -->
+<footer id="footer" class="pm-footer">
+  <div class="pm-container">
+
+    <h2 class="pm-h">
+      <span class="pm-h__gold">Connect with</span>
+      <span class="pm-h__white">Patton Motors</span>
+    </h2>
+    <hr class="pm-rule">
+
+    <div class="pm-footer__cols">
+
+      <div>
+        <h3 class="pm-footer__h">Why Choose Us</h3>
+        <p>A concierge-level experience tailored to your needs, your vehicle,
+          and your privacy. We don't just manage cars &mdash; we curate
+          confidence.</p>
+        <a class="btn-3 pm-pill" href="/contact-us/">
+          <img src="assets/icons/calendar-check.svg" alt="">Schedule a visit</a>
+      </div>
+
+      <div>
+        <h3 class="pm-footer__h">Contact Us</h3>
+        <p>2901 Center Port Circle, Pompano Beach, FL 33064<br>
+          Mon&ndash;Fri 8:00am&ndash;6:00pm &middot; Sat 9:00am&ndash;5:00pm
+          &middot; Sun by appointment</p>
+        <a class="btn-3 pm-pill" href="/directions/">
+          <img src="assets/icons/Pompano.svg" alt="">Pompano Beach, FL</a>
+      </div>
+
+      <div>
+        <h3 class="pm-footer__h">Get In Touch</h3>
+        <p><a href="tel:+16305500741" style="color:#CA912B">630&#8201;550&#8201;0741</a></p>
+        <a class="btn-3 pm-pill" href="/contact-us/">
+          <img src="assets/icons/drop_line.svg" alt="">Drop Me a Line</a>
+        <div class="pm-social" style="margin-top:16px">
+          <a href="https://www.instagram.com/" aria-label="Patton Motors on Instagram">
+            <img src="assets/icons/insta.svg" alt=""></a>
+          <a href="https://www.tiktok.com/" aria-label="Patton Motors on TikTok">
+            <img src="assets/icons/tiktok.svg" alt=""></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pm-footer__legal">
+      <span>Copyright &copy; 2026 Patton Motors. All rights reserved. &nbsp;|&nbsp;
+        <a href="/privacy-policy/">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="/sitemap/">Sitemap</a></span>
+      <span>Powered by: All Auto Network</span>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- Base libraries, in the theme's own order. No CDN — everything self-hosted. -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+
+<script>
+/* WordPress runs jQuery in noConflict mode, so custom code is wrapped rather
+   than relying on a bare global $. jQuery 3.7.1, no Migrate — nothing
+   removed-in-3.x is used here. */
+jQuery(function ($) {
+
+  var reduce = window.matchMedia &&
+               window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- hero film: the visitor keeps the transport --------------------- */
+  var video = $('#home-video').get(0);
+  var $btn  = $('#pm-hero-transport');
+
+  if (video) {
+    var setLabel = function (playing) {
+      $btn.text(playing ? $btn.data('label-pause') : $btn.data('label-play'));
+      $btn.attr('aria-label', playing ? 'Pause the showroom film'
+                                      : 'Play the showroom film');
+    };
+
+    /* Reduced motion gets the designed static path: the poster frame holds
+       and the transport offers the film rather than starting it. */
+    if (reduce) {
+      setLabel(false);
+    } else {
+      var starting = video.play();
+      if (starting && typeof starting.catch === 'function') {
+        starting.catch(function () { setLabel(false); });
+      }
+      setLabel(true);
+    }
+
+    $btn.on('click', function () {
+      if (video.paused) { video.play(); setLabel(true); }
+      else              { video.pause(); setLabel(false); }
+    });
+  }
+
+  /* ---- the Where Prestige background film ----------------------------- */
+  var pv    = $('#pm-prestige-video').get(0);
+  var $pvBtn = $('#pm-prestige-transport');
+
+  if (pv) {
+    var setPv = function (playing) {
+      $pvBtn.text(playing ? 'Pause' : 'Play');
+      $pvBtn.attr('aria-label', playing ? $pvBtn.data('label-pause')
+                                        : $pvBtn.data('label-play'));
+    };
+
+    /* It sits behind a paragraph, so it never starts itself under reduced
+       motion and the visitor can stop it at any time. */
+    if (reduce) {
+      setPv(false);
+    } else {
+      pv.play().then(function () { setPv(true); })
+               .catch(function () { setPv(false); });
+    }
+
+    $pvBtn.on('click', function () {
+      if (pv.paused) { pv.play(); setPv(true); }
+      else           { pv.pause(); setPv(false); }
+    });
+  }
+
+  /* ---- carousels: Owl Carousel 2.3.4, the theme's only slider ---------- */
+  $('.home-slider').owlCarousel({
+    items: 1, loop: false, nav: false, dots: false, autoplay: false,
+    mouseDrag: false, touchDrag: false
+  });
+
+  $('.testimonials-slider').owlCarousel({
+    items: 2, margin: 30, loop: true, center: true, nav: true, dots: false,
+    autoplay: false, navText: ['<span>&larr;</span>', '<span>&rarr;</span>'],
+    responsive: { 0: { items: 1 }, 768: { items: 2 } }
+  });
+
+  /* ---- mobile navigation ---------------------------------------------- */
+  $('#pm-burger').on('click', function () {
+    var open = $(this).attr('aria-expanded') === 'true';
+    $(this).attr('aria-expanded', String(!open));
+    $('#pm-nav').toggleClass('is-open', !open);
+  });
+
+});
+</script>
+
+</body>
+</html>

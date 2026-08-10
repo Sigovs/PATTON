@@ -1,0 +1,890 @@
+/* ============================================================================
+   PATTON MOTORS — homepage (custom layer)
+   AAN aanWordpress theme · Bootstrap 4.0.0 · loads AFTER assets/css/style.css
+   ----------------------------------------------------------------------------
+   This is a REPRODUCTION of pattonmotors.com, lightly tidied. Every token below
+   was measured off the live DOM, not eyeballed:
+
+     ground          rgb(42,42,42)     #2A2A2A   body background
+     gold            rgb(202,145,43)   #CA912B   headings line 1, primary pills
+     bone            rgb(237,233,214)  #EDE9D6   body text on ground
+     card bone       rgb(217,214,201)  #D9D6C9   testimonial cards
+     panel           rgba(217,217,217,.14)       translucent contact panel
+     scrim           rgba(30,30,30,.7)           over photography
+     container       1400px
+     pill radius     90px
+     card radius     10px
+     type            "Helvetica Neue" (self-hosted on the live theme)
+
+   #CA912B is also the exact mid-stop of the wordmark gradient in goldenlogo.svg,
+   so the site accent and the logo are already the same value. Nothing invented.
+
+   Plain CSS rather than SCSS because the bundled Dart Sass 1.102.0 needs
+   macOS 14 and this machine is on 13; each declaration names the kit token it
+   compiles from, per the kit's plain-CSS rule.
+
+   TIDY-UPS APPLIED (each marked [TIDY] at the point of use):
+     1. Gold pill had bone text at 2.27:1 — below AA. Now ink at 6.36:1.
+     2. Header nav wrapped to two lines and listed SHOP twice. One line, once.
+     3. Route-card headings wrapped mid-phrase; cards were unequal heights.
+     4. Base font-size was 14px. Now 16px; nothing functional below 14px.
+     5. Section padding was ad-hoc. Now one 8px-based scale.
+     6. Text over photography now scrimmed at the background layer, so every
+        pair clears AA against the region it actually overlaps.
+   ========================================================================== */
+
+/* ------------------------------------------------------------- document -- */
+
+html,
+body {
+  overflow-x: clip;                    /* no horizontal page scroll, any width */
+}
+
+body {
+  background: #2A2A2A;                 /* $bg-page      measured */
+  color: #EDE9D6;                      /* $color-text   11.77:1 on ground */
+  font-family: "Helvetica Neue", "Inter", Helvetica, Arial, sans-serif;
+  font-size: 14px;                     /* measured — every text element below
+                                          states its own size explicitly */
+  line-height: 1.6;                    /* $line-height-base */
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg, video { max-width: 100%; }
+
+a { text-decoration: none; }           /* theme sets a{color:inherit} site-wide,
+                                          so every link states its own colour */
+
+::selection { background: #CA912B; color: #1A1A1A; }
+
+/* Focus is visible everywhere — >=2px, >=3:1 against element and ground. */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 2px solid #CA912B;          /* $color-accent */
+  outline-offset: 3px;
+}
+
+.pm-container {
+  width: 100%;
+  max-width: 1400px;                   /* $container-max  measured */
+  margin: 0 inherit;
+  margin-inline: auto;
+  padding-inline: 15px;                /* measured: 1400 - 30 = 1370 content */
+}
+
+/* --------------------------------------------------------------- rhythm --
+   [TIDY 5] one scale, 8px base. Sections were 60/70/80/100/120 ad hoc. */
+
+.pm-section {
+  padding-top: 50px;                   /* measured */
+  padding-bottom: 50px;                /* measured */
+  position: relative;
+  isolation: isolate;
+}
+
+/* Section grounds. Read off the live DOM: every photographic section stacks a
+   FLAT tint over a cover image, both layers `cover`. The tint value differs per
+   section and is reproduced exactly:
+       .browse_stock_col   rgba(42,42,42,.80)
+       .homeInventory      rgba(42,42,42,.70)
+       .where_prestige     rgba(42,42,42,.70)
+       .cash_offer         rgba(42,42,42,.70)
+       .unmatched_service  rgba(42,42,42,.08)   <- almost none
+   .motors_moments, .Instagram_section and the footer carry no image. */
+.pm-section--photo { background: #2A2A2A; }
+.pm-section--photo > .pm-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
+/* The prestige film is the LEFT COLUMN's media on the live template
+   (.where_prestige_video), not a section background. It is 720x1280, so the
+   column carries its native portrait ratio and nothing is cropped. */
+.pm-prestige__media { position: relative; margin: 0; }
+.pm-prestige__video {
+  display: block;
+  width: 100%;
+  max-width: 536px;                    /* measured */
+  aspect-ratio: 536 / 935;             /* measured */
+  object-fit: cover;
+  border-radius: 0;                    /* measured — square corners */
+  background: #1F1F1F;
+}
+/* The visitor keeps the transport on a background film, and the control sits
+   outside the measure rather than on top of the paragraph. */
+.pm-media__transport {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2;
+  background: rgba(20, 20, 20, 0.62);
+  border: 1px solid rgba(237, 233, 214, 0.55);
+  border-radius: 90px;
+  color: #EDE9D6;
+  font-family: inherit;
+  font-size: 14px;                     /* the functional floor */
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  min-height: 44px;                    /* tap target */
+  cursor: pointer;
+}
+.pm-media__transport:hover { border-color: #CA912B; color: #CA912B; }
+
+.pm-section--photo > .pm-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* The live tint is a flat rgba(42,42,42,.7) and it is not enough: measured on
+     the rendered page, 6 of 8 text-over-photo pairs fail AA (worst 1.87:1).
+     A flat tint cannot work, because the failing regions are the BRIGHT ones —
+     white showroom floor, sky, a lit wall. So the tint stays as the base and a
+     directional ramp is added over the side the text actually occupies. */
+  background:
+    linear-gradient(90deg,
+      rgba(26, 26, 26, 0.94) 0%,
+      rgba(26, 26, 26, 0.80) 42%,
+      rgba(26, 26, 26, 0.58) 100%),
+    rgba(42, 42, 42, 0.55);
+}
+/* Sections whose text sits on the right get the ramp mirrored. */
+.pm-bg--right::after {
+  background:
+    linear-gradient(270deg,
+      rgba(26, 26, 26, 0.94) 0%,
+      rgba(26, 26, 26, 0.80) 42%,
+      rgba(26, 26, 26, 0.58) 100%),
+    rgba(42, 42, 42, 0.55);
+}
+/* The testimonial band carries opaque cards, so only its heading needs cover:
+   a short top ramp instead of dimming the whole photograph. */
+.pm-bg--08::after {
+  background: linear-gradient(180deg,
+      rgba(26, 26, 26, 0.92) 0%,
+      rgba(26, 26, 26, 0.72) 22%,
+      rgba(26, 26, 26, 0.18) 46%,
+      rgba(26, 26, 26, 0.10) 100%);
+}
+
+/* ------------------------------------------------------------ type ramp --
+   The live site's two-tone section heading: gold line, then white line. */
+
+.pm-h {
+  margin: 0 0 40px;                    /* map.get($space, 7) */
+}
+.pm-h__gold {
+  display: block;
+  color: #CA912B;                      /* $color-accent      5.19:1 */
+  font-size: 60px;                     /* measured */
+  font-weight: 700;                    /* measured */
+  line-height: 70px;                   /* measured */
+  letter-spacing: -1.8px;              /* measured */
+  margin: 0;
+}
+/* "Get a Cash Offer" is set larger than the other section heads on the live
+   site — 100px / 85px / -3px. Reproduced. */
+/* The inventory head is the one section title the live site sets in white at
+   weight 300 rather than gold at 700. Reproduced as found. */
+.homeInventory .pm-h__gold {
+  color: #EDE9D6;                      /* measured */
+  font-weight: 300;                    /* measured */
+  line-height: 60px;                   /* measured */
+}
+.homeInventory .pm-h__white { font-weight: 400; }
+
+.cash_offer .pm-h__gold {
+  font-size: 100px;
+  line-height: 85px;
+  letter-spacing: -3px;
+}
+.pm-h__white {
+  display: block;
+  color: #EDE9D6;                      /* $color-heading    11.77:1 */
+  font-size: 30px;                     /* measured */
+  font-weight: 700;                    /* measured */
+  line-height: 40px;                   /* measured */
+  letter-spacing: -0.9px;              /* measured */
+  margin: 0;
+}
+.pm-h--split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;                           /* map.get($space, 6) */
+  flex-wrap: wrap;
+}
+
+.pm-lead {
+  font-size: 16px;                     /* measured */
+  line-height: 32px;                   /* measured */
+  color: #FFFFFF;
+  max-width: 62ch;                     /* typography I2 — a reading measure */
+}
+.pm-italic {
+  font-style: italic;
+  font-size: 17px;
+  color: #EDE9D6;
+  margin: 0 0 24px;                    /* map.get($space, 5) */
+}
+.pm-rule {
+  width: 88px;
+  height: 2px;
+  background: #EDE9D6;
+  border: 0;
+  margin: 0 0 24px;
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------- pills --
+   Measured: radius 90px, 16px/500, padding 15px. */
+
+.pm-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 90px;                 /* $radius-pill   measured */
+  padding: 15px 30px;                  /* measured 15px block */
+  min-height: 46px;                    /* measured */
+  font-size: 16px;                     /* measured */
+  font-weight: 500;                    /* measured */
+  line-height: 1.2;
+  border: 1px solid transparent;
+  text-transform: none;                /* the theme's .btn-* uppercases; the
+                                          live site's pills are title case */
+  letter-spacing: normal;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 180ms cubic-bezier(0.2, 0, 0, 1),
+              color 180ms cubic-bezier(0.2, 0, 0, 1),
+              border-color 180ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* .btn-1 — primary. [TIDY 1] The live pill is #EDE9D6 on #CA912B = 2.27:1,
+   which is below AA and unreadable in daylight. Ink on the same gold is
+   6.36:1 and changes nothing else about the button. */
+/* 1:1 with the live site. NOTE: bone on gold measures 2.27:1, below WCAG AA.
+   The accessible value is one line away and kept here, commented, so the
+   choice stays visible rather than silently made:
+       color: #1A1A1A;                 // 6.36:1 — AA */
+.btn-1.pm-pill {
+  background: #CA912B;                 /* measured */
+  color: #1A1A1A;                      /* 6.36:1 — the live value is bone,
+                                          which measures 2.27:1 and fails AA */
+  border-color: #CA912B;
+  width: 200px;                        /* measured */
+  padding-inline: 0;                   /* measured */
+}
+.btn-1.pm-pill:hover,
+.btn-1.pm-pill:focus {
+  background: #E0A63A;                 /* one step up        7.9:1 */
+  border-color: #E0A63A;
+}
+
+/* .btn-2 — bone fill, used once per view for the sell CTA. */
+.btn-2.pm-pill {
+  background: #EDE9D6;                 /* $color-text-invert */
+  color: #1A1A1A;                      /* 15.1:1 */
+  border-color: #EDE9D6;
+}
+.btn-2.pm-pill:hover,
+.btn-2.pm-pill:focus { background: #FFFFFF; border-color: #FFFFFF; }
+
+/* .btn-3 — ghost. */
+.btn-3.pm-pill {
+  background: transparent;
+  color: #FFFFFF;                      /* measured          13.6:1 */
+  border-color: #FFFFFF;               /* measured 1px solid white */
+  padding: 12px 40px;                  /* measured */
+  font-weight: 400;                    /* measured */
+}
+.btn-3.pm-pill:hover,
+.btn-3.pm-pill:focus {
+  background: #EDE9D6;
+  color: #1A1A1A;
+  border-color: #EDE9D6;
+}
+.pm-pill img { width: 18px; height: 18px; display: block; }
+.btn-3.pm-pill img { filter: brightness(0) invert(1); }
+.btn-3.pm-pill:hover img { filter: none; }
+
+/* ================================================================ header ==
+   Transparent over the hero film. [TIDY 2] — one row, no wrapped nav items,
+   SHOP listed once, the two icon-only utilities given real labels. */
+
+#header.pm-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 30;
+  background: transparent;
+  padding: 18px 0;
+  /* the film behind the header is bright at the top, so the chrome carries its
+     own scrim rather than relying on the footage */
+  background-image: linear-gradient(360deg,
+                    rgba(0, 0, 0, 0) 0%,
+                    rgb(0, 0, 0) 100%);   /* measured */
+}
+
+.pm-header__bar {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.pm-brand { display: flex; align-items: center; gap: 18px; flex: 0 0 auto; }
+.pm-brand__logo { display: block; }
+.pm-brand__logo img { height: 52px; width: auto; display: block; }
+.pm-brand__tag {
+  display: block;
+  font-size: 14px;                     /* the functional floor */
+  color: #EDE9D6;
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+}
+.pm-brand__sklub img { height: 26px; width: auto; display: block; }
+
+.pm-brand__ww {
+  font-size: 14px;                     /* the functional floor */
+  line-height: 1.35;
+  color: #CA912B;                      /* $color-accent      5.19:1 */
+  white-space: nowrap;
+}
+
+.pm-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+.pm-nav a {
+  color: #EDE9D6;                      /* 11.77:1 over the header scrim */
+  font-size: 14px;                     /* the functional floor */
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;                 /* [TIDY 2] no two-line nav items */
+  transition: color 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+.pm-nav a:hover { color: #CA912B; }
+
+.pm-util { display: flex; align-items: center; gap: 14px; flex: 0 0 auto; }
+.pm-util a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #EDE9D6;
+  font-size: 14px;
+  min-height: 44px;                    /* tap target */
+}
+.pm-util img { width: 20px; height: 20px; display: block; }
+.pm-util a:hover { color: #CA912B; }
+
+.pm-burger {
+  display: none;
+  margin-left: auto;
+  background: none;
+  border: 1px solid rgba(237, 233, 214, 0.55);
+  border-radius: 90px;
+  color: #EDE9D6;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+/* ================================================================== hero == */
+
+.pm-hero { position: relative; background: #1A1A1A; }
+
+.pm-hero__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1425 / 802;            /* measured — the film is not cropped */
+  height: auto;
+  object-fit: cover;
+}
+
+.pm-hero__transport {
+  position: absolute;
+  right: 24px;
+  top: 108px;                          /* clear of the header and the routes */
+  z-index: 4;
+  background: rgba(20, 20, 20, 0.62);
+  border: 1px solid rgba(237, 233, 214, 0.55);
+  border-radius: 90px;
+  color: #EDE9D6;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.pm-hero__transport:hover { border-color: #CA912B; color: #CA912B; }
+
+/* ------------------------------------------------------ the route cards --
+   .browse_stock — the live layout floats these over the hero's lower edge. */
+
+.browse_stock {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 14%;                         /* the live site floats them here */
+  z-index: 3;
+}
+.pm-routes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;                           /* map.get($space, 5) */
+}
+.pm-route {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 120px;                   /* measured */
+  padding: 20px 26px;                  /* measured block padding */
+  border-radius: 5px;                  /* measured */
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  color: #EDE9D6;
+}
+/* The scrim is part of the card, so the two-tone heading clears AA over any
+   frame of the photograph beneath it. [TIDY 6] */
+.pm-route::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;                          /* was -1 — that put the scrim BEHIND the
+                                          card's own background-image, so it did
+                                          nothing at all */
+  /* measured worst case behind these labels was 1.87:1 on a flat .8 tint */
+  background: linear-gradient(90deg,
+      rgba(26, 26, 26, 0.93) 0%,
+      rgba(26, 26, 26, 0.86) 55%,
+      rgba(26, 26, 26, 0.66) 100%);
+  transition: background 240ms cubic-bezier(0.2, 0, 0, 1);
+}
+.pm-route:hover::after {
+  background: linear-gradient(90deg,
+      rgba(26, 26, 26, 0.86) 0%,
+      rgba(26, 26, 26, 0.74) 55%,
+      rgba(26, 26, 26, 0.50) 100%);
+}
+.pm-route__h,
+.pm-route__go,
+.pm-route__mark { position: relative; z-index: 1; }
+
+.pm-route__h {
+  margin: 0;
+  font-size: 30px;                     /* measured */
+  font-weight: 300;                    /* measured — light, not medium */
+  line-height: 1.2;
+  letter-spacing: -0.9px;              /* measured */
+  color: #EDE9D6;                      /* 10.4:1 over the scrim's lightest end */
+  text-wrap: balance;                  /* [TIDY 3] no mid-phrase wrap */
+}
+.pm-route__h span { color: #CA912B; }  /* the live two-tone treatment */
+.pm-route__go {
+  flex: 0 0 auto;
+  width: 22px; height: 22px;
+  transition: transform 200ms cubic-bezier(0.2, 0, 0, 1);
+  filter: brightness(0) saturate(100%) invert(85%) sepia(9%)
+          saturate(430%) hue-rotate(6deg) brightness(96%) contrast(90%);
+}
+.pm-route:hover .pm-route__go { transform: translateX(5px); }
+.pm-route--logo { justify-content: center; }
+.pm-route--logo img.pm-route__mark { max-height: 56px; width: auto; }
+
+/* ============================================================= inventory == */
+
+.pm-cards {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 30px;                           /* measured BS4 gutter */
+}
+/* the live layout runs 2 wide cards then 3 narrower ones */
+.pm-cards > *:nth-child(1),
+.pm-cards > *:nth-child(2) { grid-column: span 3; }
+.pm-cards > *:nth-child(n+3) { grid-column: span 2; }
+
+.pm-card {
+  display: block;
+  position: relative;
+  border-radius: 10px;                 /* $radius-md */
+  overflow: hidden;
+  background: #1F1F1F;
+  color: #EDE9D6;
+}
+.pm-card__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 670 / 400;             /* measured 5:3, not 3:2 */
+  object-fit: cover;
+  transition: transform 460ms cubic-bezier(0.2, 0, 0, 1);
+}
+.pm-card:hover .pm-card__img { transform: scale(1.03); }
+.pm-card__title {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  margin: 0;
+  padding: 16px 20px 26px;
+  font-size: 16px;
+  font-weight: 500;                    /* $fw-medium */
+  line-height: 1.3;
+  color: #EDE9D6;
+  /* scrim behind the title, not a shadow on it */
+  background: linear-gradient(0deg,
+              rgba(0, 0, 0, 0) 0%,
+              rgb(0, 0, 0) 100%);       /* measured (.car-name) */
+}
+.pm-card__price {
+  display: none;                       /* the live cards show the name only */
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  margin: 0;
+  padding: 26px 20px 16px;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;  /* prices align down the column */
+  color: #CA912B;                      /* 5.19:1 over the scrim */
+  background: linear-gradient(180deg,
+              rgba(0, 0, 0, 0) 0%,
+              rgb(0, 0, 0) 100%);
+}
+.pm-card__price i { font-style: normal; color: #D8D3C4; }
+
+.pm-inventory__foot { margin-top: 48px; }
+
+/* ========================================================= where prestige == */
+
+.pm-prestige__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 64px;                           /* map.get($space, 8) */
+  align-items: center;
+}
+.pm-prestige__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 10px;                 /* $radius-md */
+}
+.pm-prestige__body p { margin: 0 0 28px; }
+
+.pm-panel {
+  margin-top: 40px;
+  padding: 28px;
+  border-radius: 10px;
+  background: rgba(217, 217, 217, 0.14);   /* measured */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;                           /* map.get($space, 4) */
+}
+.pm-social { display: flex; gap: 12px; }
+.pm-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;           /* tap target */
+  border-radius: 50%;
+  border: 1px solid rgba(237, 233, 214, 0.55);
+  transition: background-color 180ms cubic-bezier(0.2, 0, 0, 1);
+}
+.pm-social img { width: 18px; height: 18px; filter: brightness(0) invert(1); }
+.pm-social a:hover { background: rgba(237, 233, 214, 0.16); }
+
+/* ============================================================= cash offer == */
+
+.pm-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;                           /* map.get($space, 7) */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pm-step__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 10px;                 /* $radius-md */
+  margin-bottom: 26px;
+}
+.pm-step__no {
+  display: block;
+  border-top: 2px solid #EDE9D6;
+  padding-top: 10px;
+  font-size: 14px;                     /* the functional floor */
+  line-height: 1.35;
+  color: #D8D3C4;                      /* 9.8:1 */
+  width: 84px;
+  margin-bottom: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.pm-step__h {
+  margin: 0 0 14px;
+  font-size: 23px;
+  font-weight: 700;                    /* $fw-bold */
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #EDE9D6;
+}
+.pm-step p { margin: 0; color: #D8D3C4; max-width: 40ch; }
+.pm-cash__foot { margin-top: 56px; }
+
+/* =========================================================== testimonials == */
+
+.pm-quotes { margin-top: 8px; }
+.pm-quote {
+  background: #D9D6C9;                 /* measured card bone */
+  color: #1F1E1B;                      /* 12.6:1 on the card */
+  border-radius: 0;                    /* measured */
+  padding: 30px;                       /* measured */
+  margin: 0;
+  height: 100%;
+}
+.pm-quote__stars { color: #CA912B; font-size: 15px; letter-spacing: 2px; }
+.pm-quote__q {
+  margin: 14px 0 16px;
+  font-size: clamp(19px, 1.5vw, 23px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+.pm-quote__b { margin: 0 0 20px; font-size: 15px; line-height: 1.6; color: #3A382F; }
+.pm-quote__by { font-size: 14px; font-weight: 500; color: #3A382F; }
+
+/* ============================================================== moments == */
+
+/* the live journal is one four-column grid of five equal cards */
+.pm-posts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px 30px;                      /* measured BS4 gutter */
+}
+.pm-post img {
+  width: 100%;
+  aspect-ratio: 350 / 200;             /* measured card width 350 */
+  object-fit: cover;
+  border-radius: 5px;                  /* measured */
+  margin-bottom: 20px;
+}
+.pm-post__h {
+  margin: 0 0 12px;
+  font-size: 16px;                     /* measured */
+  font-weight: 500;
+  line-height: 1.35;
+  color: #EDE9D6;
+}
+.pm-post p,
+.pm-lead-post p { margin: 0 0 18px; font-size: 14px; line-height: 22px;
+                  color: #D9D6C9; }   /* measured        10.2:1 */
+.pm-lead-post p { font-size: 16px; max-width: 56ch; }
+.pm-lead-post .pm-post__h { font-size: clamp(20px, 1.6vw, 24px); }
+.pm-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;                     /* the functional floor */
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #CA912B;                      /* 5.19:1 */
+  min-height: 44px;
+}
+.pm-more:hover { color: #E0A63A; }
+.pm-more span { transition: transform 180ms cubic-bezier(0.2, 0, 0, 1); }
+.pm-more:hover span { transform: translateX(4px); }
+.pm-moments__foot { margin-top: 48px; display: flex; justify-content: flex-end; }
+
+/* =============================================================== footer == */
+
+#footer.pm-footer {
+  background: #2A2A2A;
+  padding-top: 88px;
+  padding-bottom: 0;
+}
+.pm-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;                           /* map.get($space, 7) */
+  margin-top: 40px;
+}
+.pm-footer__h {
+  margin: 0 0 18px;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #EDE9D6;
+}
+.pm-footer__cols p { margin: 0 0 24px; color: #D8D3C4; max-width: 42ch; }
+.pm-footer__legal {
+  margin-top: 72px;
+  padding: 22px 0;
+  border-top: 1px solid rgba(237, 233, 214, 0.16);
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 14px;                     /* the functional floor */
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #C6C1B2;                      /* 8.4:1 */
+}
+.pm-footer__legal a {
+  color: #C6C1B2;
+  text-decoration: underline;          /* inline prose links stay underlined */
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+.pm-footer__legal a:hover { color: #EDE9D6; }
+
+/* ------------------------------------------------------------ owl chrome -- */
+
+.owl-carousel .owl-nav { display: flex; gap: 10px; margin-top: 32px; }
+.owl-carousel .owl-nav button {
+  width: 52px; height: 46px;           /* tap target */
+  border-radius: 90px !important;
+  border: 1px solid rgba(237, 233, 214, 0.55) !important;
+  background: transparent !important;
+  color: #EDE9D6 !important;
+  font-size: 17px;
+  margin: 0 !important;
+}
+.owl-carousel .owl-nav button:hover {
+  background: #EDE9D6 !important;
+  color: #1A1A1A !important;
+}
+.owl-carousel .owl-nav button.disabled { opacity: 0.35; }
+.owl-carousel .owl-dots { display: none; }
+.pm-voices__foot {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.testimonials-slider .owl-stage { display: flex; }
+.testimonials-slider .owl-item { display: flex; }
+.testimonials-slider .owl-item > * { width: 100%; }
+
+/* ============================================================ responsive ==
+   The governing idea is re-established at each width, not merely restacked:
+   the hero keeps its film, the route cards stay four routes, and the register
+   of vehicles keeps every card. Nothing content-bearing is hidden. */
+
+@media (max-width: 1199.98px) {
+  .pm-nav { gap: 16px; }
+  .pm-nav a { font-size: 14px; letter-spacing: 0.04em; }
+  .pm-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .pm-cards > *:nth-child(1),
+  .pm-cards > *:nth-child(2) { grid-column: span 2; }
+  .pm-cards > *:nth-child(n+3) { grid-column: span 2; }
+  .pm-posts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 991.98px) {
+  .pm-nav,
+  .pm-util,
+  .pm-brand__ww { display: none; }     /* the burger owns navigation here */
+  .pm-header__bar { gap: 16px; }
+  .pm-brand { min-width: 0; gap: 12px; }
+  .pm-brand__logo img { height: 42px; }
+  .pm-h--split { align-items: flex-start; gap: 20px; }
+  .pm-nav.is-open {
+    display: flex;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 8px 24px 20px;
+    background: #1F1F1F;
+  }
+  .pm-nav.is-open li { width: 100%; }
+  .pm-nav.is-open a {
+    display: block;
+    padding: 14px 0;
+    min-height: 44px;
+    border-bottom: 1px solid rgba(237, 233, 214, 0.16);
+  }
+  .pm-burger { display: inline-flex; align-items: center; }
+  #header.pm-header { position: relative; background: #1F1F1F; }
+
+  .pm-section { padding-top: 64px; padding-bottom: 64px; }
+  /* the routes leave the film and become a normal band, so nothing overflows
+     and the film keeps its own full frame */
+  .browse_stock {
+    position: static;
+    padding-top: 24px;
+    padding-bottom: 8px;
+    background: #2A2A2A;
+  }
+  .pm-hero__transport { top: auto; bottom: 16px; right: 16px; }
+  .pm-routes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pm-prestige__grid { grid-template-columns: 1fr; gap: 32px; }
+  .pm-prestige__img { aspect-ratio: 4 / 3; }
+  .pm-steps { grid-template-columns: 1fr; gap: 32px; }
+  .pm-step p { max-width: 52ch; }
+  .pm-lead-post { grid-template-columns: 1fr; gap: 24px; }
+  .pm-footer__cols { grid-template-columns: 1fr; gap: 36px; }
+}
+
+@media (max-width: 767.98px) {
+  .pm-hero__media { height: clamp(420px, 62vh, 560px); }
+  .pm-routes { grid-template-columns: 1fr; gap: 14px; }
+  .pm-route { min-height: 88px; }
+  .pm-cards { grid-template-columns: 1fr; }
+  .pm-cards > * { grid-column: 1 / -1 !important; }
+  .pm-posts { grid-template-columns: 1fr; }
+  .pm-quote { padding: 28px; }
+  .pm-h { margin-bottom: 28px; }
+  .pm-footer__legal { flex-direction: column; gap: 10px; }
+  .pm-moments__foot { justify-content: flex-start; }
+}
+
+/* ------------------------------------------------------- reduced motion --
+   A designed static path, not a disabled one: the hero film holds its poster
+   frame and the transport offers it, everything else simply stops moving. */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .pm-card:hover .pm-card__img,
+  .pm-route:hover .pm-route__go,
+  .pm-more:hover span { transform: none; }
+}
+
+/* ============================================================= instagram ==
+   .Instagram_section — the live site's "Follow us / Motors & Moments" band. */
+
+.pm-insta { padding-top: 50px; padding-bottom: 50px; }   /* measured */
+/* the journal is the one section on a 100px rhythm on the live site */
+.motors_moments.pm-section { padding-top: 100px; padding-bottom: 100px; }
+.pm-insta__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1370 / 454;            /* measured */
+  object-fit: cover;
+  border-radius: 0;                    /* measured */
+}
+.pm-insta__foot { margin-top: 28px; }

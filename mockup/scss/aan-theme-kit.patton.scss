@@ -1,0 +1,69 @@
+// ===========================================================================
+//  PATTON MOTORS — theme-kit diff
+//  Paste these values into  assets/scss/aan-theme-kit.scss  and recompile:
+//      sass scss/style.scss css/style.css
+//  Everything else in the mockup is ordinary custom CSS and lives in
+//  components/patton-home.scss. Nothing here invents a value: each one was
+//  measured off the live site's DOM or off goldenlogo.svg.
+// ===========================================================================
+
+// --- BLOCK 1 · FONTS -------------------------------------------------------
+// The live theme already self-hosts these. No new face is introduced.
+$font-display : "Helvetica Neue", Arial, sans-serif;
+$font-body    : "Helvetica Neue", Arial, sans-serif;
+$font-accent  : $font-display;
+
+// --- BLOCK 2 · COLORS ------------------------------------------------------
+// $color-primary is the wordmark gold. goldenlogo.svg's gradient runs
+// #644815 -> #CA912B -> #FFEB0F; the site's accent already IS the mid stop,
+// so the identity and the interface resolve to one value.
+$color-primary   : #CA912B;   // brand / primary CTA          measured
+$color-secondary : #1A1A1A;   // dark UI, and the label on gold
+$color-accent    : #CA912B;   // the pop: section heads, prices
+$color-accent-2  : #E0A63A;   // hover step on the accent
+$color-text      : #EDE9D6;   // bone body text               measured
+
+$color-heading   : #EDE9D6;
+$color-muted     : #C6C1B2;   // 8.4:1 on the ground
+$color-ink-700   : #D8D3C4;   // 9.8:1 on the ground
+$color-link      : $color-accent;
+$color-link-hover: #E0A63A;
+
+// Surfaces — the whole block is dark-first on this site.
+$bg-page      : #2A2A2A;      // measured
+$bg-row       : #2A2A2A;
+$bg-row-alt   : #1F1F1F;
+$bg-invert    : #EDE9D6;
+$surface-dark : #1F1F1F;
+$surface-card : #D9D6C9;      // testimonial cards            measured
+$bg-header    : transparent;  // the header floats over the hero film
+$bg-footer    : #2A2A2A;
+
+$color-border  : rgba(237, 233, 214, 0.16);
+$color-border-2: rgba(237, 233, 214, 0.55);   // 3:1 control boundary
+
+// --- BLOCK 4 · BUTTONS -----------------------------------------------------
+$btn-radius        : 90px;    // pill                          measured
+$btn-padding       : 15px 34px;
+$btn-letter-spacing: normal;  // the live pills are title case, not tracked caps
+
+// .btn-1  gold fill.  CONTRAST FIX: the live site sets bone (#EDE9D6) on gold,
+//                     which measures 2.27:1 and fails WCAG AA. #1A1A1A on the
+//                     same gold measures 6.36:1 and changes nothing else.
+// .btn-2  bone fill, ink label      15.1:1
+// .btn-3  ghost, bone label + rule  11.77:1 / 3:1
+
+// --- BLOCK 5 · SURFACES & RHYTHM -------------------------------------------
+$radius-sm  : 4px;
+$radius-md  : 10px;           // cards                         measured
+$radius-lg  : 14px;
+$radius-pill: 90px;
+$container-max: 1400px;       // measured (theme default is 1325px)
+$srp-card-image-ratio: 3 / 2;
+
+// --- MEASURED CONTRAST, for the record -------------------------------------
+//   bone   #EDE9D6 on ground #2A2A2A ......... 11.77:1   AA / AAA
+//   gold   #CA912B on ground #2A2A2A .........  5.19:1   AA
+//   muted  #C6C1B2 on ground #2A2A2A .........  8.40:1   AA / AAA
+//   ink    #1A1A1A on gold   #CA912B .........  6.36:1   AA   (was 2.27:1)
+//   ink    #1F1E1B on card   #D9D6C9 ......... 12.60:1   AA / AAA

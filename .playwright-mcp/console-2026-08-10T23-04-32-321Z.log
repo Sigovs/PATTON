@@ -1,0 +1,33 @@
+[     104ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8777/wp-content/themes/aanWordpress/fonts/Inter-VariableFont.woff2:0
+[     104ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8777/wp-content/themes/aanWordpress/fonts/PlusJakartaSans-VariableFont.woff2:0
+[  473711ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  474014ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  474366ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  474771ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  475224ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  475729ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  476282ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  476886ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  477538ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  478241ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  478994ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  479797ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  480651ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  481554ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  482507ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  483511ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  484565ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  485668ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  486820ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  488024ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  489276ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  490579ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  491933ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  493337ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  494790ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  496293ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  497847ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  499452ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  501106ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  502810ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
+[  504564ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8777/assets/site/welcomevid.mp4:0
