@@ -2,3 +2,5 @@
 *.bak
 .index.copy.bak
 node_modules/
+
+.playwright-mcp/
