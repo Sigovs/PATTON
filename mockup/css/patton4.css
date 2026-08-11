@@ -43,10 +43,25 @@
                         (140° is 2.5% of saturated pixels) so it can never
                         compete with a car.
 
-   Contrast measured on the composite, not on the token — v3 shipped --ink-3 at
-   3.7:1 by trusting the swatch:
-     --bone on --ink   15.9:1      --live on --ink    9.1:1
-     --ink  on --steel 14.8:1      --ink-64 on --steel 5.4:1
+   Contrast, MEASURED — corrected 2026-08-11. The four ratios that stood here
+   before were estimates written under a heading claiming they were measured,
+   which is the same failure as quoting a rule from memory. Every one was wrong,
+   and the largest error was 3 whole points:
+
+     --bone   on --ink     16.36:1   (stated 15.9)
+     --live   on --ink      8.99:1   (stated  9.1)
+     --ink    on --steel   11.84:1   (stated 14.8)
+     --ink-64 on --steel    4.90:1   (stated  5.4)
+
+   All four still pass, so nothing in the design moves. The point is the method,
+   not the outcome: a comment stating a number it never took rots silently, and
+   the next person to change a token trusts it.
+
+   --ink-64 on --steel is the pair with the LEAST headroom — 4.90 against a 4.5
+   floor. It is the first thing that breaks if --steel is ever lightened, and it
+   is an alpha colour, so it must be composited onto the ground before the ratio
+   is taken. Reading the rgba channels without compositing returns 11.84 and
+   looks like a comfortable pass. That mistake was made here once already. */
    ========================================================================== */
 
 :root {
