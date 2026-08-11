@@ -3,17 +3,24 @@
 Updated 11 Aug 2026. Read `CLAUDE.md` first; this is the state, that is the
 rules. The memory files under the project's `memory/` folder load automatically.
 
-## The live file is `mockup/index3.html`
+## The live file is `mockup/index4.html`
 
 | File | What it is |
 |---|---|
-| **`mockup/index3.html`** | **the work.** The whole page, hero to footer. |
-| `mockup/css/patton3.css` | its stylesheet, vanilla, loaded after the AAN theme's compiled `style.css` |
+| **`mockup/index4.html`** | **the work.** v4 — the page recomposed for rhythm. |
+| `mockup/css/patton4.css` | its stylesheet, its own token system |
+| `mockup/index3.html` | v3 — the same six masses, superseded on rhythm grounds but not wrong; the derivations below were made here and still hold |
+| `mockup/css/patton3.css` | v3's stylesheet |
 | `mockup/index.html` | an earlier marketplace redesign Alex rejected |
 | `mockup/index.reproduction.backup.html` | a faithful copy of the live pattonmotors.com |
 | `mockup/index2.html` | an intermediate Bootstrap pass, superseded |
 
-Everything is committed and pushed. Last commit `ffb14aa`.
+v4's own reasoning is in commit `1df5e88`: v3 passed every invariant and still
+read flat, because five chapters opened identically and five sections sat within
+a few percent of one viewport tall. v4 answers that with section heights running
+1.0 · 0.20 · 1.95 · 0.23 · 2.63 · 1.12 · 0.97 · 0.60 viewports and four
+typographic events instead of one. It is a new file; index3 and patton3.css are
+untouched, and neither the film nor the vehicle photography changed.
 
 Serve it: `cd mockup && python3 -m http.server 8787` → http://localhost:8787/index3.html
 Note: that server lets the browser cache `patton3.css` aggressively. After a CSS
@@ -48,10 +55,16 @@ rather than script. They release below 992px.
 plate: state + bid + time against an asking price. A car on the block is not on
 the floor.
 
-## Open — five spacing corrections, found and NOT yet applied
+## Five spacing corrections — found against v3, mostly answered by v4
 
-Found by auditing the shipped page against `skills/spacing-taste/SKILL.md`, which
-had been paraphrased from memory rather than read. All five are real:
+Found by auditing v3 against `skills/spacing-taste/SKILL.md`, which had been
+paraphrased from memory rather than read. **They were never applied to
+patton3.css.** v4 is a separate rewrite with its own token system and already
+resolves 3 and 4 on its own — it carries no off-scale values in spacing
+properties and caps the sample-data note at 72ch. Items 1, 2 and 5 have not been
+checked against patton4.css; do that before spending any time on them.
+
+The list, as it stood against v3:
 
 1. **D4 violated.** `--gutter: clamp(20px, 3vw, 40px)` gives 20px at every width
    below ~800px; the floor is 24px. It was reported as a yield "on 320px", which
