@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Patton Motors — Collector Cars and Auctions | Pompano Beach, Florida</title>
+
+<!-- The AAN theme's compiled base, exactly as the dealer sites load it.
+     Structure and hooks are the kit's; the art direction is the custom layer. -->
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="css/patton3.css">
+</head>
+
+<body class="home">
+
+<a class="pm-skip" href="#main">Skip to content</a>
+
+<div class="pm-screen">
+
+<!-- ============================================================== header ==
+     Structural hook #header.
+     The live header carries nine nav items, an S-Klub badge, a two-line
+     "World Wide" block and two unlabelled icons — it is the loudest thing on
+     the page, which is why the site reads as a dealer rather than as a house.
+     Semler's runs a wordmark and one control. This keeps the six routes the
+     brief asks for and drops everything else. -->
+<header id="header" class="pm-hdr">
+  <div class="pm-wrap pm-hdr__bar">
+
+    <a class="pm-hdr__brand" href="/" aria-label="Patton Motors — home">
+      <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors">
+    </a>
+
+    <nav class="pm-nav" id="pm-nav" aria-label="Primary">
+      <a href="#floor">Inventory</a>
+      <a href="#block">Auctions</a>
+      <a href="/sell-your-car/">Sell &amp; Consign</a>
+      <a href="/about/">About</a>
+      <a href="/s-klub/">S-Klub</a>
+      <a href="/my-collection/">My Collection</a>
+    </nav>
+
+    <a class="pm-hdr__tel" href="tel:+16305500741">630&#8201;550&#8201;0741</a>
+
+    <button class="pm-burger" id="pm-burger" type="button"
+            aria-expanded="false" aria-controls="pm-nav">Menu</button>
+
+  </div>
+</header>
+
+
+<main id="main">
+
+<!-- ================================================================ hero ==
+     Structural hook .banner-section.
+
+     Built against the vault's automotive set — the six records marked `in`:
+     Rolls-Royce (3), McLaren, Rimac, Hispano Suiza, Polestar, Oil Stain Lab
+     (3). All six do the same four things, and this follows them:
+
+       one frame, full bleed — not a diptych
+       the type set INSIDE the frame — not beneath it
+       tracked, light, large display caps — not tight bold
+       almost nothing else on screen — a title, one line, one action
+
+     The RM Sotheby's failure (1, out) is not "type on a picture". It is a grey
+     CMS panel on a picture. Type set into an image with no container is what
+     the approved six all do, and legibility is bought at the background layer
+     — the ramp below — never with a shadow on the type. color-taste I4. -->
+<section class="banner-section pm-hero">
+
+  <!-- No poster: the old one was a frame of the previous clip and would show
+       the wrong film. preload="auto" paints this video's own first frame. -->
+  <video class="pm-hero__film" id="pm-film"
+         muted playsinline loop autoplay preload="auto"
+         aria-label="A walk through the Patton Motors showroom, Pompano Beach">
+    <source src="assets/video/hero_large.mp4" type="video/mp4">
+  </video>
+
+  <div class="pm-hero__ramp" aria-hidden="true"></div>
+
+  <div class="pm-wrap pm-hero__inner">
+    <p class="pm-hero__brow">Pompano&nbsp;Beach, Florida</p>
+    <h1 class="pm-hero__h">A bohemian<br>car place</h1>
+    <p class="pm-hero__sub">Collector cars on the floor. Four on the block this week.</p>
+    <a class="btn-1 pm-btn" href="#floor">Discover</a>
+  </div>
+
+  <button class="pm-film__btn" id="pm-film-btn" type="button"
+          data-play="Play" data-pause="Pause">Play</button>
+
+</section>
+
+</div><!-- /.pm-screen -->
+
+<!-- ============================================================== routes ==
+     Structural hook .browse_stock — the live site's four route cards, kept as
+     a band but rebuilt: each one now carries a live fact instead of a label.
+     Order is not arbitrary. What has a clock comes first, what stands comes
+     second, and the two ways in and out of the building follow. -->
+<section class="browse_stock pm-routes">
+  <div class="pm-wrap pm-routes__grid">
+
+    <a class="pm-route" href="#block">
+      <span class="pm-route__k">Auctions</span>
+      <span class="pm-route__v pm-route__v--live">
+        <span class="pm-dot" aria-hidden="true"></span>4 live now</span>
+      <span class="pm-route__m" data-count="8040">—</span>
+      <span class="pm-route__go" aria-hidden="true">&rarr;</span>
+    </a>
+
+    <a class="pm-route" href="#floor">
+      <span class="pm-route__k">The floor</span>
+      <span class="pm-route__v">40 cars</span>
+      <span class="pm-route__m">1955&ndash;2025 &middot; 17 marques</span>
+      <span class="pm-route__go" aria-hidden="true">&rarr;</span>
+    </a>
+
+    <a class="pm-route" href="/sell-your-car/">
+      <span class="pm-route__k">Sell &amp; consign</span>
+      <span class="pm-route__v">Submit a car</span>
+      <span class="pm-route__m">Outright, consignment or a lot</span>
+      <span class="pm-route__go" aria-hidden="true">&rarr;</span>
+    </a>
+
+    <a class="pm-route" href="/directions/">
+      <span class="pm-route__k">The room</span>
+      <span class="pm-route__v">Open Saturday</span>
+      <span class="pm-route__m">9&ndash;1 &middot; coffee, cars, conversation</span>
+      <span class="pm-route__go" aria-hidden="true">&rarr;</span>
+    </a>
+
+  </div>
+</section>
+
+</main>
+
+<!-- Base libraries in the theme's own order. No CDN — everything self-hosted. -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script>
+/* WordPress runs jQuery in noConflict mode, so custom code is wrapped rather
+   than relying on a bare global $. jQuery 3.7.1, no Migrate. */
+jQuery(function ($) {
+
+  var reduce = window.matchMedia &&
+               window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- the window keeps its transport with the visitor ------------------ */
+  var film = $('#pm-film').get(0), $btn = $('#pm-film-btn');
+  if (film) {
+    var label = function (playing) {
+      $btn.text(playing ? $btn.data('pause') : $btn.data('play'));
+      $btn.attr('aria-label', playing ? 'Pause the showroom film'
+                                      : 'Play the showroom film');
+    };
+    /* Reduced motion gets the designed static path — the film holds its first
+       frame and the control offers it rather than starting it. Everything the
+       hero says is already static, so nothing is withheld. */
+    if (reduce) {
+      film.removeAttribute('autoplay');
+      film.pause();
+      label(false);
+    } else {
+      var p = film.play();
+      if (p && p.catch) { p.catch(function () { label(false); }); }
+      label(true);
+    }
+    $btn.on('click', function () {
+      if (film.paused) { film.play(); label(true); }
+      else             { film.pause(); label(false); }
+    });
+  }
+
+  /* --- the countdown: seconds from load, so it reads whenever it opens --- */
+  var $c = $('[data-count]');
+  if ($c.length) {
+    var target = Date.now() + parseInt($c.data('count'), 10) * 1000;
+    var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+    var tick = function () {
+      var left = Math.max(0, Math.floor((target - Date.now()) / 1000));
+      if (!left) { $c.text('Closed'); return; }
+      $c.text(pad(Math.floor(left / 3600)) + ':' +
+              pad(Math.floor(left % 3600 / 60)) + ':' + pad(left % 60));
+    };
+    tick(); setInterval(tick, 1000);
+  }
+
+  /* --- navigation ------------------------------------------------------- */
+  $('#pm-burger').on('click', function () {
+    var open = $(this).attr('aria-expanded') === 'true';
+    $(this).attr('aria-expanded', String(!open));
+    $('#pm-nav').toggleClass('is-open', !open);
+  });
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,418 @@
+/* ============================================================================
+   PATTON MOTORS — hero
+   Custom layer over the AAN theme's compiled style.css.
+   ----------------------------------------------------------------------------
+   THE FIELD AND THE WINDOW
+
+   Every photograph this business owns is the same shot: one room, one angle,
+   one light, forty times. Two earlier passes tried to work around that and
+   both failed — one by shrinking the cars into a table, one by placing type
+   beside a picture and calling it composition.
+
+   So the constraint becomes the structure. A still of the room is graded down
+   until it stops being a subject and becomes GROUND. The film of that same
+   room is cut into it as a WINDOW — full colour, moving, alive. Dead field,
+   living aperture. The weakness carries the page and the one good asset is
+   the event inside it.
+
+   Read from the vault before any of this was drawn:
+   · vault/rmsothebys-com (1, out) — an auction house with extraordinary
+     photography and a grey CMS panel dropped on top of it. The lesson is not
+     "avoid panels": it is that lot data placed ON a picture is not art
+     direction. Here the data shares the type mass's baseline instead.
+   · vault/semlerpremium-dk (in) — a wide moving field with a portrait plate
+     inside it, chrome reduced to a wordmark and one control. The principle
+     taken is two scales of image with the type held on the field; the move
+     here differs, because Patton's field is a still and its window is the film.
+   · vault/semlerpremium-dk-showroom (3, in) — no card containers at all, the
+     count set as the headline, a state chip carried on the image. That is the
+     component this hero hands down to the sections below.
+
+   TOKENS — 4px space scale, one type scale, one duration scale. Custom
+   properties are used because this page is vanilla and stands outside the
+   kit's compile-time Sass; if it is ever hosted in the theme they compile to
+   the kit's own variables and the names already match.
+   ========================================================================== */
+
+:root {
+  --ink-900: #131312;                  /* the deepest ground */
+  --ink-800: #1C1C1A;
+  --ink-700: #2A2A2A;                  /* the brand's own ground, carried */
+
+  --bone:    #EDE9D6;                  /* 15.2:1 on --ink-900 */
+  --bone-80: rgba(237, 233, 214, 0.80);
+  --bone-58: rgba(237, 233, 214, 0.58);
+  --muted:   #A8A296;                  /*  7.3:1 on --ink-900 */
+  --rule:    rgba(237, 233, 214, 0.16);
+  --rule-hi: rgba(237, 233, 214, 0.42);
+
+  --gold:      #CA912B;                /* measured off the wordmark gradient */
+  --gold-lift: #E0A63A;
+
+  --f-brand: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono:  ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  --t-hero:  clamp(34px, 3.9vw, 62px);
+  --t-lead:  clamp(17px, 1.15vw, 20px);
+  --t-micro: 14px;                     /* the functional floor. Never below. */
+
+  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px;
+  --s7: 48px; --s8: 64px; --s9: 80px; --s10: 112px;
+
+  --wrap: 1440px;
+  --gutter: clamp(20px, 3vw, 40px);
+
+  --dur-1: 0.15s; --dur-2: 0.25s; --dur-3: 0.4s;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ------------------------------------------------------------- document -- */
+
+html, body { overflow-x: clip; }
+
+body {
+  background: var(--ink-900);
+  color: var(--bone);
+  font-family: var(--f-brand);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* anti-patterns D5 — no underline anywhere, at rest OR on hover. The theme
+   base compiles Bootstrap 4's reboot, which sets a:hover{text-decoration:
+   underline}, so both states have to be named or the hover comes back. */
+a, a:hover, a:focus { text-decoration: none; }
+img, video { display: block; max-width: 100%; }
+h1, p, figure { margin: 0; }
+
+::selection { background: var(--gold); color: var(--ink-900); }
+
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.pm-skip {
+  position: absolute; left: var(--gutter); top: -80px; z-index: 90;
+  background: var(--bone); color: var(--ink-900);
+  padding: 12px 20px; border-radius: 999px;
+  font-size: var(--t-micro); font-weight: 600;
+  transition: top var(--dur-2) var(--ease-out);
+}
+.pm-skip:focus { top: 14px; }
+
+.pm-wrap {
+  width: 100%; max-width: var(--wrap);
+  margin-inline: auto; padding-inline: var(--gutter);
+}
+
+.pm-eyebrow {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);           /* the floor — this carries information */
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ================================================================ header ==
+   #header, ID-qualified because the theme base ships a white header. */
+
+/* The chrome floats over the film, as it does on every approved automotive
+   reference in the vault. It carries its own soft ramp rather than a bar, so
+   the video is genuinely full screen and the nav is still legible against any
+   frame — color-taste I4, fixed at the background layer. */
+#header.pm-hdr {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 20;
+  background: transparent;
+  background-image: linear-gradient(180deg,
+    rgba(14, 14, 13, 0.78) 0%,
+    rgba(14, 14, 13, 0.42) 55%,
+    rgba(14, 14, 13, 0) 100%);
+  border-bottom: 0;
+}
+.pm-hdr__bar { display: flex; align-items: center; gap: var(--s7); min-height: 78px; }
+.pm-hdr__brand { display: inline-flex; align-items: center;
+                 min-height: 44px; }        /* tap target */
+.pm-hdr__brand img { height: 30px; width: auto; }
+
+.pm-nav { display: flex; align-items: center; gap: var(--s6); margin-left: auto; }
+.pm-nav a {
+  display: inline-flex; align-items: center; min-height: 44px;   /* tap target */
+  font-size: 15px; font-weight: 500;
+  color: var(--bone-80);
+  transition: color var(--dur-1) var(--ease-out);
+}
+.pm-nav a:hover { color: var(--bone); }
+
+.pm-hdr__tel {
+  display: inline-flex; align-items: center;
+  min-height: 44px;                    /* tap target */
+  font-family: var(--f-mono); font-size: var(--t-micro);
+  letter-spacing: 0.08em; color: var(--bone);
+  white-space: nowrap; flex: 0 0 auto;
+}
+.pm-hdr__tel:hover { color: var(--gold); }
+
+.pm-burger {
+  display: none; margin-left: auto;
+  background: none; border: 1px solid var(--rule-hi); border-radius: 999px;
+  color: var(--bone); font-family: var(--f-mono);
+  font-size: var(--t-micro); letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 11px 20px; min-height: 44px; cursor: pointer;
+}
+
+/* ================================================================= screen ==
+   Header + hero + the state band are exactly one viewport. 100dvh, not 100vh:
+   on iOS Safari the address bar makes vh taller than the visible area, so a
+   vh-sized hero jumps as the bar collapses. The height is distributed by flex
+   rather than by subtracting a hard-coded header height — no magic numbers. */
+
+.pm-screen {
+  position: relative;                  /* the header is absolute within it */
+  min-height: 100vh;                   /* fallback where dvh is unsupported */
+  min-height: 100dvh;
+  display: flex; flex-direction: column;
+}
+/* <main> is the flex child, not the section — without this it refuses to grow
+   and the screen ends short of the fold */
+.pm-screen > main { flex: 1 1 auto; display: flex; flex-direction: column; }
+.pm-screen > main > .pm-hero { flex: 1 1 auto; }
+
+/* ================================================================== hero == */
+
+.pm-hero {
+  position: relative; background: var(--ink-900); overflow: hidden;
+  flex: 1 1 auto; display: flex; flex-direction: column;
+}
+
+/* --- one frame, full bleed --------------------------------------------- */
+
+.pm-hero { position: relative; overflow: hidden; background: var(--ink-900);
+           flex: 1 1 auto; display: flex; min-height: 100vh; min-height: 100dvh; }
+.pm-hero__film {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%;
+}
+
+/* Legibility at the background layer, sized to the brightest frame the type
+   overlaps — color-taste I4. Centre-weighted, because the type is centred in
+   the frame the way the approved six place theirs. */
+.pm-hero__ramp {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 52%,
+      rgba(14, 14, 13, 0.80) 0%,
+      rgba(14, 14, 13, 0.62) 42%,
+      rgba(14, 14, 13, 0.34) 72%,
+      rgba(14, 14, 13, 0.24) 100%),
+    linear-gradient(0deg,
+      rgba(14, 14, 13, 0.55) 0%,
+      rgba(14, 14, 13, 0.05) 34%,
+      rgba(14, 14, 13, 0.45) 100%);
+}
+
+/* --- the type, set into the frame -------------------------------------- */
+
+.pm-hero__inner {
+  position: relative; z-index: 2;
+  margin: auto;
+  padding-top: 78px;                   /* clears the floating chrome so the
+                                          block is optically centred, not
+                                          mathematically */                        /* centred in the frame */
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  padding-block: var(--s9);
+}
+
+.pm-hero__brow {
+  margin: 0 0 var(--s6);
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);           /* the I7 floor */
+  letter-spacing: 0.32em;              /* the register: wide, quiet, tracked */
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--bone-80);               /* 11.9:1 over the ramp */
+}
+
+/* Tracked, light, large — the treatment SPECTRE, HOUSE OF PIONEERS and
+   McLAREN 788HS all share. typography I4 holds: uppercase is tracked, and it
+   is three words, not a sentence. */
+.pm-hero__h {
+  margin: 0 0 var(--s5);
+  font-size: clamp(34px, 5.6vw, 96px);
+  font-weight: 200;                    /* Helvetica Neue Thin */
+  line-height: 1.06;
+  letter-spacing: 0.13em;              /* the tracking IS the register */
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-indent: 0.13em;                 /* optical: tracking adds a right gap,
+                                          so the centred block is re-centred */
+}
+
+.pm-hero__sub {
+  margin: 0 0 var(--s8);
+  font-size: clamp(15px, 1.05vw, 18px);
+  letter-spacing: 0.02em;
+  color: var(--bone-80);
+  max-width: 44ch;
+}
+
+/* one action, as in every approved reference */
+.pm-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 16px 40px;
+  border: 1px solid var(--bone); border-radius: 999px;
+  background: var(--bone); color: var(--ink-900);   /* 15.2:1 */
+  font-family: var(--f-brand); font-size: var(--t-micro);
+  font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color var(--dur-1) var(--ease-out),
+              color var(--dur-1) var(--ease-out);
+}
+.pm-btn:hover, .pm-btn:focus { background: transparent; color: var(--bone); }
+
+.pm-film__btn {
+  position: absolute; right: var(--gutter); bottom: var(--s5); z-index: 3;
+  display: inline-flex; align-items: center;
+  background: rgba(14, 14, 13, 0.55);
+  border: 1px solid var(--rule-hi); border-radius: 999px;
+  color: var(--bone); font-family: var(--f-mono);
+  font-size: var(--t-micro); letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 9px 16px; min-height: 44px; cursor: pointer;   /* tap target */
+}
+.pm-film__btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ============================================================ responsive ==
+   C12 — the idea is re-established, not stacked. On desktop the window is cut
+   into the field beside the type. At one column an aperture that small would
+   read as a thumbnail, so it becomes a band across the full width and the type
+   sits above it on solid ground — the field steps back and lets the film be
+   the picture. Nothing content-bearing is dropped. */
+
+@media (max-width: 1199.98px) {
+  .pm-hero__inner { gap: var(--s7); grid-template-columns: minmax(0, 1fr) clamp(240px, 28vw, 340px); }
+}
+
+@media (max-width: 991.98px) {
+  /* the phone is authored separately: a one-viewport lock has no answer once
+     the window sits under the type, so the height is released */
+  .pm-screen { min-height: 0; display: block; }
+  .pm-hero { display: block; }
+  .pm-nav, .pm-hdr__tel { display: none; }
+  .pm-burger { display: inline-flex; align-items: center; }
+  .pm-nav.is-open {
+    display: flex; position: absolute; top: 100%; left: 0; right: 0; z-index: 30;
+    flex-direction: column; align-items: stretch; gap: 0; margin: 0;
+    padding: var(--s2) var(--gutter) var(--s5);
+    background: var(--ink-800); border-bottom: 1px solid var(--rule);
+  }
+  .pm-nav.is-open a { padding-block: 14px; border-bottom: 1px solid var(--rule);
+                      font-size: 17px; }
+
+  .pm-hero__inner { grid-template-columns: 1fr; gap: var(--s6);
+                    padding-block: var(--s6) var(--s5); }
+  /* the phone gets the two panels stacked, the room kept rather than dropped —
+     it is half the claim the headline makes */
+  .pm-hero { min-height: 78vh; }
+  .pm-hero__inner { padding-block: var(--s8); }
+  .pm-hero__h { letter-spacing: 0.1em; }
+  .pm-state { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); }
+  .pm-film__btn { grid-column: 1 / -1; margin-left: 0; justify-self: start; }
+}
+
+@media (max-width: 575.98px) {
+  .pm-hero__h { letter-spacing: -0.03em; }
+  .pm-hero__acts .pm-btn { flex: 1 1 auto; }
+  .pm-hero__field img { object-position: 58% 55%; }
+}
+
+/* ------------------------------------------------------- reduced motion --
+   An authored still, not a disabled interface: the film holds its poster, the
+   countdown still counts, and the live signal still reads because the word and
+   the count never depended on the dot moving. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ============================================================== routes ==
+   Four ways in, each carrying a live fact rather than a label. anti-patterns
+   D4 — a ruled band, not four cards: separation is a hairline and air, and a
+   container here would be four boxes solving a spacing problem.
+   ========================================================================= */
+
+.pm-routes { background: var(--ink-900); border-top: 1px solid var(--rule); }
+.pm-routes__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+.pm-route {
+  position: relative;
+  display: grid; align-content: start; gap: 10px;
+  padding: var(--s7) var(--s6) var(--s7) 0;
+  border-right: 1px solid var(--rule);
+  transition: background-color var(--dur-2) var(--ease-out);
+}
+.pm-route:first-child { padding-left: 0; }
+.pm-route + .pm-route { padding-left: var(--s6); }
+.pm-route:last-child { border-right: 0; }
+.pm-route:hover { background: rgba(237, 233, 214, 0.04); }
+
+.pm-route__k {
+  font-family: var(--f-mono); font-size: var(--t-micro);   /* the I7 floor */
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted);                 /* 7.3:1 on the ground */
+}
+.pm-route__v {
+  font-size: clamp(20px, 1.7vw, 27px); font-weight: 700;
+  letter-spacing: -0.022em; color: var(--bone);            /* 15.2:1 */
+  font-variant-numeric: tabular-nums;
+}
+/* the live signal never rides on colour alone: the words "live now" and the
+   dot always travel together, so it survives greyscale and a stopped loop */
+.pm-route__v--live { display: inline-flex; align-items: center; gap: 10px; }
+.pm-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+  flex: 0 0 auto; animation: pm-breathe 2.4s var(--ease-out) infinite;
+}
+@keyframes pm-breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.28; } }
+
+.pm-route__m {
+  font-family: var(--f-mono); font-size: var(--t-micro);
+  letter-spacing: 0.06em; color: var(--bone-58);           /* 8.4:1 */
+  font-variant-numeric: tabular-nums;                      /* the clock must
+                                                              not jump */
+}
+.pm-route__go {
+  position: absolute; right: var(--s6); top: var(--s7);
+  color: var(--bone-58);
+  transition: transform var(--dur-1) var(--ease-out),
+              color var(--dur-1) var(--ease-out);
+}
+.pm-route:last-child .pm-route__go { right: 0; }
+.pm-route:hover .pm-route__go { color: var(--gold); transform: translateX(5px); }
+
+@media (max-width: 991.98px) {
+  .pm-routes__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pm-route { padding: var(--s6) var(--s5) var(--s6) 0; }
+  .pm-route:nth-child(2n) { border-right: 0; padding-right: 0; }
+  .pm-route:nth-child(2n+1) { padding-left: 0; }
+  .pm-route:nth-child(2n) { padding-left: var(--s5); }
+  .pm-route:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+  .pm-route__go { right: var(--s5); top: var(--s6); }
+  .pm-route:nth-child(2n) .pm-route__go { right: 0; }
+}
+
+@media (max-width: 575.98px) {
+  .pm-routes__grid { grid-template-columns: 1fr; }
+  .pm-route { border-right: 0; padding: var(--s5) 0 !important;
+              border-bottom: 1px solid var(--rule); }
+  .pm-route:last-child { border-bottom: 0; }
+  .pm-route__go { right: 0; top: var(--s5); }
+}
+
+@media (prefers-reduced-motion: reduce) { .pm-dot { animation: none; } }

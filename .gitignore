@@ -4,3 +4,16 @@
 node_modules/
 
 .playwright-mcp/
+
+# Raw and encoded film. Hundreds of megabytes of source video do not belong in
+# git — the mockup references assets/video/hero_large.mp4 locally.
+HERO VIDEO/
+patton old files videos/
+mockup/assets/video/
+
+# A copy of the installed aan-dealer-mockups skill, not project source.
+mockup/aan-dealer-mockups/
+
+# Working screenshots and probes.
+mockup/.h3.png
+mockup/.probe.html

@@ -1,71 +1,82 @@
-# Where this stands — 11 Aug 2026
+# Patton Motors — where this stands
 
-The homepage redesign is pushed and it is **not right yet**. Alex's verdict:
-worse than what it replaced. That verdict is correct, and the reason is
-specific, so start here rather than re-reading the code.
+Updated 11 Aug 2026, at the end of a long session. Read this first; the memory
+files under the project's `memory/` folder load automatically and carry the
+reasoning behind it.
 
-## What went wrong
+## The live file is `mockup/index3.html`
 
-Seen small, as one object, the page is a spreadsheet. Roughly 4,500 of its
-11,000 pixels are a bone-coloured list of 34 rows with 124px thumbnails.
+Everything else is history:
 
-The brief asked for the opposite of that, in as many words:
-
-- "The CARS should remain the visual heroes" — the page shows one hero image,
-  one lot image, and 39 postage stamps.
-- "Photography + typography + spacing should do most of the design work" — what
-  is actually doing the work is typography, hairlines and tables.
-- Under *Avoid*: "dashboard-looking UI", "too many boxes".
-
-Three more faults, in order of how much they cost:
-
-1. **The register ate the page.** It is a good device for an inventory page and
-   the wrong one for a homepage. It was kept because it elegantly solved the
-   problem that every inventory photograph is shot from the same point in the
-   same room — which is a designer falling for a mechanism and letting it take
-   the position the subject should hold.
-2. **The same red 250 GTO appears twice**, large, inside the first two screens —
-   once as the hero, once as the featured lot. A repeat, not a system.
-3. **The tonal rhythm is flat.** Dark, dark, one enormous bone slab, dark, dark.
-   At that scale the panel stopped reading as a document inset into a page and
-   became merely a light section. The device died of size.
-
-## The correction, agreed but not built
-
-The homepage becomes an **edit, not an index**.
-
-- Move the 34-row register to the inventory page, where it belongs.
-- Homepage shows **three live lots and five or six cars from the floor**, each
-  at full width or near it — big photography, large type over or beside it, real
-  air between. Eight or nine cars instead of forty, but at the size of a screen.
-- "All auctions" and "Search the full inventory" carry the rest.
-- Different vehicle in the hero than in the featured lot.
-
-One question was left open and needs Alex's answer before the rebuild:
-
-> Does the homepage show **few cars, large** (the recommendation), or must the
-> first screen make it obvious there are forty of them — which needs a different
-> device, but not a table.
-
-## Files
-
-| | |
+| File | What it is |
 |---|---|
-| `mockup/index.html` | the redesign as it stands — vanilla, no framework, opens by double-click |
-| `mockup/css/patton-marketplace.css` | the whole system; the organising rules are written at the top of the file |
-| `mockup/build-home.mjs` | generator — reads `assets/cars.json`, emits the page. **Auction bids, bid counts and closing times are sample data** and are marked as such in the file. Vehicles are real stock. |
-| `mockup/index.reproduction.backup.html` | the faithful copy of the live site, before any redesign |
-| `mockup/index2.html` | an intermediate Bootstrap-based pass, superseded — safe to delete |
+| **`mockup/index3.html`** | **the work.** Header + full-screen video hero + a four-route band. Nothing below that yet. |
+| `mockup/css/patton3.css` | its stylesheet, vanilla, loaded after the AAN theme's compiled `style.css` |
+| `mockup/index.html` | an earlier marketplace redesign Alex rejected — the register ate the page |
+| `mockup/index.reproduction.backup.html` | a faithful copy of the live pattonmotors.com |
+| `mockup/index2.html` | an intermediate Bootstrap pass, superseded |
 
-Run it: open `mockup/index.html`, or `python3 -m http.server` in `mockup/`.
+**Uncommitted.** The last commit predates the whole hero. Everything from the
+full-screen hero onward exists only in the working tree — commit early in the
+next session.
 
-## Two things that are right and worth keeping
+## The hero, as it stands
 
-- **The two-weight headline** — a heavy grotesque line answered by a thin one,
-  taken from Alex's own unused sketches. No serif anywhere near it.
-- **The colour logic** — gold is money and nothing else; LIVE never rides on
-  colour alone. The wordmark gradient supplies money for both grounds:
-  `#CA912B` reads 6.72:1 on ink but 2.40:1 on bone, where `#644815` reads 7.37:1.
+Full-bleed video (`assets/video/hero_large.mp4`, 26 MB — Alex re-encoded it down
+from 870 MB), header floating over it, and centred inside the frame:
 
-Verified on the current build: no horizontal overflow at 375 or 1425, smallest
-functional text 14px, minimum tap target 44px, nothing hidden on mobile.
+```
+POMPANO BEACH, FLORIDA
+A BOHEMIAN CAR PLACE          ← tracked light caps, 0.13em
+Collector cars on the floor. Four on the block this week.
+[ DISCOVER ]
+```
+
+Then a band of four routes, each carrying a live fact rather than a label:
+Auctions (4 live + countdown) · The floor (40 cars) · Sell & consign · The room
+(open Saturday 9–1).
+
+The headline is **Patton's own sentence**, taken off their About page where it
+was buried. It is the one line no competitor can say and it covers all three
+pillars at once.
+
+## What is next
+
+Go down the page, and go **all the way down in one pass**. Both of Alex's `out`
+records in the vault fail on the same axis — a strong opening that never
+develops into a page — and three separate passes were spent polishing this hero
+alone. That is the same failure.
+
+Order: hero → routes → **auctions** → the floor → sell & consign → why Patton →
+footer. Auctions go above the inventory because a thing with a clock outranks a
+thing without one.
+
+Auction content is simulated from real stock (`assets/cars.json`, the live
+`/api/cars` feed). The mechanics Alex supplied, from an NFI reference:
+buying = Register to Bid / Bidding / Winning; selling = Submit your Vehicle /
+Final Approval / Go Time. **Bids, counts and closing times are sample data and
+must be marked as such.**
+
+Cards, not a register. Same component for auction and inventory, distinguished
+by the data plate: state + bid + time versus asking price. A car on the block is
+removed from the floor.
+
+## Things that cost a day, so they do not get relearned
+
+- **Open the vault's images, not only its notes.** See the memory file
+  `patton-vault-hero-register` — three passes were rejected while every
+  judgement was quoted correctly and no screenshot had been opened.
+- **Dark is not the preference.** `EVIDENCE.md` C2e: two `in` records are dark
+  and so is the rating-1 `out`. Darkness does not discriminate.
+- **The AAN theme fights back.** Everything written is an override. Bootstrap 4's
+  reboot sets `a:hover{text-decoration:underline}`, so both states must be named
+  or the underline returns — an anti-pattern Alex catches immediately.
+- **Alternating section grounds is not decoration if it has one rule.** Alex
+  wants alternation and scroll overlays. His own vault record `hbbody-com-en-home`
+  explains why they need each other: without tonal contrast, layering does not
+  register. Two overlays for the whole page, not a transition between every block.
+
+## Session note
+
+`Bash` was blocked by a safety classifier for the remainder of the previous
+session, which is why this handover exists. A fresh session clears it.
