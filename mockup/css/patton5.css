@@ -57,7 +57,13 @@
 
   --steel:    #C4CACE;
   --ink-64:   rgba(10, 12, 14, 0.64);
-  --rule-lt:  rgba(10, 12, 14, 0.18);
+  --rule-lt:  rgba(10, 12, 14, 0.18);   /* 1.45:1 — a row hairline, and only that */
+  /* A control's edge is a UI boundary and color-taste I1 asks 3:1 of it, which
+     a row hairline does not carry. --rule-lt was doing both jobs on the light
+     ground and the light CTA's border measured 1.45:1. The minimum here is
+     0.471; 0.50 is taken for headroom. The dark CTA's --rule-hi was measured
+     at the same time and clears at 3.13:1, so it is left alone. */
+  --rule-ctl: rgba(10, 12, 14, 0.50);   /* 3.20:1 on --steel */
 
   --live:     #00C97B;                 /* auction state only, nowhere else */
 
@@ -98,7 +104,12 @@
   font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: var(--t-body);
   line-height: 1.5;
-  overflow-x: hidden;                  /* U6 — never a horizontal page scroll */
+  /* clip, not hidden. Both satisfy U6, but `hidden` makes this element a
+     scroll container, and a scroll container breaks `position: sticky` inside
+     it. The two scroll seams are deliberately out of this composition-only
+     pass; this is the one line that decides whether they can be added at all
+     when they come back. `clip` creates no scroll container. */
+  overflow-x: clip;                    /* U6 — never a horizontal page scroll */
 }
 .pm5 h1, .pm5 h2, .pm5 h3, .pm5 h4, .pm5 p, .pm5 figure, .pm5 dl, .pm5 dd { margin: 0; }
 /* The AAN theme's compiled base sets its own dark colour on h1–h4, and a
@@ -162,7 +173,7 @@
 .cta:hover { border-color: var(--bone); background: rgba(232,235,237,.06); }
 .cta__go { transition: transform var(--d-2) var(--ease); }
 .cta:hover .cta__go { transform: translateX(6px); }
-.steel .cta { border-color: var(--rule-lt); color: var(--ink); }
+.steel .cta { border-color: var(--rule-ctl); color: var(--ink); }
 .steel .cta:hover { border-color: var(--ink); background: rgba(10,12,14,.05); }
 
 /* the data plate, carried from v4 — mono keys, tabular values, hairlines */
