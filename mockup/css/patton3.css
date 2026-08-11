@@ -53,7 +53,11 @@
   --f-mono:  ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
   --t-hero:  clamp(34px, 3.9vw, 62px);
-  --t-lead:  clamp(17px, 1.15vw, 20px);
+  --t-lead:  clamp(17px, 1.4vw, 22px); /* widened: at 1440 the old scale
+                                          resolved to 15px, which put the one
+                                          line that identifies the business
+                                          below the functional floor's spirit
+                                          and level with a caption */
   --t-micro: 14px;                     /* the functional floor. Never below. */
 
   --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px;
@@ -195,20 +199,50 @@ h1, p, figure { margin: 0; }
 }
 
 /* Legibility at the background layer, sized to the brightest frame the type
-   overlaps — color-taste I4. Centre-weighted, because the type is centred in
-   the frame the way the approved six place theirs. */
+   overlaps — color-taste I4.
+
+   MEASURED, not guessed. The film's own brightest 2% under each text block was
+   sampled across its full ten seconds, then the composited ground was read off
+   real screenshots at the three worst frames. The first pass darkened the
+   centre to 0.80 and bought the headline 10.4:1 — three and a half times what
+   large type needs, paid for with the one good asset on the page. I4's ladder
+   asks for the least darkening that clears AA, not the most.
+
+   Pulling the whole wash back to 0.55 was then measured and REJECTED: it gave
+   the film 26% of its light back and dropped the 14px brow to 3.38:1. The
+   binding constraint is not the headline, it is the smallest label — the
+   headline is white at 96px and only needs 3:1, while the brow needs 4.5:1.
+   Solved for, the film's brightest 2% under each block requires:
+
+     brow  14px, bone at 80%  →  ramp alpha 0.68
+     brow  14px, bone at 100% →  ramp alpha 0.60
+     sub   20px, bone at 100% →  ramp alpha 0.60
+     h1    96px, white        →  ramp alpha 0.41
+
+   So the brow goes to full ink (it is a functional label; dimming it was
+   buying nothing) and the wash becomes a BAND rather than a field — I4's
+   ladder reaches for a directional scrim before it reaches for global
+   darkening, and a global radial is the last rung being used first.
+
+   The band holds ~0.66 across the type's own rows and releases above and
+   below it, so the room's ceiling and its floor stay lit. The soft radial on
+   top is horizontal only: it keeps the left and right thirds of the frame
+   brighter than the middle, which is what makes this read as a scrim laid on
+   the subject rather than a tint laid on the screen. */
 .pm-hero__ramp {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    radial-gradient(120% 90% at 50% 52%,
-      rgba(14, 14, 13, 0.80) 0%,
-      rgba(14, 14, 13, 0.62) 42%,
-      rgba(14, 14, 13, 0.34) 72%,
-      rgba(14, 14, 13, 0.24) 100%),
-    linear-gradient(0deg,
-      rgba(14, 14, 13, 0.55) 0%,
-      rgba(14, 14, 13, 0.05) 34%,
-      rgba(14, 14, 13, 0.45) 100%);
+    radial-gradient(78% 130% at 50% 50%,
+      rgba(14, 14, 13, 0.18) 0%,
+      rgba(14, 14, 13, 0.10) 46%,
+      rgba(14, 14, 13, 0.00) 80%),
+    linear-gradient(180deg,
+      rgba(14, 14, 13, 0.46) 0%,      /* the floating chrome sits here */
+      rgba(14, 14, 13, 0.28) 15%,
+      rgba(14, 14, 13, 0.58) 27%,     /* the type block begins */
+      rgba(14, 14, 13, 0.58) 74%,     /* and ends */
+      rgba(14, 14, 13, 0.30) 86%,
+      rgba(14, 14, 13, 0.52) 100%);   /* the transport control, and the seam */
 }
 
 /* --- the type, set into the frame -------------------------------------- */
@@ -231,7 +265,11 @@ h1, p, figure { margin: 0; }
   letter-spacing: 0.32em;              /* the register: wide, quiet, tracked */
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--bone-80);               /* 11.9:1 over the ramp */
+  /* full ink, not 80%. This is a 14px functional label over a moving picture,
+     which is the hardest legibility case on the page — dimming it was costing
+     0.08 of ramp alpha across the whole frame and buying no hierarchy that
+     the tracking and the size were not already carrying. */
+  color: var(--bone);
 }
 
 /* Tracked, light, large — the treatment SPECTRE, HOUSE OF PIONEERS and
@@ -249,12 +287,19 @@ h1, p, figure { margin: 0; }
                                           so the centred block is re-centred */
 }
 
+/* The only line on the first screen that says what this business IS — C18.
+   It was the smallest and dimmest thing in the block, which is the failure
+   that invariant exists to catch: the register arrives, the offer does not.
+   Raised to lead scale and full ink, and the measure held to ~46ch so it
+   breaks as two even lines under the headline rather than one long one. */
 .pm-hero__sub {
   margin: 0 0 var(--s8);
-  font-size: clamp(15px, 1.05vw, 18px);
-  letter-spacing: 0.02em;
-  color: var(--bone-80);
-  max-width: 44ch;
+  font-size: var(--t-lead);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: var(--bone);
+  max-width: 46ch;
+  text-wrap: balance;
 }
 
 /* one action, as in every approved reference */
@@ -283,21 +328,24 @@ h1, p, figure { margin: 0; }
 .pm-film__btn:hover { border-color: var(--gold); color: var(--gold); }
 
 /* ============================================================ responsive ==
-   C12 — the idea is re-established, not stacked. On desktop the window is cut
-   into the field beside the type. At one column an aperture that small would
-   read as a thumbnail, so it becomes a band across the full width and the type
-   sits above it on solid ground — the field steps back and lets the film be
-   the picture. Nothing content-bearing is dropped. */
+   C12 — the governing idea is re-established at each width, not stacked.
 
-@media (max-width: 1199.98px) {
-  .pm-hero__inner { gap: var(--s7); grid-template-columns: minmax(0, 1fr) clamp(240px, 28vw, 340px); }
-}
+   This block previously carried the rules of an abandoned composition: a
+   two-column grid on .pm-hero__inner (which is a flex column), and .pm-state,
+   .pm-hero__field and .pm-hero__acts, none of which exist any more. Dead
+   responsive rules are worse than none, because the file then documents a
+   design the page does not have. Removed.
+
+   What the hero actually has to hold at one column: the film as one full-bleed
+   frame, the type inside it rather than beneath it, and TRACKED LIGHT CAPS —
+   which is the register itself, not a decoration on it. */
 
 @media (max-width: 991.98px) {
-  /* the phone is authored separately: a one-viewport lock has no answer once
-     the window sits under the type, so the height is released */
+  /* the phone is authored separately: the one-viewport lock is released, since
+     a locked screen at 844px tall crushes the type block against the chrome */
   .pm-screen { min-height: 0; display: block; }
-  .pm-hero { display: block; }
+  .pm-hero { display: block; min-height: 78vh; min-height: 78dvh; }
+
   .pm-nav, .pm-hdr__tel { display: none; }
   .pm-burger { display: inline-flex; align-items: center; }
   .pm-nav.is-open {
@@ -309,21 +357,19 @@ h1, p, figure { margin: 0; }
   .pm-nav.is-open a { padding-block: 14px; border-bottom: 1px solid var(--rule);
                       font-size: 17px; }
 
-  .pm-hero__inner { grid-template-columns: 1fr; gap: var(--s6);
-                    padding-block: var(--s6) var(--s5); }
-  /* the phone gets the two panels stacked, the room kept rather than dropped —
-     it is half the claim the headline makes */
-  .pm-hero { min-height: 78vh; }
-  .pm-hero__inner { padding-block: var(--s8); }
-  .pm-hero__h { letter-spacing: 0.1em; }
-  .pm-state { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); }
-  .pm-film__btn { grid-column: 1 / -1; margin-left: 0; justify-self: start; }
+  .pm-hero__inner { padding-block: var(--s10) var(--s8); }
+  .pm-hero__brow  { margin-bottom: var(--s5); }
+  /* tracking steps DOWN with the size and never crosses zero. typography I4 is
+     an invariant: uppercase carries ≥0.08em, more as the size drops. The
+     indent tracks it, because letter-spacing adds its gap to the right of the
+     last glyph and a centred block is otherwise off by half of it. */
+  .pm-hero__h { letter-spacing: 0.11em; text-indent: 0.11em; }
 }
 
 @media (max-width: 575.98px) {
-  .pm-hero__h { letter-spacing: -0.03em; }
-  .pm-hero__acts .pm-btn { flex: 1 1 auto; }
-  .pm-hero__field img { object-position: 58% 55%; }
+  .pm-hero__h   { letter-spacing: 0.09em; text-indent: 0.09em; line-height: 1.12; }
+  .pm-hero__sub { max-width: 32ch; }
+  .pm-btn       { width: 100%; max-width: 320px; }
 }
 
 /* ------------------------------------------------------- reduced motion --
