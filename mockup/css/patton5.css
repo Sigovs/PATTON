@@ -477,6 +477,102 @@
 .room__h { font-size: var(--t-big); }
 .room__p { color: var(--bone-72); max-width: 40ch; }
 
+/* =============================================================== 9 · footer ==
+   Built off Alex's own Prestige footer — the one a later client named as the
+   bar to beat — read as a system rather than copied as a layout.
+
+   What that footer actually does, in three moves:
+     · the identity block is a SENTENCE, not a wordmark. It says who the
+       business is before it says where to go.
+     · the facts get their own band, between full-width rules, with tracked
+       micro-labels against the values — a record, not a paragraph.
+     · legal is a quiet last row and the network credit sits under it.
+
+   What is different here, because the content is different: this footer sits
+   on the same twelve columns as everything above it, so the identity block
+   starts on the page's left axis and the nav lands on columns 7–12. And the
+   fact that gets the band is not store hours — it is the ROOM, because
+   Saturday 9 to 1 is the one thing on this page no competitor can say.
+
+   THE ONE SCALE EVENT is the telephone, set in the display serif with tabular
+   figures. For a dealer the telephone is the action; this is also the same
+   composition the auction clock already uses — a serif number at scale — so
+   it returns rather than arrives, which is what keeps the page down to a
+   small number of typographic ideas. */
+
+.foot { background: var(--ink); color: var(--bone); border-top: 1px solid var(--rule);
+        padding-block: var(--s-10) var(--s-8); }
+.foot .g12 { row-gap: var(--s-9); }
+
+.foot__id { grid-column: 1 / span 4; display: grid; gap: var(--s-5); align-content: start; }
+.foot__id img { width: 132px; height: auto; }
+.foot__say { color: var(--bone-72); max-width: 34ch; }
+.foot__addr { font-style: normal; color: var(--bone-72); }
+
+.foot__nav { grid-column: 6 / span 4; display: grid;
+             grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--col-gap); }
+.foot__col { display: grid; align-content: start; gap: var(--s-2); }
+.foot__col h3 { color: var(--bone-46); font-family: "JetBrains Mono", ui-monospace, monospace;
+                font-size: var(--t-micro); font-weight: 400; letter-spacing: 0.08em;
+                text-transform: uppercase; margin-bottom: var(--s-3); }
+/* Tracked mono uppercase, generously spaced — the register two of the four
+   footers use for nav, and the one this page already uses for every label.
+   The airy line rhythm is 360's; a footer nav read at a glance wants the
+   space more than a body list does. */
+.foot__col a {
+  color: var(--bone-72); min-height: 44px;             /* tap target */
+  display: inline-flex; align-items: center;
+  font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--t-micro);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  transition: color var(--d-1) var(--ease);
+}
+.foot__col a:hover, .foot__col a:focus-visible { color: var(--bone); }
+
+/* THE CONTACT COLUMN — the move read off 360 Auto Care, which is the closest
+   of the four to this problem: a tracked label, the telephone set at display
+   scale directly under it, a hairline, then the hours. The number is in the
+   mono voice rather than the serif because on this page mono is the register
+   every fact is set in, and a telephone is a fact you dial. The serif number
+   is already spoken for — it is the auction clock, which is an event. */
+.foot__call { grid-column: 10 / span 3; display: grid; gap: var(--s-4); align-content: start; }
+.foot__call a {
+  display: inline-flex; align-items: center; min-height: 44px;   /* tap target */
+  font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 400;
+  font-size: clamp(24px, 2.1vw, 32px); line-height: 1; letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums; color: var(--bone);
+  transition: color var(--d-1) var(--ease);
+}
+.foot__call a:hover, .foot__call a:focus-visible { color: var(--live); }
+.foot__hours { display: grid; gap: var(--s-2); border-top: 1px solid var(--rule);
+               padding-top: var(--s-4); }
+.foot__hrow { display: flex; justify-content: space-between; gap: var(--s-4);
+              font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--t-micro);
+              font-variant-numeric: tabular-nums; }
+.foot__hrow span:first-child { color: var(--bone-46); text-transform: uppercase; letter-spacing: 0.08em; }
+.foot__hrow span:last-child  { color: var(--bone); text-align: right; }
+
+/* the legal row, on its own twelve columns rather than subgrid so it needs no
+   fallback and stays exactly on the page's axis. Three of Alex's four footers
+   NAME THE PLACE in this row — Fernandina Beach, Lynbrook, the Biscayne
+   address — so Pompano Beach belongs here rather than only in the credentials
+   section a screen above. */
+.foot__legal {
+  grid-column: 1 / span 12;
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap); row-gap: var(--s-4);
+  border-top: 1px solid var(--rule); padding-top: var(--s-6);
+  align-items: baseline;
+}
+.foot__legal p { grid-column: 1 / span 6; color: var(--bone-46);
+                 font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--t-micro); }
+.foot__meta { grid-column: 8 / span 5; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5);
+              justify-content: flex-end;
+              font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--t-micro); }
+.foot__meta a { color: var(--bone-46); min-height: 44px; display: inline-flex; align-items: center;
+                transition: color var(--d-1) var(--ease); }   /* tap target */
+.foot__meta a:hover, .foot__meta a:focus-visible { color: var(--bone); }
+.foot__meta span { color: var(--bone-46); display: inline-flex; align-items: center; min-height: 44px; }
+
 /* =============================================================== motion ==
    Carried from v4 unchanged and not extended. The static composition is the
    deliverable in this pass; nothing here is load-bearing, and every section
