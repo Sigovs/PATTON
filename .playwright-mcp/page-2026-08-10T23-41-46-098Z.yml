@@ -1,0 +1,291 @@
+- generic [active] [ref=f8e1]:
+  - banner [ref=f8e2]:
+    - generic [ref=f8e4]:
+      - generic [ref=f8e5]:
+        - link "Patton Motors — home" [ref=f8e6] [cursor=pointer]:
+          - /url: /
+          - img "Patton Motors Collection" [ref=f8e7]
+          - generic [ref=f8e8]: Buy / Sell‑Trade
+        - link "S-Klub LA" [ref=f8e9] [cursor=pointer]:
+          - /url: /s-klub/
+          - img "S-Klub LA" [ref=f8e10]
+        - generic [ref=f8e11]: World Wide24/7 By Appointment
+      - navigation "Primary" [ref=f8e12]:
+        - list [ref=f8e13]:
+          - listitem [ref=f8e14]:
+            - link "Inventory" [ref=f8e15] [cursor=pointer]:
+              - /url: /inventory/
+          - listitem [ref=f8e16]:
+            - link "Collection" [ref=f8e17] [cursor=pointer]:
+              - /url: /our-collection/
+          - listitem [ref=f8e18]:
+            - link "S‑Klub" [ref=f8e19] [cursor=pointer]:
+              - /url: /s-klub/
+          - listitem [ref=f8e20]:
+            - link "Shop" [ref=f8e21] [cursor=pointer]:
+              - /url: /shop/
+          - listitem [ref=f8e22]:
+            - link "Sell" [ref=f8e23] [cursor=pointer]:
+              - /url: /sell-your-car/
+          - listitem [ref=f8e24]:
+            - link "About" [ref=f8e25] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=f8e26]:
+            - link "Testimonials" [ref=f8e27] [cursor=pointer]:
+              - /url: /testimonials/
+          - listitem [ref=f8e28]:
+            - link "News" [ref=f8e29] [cursor=pointer]:
+              - /url: /blog/
+          - listitem [ref=f8e30]:
+            - link "Contact" [ref=f8e31] [cursor=pointer]:
+              - /url: /contact-us/
+      - generic [ref=f8e32]:
+        - link "Pompano Beach" [ref=f8e33] [cursor=pointer]:
+          - /url: /directions/
+        - link "Email" [ref=f8e34] [cursor=pointer]:
+          - /url: /contact-us/
+  - generic [ref=f8e35]:
+    - generic [ref=f8e36]:
+      - generic [ref=f8e37]:
+        - paragraph [ref=f8e38]: Pompano Beach, Florida
+        - heading "Forty rare cars on one white floor." [level=1] [ref=f8e39]
+      - figure "The floor — Pompano Beach, FL Pause the showroom film" [ref=f8e40]:
+        - generic "The showroom floor at Patton Motors, Pompano Beach — a Lamborghini Miura, a 300 SL Gullwing and a Ford GT among the cars standing on it" [ref=f8e41]
+        - generic [ref=f8e42]:
+          - generic [ref=f8e43]: The floor — Pompano Beach, FL
+          - button "Pause the showroom film" [ref=f8e44] [cursor=pointer]: Pause
+      - generic [ref=f8e45]:
+        - generic [ref=f8e46]:
+          - generic [ref=f8e47]:
+            - term [ref=f8e48]: On the floor
+            - definition [ref=f8e49]: "40"
+          - generic [ref=f8e50]:
+            - term [ref=f8e51]: Marques
+            - definition [ref=f8e52]: "17"
+          - generic [ref=f8e53]:
+            - term [ref=f8e54]: Sold to date
+            - definition [ref=f8e55]: "30"
+          - generic [ref=f8e56]:
+            - term [ref=f8e57]: Built
+            - definition [ref=f8e58]: 1955–2025
+        - generic [ref=f8e59]:
+          - link "See the floor" [ref=f8e60] [cursor=pointer]:
+            - /url: /our-collection/
+          - link "Sell or consign a car" [ref=f8e61] [cursor=pointer]:
+            - /url: /sell-your-car/
+            - text: Sell or consign a car
+            - generic [ref=f8e62]: →
+    - paragraph [ref=f8e65]: Ferrari 10· Mercedes-Benz 4· Shelby 4· De Tomaso 3· Ford 3· Alfa Romeo 2· Aston Martin 2· Dodge 2· Porsche 2· Bugatti 1· Chevrolet 1· Excalibur 1· Fiat 1· Kirkham 1· Lamborghini 1· Little Car Co. 1· Spyker 1
+  - generic [ref=f8e68]:
+    - generic [ref=f8e69]:
+      - heading "A Showcase of Distinction" [level=2] [ref=f8e70]:
+        - generic [ref=f8e71]: A Showcase
+        - generic [ref=f8e72]: of Distinction
+      - link "View All Collection" [ref=f8e73] [cursor=pointer]:
+        - /url: /our-collection/
+    - generic [ref=f8e74]:
+      - link [ref=f8e75] [cursor=pointer]:
+        - /url: /used-vehicle-1955-mercedes-benz-300-slr-658-by-scuderia-bucci-c-41/
+        - 'img "1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci at Patton Motors" [ref=f8e76]'
+        - 'heading "1955 MERCEDES-BENZ 300 SLR #658 BY SCUDERIA BUCCI" [level=3] [ref=f8e77]'
+      - link [ref=f8e78] [cursor=pointer]:
+        - /url: /used-vehicle-2023-ferrari-296-gts-assetto-fiorano-c-48/
+        - img "2023 Ferrari 296 GTS Assetto Fiorano at Patton Motors" [ref=f8e79]
+        - heading "2023 Ferrari 296 GTS Assetto Fiorano" [level=3] [ref=f8e80]
+      - link [ref=f8e81] [cursor=pointer]:
+        - /url: /used-vehicle-1955-porsche-356-outlaw-speedster-tiff-co.-by-s-klub-c-7/
+        - img "1955 Porsche 356 Outlaw Speedster Tiff & Co. by S-Klub at Patton Motors" [ref=f8e82]
+        - heading "1955 Porsche 356 Outlaw Speedster Tiff & Co. by S‑Klub" [level=3] [ref=f8e83]
+      - link [ref=f8e84] [cursor=pointer]:
+        - /url: /used-vehicle-1974-boss-429-powered-detomaso-pantera-c-76/
+        - img "1974 Boss 429-powered De Tomaso Pantera at Patton Motors" [ref=f8e85]
+        - heading "1974 Boss 429‑Powered De Tomaso Pantera" [level=3] [ref=f8e86]
+      - link [ref=f8e87] [cursor=pointer]:
+        - /url: /used-vehicle-1971-detomaso-pantera-c-72/
+        - img "1971 De Tomaso Pantera at Patton Motors" [ref=f8e88]
+        - heading "1971 De Tomaso Pantera" [level=3] [ref=f8e89]
+    - link "View All Collection" [ref=f8e91] [cursor=pointer]:
+      - /url: /our-collection/
+  - generic [ref=f8e95]:
+    - figure [ref=f8e96]:
+      - generic "Inside the Patton Motors showroom, Pompano Beach" [ref=f8e97]
+      - button "Pause" [ref=f8e98] [cursor=pointer]
+    - generic [ref=f8e99]:
+      - heading "Where Prestige Takes the Wheel" [level=2] [ref=f8e100]:
+        - generic [ref=f8e101]: Where Prestige
+        - generic [ref=f8e102]: Takes the Wheel
+      - paragraph [ref=f8e103]: Where Curated Craftsmanship Meets Uncompromising Performance
+      - separator [ref=f8e104]
+      - paragraph [ref=f8e105]: At the intersection of legacy and innovation, our dealership stands as a beacon for automotive connoisseurs. Founded by Martin Patton with deep roots in luxury and sports industries, our showroom offers more than just rare vehicles. Our inventory is handpicked for those who demand excellence, rarity, and a story behind every engine.
+      - link "More" [ref=f8e106] [cursor=pointer]:
+        - /url: /about/
+      - generic [ref=f8e107]:
+        - link "Drop Me a Line" [ref=f8e108] [cursor=pointer]:
+          - /url: /contact-us/
+        - link "Pompano Beach, FL" [ref=f8e109] [cursor=pointer]:
+          - /url: /directions/
+        - generic [ref=f8e110]:
+          - link "Patton Motors on Instagram" [ref=f8e111] [cursor=pointer]:
+            - /url: https://www.instagram.com/
+          - link "Patton Motors on TikTok" [ref=f8e112] [cursor=pointer]:
+            - /url: https://www.tiktok.com/
+  - generic [ref=f8e115]:
+    - heading "Get a Cash Offer Luxury Car Selling — Where Prestige Meets Performance" [level=2] [ref=f8e116]:
+      - generic [ref=f8e117]: Get a Cash Offer
+      - generic [ref=f8e118]: Luxury Car Selling — Where Prestige Meets Performance
+    - list [ref=f8e119]:
+      - listitem [ref=f8e120]:
+        - img "A collector photographing a Porsche 911 to begin a valuation" [ref=f8e121]
+        - generic [ref=f8e122]: step01
+        - heading "Share Your Car's Story" [level=3] [ref=f8e123]
+        - paragraph [ref=f8e124]: Tell us what makes your vehicle exceptional. From its specs to mileage, every detail helps us spotlight its true value.
+      - listitem [ref=f8e125]:
+        - img "A Patton Motors specialist preparing a valuation" [ref=f8e126]
+        - generic [ref=f8e127]: step02
+        - heading "Get a Curated Offer" [level=3] [ref=f8e128]
+        - paragraph [ref=f8e129]: Our valuation experts craft a personalized offer based on market trends and your car's prestige — no generic estimates.
+      - listitem [ref=f8e130]:
+        - img "Closing a sale at the Patton Motors reception desk" [ref=f8e131]
+        - generic [ref=f8e132]: step03
+        - heading "Close with Ease" [level=3] [ref=f8e133]
+        - paragraph [ref=f8e134]: No pressure. No fees. No commissions. Just a fast, secure transaction with white-glove service from start to finish.
+    - link "Start Selling Today" [ref=f8e136] [cursor=pointer]:
+      - /url: /sell-your-car/
+  - generic [ref=f8e139]:
+    - heading "Unmatched Service Our Clients Are Saying" [level=2] [ref=f8e140]:
+      - generic [ref=f8e141]: Unmatched Service
+      - generic [ref=f8e142]: Our Clients Are Saying
+    - generic [ref=f8e143]:
+      - generic [ref=f8e145]:
+        - blockquote [ref=f8e147]:
+          - generic "Rated 5 out of 5" [ref=f8e148]: ★★★★★
+          - paragraph [ref=f8e149]: “Patton Motors exceeded every expectation I had.”
+          - paragraph [ref=f8e150]: I had been searching for the right Porsche Speedster for nearly a year. Communication was prompt and personal. They arranged a virtual walkaround, coordinated with my bank, and organized enclosed transport to my home in California.
+          - generic [ref=f8e151]: — Rachel M., San Francisco
+        - blockquote [ref=f8e153]:
+          - generic "Rated 5 out of 5" [ref=f8e154]: ★★★★★
+          - paragraph [ref=f8e155]: “Buying my dream car through Patton Motors was an experience I'll never forget.”
+          - paragraph [ref=f8e156]: "The quality of the listing stood out immediately: clear, artistic photos, detailed specs, and even a video tour. It felt less like buying a car, and more like being handed the keys to a dream."
+          - generic [ref=f8e157]: — Jonathan M., Palm Beach
+        - blockquote [ref=f8e159]:
+          - generic "Rated 5 out of 5" [ref=f8e160]: ★★★★★
+          - paragraph [ref=f8e161]: “Selling a rare vehicle is usually a headache. At Patton, it felt like a luxury experience in itself.”
+          - paragraph [ref=f8e162]: I was hesitant to consign my Aston Martin Vanquish at first, but the team put me at ease. They didn't just list my car — they presented it like a masterpiece, with professional photography and a write-up that captured its story. No tyre-kickers, only serious, qualified leads.
+          - generic [ref=f8e163]: — Daniel K., Fort Lauderdale
+        - blockquote [ref=f8e165]:
+          - generic "Rated 5 out of 5" [ref=f8e166]: ★★★★★
+          - paragraph [ref=f8e167]: “Patton Motors exceeded every expectation I had.”
+          - paragraph [ref=f8e168]: I had been searching for the right Porsche Speedster for nearly a year. Communication was prompt and personal. They arranged a virtual walkaround, coordinated with my bank, and organized enclosed transport to my home in California.
+          - generic [ref=f8e169]: — Rachel M., San Francisco
+        - blockquote [ref=f8e171]:
+          - generic "Rated 5 out of 5" [ref=f8e172]: ★★★★★
+          - paragraph [ref=f8e173]: “Buying my dream car through Patton Motors was an experience I'll never forget.”
+          - paragraph [ref=f8e174]: "The quality of the listing stood out immediately: clear, artistic photos, detailed specs, and even a video tour. It felt less like buying a car, and more like being handed the keys to a dream."
+          - generic [ref=f8e175]: — Jonathan M., Palm Beach
+        - blockquote [ref=f8e177]:
+          - generic "Rated 5 out of 5" [ref=f8e178]: ★★★★★
+          - paragraph [ref=f8e179]: “Selling a rare vehicle is usually a headache. At Patton, it felt like a luxury experience in itself.”
+          - paragraph [ref=f8e180]: I was hesitant to consign my Aston Martin Vanquish at first, but the team put me at ease. They didn't just list my car — they presented it like a masterpiece, with professional photography and a write-up that captured its story. No tyre-kickers, only serious, qualified leads.
+          - generic [ref=f8e181]: — Daniel K., Fort Lauderdale
+        - blockquote [ref=f8e183]:
+          - generic "Rated 5 out of 5" [ref=f8e184]: ★★★★★
+          - paragraph [ref=f8e185]: “Patton Motors exceeded every expectation I had.”
+          - paragraph [ref=f8e186]: I had been searching for the right Porsche Speedster for nearly a year. Communication was prompt and personal. They arranged a virtual walkaround, coordinated with my bank, and organized enclosed transport to my home in California.
+          - generic [ref=f8e187]: — Rachel M., San Francisco
+      - generic [ref=f8e188]:
+        - button "←" [ref=f8e189] [cursor=pointer]
+        - button "→" [ref=f8e190] [cursor=pointer]
+    - generic [ref=f8e191]:
+      - link "Share Your Experience" [ref=f8e192] [cursor=pointer]:
+        - /url: /testimonials/
+      - link "View All Reviews" [ref=f8e193] [cursor=pointer]:
+        - /url: /testimonials/
+  - generic [ref=f8e195]:
+    - img "Patton Motors on Instagram — cars, coffee and the showroom floor" [ref=f8e196]
+    - link "Follow us" [ref=f8e198] [cursor=pointer]:
+      - /url: https://www.instagram.com/pattonmotors
+  - generic [ref=f8e200]:
+    - heading "Motors & Moments Patton Pulse" [level=2] [ref=f8e201]:
+      - generic [ref=f8e202]: Motors & Moments
+      - generic [ref=f8e203]: Patton Pulse
+    - generic [ref=f8e204]:
+      - article [ref=f8e205]:
+        - img "A red Ferrari competition car on the Patton Motors showroom floor" [ref=f8e206]
+        - 'heading "Dealer Spotlight: 10 Must-See Exotic And Collector Cars For Sale At Patton Motors" [level=3] [ref=f8e207]'
+        - paragraph [ref=f8e208]: Located between Miami and Palm Beach, Patton Motors brings together rare exotics, automotive art, and a growing community of car enthusiasts. It's the […]
+        - link "More" [ref=f8e209] [cursor=pointer]:
+          - /url: /dealer-spotlight-10-must-see-exotic-and-collector-cars-for-sale-at-patton-motors/
+          - text: More
+          - generic [ref=f8e210]: →
+      - article [ref=f8e211]:
+        - img "The bar at the Patton Motors showroom set up for an evening event" [ref=f8e212]
+        - heading "Cocktails & Cars — By Invitation Only" [level=3] [ref=f8e213]
+        - paragraph [ref=f8e214]: The showroom becomes a lounge as designers and engineers from across the automotive world unveil upcoming concept vehicles.
+        - link "More" [ref=f8e215] [cursor=pointer]:
+          - /url: /blog/
+          - text: More
+          - generic [ref=f8e216]: →
+      - article [ref=f8e217]:
+        - img "An espresso machine at the Patton Motors showroom" [ref=f8e218]
+        - heading "Exotics & Espresso — By Invitation Only" [level=3] [ref=f8e219]
+        - paragraph [ref=f8e220]: Seasoned collectors share their stories, from barn finds to auction battles, over a rich cup of espresso.
+        - link "More" [ref=f8e221] [cursor=pointer]:
+          - /url: /blog/
+          - text: More
+          - generic [ref=f8e222]: →
+      - article [ref=f8e223]:
+        - img "A Ferrari on the showroom floor at Patton Motors" [ref=f8e224]
+        - heading "Ferrari & Flat Whites — By Invitation Only" [level=3] [ref=f8e225]
+        - paragraph [ref=f8e226]: Italian engineering and espresso culture, with a showcase of the latest Ferrari inventory and exclusive pre-release previews.
+        - link "More" [ref=f8e227] [cursor=pointer]:
+          - /url: /blog/
+          - text: More
+          - generic [ref=f8e228]: →
+      - article [ref=f8e229]:
+        - img "The lounge at the Patton Motors showroom" [ref=f8e230]
+        - heading "Cars, Coffee, Cocktails & Conversation" [level=3] [ref=f8e231]
+        - paragraph [ref=f8e232]: Every Saturday at Patton Motors, 9am to 1pm. Where the engines purr, the espresso flows, and every conversation feels cinematic.
+        - link "More" [ref=f8e233] [cursor=pointer]:
+          - /url: /blog/
+          - text: More
+          - generic [ref=f8e234]: →
+    - link "View All Articles" [ref=f8e236] [cursor=pointer]:
+      - /url: /blog/
+  - contentinfo [ref=f8e237]:
+    - generic [ref=f8e238]:
+      - heading "Connect with Patton Motors" [level=2] [ref=f8e239]:
+        - generic [ref=f8e240]: Connect with
+        - generic [ref=f8e241]: Patton Motors
+      - separator [ref=f8e242]
+      - generic [ref=f8e243]:
+        - generic [ref=f8e244]:
+          - heading "Why Choose Us" [level=3] [ref=f8e245]
+          - paragraph [ref=f8e246]: A concierge-level experience tailored to your needs, your vehicle, and your privacy. We don't just manage cars — we curate confidence.
+          - link "Schedule a visit" [ref=f8e247] [cursor=pointer]:
+            - /url: /contact-us/
+        - generic [ref=f8e248]:
+          - heading "Contact Us" [level=3] [ref=f8e249]
+          - paragraph [ref=f8e250]: 2901 Center Port Circle, Pompano Beach, FL 33064 Mon–Fri 8:00am–6:00pm · Sat 9:00am–5:00pm · Sun by appointment
+          - link "Pompano Beach, FL" [ref=f8e251] [cursor=pointer]:
+            - /url: /directions/
+        - generic [ref=f8e252]:
+          - heading "Get In Touch" [level=3] [ref=f8e253]
+          - paragraph [ref=f8e254]:
+            - link "630 550 0741" [ref=f8e255] [cursor=pointer]:
+              - /url: tel:+16305500741
+          - link "Drop Me a Line" [ref=f8e256] [cursor=pointer]:
+            - /url: /contact-us/
+          - generic [ref=f8e257]:
+            - link "Patton Motors on Instagram" [ref=f8e258] [cursor=pointer]:
+              - /url: https://www.instagram.com/
+            - link "Patton Motors on TikTok" [ref=f8e259] [cursor=pointer]:
+              - /url: https://www.tiktok.com/
+      - generic [ref=f8e260]:
+        - generic [ref=f8e261]:
+          - text: Copyright © 2026 Patton Motors. All rights reserved. |
+          - link "Privacy Policy" [ref=f8e262] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - text: "|"
+          - link "Sitemap" [ref=f8e263] [cursor=pointer]:
+            - /url: /sitemap/
+        - generic [ref=f8e264]: "Powered by: All Auto Network"

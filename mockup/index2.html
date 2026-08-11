@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
 <link rel="stylesheet" href="css/patton.css">
+<link rel="stylesheet" href="css/patton2.css">
 </head>
 
 <body class="home">
@@ -21,6 +22,8 @@
      Structural hook #header. [TIDY 2] one row, no two-line nav items, SHOP
      listed once instead of twice, and the two icon-only utilities carry
      visible labels so their destination is legible before commitment. -->
+<div class="rd-screen">
+
 <header id="header" class="pm-header">
   <div class="pm-container">
     <div class="pm-header__bar">
@@ -67,115 +70,495 @@
      Structural hook .banner-section — the live hero is a single-slide Owl
      carousel holding the welcome film. Kept as a film, with the transport
      given to the visitor. -->
-<div class="banner-section pm-hero">
-  <div class="slider">
-    <div class="home-slider owl-carousel owl-theme">
-      <div class="item">
-        <video id="home-video" class="w-100 slide-image pm-hero__media"
-               preload="metadata" playsinline loop muted
-               poster="assets/site/homeInventory.jpg"
-               aria-label="Inside the Patton Motors showroom, Pompano Beach">
-          <source src="assets/site/welcomevid.mp4" type="video/mp4">
-        </video>
+<div class="banner-section rd-hero">
+  <div class="rd-hero__grid">
+
+    <div class="rd-hero__head">
+      <p class="rd-eyebrow">Pompano&nbsp;Beach, Florida</p>
+      <h1 class="rd-display">Forty rare cars on one white floor.</h1>
+    </div>
+
+    <figure class="rd-plate-room">
+      <video class="rd-plate-room__media" id="rd-room"
+             poster="assets/site/where_prestige_still.jpg"
+             muted playsinline loop preload="metadata"
+             aria-label="The showroom floor at Patton Motors, Pompano Beach —
+                         a Lamborghini Miura, a 300 SL Gullwing and a Ford GT
+                         among the cars standing on it">
+        <source src="assets/site/where_prestige.mp4" type="video/mp4">
+      </video>
+      <figcaption class="rd-slate">
+        <span>The floor &nbsp;&mdash;&nbsp; Pompano&nbsp;Beach, FL</span>
+        <button type="button" class="rd-transport" id="rd-transport"
+                data-label-play="Play" data-label-pause="Pause">Pause</button>
+      </figcaption>
+    </figure>
+
+    <div class="rd-hero__tail">
+      <dl class="rd-plate">
+        <div><dt>On the floor</dt><dd>40</dd></div>
+        <div><dt>Marques</dt><dd>17</dd></div>
+        <div><dt>Sold to date</dt><dd>30</dd></div>
+        <div><dt>Built</dt><dd>1955&ndash;2025</dd></div>
+      </dl>
+      <div class="rd-actions">
+        <a class="btn-1 rd-btn" href="/our-collection/">See the floor</a>
+        <a class="rd-link" href="/sell-your-car/">Sell or consign a car
+          <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
+
   </div>
-  <button type="button" class="pm-hero__transport" id="pm-hero-transport"
-          data-label-play="Play" data-label-pause="Pause">Pause</button>
 
-<!-- ========================================================= route cards ==
-     .browse_stock — four routes floated over the film's lower edge.
-     [TIDY 3] equal heights, balanced wraps, one scrim rule for all four. -->
-<section class="browse_stock">
-  <div class="pm-container">
-    <div class="pm-routes">
-
-      <a class="pm-route" href="/inventory/"
-         style="background-image:url('assets/site/browse_bg_1.png')">
-        <h2 class="pm-route__h"><span>Browse</span> our stock</h2>
-        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
-      </a>
-
-      <a class="pm-route" href="/sell-your-car/"
-         style="background-image:url('assets/site/browse_bg_2.png')">
-        <h2 class="pm-route__h"><span>Sell</span> your car</h2>
-        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
-      </a>
-
-      <a class="pm-route" href="/contact-us/"
-         style="background-image:url('assets/site/browse_bg_3.png')">
-        <h2 class="pm-route__h"><span>Get in touch</span> with us</h2>
-        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
-      </a>
-
-      <a class="pm-route pm-route--logo" href="/s-klub/"
-         style="background-image:url('assets/site/browse_bg_5.png')">
-        <img class="pm-route__mark" src="assets/site/newbox.png"
-             alt="Patton Motors Collection — S-Klub LA">
-      </a>
-
+  <div class="rd-state">
+    <div class="pm-container">
+      <p class="rd-marques">
+        <b>Ferrari</b> <i>10</i><s>·</s>
+        <b>Mercedes-Benz</b> <i>4</i><s>·</s>
+        <b>Shelby</b> <i>4</i><s>·</s>
+        <b>De&nbsp;Tomaso</b> <i>3</i><s>·</s>
+        <b>Ford</b> <i>3</i><s>·</s>
+        <b>Alfa&nbsp;Romeo</b> <i>2</i><s>·</s>
+        <b>Aston&nbsp;Martin</b> <i>2</i><s>·</s>
+        <b>Dodge</b> <i>2</i><s>·</s>
+        <b>Porsche</b> <i>2</i><s>·</s>
+        <b>Bugatti</b> <i>1</i><s>·</s>
+        <b>Chevrolet</b> <i>1</i><s>·</s>
+        <b>Excalibur</b> <i>1</i><s>·</s>
+        <b>Fiat</b> <i>1</i><s>·</s>
+        <b>Kirkham</b> <i>1</i><s>·</s>
+        <b>Lamborghini</b> <i>1</i><s>·</s>
+        <b>Little&nbsp;Car&nbsp;Co.</b> <i>1</i><s>·</s>
+        <b>Spyker</b> <i>1</i>
+      </p>
     </div>
   </div>
-</section>
 </div>
+
+</div><!-- /.rd-screen -->
 
 
 <!-- =========================================================== inventory ==
      .homeInventory — "A Showcase of Distinction". Real vehicles, real
      photographs, pulled from the live /api/cars feed. -->
-<section class="homeInventory pm-section pm-section--photo" id="collection">
-  <span class="pm-bg" style="background-image:url('assets/site/homeInventory.jpg')"></span>
+<section class="homeInventory rd-sec" id="floor">
   <div class="pm-container">
 
-    <div class="pm-h pm-h--split">
-      <h2>
-        <span class="pm-h__gold">A Showcase</span>
-        <span class="pm-h__white">of Distinction</span>
-      </h2>
-      <a class="btn-1 pm-pill" href="/our-collection/">View All Collection</a>
+    <header class="rd-sechead">
+      <div>
+        <p class="rd-eyebrow">The floor today</p>
+        <h2 class="rd-h2">Forty cars, seventy years, one room.</h2>
+      </div>
+      <p class="rd-sechead__note">Every car below is standing in the Pompano Beach
+        showroom right now. 32 of the 40 are
+        priced on request.</p>
+    </header>
+
+    <div class="rd-reg">
+      <div class="rd-reg__head" aria-hidden="true">
+        <span>Year</span><span></span><span>Marque and model</span>
+        <span>Body</span><span>Price</span><span></span>
+      </div>
+
+        <div class="rd-decade">
+          <span class="rd-decade__label">1950s</span>
+          <span class="rd-decade__count">6 cars</span>
+        </div>
+
+        <a class="rd-row" href="/used-vehicle-1955-mercedes-benz-300-sl-gullwing-amg-by-s-klub-380-sl-c-31/">
+          <span class="rd-row__year">1955</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-31.jpg" alt="Used 1955 Mercedes-Benz 300 SL Gullwing AMG By S-Klub 380 SL for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Mercedes-Benz</b> 300 SL Gullwing AMG by S-Klub 380 SL</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1955-mercedes-benz-by-kindig-design-300-sl-c-35/">
+          <span class="rd-row__year">1955</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-35.jpg" alt="Used 1955 Mercedes-Benz by Kindig Design 300 SL for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Mercedes-Benz</b> 300 SL</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1955-mercedes-benz-300-slr-658-by-scuderia-bucci-c-41/">
+          <span class="rd-row__year">1955</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-41.jpg" alt="Used 1955 MERCEDES-BENZ 300 SLR #658 BY SCUDERIA BUCCI for sale $475,000 at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Mercedes-Benz</b> 300 SLR #658 by Scuderia Bucci</span>
+          <span class="rd-row__body">Convertible</span>
+          <span class="rd-row__price">$475,000</span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1955-porsche-356-outlaw-speedster-tiff-co.-by-s-klub-c-7/">
+          <span class="rd-row__year">1955</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-7.jpg" alt="Used 1955 Porsche 356 Outlaw Speedster Tiff &amp; Co. By S-Klub for sale $349,995 at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Porsche</b> 356 Outlaw Speedster Tiff &amp; Co. by S-Klub</span>
+          <span class="rd-row__body">Convertible</span>
+          <span class="rd-row__price">$349,995</span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1955-porsche-550-speedster-by-s-klub-c-32/">
+          <span class="rd-row__year">1955</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-32.jpg" alt="Used 1955 Porsche 550 Speedster By S-Klub for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Porsche</b> 550 Speedster by S-Klub</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1956-ferrari-612-tr-by-s-klub-tempista-c-36/">
+          <span class="rd-row__year">1956</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-36.jpg" alt="Used 1956 Ferrari 612 TR By S-Klub Tempista for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> 612 TR by S-Klub Tempista</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <div class="rd-decade">
+          <span class="rd-decade__label">1960s</span>
+          <span class="rd-decade__count">11 cars</span>
+        </div>
+
+        <a class="rd-row" href="/used-vehicle-1961-ferrari-testa-rossa-c-55/">
+          <span class="rd-row__year">1961</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-55.jpg" alt="Used 1961 Ferrari Testa Rossa for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> Testa Rossa</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1962-chevorlet-zrc1-c-29/">
+          <span class="rd-row__year">1962</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-29.jpg" alt="Used 1962 Chevorlet ZRC1 for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Chevrolet</b> ZRC1</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1962-excalibur-rs-roadster-c-13/">
+          <span class="rd-row__year">1962</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-13.jpg" alt="Used 1962 Excalibur RS Roadster for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Excalibur</b> RS Roadster</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1962-shelby-cobra-csx8000-50th-anniversary-c-43/">
+          <span class="rd-row__year">1962</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-43.jpg" alt="Used 1962 Shelby Cobra CSX8000 50th Anniversary for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Shelby</b> Cobra CSX8000 50th Anniversary</span>
+          <span class="rd-row__body">Convertible</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1963-shelby-cobra-continuation-superformance-sebring-edition-c-44/">
+          <span class="rd-row__year">1963</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-44.jpg" alt="Used 1963 Shelby Cobra Continuation Superformance Sebring Edition for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Shelby</b> Cobra Continuation Superformance Sebring Edition</span>
+          <span class="rd-row__body">Convertible</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1965-ferrari-cobrari-taormina-v12-c-51/">
+          <span class="rd-row__year">1965</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-51.jpg" alt="Used 1965 Ferrari COBRARI TAORMINA V12 for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> Cobrari Taormina V12</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1965-ferrari-250-gto-coupe-c-52/">
+          <span class="rd-row__year">1965</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-52.jpg" alt="Used 1965 Ferrari 250 GTO Coupe for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> 250 GTO Coupe</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1965-shelby-cobra-427-s-c-c-68/">
+          <span class="rd-row__year">1965</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-68.jpg" alt="Used 1965 Shelby Cobra 427 S/C for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Shelby</b> 427 S/c</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1965-shelby-cobra-427-s-c-c-69/">
+          <span class="rd-row__year">1965</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-69.jpg" alt="Used 1965 Shelby Cobra 427 S/C for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Shelby</b> Cobra 427 S/C</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1967-alfa-romeo-33-stradale-c-8/">
+          <span class="rd-row__year">1967</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-8.jpg" alt="Used 1967 Alfa Romeo 33 STRADALE for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Alfa Romeo</b> 33 Stradale</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1969-ford-mustang-boss-429-fastback-c-42/">
+          <span class="rd-row__year">1969</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-42.jpg" alt="Used 1969 Ford Mustang Boss 429 Fastback for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ford</b> Mustang Boss 429 Fastback</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <div class="rd-decade">
+          <span class="rd-decade__label">1970s</span>
+          <span class="rd-decade__count">6 cars</span>
+        </div>
+
+        <a class="rd-row" href="/used-vehicle-1970-fiat-jolly-c-58/">
+          <span class="rd-row__year">1970</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-58.jpg" alt="Used 1970 Fiat Jolly for sale $68,500 at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Fiat</b> Jolly</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price">$68,500</span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1971-detomaso-pantera-c-72/">
+          <span class="rd-row__year">1971</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-72.jpg" alt="Used 1971 DeTomaso Pantera for sale $265,000 at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>De Tomaso</b> Pantera</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price">$265,000</span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1972-detomaso-pantera-c-75/">
+          <span class="rd-row__year">1972</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-75.jpg" alt="Used 1972 DeTomaso Pantera for sale $159,998 at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>De Tomaso</b> Pantera</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price">$159,998</span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1972-lamborghini-miura-p400-sv-c-73/">
+          <span class="rd-row__year">1972</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-73.jpg" alt="Used 1972 Lamborghini Miura P400 SV for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Lamborghini</b> Miura P400 SV</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1974-boss-429-powered-detomaso-pantera-c-76/">
+          <span class="rd-row__year">1974</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-76.jpg" alt="Used 1974 Boss 429-Powered DeTomaso Pantera for sale $299,999 at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>De Tomaso</b> Pantera</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price">$299,999</span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1974-ferrari-dino-246-gts-c-64/">
+          <span class="rd-row__year">1974</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-64.jpg" alt="Used 1974 Ferrari Dino 246 GTS for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> Dino 246 GTS</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <div class="rd-decade">
+          <span class="rd-decade__label">1980s</span>
+          <span class="rd-decade__count">3 cars</span>
+        </div>
+
+        <a class="rd-row" href="/used-vehicle-1980-ferrari-308-gtsi-c-63/">
+          <span class="rd-row__year">1980</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-63.jpg" alt="Used 1980 Ferrari 308 GTSi for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> 308 GTSi</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1984-ferrari-512-bbi-c-47/">
+          <span class="rd-row__year">1984</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-47.jpg" alt="Used 1984 Ferrari 512 BBi for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> 512 BBi</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-1984-ferrari-308-gts-quattrovalvole-c-62/">
+          <span class="rd-row__year">1984</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-62.jpg" alt="Used 1984 Ferrari 308 GTS Quattrovalvole for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> 308 GTS Quattrovalvole</span>
+          <span class="rd-row__body">GTS</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <div class="rd-decade">
+          <span class="rd-decade__label">2000s</span>
+          <span class="rd-decade__count">7 cars</span>
+        </div>
+
+        <a class="rd-row" href="/used-vehicle-2006-ford-gt-c-70/">
+          <span class="rd-row__year">2006</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-70.jpg" alt="Used 2006 Ford GT for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ford</b> GT</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2006-ford-gt-c-71/">
+          <span class="rd-row__year">2006</span>
+          <span class="rd-row__thumb"><span class="rd-row__noimg" aria-hidden="true"></span></span>
+          <span class="rd-row__name"><b>Ford</b> GT</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2006-spyker-c8-laviolette-c-77/">
+          <span class="rd-row__year">2006</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-77.jpg" alt="Used 2006 Spyker C8 Laviolette for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Spyker</b> C8 Laviolette</span>
+          <span class="rd-row__body">Laviolette</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2008-dodge-viper-srt-10-hurst-50th-anniversary-convertible-no.-2-srt-10-c-65/">
+          <span class="rd-row__year">2008</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-65.jpg" alt="Used 2008 Dodge VIPER SRT/10 HURST 50TH ANNIVERSARY CONVERTIBLE NO. 2 SRT-10 for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Dodge</b> Viper SRT/10 Hurst 50th Anniversary Convertible No. 2 SRT-10</span>
+          <span class="rd-row__body">Convertible</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2008-dodge-viper-srt-10-hurst-50th-anniversary-coupe-no.-1-srt-10-c-66/">
+          <span class="rd-row__year">2008</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-66.jpg" alt="Used 2008 Dodge VIPER SRT/10 HURST 50TH ANNIVERSARY COUPE NO. 1 SRT-10 for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Dodge</b> Viper SRT/10 Hurst 50th Anniversary Coupe No. 1 SRT-10</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2009-alfa-romeo-8c-spider-c-60/">
+          <span class="rd-row__year">2009</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-60.jpg" alt="Used 2009 Alfa Romeo 8C Spider for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Alfa Romeo</b> 8C Spider</span>
+          <span class="rd-row__body">Spider</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2009-mercedes-benz-slr-slr-mclaren-roadster-722-s-c-49/">
+          <span class="rd-row__year">2009</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-49.jpg" alt="Used 2009 Mercedes-Benz SLR SLR McLaren Roadster 722 S for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Mercedes-Benz</b> SLR SLR McLaren Roadster 722 S</span>
+          <span class="rd-row__body">Convertible</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <div class="rd-decade">
+          <span class="rd-decade__label">2010s</span>
+          <span class="rd-decade__count">1 car</span>
+        </div>
+
+        <a class="rd-row" href="/used-vehicle-2018-kirkham-cobra-427-s-c-c-67/">
+          <span class="rd-row__year">2018</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-67.jpg" alt="Used 2018 Kirkham Cobra 427 S/C for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Kirkham</b> Cobra 427 S/C</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <div class="rd-decade">
+          <span class="rd-decade__label">2020s</span>
+          <span class="rd-decade__count">6 cars</span>
+        </div>
+
+        <a class="rd-row" href="/used-vehicle-2021-aston-martin-dbs-superleggera-c-30/">
+          <span class="rd-row__year">2021</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-30.jpg" alt="Used 2021 Aston Martin DBS Superleggera for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Aston Martin</b> DBS Superleggera</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2022-ferrari-sf90-spider-c-19/">
+          <span class="rd-row__year">2022</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-19.jpg" alt="Used 2022 Ferrari SF90 Spider for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> SF90 Spider</span>
+          <span class="rd-row__body">Convertible</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2023-ferrari-296-gts-assetto-fiorano-c-48/">
+          <span class="rd-row__year">2023</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-48.jpg" alt="Used 2023 Ferrari 296 GTS Assetto Fiorano for sale $475,000 at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Ferrari</b> 296 GTS Assetto Fiorano</span>
+          <span class="rd-row__body">Convertible</span>
+          <span class="rd-row__price">$475,000</span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2023-the-little-car-company-bugatti-baby-ii-vitesse-c-78/">
+          <span class="rd-row__year">2023</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-78.jpg" alt="Used 2023 The Little Car Company Bugatti Baby II Vitesse for sale $69,999 at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Little Car Co.</b> Bugatti Baby II Vitesse</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price">$69,999</span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2024-aston-martin-valour-c-79/">
+          <span class="rd-row__year">2024</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-79.jpg" alt="Used 2024 Aston Martin Valour for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Aston Martin</b> Valour</span>
+          <span class="rd-row__body">Coupe</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="rd-row" href="/used-vehicle-2025-bugatti-mistral-c-54/">
+          <span class="rd-row__year">2025</span>
+          <span class="rd-row__thumb"><img src="assets/img/car-54.jpg" alt="Used 2025 Bugatti Mistral for sale Call for price at Patton Motors in Pompano Beach FL" loading="lazy" width="240" height="160"></span>
+          <span class="rd-row__name"><b>Bugatti</b> Mistral</span>
+          <span class="rd-row__body">—</span>
+          <span class="rd-row__price"><i>On request</i></span>
+          <span class="rd-row__go" aria-hidden="true">&rarr;</span>
+        </a>
     </div>
 
-    <div class="pm-cards">
-
-      <a class="pm-card" href="/used-vehicle-1955-mercedes-benz-300-slr-658-by-scuderia-bucci-c-41/">
-        <img class="pm-card__img" src="assets/img/car-41.jpg" loading="lazy"
-             alt="1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci at Patton Motors">
-        <h3 class="pm-card__title">1955 MERCEDES-BENZ 300 SLR #658 BY SCUDERIA BUCCI</h3>
-        <p class="pm-card__price">$475,000</p>
-      </a>
-
-      <a class="pm-card" href="/used-vehicle-2023-ferrari-296-gts-assetto-fiorano-c-48/">
-        <img class="pm-card__img" src="assets/img/car-48.jpg" loading="lazy"
-             alt="2023 Ferrari 296 GTS Assetto Fiorano at Patton Motors">
-        <h3 class="pm-card__title">2023 Ferrari 296 GTS Assetto Fiorano</h3>
-        <p class="pm-card__price">$475,000</p>
-      </a>
-
-      <a class="pm-card" href="/used-vehicle-1955-porsche-356-outlaw-speedster-tiff-co.-by-s-klub-c-7/">
-        <img class="pm-card__img" src="assets/img/car-7.jpg" loading="lazy"
-             alt="1955 Porsche 356 Outlaw Speedster Tiff &amp; Co. by S-Klub at Patton Motors">
-        <h3 class="pm-card__title">1955 Porsche 356 Outlaw Speedster Tiff &amp; Co. by S&#8209;Klub</h3>
-        <p class="pm-card__price">$349,995</p>
-      </a>
-
-      <a class="pm-card" href="/used-vehicle-1974-boss-429-powered-detomaso-pantera-c-76/">
-        <img class="pm-card__img" src="assets/img/car-76.jpg" loading="lazy"
-             alt="1974 Boss 429-powered De Tomaso Pantera at Patton Motors">
-        <h3 class="pm-card__title">1974 Boss 429&#8209;Powered De&nbsp;Tomaso Pantera</h3>
-        <p class="pm-card__price">$299,999</p>
-      </a>
-
-      <a class="pm-card" href="/used-vehicle-1971-detomaso-pantera-c-72/">
-        <img class="pm-card__img" src="assets/img/car-72.jpg" loading="lazy"
-             alt="1971 De Tomaso Pantera at Patton Motors">
-        <h3 class="pm-card__title">1971 De&nbsp;Tomaso Pantera</h3>
-        <p class="pm-card__price">$265,000</p>
-      </a>
-
-    </div>
-
-    <div class="pm-inventory__foot">
-      <a class="btn-1 pm-pill" href="/our-collection/">View All Collection</a>
+    <div class="rd-reg__foot">
+      <a class="rd-link" href="/inventory/">Search the full inventory
+        <span aria-hidden="true">&rarr;</span></a>
     </div>
 
   </div>
@@ -493,9 +876,9 @@ jQuery(function ($) {
   var reduce = window.matchMedia &&
                window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- hero film: the visitor keeps the transport --------------------- */
-  var video = $('#home-video').get(0);
-  var $btn  = $('#pm-hero-transport');
+  /* ---- hero film: the visitor keeps the transport (MJ6) --------------- */
+  var video = $('#rd-room').get(0);
+  var $btn  = $('#rd-transport');
 
   if (video) {
     var setLabel = function (playing) {
@@ -549,11 +932,6 @@ jQuery(function ($) {
   }
 
   /* ---- carousels: Owl Carousel 2.3.4, the theme's only slider ---------- */
-  $('.home-slider').owlCarousel({
-    items: 1, loop: false, nav: false, dots: false, autoplay: false,
-    mouseDrag: false, touchDrag: false
-  });
-
   $('.testimonials-slider').owlCarousel({
     items: 2, margin: 30, loop: true, center: true, nav: true, dots: false,
     autoplay: false, navText: ['<span>&larr;</span>', '<span>&rarr;</span>'],
