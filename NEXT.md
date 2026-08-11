@@ -1,82 +1,96 @@
 # Patton Motors — where this stands
 
-Updated 11 Aug 2026, at the end of a long session. Read this first; the memory
-files under the project's `memory/` folder load automatically and carry the
-reasoning behind it.
+Updated 11 Aug 2026. Read `CLAUDE.md` first; this is the state, that is the
+rules. The memory files under the project's `memory/` folder load automatically.
 
 ## The live file is `mockup/index3.html`
 
-Everything else is history:
-
 | File | What it is |
 |---|---|
-| **`mockup/index3.html`** | **the work.** Header + full-screen video hero + a four-route band. Nothing below that yet. |
+| **`mockup/index3.html`** | **the work.** The whole page, hero to footer. |
 | `mockup/css/patton3.css` | its stylesheet, vanilla, loaded after the AAN theme's compiled `style.css` |
-| `mockup/index.html` | an earlier marketplace redesign Alex rejected — the register ate the page |
+| `mockup/index.html` | an earlier marketplace redesign Alex rejected |
 | `mockup/index.reproduction.backup.html` | a faithful copy of the live pattonmotors.com |
 | `mockup/index2.html` | an intermediate Bootstrap pass, superseded |
 
-**Uncommitted.** The last commit predates the whole hero. Everything from the
-full-screen hero onward exists only in the working tree — commit early in the
-next session.
+Everything is committed and pushed. Last commit `ffb14aa`.
 
-## The hero, as it stands
+Serve it: `cd mockup && python3 -m http.server 8787` → http://localhost:8787/index3.html
+Note: that server lets the browser cache `patton3.css` aggressively. After a CSS
+edit, force a reload or the measurements you take will be of the previous file.
+That cost a wasted measurement pass on 11 Aug.
 
-Full-bleed video (`assets/video/hero_large.mp4`, 26 MB — Alex re-encoded it down
-from 870 MB), header floating over it, and centred inside the frame:
+## What is built
+
+Six masses, in this order, per the compiled brief at
+`design_dna/projects/briefs/patton-motors.md`:
 
 ```
-POMPANO BEACH, FLORIDA
-A BOHEMIAN CAR PLACE          ← tracked light caps, 0.13em
-Collector cars on the floor. Four on the block this week.
-[ DISCOVER ]
+hero (film, untouched)  ·  routes  ·  BLOCK  ·  held frame + seam 1
+floor  ·  sell & consign  ·  why Patton  ·  room + seam 2  ·  footer
 ```
 
-Then a band of four routes, each carrying a live fact rather than a label:
-Auctions (4 live + countdown) · The floor (40 cars) · Sell & consign · The room
-(open Saturday 9–1).
+**The compositional centre is the auction block, not the hero.** It dominates by
+four mechanisms, none of them size alone: it is the last and largest mass of the
+dark chapter, it owns the page's only accent, it carries the only moving element
+after the film, and it culminates in the one oversized number the page allows.
 
-The headline is **Patton's own sentence**, taken off their About page where it
-was buried. It is the one line no competitor can say and it covers all three
-pillars at once.
+**The second ground is derived, not chosen.** `--floor: #E2E0D7` is the measured
+mean of the lower 12% of eight inventory photographs — the reflective floor all
+forty cars stand on. The dark ground is corroborated by the upper 8% of the same
+frames and by the brand's own `#2A2A2A`. Never restate this as a preference; it
+is a measurement, and `EVIDENCE.md` still records colour as UNKNOWN.
 
-## What is next
+**Two ground changes, two seams**, and the seams are `position: sticky` layout
+rather than script. They release below 992px.
 
-Go down the page, and go **all the way down in one pass**. Both of Alex's `out`
-records in the vault fail on the same axis — a strong opening that never
-develops into a page — and three separate passes were spent polishing this hero
-alone. That is the same failure.
+**One card component** for auctions and for the floor, separated only by the data
+plate: state + bid + time against an asking price. A car on the block is not on
+the floor.
 
-Order: hero → routes → **auctions** → the floor → sell & consign → why Patton →
-footer. Auctions go above the inventory because a thing with a clock outranks a
-thing without one.
+## Open — five spacing corrections, found and NOT yet applied
 
-Auction content is simulated from real stock (`assets/cars.json`, the live
-`/api/cars` feed). The mechanics Alex supplied, from an NFI reference:
-buying = Register to Bid / Bidding / Winning; selling = Submit your Vehicle /
-Final Approval / Go Time. **Bids, counts and closing times are sample data and
-must be marked as such.**
+Found by auditing the shipped page against `skills/spacing-taste/SKILL.md`, which
+had been paraphrased from memory rather than read. All five are real:
 
-Cards, not a register. Same component for auction and inventory, distinguished
-by the data plate: state + bid + time versus asking price. A car on the block is
-removed from the floor.
+1. **D4 violated.** `--gutter: clamp(20px, 3vw, 40px)` gives 20px at every width
+   below ~800px; the floor is 24px. It was reported as a yield "on 320px", which
+   was false — it is 20px at 390 too, where the yield condition plainly does not
+   hold. → `clamp(24px, 3vw, 40px)`.
+2. **I1 violated.** The skill gives a six-relationship stack component and says
+   to set it as a component, not by hand. Two stacks shipped with UNIFORM gaps:
+   `.pm-room__inner` at 24px across eyebrow→h2→lead→link, and `.pm-card` at 16px
+   across media→key→title→sub→plate, patched with a `-6px` nudge.
+3. **I2 violated.** Sixteen off-scale values in the stylesheet; the ones added in
+   this pass are `2px`, `6px`, `7px`, `9px`, `10px`. The scale is 4px-based.
+4. **D3 violated.** `.pm-note` measures 92ch against the 65–75ch cap. Everything
+   else measured clean — the plates are 52ch, step bodies 47ch.
+5. **D1 unmet.** The checklist wants at least one hesitated call resolved to the
+   larger step, named in the report. The section-head margin was 80 vs 112 and
+   took the smaller, unnamed.
+
+## Verified, and worth not re-deriving
+
+- 37 flat text/ground pairs measured against their real composited ground; all
+  pass, tightest is the sample-data note at 5.74:1.
+- The room's text is over a photograph, so it was screenshot-sampled, not
+  computed: 6.49:1 after pulling the measure to 38ch. The first setting was
+  4.55:1, which is over the line by 0.05 and would not survive a recrop.
+- No horizontal overflow at 1440, 390 or 320. Nothing readable below 14px. Every
+  tap target at or above 44px.
 
 ## Things that cost a day, so they do not get relearned
 
-- **Open the vault's images, not only its notes.** See the memory file
-  `patton-vault-hero-register` — three passes were rejected while every
-  judgement was quoted correctly and no screenshot had been opened.
-- **Dark is not the preference.** `EVIDENCE.md` C2e: two `in` records are dark
-  and so is the rating-1 `out`. Darkness does not discriminate.
-- **The AAN theme fights back.** Everything written is an override. Bootstrap 4's
-  reboot sets `a:hover{text-decoration:underline}`, so both states must be named
-  or the underline returns — an anti-pattern Alex catches immediately.
-- **Alternating section grounds is not decoration if it has one rule.** Alex
-  wants alternation and scroll overlays. His own vault record `hbbody-com-en-home`
-  explains why they need each other: without tonal contrast, layering does not
-  register. Two overlays for the whole page, not a transition between every block.
-
-## Session note
-
-`Bash` was blocked by a safety classifier for the remainder of the previous
-session, which is why this handover exists. A fresh session clears it.
+- **Open the vault's images, not only its notes.** Three passes were rejected
+  while every judgement was quoted correctly and no screenshot had been opened.
+- **Read the taste skills, do not paraphrase them.** The five items above are
+  entirely the cost of having summarised `spacing-taste` instead of opening it.
+- **Dark is not the preference.** `EVIDENCE.md` C2e — darkness sits on approved
+  and rejected records alike.
+- **The AAN theme fights back, and inheritance is not an override.** The compiled
+  base sets its own `h2` and `p` colours, so a heading relying on `body { color }`
+  renders near-black on near-black. Name the colour on both grounds. Bootstrap 4's
+  reboot also sets `a:hover{text-decoration:underline}`, so both link states must
+  be named.
+- **Scope is whatever Alex last named out loud.** A plan in this file is not a
+  scope grant. Finish the step, say you have stopped, hand it over, wait.
