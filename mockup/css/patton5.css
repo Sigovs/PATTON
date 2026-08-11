@@ -36,8 +36,18 @@
      between 25% and 72% lightness — the car bodies, not the room. Two thirds
      of every saturated pixel this business owns is red, so the grounds go
      cold to let the fleet read, and the accent leaves the warm end entirely.
-       --bone on --ink  15.9:1     --live on --ink   9.1:1
-       --ink on --steel 14.8:1     --ink-64 on --steel 5.4:1 */
+     RE-MEASURED HERE, and all four differed from the numbers this block was
+     carrying. They came across from v4's header with the palette and were
+     never checked against these token values — which is the same failure as
+     quoting a rule from memory, just wearing a decimal point. Every pair still
+     passes; three of the four were simply not the measured figures, and
+     --ink on --steel was out by three.
+
+       pair                  stated   measured
+       --bone on --ink        15.9  →  16.36:1
+       --live on --ink         9.1  →   8.99:1
+       --ink on --steel       14.8  →  11.84:1
+       --ink-64 on --steel     5.4  →   4.88:1   (AA floor 4.5) */
   --ink:      #0A0C0E;
   --ink-2:    #12161A;
   --ink-3:    #1B2126;
