@@ -1,0 +1,724 @@
+/* ============================================================================
+   PATTON MOTORS — collector cars + auctions
+   Vanilla CSS. No framework, no build step. Opens with Live Server.
+   ----------------------------------------------------------------------------
+   THE ORGANISING IDEA — THE FLOOR AND THE BLOCK
+
+   Every car Patton has is standing in one room in Pompano Beach. The only
+   difference between two cars parked side by side is how you are allowed to
+   acquire them: one is on the block, one is on the floor. So the page is not
+   "an auction section plus an inventory section" — it is one room in two
+   states, and the design says which state a car is in before it says anything
+   else.
+
+   THE RULES THAT FOLLOW, and they govern every decision below:
+
+   1  TONE CARRIES STATE. Deep ink is the block — time-bound, an event. One
+      step lighter is the floor — standing, permanent. No section picks a
+      ground for decoration; the ground says which state you are looking at.
+
+   2  GOLD IS MONEY. Current bid, asking price, hammer. Nothing else. State,
+      structure and labels are bone. This keeps the accent under ~5% of pixels
+      and makes a figure findable at a glance in a dark page.
+
+   3  LIVE IS NEVER COLOUR ALONE. The word LIVE and a dot always travel
+      together, so the signal survives greyscale, colour blindness and a
+      stopped animation.
+
+   4  TWO VOICES. The brand grotesque carries language. Mono carries machine
+      data — bids, counts, lot numbers, countdowns — because figures must scan
+      as a ledger and a countdown must not reflow as its digits change. Any
+      third voice would be decoration.
+
+   5  NO CARDS. Separation is hairline and air. A card is a container applied
+      to a spacing problem, and forty of them is the template look this page
+      exists to avoid.
+
+   6  THE CARS ARE THE HEROES. Auction data is set as a timing sheet inside
+      the composition, never as a widget bolted on top.
+   ========================================================================== */
+
+:root {
+  /* --- ground: four steps, and they mean something ---------------------- */
+  --ink-900: #131312;   /* the block — deepest, time-bound */
+  --ink-850: #1A1A18;   /* instrument bands */
+  --ink-800: #212120;   /* raised surfaces */
+  --ink-700: #2A2A2A;   /* the floor — the brand's own ground, carried over */
+
+  /* --- ink -------------------------------------------------------------- */
+  --bone:    #EDE9D6;   /* 11.77:1 on --ink-700, 14.9:1 on --ink-900 */
+  --bone-82: rgba(237, 233, 214, 0.82);
+  --bone-64: rgba(237, 233, 214, 0.64);
+  --bone-44: rgba(237, 233, 214, 0.62);   /* the row arrow: an affordance cue,
+                                             so it is lifted to 4.9:1 rather
+                                             than left as faint decoration */
+  --muted:   #A8A296;   /*  5.65:1 on --ink-700 — the floor for label text */
+
+  /* --- rules ------------------------------------------------------------ */
+  --rule:        rgba(237, 233, 214, 0.14);
+  --rule-strong: rgba(237, 233, 214, 0.38);
+
+  /* --- money ------------------------------------------------------------ */
+  --gold:      #CA912B;   /* measured off the wordmark gradient — money on ink */
+  --gold-lift: #E0A63A;
+
+  /* --- the bone panel: the floor -----------------------------------------
+     From Alex's unused sketches — a printed document inset into a dark page.
+     It does the job the tone step was doing badly: the block is cinematic and
+     time-bound, the floor is a catalogue sheet. Two states, two materials.
+     The wordmark gradient runs #644815 -> #CA912B -> #FFEB0F, so it supplies
+     money for BOTH grounds: #CA912B reads 6.72:1 on ink but only 2.40:1 on
+     bone, where the dark stop reads 7.37:1. Nothing invented. */
+  --panel:       #F1EFE9;
+  --panel-ink:   #1A1A19;   /* 15.15:1 on panel */
+  --panel-muted: #6B665C;   /*  4.96:1 on panel */
+  --panel-gold:  #644815;   /*  7.37:1 on panel — money on bone */
+  --panel-rule:        #D3CEC1;
+  --panel-rule-strong: #A9A296;
+
+  /* --- type ------------------------------------------------------------- */
+  --f-brand: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono:  ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  --t-mega:    clamp(40px, 6.1vw, 92px);
+  --t-display: clamp(34px, 4.4vw, 68px);
+  --t-h2:      clamp(26px, 2.9vw, 44px);
+  --t-h3:      clamp(19px, 1.5vw, 24px);
+  --t-lead:    clamp(17px, 1.1vw, 20px);
+  --t-body:    16px;
+  --t-micro:   14px;     /* the floor. Functional text never goes below this */
+
+  /* --- space: 4px base -------------------------------------------------- */
+  --s1: 4px;   --s2: 8px;   --s3: 12px;  --s4: 16px;  --s5: 24px;
+  --s6: 32px;  --s7: 48px;  --s8: 64px;  --s9: 80px;  --s10: 112px;
+  --s11: 160px; --s12: 220px;
+
+  --wrap: 1440px;
+  --gutter: clamp(20px, 3vw, 40px);
+
+  /* --- time: one scale, and easing that means something ----------------- */
+  --dur-1: 0.15s; --dur-2: 0.25s; --dur-3: 0.4s; --dur-4: 0.9s;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);   /* arriving, expanding */
+  --ease-in:  cubic-bezier(0.55, 0, 1, 0.45);   /* leaving, collapsing */
+}
+
+/* ------------------------------------------------------------- document -- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { overflow-x: clip; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--ink-700);
+  color: var(--bone);
+  font-family: var(--f-brand);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+h1, h2, h3, h4, p, figure, dl, dd, ul, ol { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+
+::selection { background: var(--gold); color: var(--ink-900); }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* A keyboard user should not have to tab the whole header to reach content. */
+.skip {
+  position: absolute; left: var(--gutter); top: -100px; z-index: 100;
+  background: var(--bone); color: var(--ink-900);
+  padding: 12px 20px; border-radius: 999px;
+  font-size: var(--t-micro); font-weight: 600;
+  transition: top var(--dur-2) var(--ease-out);
+}
+.skip:focus { top: 16px; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ------------------------------------------------------------ the voices -- */
+
+.mono {
+  font-family: var(--f-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.eyebrow { display: block; color: var(--muted); }
+
+.mega {
+  font-size: var(--t-mega);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+/* THE SIGNATURE, taken from Alex's own unused sketches: one headline, two
+   weights of the same grotesque — a heavy line answered by a thin one. It
+   carries the editorial register without a serif anywhere near it, and it is
+   the single device this page is meant to be remembered by. Used on section
+   openings and the hero, nowhere else. */
+.mega b, .display b, .h2 b { font-weight: 700; }
+.mega em, .display em, .h2 em {
+  display: block;
+  font-style: normal;
+  font-weight: 200;                    /* Helvetica Neue Thin */
+  letter-spacing: -0.03em;
+}
+.display { font-size: var(--t-display); font-weight: 700;
+           line-height: 1.02; letter-spacing: -0.034em; }
+.h2      { font-size: var(--t-h2); font-weight: 700;
+           line-height: 1.08; letter-spacing: -0.028em; }
+.h3      { font-size: var(--t-h3); font-weight: 700;
+           line-height: 1.24; letter-spacing: -0.018em; }
+.lead    { font-size: var(--t-lead); line-height: 1.55; color: var(--bone-82);
+           max-width: 54ch; }
+.body    { font-size: var(--t-body); line-height: 1.7; color: var(--bone-82);
+           max-width: 66ch; }
+
+/* --------------------------------------------------------------- money --
+   Gold appears only on figures. A price is the one thing a collector scans
+   for, and reserving a hue for it makes the whole page navigable. */
+.money {
+  font-family: var(--f-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+.money--none { color: var(--muted); letter-spacing: 0.02em; }
+
+/* --------------------------------------------------------------- state --
+   Rule 3: the word and the dot always travel together. */
+.state {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--f-mono); font-size: var(--t-micro);
+  letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
+}
+.state__dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor; flex: 0 0 auto;
+}
+.state--live { color: var(--bone); }
+.state--live .state__dot { animation: breathe 2.4s var(--ease-out) infinite; }
+.state--soon { color: var(--bone-64); }
+.state--soon .state__dot { background: none; box-shadow: inset 0 0 0 1px currentColor; }
+.state--floor { color: var(--muted); }
+.state--floor .state__dot { border-radius: 0; }   /* square: standing, not timed */
+
+@keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.32; } }
+
+/* ------------------------------------------------------------- controls -- */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 16px 30px;
+  border: 1px solid transparent; border-radius: 999px;
+  font-size: var(--t-body); font-weight: 600; letter-spacing: -0.005em;
+  cursor: pointer;
+  transition: background-color var(--dur-1) var(--ease-out),
+              border-color var(--dur-1) var(--ease-out),
+              color var(--dur-1) var(--ease-out),
+              transform var(--dur-1) var(--ease-out);
+}
+.btn:active { transform: translateY(1px); }
+
+.btn--gold  { background: var(--gold); border-color: var(--gold);
+              color: var(--ink-900); }        /* 6.30:1 */
+.btn--gold:hover, .btn--gold:focus-visible {
+              background: var(--gold-lift); border-color: var(--gold-lift); }
+
+.btn--bone  { background: var(--bone); border-color: var(--bone);
+              color: var(--ink-900); }        /* 14.9:1 */
+.btn--bone:hover, .btn--bone:focus-visible { background: #fff; border-color: #fff; }
+
+.btn--ghost { background: transparent; border-color: var(--rule-strong);
+              color: var(--bone); }
+.btn--ghost:hover, .btn--ghost:focus-visible {
+              background: var(--bone); border-color: var(--bone);
+              color: var(--ink-900); }
+
+.link {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px; font-weight: 600; color: var(--gold);
+}
+.link i { font-style: normal; transition: transform var(--dur-1) var(--ease-out); }
+.link:hover { color: var(--gold-lift); }
+.link:hover i { transform: translateX(5px); }   /* travel stays small */
+
+/* ================================================================ header ==
+   Static, not sticky: a persistent bar is a mass that has to be paid for on
+   every screen, and this page would rather spend that on the car. */
+
+.hdr {
+  position: relative; z-index: 20;
+  background: var(--ink-900);
+  border-bottom: 1px solid var(--rule);
+}
+.hdr__bar {
+  display: flex; align-items: center; gap: var(--s6);
+  min-height: 82px;
+}
+.hdr__brand { display: flex; align-items: baseline; gap: 14px; flex: 0 0 auto; }
+.hdr__brand img { height: 34px; width: auto; }
+.hdr__brand span { color: var(--muted); white-space: nowrap; }
+
+.nav { display: flex; align-items: center; gap: var(--s6);
+       margin-left: auto; }
+.nav a {
+  position: relative;
+  display: inline-flex; align-items: center; min-height: 44px;   /* tap target */
+  font-size: 15px; font-weight: 500; color: var(--bone-82);
+  transition: color var(--dur-1) var(--ease-out);
+}
+.nav a:hover, .nav a[aria-current="page"] { color: var(--bone); }
+/* the active item gets a short rule, not an underline — a nav is scanned as a
+   set, and an underline is the mark of an inline link inside prose */
+.nav a[aria-current="page"]::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 1px; background: var(--gold);
+}
+.nav__sep { width: 1px; height: 18px; background: var(--rule); flex: 0 0 auto; }
+
+.hdr__tel { color: var(--bone); white-space: nowrap; flex: 0 0 auto; }
+.hdr__tel:hover { color: var(--gold); }
+
+.burger {
+  display: none; margin-left: auto;
+  background: none; border: 1px solid var(--rule-strong); border-radius: 999px;
+  padding: 11px 20px; min-height: 44px; cursor: pointer;
+}
+
+/* ================================================================== hero ==
+   One car, at scale, against the deepest ground on the page — because the
+   headline lot is on the block. The two routes in are stated as two parallel
+   actions rather than one primary and one afterthought: bidding and buying are
+   genuinely alternatives, and ranking one above the other would misrepresent
+   the business. */
+
+.hero {
+  position: relative;
+  background: var(--ink-900);
+  overflow: hidden;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: stretch;
+  min-height: min(860px, calc(100dvh - 82px));
+}
+.hero__type {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: var(--s8) var(--s9) var(--s8) 0;
+  padding-left: max(var(--gutter), calc((100% - var(--wrap)) / 2 + var(--gutter)));
+  /* the type column is its own container: the grid is full-bleed, so the left
+     edge has to find the wrap on its own */
+  margin-left: calc(-1 * max(0px, (100vw - var(--wrap)) / 2));
+  padding-left: max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter)));
+}
+.hero__eyebrow { margin-bottom: var(--s4); }
+.hero__title { margin-bottom: var(--s6); max-width: none; }
+.hero__lead { margin-bottom: var(--s7); }
+.hero__actions { display: flex; align-items: center; gap: var(--s4); flex-wrap: wrap; }
+
+/* the vehicle: bleeds off the top and the right, cropped on purpose */
+.hero__media { position: relative; overflow: hidden; background: var(--ink-850); }
+.hero__media img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 52% 62%;
+}
+/* legibility is fixed at the background layer, sized to the brightest region
+   the type actually overlaps — never with a shadow on the text */
+.hero__media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    var(--ink-900) 0%, rgba(19, 19, 18, 0.72) 16%, rgba(19, 19, 18, 0) 52%);
+}
+
+/* the lot plate sits on the car, bottom right — the caption of a catalogue
+   plate, not a badge */
+.hero__plate {
+  position: absolute; right: var(--gutter); bottom: var(--s6); z-index: 2;
+  display: grid; gap: var(--s2); justify-items: end; text-align: right;
+  padding: var(--s4) var(--s5);
+  background: linear-gradient(0deg, rgba(19,19,18,.86), rgba(19,19,18,.62));
+  backdrop-filter: blur(2px);
+}
+.hero__plate dt { color: var(--bone-64); }
+.hero__plate dd { color: var(--bone); }
+
+/* ------------------------------------------------------- the timing band --
+   The house instrument. It is the one place the page reports its own live
+   state, and it is the base of the first screen rather than a floating
+   overlay — a bar pinned to the viewport would be a second permanent mass. */
+
+.tick {
+  background: var(--ink-850);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.tick__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s5);
+  padding-block: var(--s5);
+}
+.tick__cell { display: grid; gap: 7px; }
+.tick__k { color: var(--muted); }
+.tick__v { font-size: clamp(20px, 1.7vw, 27px); font-weight: 700;
+           letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.tick__v--mono { font-family: var(--f-mono); font-size: clamp(18px, 1.5vw, 24px);
+                 letter-spacing: 0.02em; }
+
+/* ================================================================ section == */
+
+.sec { padding-block: var(--s10) var(--s11); }   /* 112 / 160 — the field below
+                                                    a section is deeper than the
+                                                    field above it, so a long
+                                                    page reads as chapters */
+.sec--block { background: var(--ink-900); }      /* time-bound */
+.sec--floor { background: var(--ink-700); padding-top: var(--s8); }   /* standing —
+                    the panel carries its own generous padding, so the section
+                    above it does not need to as well */
+
+/* ---------------------------------------------------- the floor, as paper --
+   The panel is inset so the dark page still frames it: a sheet laid on the
+   table rather than a section that changed colour. */
+.panel {
+  background: var(--panel);
+  color: var(--panel-ink);
+  padding: var(--s9) var(--s8) var(--s10);
+}
+.panel .eyebrow, .panel .tick__k { color: var(--panel-muted); }
+.panel .money { color: var(--panel-gold); }
+.panel .money--none { color: var(--panel-muted); }
+.panel .reg__head { color: var(--panel-muted);
+                    border-bottom-color: var(--panel-rule-strong); }
+.panel .decade { border-bottom-color: var(--panel-rule-strong); }
+.panel .decade__label { color: var(--panel-gold); }
+.panel .decade__count { color: var(--panel-muted); }
+.panel .reg__row { border-bottom-color: var(--panel-rule); }
+.panel .reg__row:hover { background: rgba(26, 26, 25, 0.05); }
+.panel .reg__year { color: rgba(26, 26, 25, 0.78); }
+.panel .reg__name { color: rgba(26, 26, 25, 0.82); }
+.panel .reg__name b { color: var(--panel-ink); }
+.panel .reg__body { color: var(--panel-muted); }
+.panel .reg__thumb { background: #DFDACE; }
+.panel .reg__go { color: rgba(26, 26, 25, 0.55); }
+.panel .reg__row:hover .reg__go { color: var(--panel-gold); }
+.panel .state--floor { color: var(--panel-muted); }
+.panel .sechead__note { color: rgba(26, 26, 25, 0.7); }
+.panel .link { color: var(--panel-gold); }
+.panel .link:hover { color: #7d5a1a; }
+.panel .btn--ghost { border-color: var(--panel-rule-strong); color: var(--panel-ink); }
+.panel .btn--ghost:hover { background: var(--panel-ink); border-color: var(--panel-ink);
+                           color: var(--panel); }
+
+.sechead {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+  gap: var(--s7); align-items: end; margin-bottom: var(--s9);
+}
+.sechead__eyebrow { margin-bottom: var(--s4); }
+.sechead__note { color: var(--bone-64); font-size: var(--t-body);
+                 line-height: 1.65; max-width: 44ch; }
+
+/* =========================================================== the block ==
+   One lot at full width, then the rest as a timing sheet. A featured lot
+   earns its scale by being the one closing next; the others are ruled rows
+   because forty identical cards is exactly the auction-template look. */
+
+.lot {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--s8); align-items: center;
+  padding-bottom: var(--s9);
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: var(--s7);
+}
+.lot__media { position: relative; overflow: hidden; background: var(--ink-850); }
+.lot__media img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  transition: transform var(--dur-4) var(--ease-out);
+}
+.lot:hover .lot__media img { transform: scale(1.02); }
+.lot__no {
+  position: absolute; left: 0; top: 0; z-index: 2;
+  padding: 10px 16px; background: var(--ink-900); color: var(--bone-64);
+}
+.lot__state { margin-bottom: var(--s5); }
+.lot__title { margin-bottom: var(--s3); }
+.lot__sub { color: var(--bone-64); margin-bottom: var(--s7); }
+
+.lot__figs {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--s7); margin-bottom: var(--s7);
+}
+.lot__fig { padding-block: var(--s4); border-top: 1px solid var(--rule); }
+.lot__fig dt { color: var(--muted); margin-bottom: 6px; }
+.lot__fig dd { font-size: clamp(21px, 1.9vw, 30px); font-weight: 700;
+               letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.lot__fig dd.money { font-family: var(--f-mono); font-weight: 500;
+                     letter-spacing: 0.01em; }
+.lot__actions { display: flex; gap: var(--s4); flex-wrap: wrap; }
+
+/* the sheet: every other lot, ruled */
+.sheet__head, .sheet__row {
+  display: grid;
+  grid-template-columns: 108px 132px minmax(0, 1fr) 150px 130px 108px 26px;
+  gap: var(--s5); align-items: center;
+}
+.sheet__head {
+  padding-bottom: var(--s3); border-bottom: 1px solid var(--rule-strong);
+  color: var(--muted);
+}
+.sheet__row {
+  padding-block: var(--s4); border-bottom: 1px solid var(--rule);
+  transition: background-color var(--dur-1) var(--ease-out);
+}
+.sheet__row:hover { background: rgba(237, 233, 214, 0.05); }
+.sheet__thumb { aspect-ratio: 3 / 2; overflow: hidden; background: var(--ink-850); }
+.sheet__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.sheet__name { font-size: 17px; line-height: 1.3; color: var(--bone-82); }
+.sheet__name b { font-weight: 700; color: var(--bone); }
+.sheet__bids { color: var(--muted); }
+.sheet__go { text-align: right; color: var(--bone-44);
+             transition: transform var(--dur-1) var(--ease-out),
+                         color var(--dur-1) var(--ease-out); }
+.sheet__row:hover .sheet__go { color: var(--gold); transform: translateX(5px); }
+.sheet__foot { margin-top: var(--s8); display: flex; gap: var(--s6);
+               align-items: center; flex-wrap: wrap; }
+
+/* ============================================================ the floor ==
+   Same room, other state. The register is chronological with the year as its
+   spine and a rule at each turn of decade, because this floor spans seventy
+   years and that is the fact a collector actually wants. */
+
+.reg__head, .reg__row {
+  display: grid;
+  grid-template-columns: 74px 124px minmax(0, 1fr) 132px 136px 26px;
+  gap: var(--s5); align-items: center;
+}
+.reg__head { padding-bottom: var(--s3); border-bottom: 1px solid var(--rule-strong);
+             color: var(--muted); }
+.decade {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
+  padding: var(--s7) 0 var(--s3);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.decade:first-of-type { padding-top: var(--s5); }
+.decade__label { color: var(--gold); }
+.decade__count { color: var(--muted); }
+.reg__row {
+  padding-block: var(--s4); border-bottom: 1px solid var(--rule);
+  transition: background-color var(--dur-1) var(--ease-out);
+}
+.reg__row:hover { background: rgba(237, 233, 214, 0.05); }
+.reg__thumb { aspect-ratio: 3 / 2; overflow: hidden; background: var(--ink-800); }
+.reg__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.reg__year { color: var(--bone-82); }
+.reg__name { font-size: 17px; line-height: 1.3; color: var(--bone-82); }
+.reg__name b { font-weight: 700; color: var(--bone); }
+.reg__body { color: var(--muted); }
+.reg__price { text-align: right; }
+.reg__go { text-align: right; color: var(--bone-44);
+           transition: transform var(--dur-1) var(--ease-out),
+                       color var(--dur-1) var(--ease-out); }
+.reg__row:hover .reg__go { color: var(--gold); transform: translateX(5px); }
+.reg__foot { margin-top: var(--s8); }
+
+/* ================================================================= sell ==
+   The one section where a photograph carries speech rather than evidence, so
+   it is the one place the ground is a picture. */
+
+.sell { position: relative; background: var(--ink-900); overflow: hidden; }
+.sell__bg { position: absolute; inset: 0; }
+.sell__bg img { width: 100%; height: 100%; object-fit: cover; }
+.sell__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    rgba(19,19,18,.95) 0%, rgba(19,19,18,.86) 42%, rgba(19,19,18,.55) 100%);
+}
+.sell__inner { position: relative; z-index: 1;
+               padding-block: var(--s11) var(--s11); }
+.sell__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+              gap: var(--s9); align-items: start; }
+.steps { display: grid; gap: var(--s6); }
+.step { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--s5);
+        padding-top: var(--s5); border-top: 1px solid var(--rule); }
+.step__n { color: var(--gold); }
+.step h3 { margin-bottom: 8px; }
+.step p { color: var(--bone-64); font-size: var(--t-body); line-height: 1.6;
+          max-width: 46ch; }
+
+/* ================================================================ house ==
+   Credibility as figures, not adjectives. */
+
+.house__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+               gap: var(--s7); margin-top: var(--s9); }
+.house__fig { padding-top: var(--s5); border-top: 1px solid var(--rule-strong); }
+.house__n { display: block; font-size: clamp(38px, 4vw, 60px); font-weight: 700;
+            letter-spacing: -0.035em; line-height: 1; margin-bottom: var(--s3);
+            font-variant-numeric: tabular-nums; }
+.house__k { color: var(--muted); display: block; margin-bottom: 10px; }
+.house__d { color: var(--bone-64); font-size: 15px; line-height: 1.55; }
+
+/* ================================================================== cta == */
+
+.cta { background: var(--ink-900); border-top: 1px solid var(--rule); }
+.cta__inner { padding-block: var(--s11); display: grid;
+              grid-template-columns: minmax(0, 1fr) auto; gap: var(--s8);
+              align-items: end; }
+.cta__actions { display: flex; gap: var(--s4); flex-wrap: wrap; }
+
+/* =============================================================== footer == */
+
+.ftr { background: var(--ink-900); border-top: 1px solid var(--rule);
+       padding-block: var(--s8) var(--s6); }
+.ftr__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+             gap: var(--s7); padding-bottom: var(--s8); }
+.ftr__brand img { height: 30px; margin-bottom: var(--s5); }
+.ftr__brand p { color: var(--bone-64); font-size: 15px; max-width: 34ch; }
+.ftr h4 { color: var(--muted); margin-bottom: var(--s4); }
+.ftr li { margin-bottom: 10px; }
+.ftr li a { color: var(--bone-82); font-size: 15px; }
+.ftr li a:hover { color: var(--bone); }
+.ftr__legal { border-top: 1px solid var(--rule); padding-top: var(--s5);
+              display: flex; justify-content: space-between; gap: var(--s5);
+              flex-wrap: wrap; color: var(--muted); }
+.ftr__legal a { color: var(--muted); text-decoration: underline;
+                text-underline-offset: 0.2em; }
+.ftr__legal a:hover { color: var(--bone); }
+
+/* ============================================================== reveals ==
+   One idea, applied uniformly: content arrives by settling a few pixels, once.
+   Nothing loops, nothing waits on scroll to become readable. The hidden state
+   is applied by script only when motion is allowed, so a JS failure or a
+   reduced-motion request leaves everything visible. */
+
+[data-reveal] {
+  opacity: 0; transform: translateY(12px);
+  transition: opacity var(--dur-3) var(--ease-out),
+              transform var(--dur-3) var(--ease-out);
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Nothing may stay hidden because a capture, a print or a stalled observer
+   never scrolled it into view. */
+@media print { [data-reveal] { opacity: 1 !important; transform: none !important; } }
+
+/* ============================================================ responsive ==
+   Each format re-establishes the idea rather than stacking the desktop one.
+   The hero's dominance comes from the car's area beside a dense type mass; at
+   one column that area is gone, so the car goes full width and the type mass
+   sits beneath it, tightened. Nothing content-bearing is dropped anywhere. */
+
+@media (max-width: 1200px) {
+  .hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .sheet__head, .sheet__row {
+    grid-template-columns: 96px 116px minmax(0, 1fr) 140px 118px 24px;
+  }
+  .sheet__head span:nth-child(6), .sheet__bids { display: none; }
+  .reg__head, .reg__row {
+    grid-template-columns: 66px 108px minmax(0, 1fr) 128px 24px;
+  }
+  .reg__head span:nth-child(4), .reg__body { display: none; }
+  .house__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ftr__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
+  .nav, .hdr__tel { display: none; }
+  .burger { display: inline-flex; align-items: center; }
+  .nav.is-open {
+    display: flex; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0; margin: 0;
+    padding: var(--s2) var(--gutter) var(--s5);
+    background: var(--ink-850); border-bottom: 1px solid var(--rule);
+  }
+  .nav.is-open a { padding-block: 15px; min-height: 44px;
+                   border-bottom: 1px solid var(--rule); font-size: 17px; }
+  .nav.is-open .nav__sep { display: none; }
+
+  .sec { padding-block: var(--s8) var(--s9); }
+  .hero__grid { grid-template-columns: 1fr; min-height: 0; }
+  .hero__media { order: -1; aspect-ratio: 4 / 3; }
+  .hero__media::after {
+    background: linear-gradient(0deg,
+      var(--ink-900) 0%, rgba(19,19,18,.35) 42%, rgba(19,19,18,0) 100%);
+  }
+  .hero__type { padding: var(--s7) 0 var(--s8); margin-left: 0;
+                padding-left: var(--gutter); padding-right: var(--gutter); }
+  .hero__plate { right: var(--gutter); bottom: var(--s4); }
+  .tick__row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); }
+  .sechead { grid-template-columns: 1fr; gap: var(--s5); margin-bottom: var(--s7); }
+  .lot { grid-template-columns: 1fr; gap: var(--s6); }
+  .sell__grid { grid-template-columns: 1fr; gap: var(--s7); }
+  .sell__inner { padding-block: var(--s9); }
+  .panel { padding: var(--s8) var(--s6) var(--s9); }
+  .cta__inner { grid-template-columns: 1fr; gap: var(--s6); padding-block: var(--s9); }
+  .ftr__grid { grid-template-columns: 1fr 1fr; gap: var(--s6); }
+}
+
+@media (max-width: 640px) {
+  /* rows become stacked records; every column survives, none is hidden */
+  .sheet__head, .reg__head { display: none; }
+  .sheet__row {
+    grid-template-columns: 92px minmax(0, 1fr);
+    grid-template-areas: "thumb state" "thumb name" "thumb figs";
+    gap: 6px var(--s4); padding-block: var(--s4); align-items: start;
+  }
+  .sheet__thumb { grid-area: thumb; }
+  .sheet__row .state { grid-area: state; }
+  .sheet__name { grid-area: name; font-size: 16px; }
+  .sheet__figs { grid-area: figs; display: flex; gap: var(--s4); flex-wrap: wrap;
+                 align-items: baseline; }
+  .sheet__go { display: none; }
+
+  .reg__row {
+    grid-template-columns: 88px minmax(0, 1fr) auto;
+    grid-template-areas: "thumb name go" "thumb meta meta";
+    gap: 7px var(--s4); padding-block: var(--s4); align-items: start;
+  }
+  .reg__thumb { grid-area: thumb; }
+  .reg__name  { grid-area: name; font-size: 16px; }
+  .reg__go    { grid-area: go; }
+  .reg__year  { grid-area: meta; }
+  .reg__price { grid-area: meta; text-align: left; padding-left: 108px; }
+
+  .panel { padding: var(--s7) var(--s5) var(--s8); }
+  .lot__figs { grid-template-columns: 1fr; gap: 0; }
+  .house__grid { grid-template-columns: 1fr; gap: var(--s6); }
+  .ftr__grid { grid-template-columns: 1fr; }
+  .btn { width: 100%; }
+  .hero__actions .btn { width: auto; flex: 1 1 auto; }
+}
+
+/* ------------------------------------------------------- reduced motion --
+   An authored still, not a disabled interface: everything is visible, the
+   countdown still counts, the live dot still reads LIVE because the word is
+   always there. */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+  .state--live .state__dot { animation: none; }
+  .lot:hover .lot__media img { transform: none; }
+}

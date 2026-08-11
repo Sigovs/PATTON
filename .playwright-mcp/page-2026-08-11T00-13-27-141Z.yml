@@ -1,0 +1,574 @@
+- generic [active] [ref=f14e1]:
+  - link "Skip to content" [ref=f14e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f14e3]:
+    - generic [ref=f14e4]:
+      - link "Patton Motors — home" [ref=f14e5] [cursor=pointer]:
+        - /url: /
+        - img "Patton Motors" [ref=f14e6]
+        - generic [ref=f14e7]: Collector cars+ auctions
+      - navigation "Primary" [ref=f14e8]:
+        - link "Inventory" [ref=f14e9] [cursor=pointer]:
+          - /url: "#floor"
+        - link "Auctions" [ref=f14e10] [cursor=pointer]:
+          - /url: "#block"
+        - link "Sell & Consign" [ref=f14e11] [cursor=pointer]:
+          - /url: "#sell"
+        - link "About" [ref=f14e12] [cursor=pointer]:
+          - /url: "#house"
+        - link "S-Klub" [ref=f14e13] [cursor=pointer]:
+          - /url: /s-klub/
+        - link "My Collection" [ref=f14e15] [cursor=pointer]:
+          - /url: /my-collection/
+      - link "630 550 0741" [ref=f14e16] [cursor=pointer]:
+        - /url: tel:+16305500741
+  - main [ref=f14e17]:
+    - generic [ref=f14e19]:
+      - generic [ref=f14e20]:
+        - generic [ref=f14e21]: Pompano Beach, Florida
+        - heading [level=1] [ref=f14e22]:
+          - text: Forty cars
+          - emphasis [ref=f14e23]: on the floor.
+          - text: Four
+          - emphasis [ref=f14e24]: on the block.
+        - paragraph [ref=f14e25]: One room. Two ways to take a car out of it — win it at auction, or buy it where it stands.
+        - generic [ref=f14e26]:
+          - link "View the auctions" [ref=f14e27] [cursor=pointer]:
+            - /url: "#block"
+          - link "Browse the floor" [ref=f14e28] [cursor=pointer]:
+            - /url: "#floor"
+      - figure [ref=f14e29]:
+        - img "1965 Ferrari 250 GTO Coupe on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e30]
+        - generic [ref=f14e31]:
+          - term [ref=f14e33]: Lot 104 · 1965 Ferrari 250 GTO Coupe
+          - definition [ref=f14e35]:
+            - generic [ref=f14e36]: Live now
+    - region "Current state of the house" [ref=f14e38]:
+      - generic [ref=f14e39]:
+        - generic [ref=f14e40]:
+          - generic [ref=f14e41]: Lots live now
+          - generic [ref=f14e42]: "4"
+        - generic [ref=f14e43]:
+          - generic [ref=f14e44]: Next lot closes
+          - generic [ref=f14e45]: 02:13:59
+        - generic [ref=f14e46]:
+          - generic [ref=f14e47]: Cars on the floor
+          - generic [ref=f14e48]: "34"
+        - generic [ref=f14e49]:
+          - generic [ref=f14e50]: Sold to date
+          - generic [ref=f14e51]: "30"
+    - generic [ref=f14e53]:
+      - generic [ref=f14e54]:
+        - heading [level=2] [ref=f14e55]:
+          - text: On the block
+          - emphasis [ref=f14e56]: Live and upcoming
+        - paragraph [ref=f14e57]: Bidding is open to registered collectors. Every lot is catalogued, photographed and inspected in the Pompano Beach showroom before it opens.
+      - article [ref=f14e58]:
+        - figure [ref=f14e59]:
+          - generic [ref=f14e60]: Lot 104
+          - img "1965 Ferrari 250 GTO Coupe on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e61]
+        - generic [ref=f14e62]:
+          - generic [ref=f14e63]: Live now
+          - heading "1965 Ferrari 250 GTO Coupe" [level=3] [ref=f14e65]: 1965 Ferrari250 GTO Coupe
+          - paragraph [ref=f14e66]: Coupe · Reserve met
+          - generic [ref=f14e67]:
+            - generic [ref=f14e68]:
+              - term [ref=f14e69]: Current bid
+              - definition [ref=f14e70]: $3,410,000
+            - generic [ref=f14e71]:
+              - term [ref=f14e72]: Time remaining
+              - definition [ref=f14e73]: 02:13:59
+            - generic [ref=f14e74]:
+              - term [ref=f14e75]: Bids
+              - definition [ref=f14e76]: "27"
+            - generic [ref=f14e77]:
+              - term [ref=f14e78]: Lot
+              - definition [ref=f14e79]: "104"
+          - generic [ref=f14e80]:
+            - link "Place a bid" [ref=f14e81] [cursor=pointer]:
+              - /url: /used-vehicle-1965-ferrari-250-gto-coupe-c-52/
+            - link "View the lot" [ref=f14e82] [cursor=pointer]:
+              - /url: /used-vehicle-1965-ferrari-250-gto-coupe-c-52/
+      - generic [ref=f14e83]:
+        - generic [ref=f14e84]:
+          - generic [ref=f14e85]: State
+          - generic [ref=f14e86]: Vehicle
+          - generic [ref=f14e87]: Current bid
+          - generic [ref=f14e88]: Closes
+          - generic [ref=f14e89]: Bids
+        - link "Live 1972 Lamborghini Miura P400 SV on the showroom floor at Patton Motors, Pompano Beach Lamborghini Miura P400 SV · 1972 $1,842,500 05:24:59 19 bids" [ref=f14e90] [cursor=pointer]:
+          - /url: /used-vehicle-1972-lamborghini-miura-p400-sv-c-73/
+          - generic [ref=f14e91]: Live
+          - img "1972 Lamborghini Miura P400 SV on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e94]
+          - generic [ref=f14e95]: Lamborghini Miura P400 SV · 1972
+          - generic [ref=f14e96]: $1,842,500
+          - generic [ref=f14e97]: 05:24:59
+          - generic [ref=f14e98]: 19 bids
+          - generic [ref=f14e99]: →
+        - link "Live 1967 Alfa Romeo 33 Stradale on the showroom floor at Patton Motors, Pompano Beach Alfa Romeo 33 Stradale · 1967 $1,275,000 09:30:59 12 bids" [ref=f14e100] [cursor=pointer]:
+          - /url: /used-vehicle-1967-alfa-romeo-33-stradale-c-8/
+          - generic [ref=f14e101]: Live
+          - img "1967 Alfa Romeo 33 Stradale on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e104]
+          - generic [ref=f14e105]: Alfa Romeo 33 Stradale · 1967
+          - generic [ref=f14e106]: $1,275,000
+          - generic [ref=f14e107]: 09:30:59
+          - generic [ref=f14e108]: 12 bids
+          - generic [ref=f14e109]: →
+        - link "Live 2024 Aston Martin Valour on the showroom floor at Patton Motors, Pompano Beach Aston Martin Valour · 2024 $742,000 14:12:59 31 bids" [ref=f14e110] [cursor=pointer]:
+          - /url: /used-vehicle-2024-aston-martin-valour-c-79/
+          - generic [ref=f14e111]: Live
+          - img "2024 Aston Martin Valour on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e114]
+          - generic [ref=f14e115]: Aston Martin Valour · 2024
+          - generic [ref=f14e116]: $742,000
+          - generic [ref=f14e117]: 14:12:59
+          - generic [ref=f14e118]: 31 bids
+          - generic [ref=f14e119]: →
+        - link "Upcoming 2025 Bugatti Mistral on the showroom floor at Patton Motors, Pompano Beach Bugatti Mistral · 2025 Est. $4.2‑4.8m Fri 11:00 Lot 115" [ref=f14e120] [cursor=pointer]:
+          - /url: /used-vehicle-2025-bugatti-mistral-c-54/
+          - generic [ref=f14e121]: Upcoming
+          - img "2025 Bugatti Mistral on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e124]
+          - generic [ref=f14e125]: Bugatti Mistral · 2025
+          - generic [ref=f14e126]: Est. $4.2‑4.8m
+          - generic [ref=f14e127]: Fri 11:00
+          - generic [ref=f14e128]: Lot 115
+          - generic [ref=f14e129]: →
+        - link "Upcoming 2006 Ford GT on the showroom floor at Patton Motors, Pompano Beach Ford GT · 2006 Est. $395‑460k Fri 11:00 Lot 118" [ref=f14e130] [cursor=pointer]:
+          - /url: /used-vehicle-2006-ford-gt-c-70/
+          - generic [ref=f14e131]: Upcoming
+          - img "2006 Ford GT on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e134]
+          - generic [ref=f14e135]: Ford GT · 2006
+          - generic [ref=f14e136]: Est. $395‑460k
+          - generic [ref=f14e137]: Fri 11:00
+          - generic [ref=f14e138]: Lot 118
+          - generic [ref=f14e139]: →
+      - generic [ref=f14e140]:
+        - link "All auctions" [ref=f14e141] [cursor=pointer]:
+          - /url: /auctions/
+        - link "Register to bid →" [ref=f14e142] [cursor=pointer]:
+          - /url: /auctions/register/
+          - text: Register to bid
+          - generic [ref=f14e143]: →
+    - generic [ref=f14e146]:
+      - generic [ref=f14e147]:
+        - heading [level=2] [ref=f14e148]:
+          - text: On the floor
+          - emphasis [ref=f14e149]: Available now
+        - paragraph [ref=f14e150]: No bidding, no closing time. 34 cars standing in the showroom, 26 of them priced on request. Ask, and it is yours.
+      - generic [ref=f14e151]:
+        - generic [ref=f14e152]:
+          - generic [ref=f14e153]: Year
+          - generic [ref=f14e154]: Marque and model
+          - generic [ref=f14e155]: Body
+          - generic [ref=f14e156]: Asking price
+        - generic [ref=f14e157]:
+          - generic [ref=f14e158]: 1950s
+          - generic [ref=f14e159]: 6 cars
+        - link "1955 1955 Mercedes-Benz 300 SL Gullwing AMG by S-Klub 380 SL on the showroom floor at Patton Motors, Pompano Beach Mercedes-Benz 300 SL Gullwing AMG by S-Klub 380 SL Coupe On request" [ref=f14e160] [cursor=pointer]:
+          - /url: /used-vehicle-1955-mercedes-benz-300-sl-gullwing-amg-by-s-klub-380-sl-c-31/
+          - generic [ref=f14e161]: "1955"
+          - img "1955 Mercedes-Benz 300 SL Gullwing AMG by S-Klub 380 SL on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e163]
+          - generic [ref=f14e164]: Mercedes-Benz 300 SL Gullwing AMG by S-Klub 380 SL
+          - generic [ref=f14e165]: Coupe
+          - generic [ref=f14e166]: On request
+          - generic [ref=f14e167]: →
+        - link "1955 1955 Mercedes-Benz 300 SL on the showroom floor at Patton Motors, Pompano Beach Mercedes-Benz 300 SL — On request" [ref=f14e168] [cursor=pointer]:
+          - /url: /used-vehicle-1955-mercedes-benz-by-kindig-design-300-sl-c-35/
+          - generic [ref=f14e169]: "1955"
+          - img "1955 Mercedes-Benz 300 SL on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e171]
+          - generic [ref=f14e172]: Mercedes-Benz 300 SL
+          - generic [ref=f14e173]: —
+          - generic [ref=f14e174]: On request
+          - generic [ref=f14e175]: →
+        - 'link "1955 1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci on the showroom floor at Patton Motors, Pompano Beach Mercedes-Benz 300 SLR #658 by Scuderia Bucci Convertible $475,000" [ref=f14e176] [cursor=pointer]':
+          - /url: /used-vehicle-1955-mercedes-benz-300-slr-658-by-scuderia-bucci-c-41/
+          - generic [ref=f14e177]: "1955"
+          - 'img "1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e179]'
+          - generic [ref=f14e180]: "Mercedes-Benz 300 SLR #658 by Scuderia Bucci"
+          - generic [ref=f14e181]: Convertible
+          - generic [ref=f14e182]: $475,000
+          - generic [ref=f14e183]: →
+        - link "1955 1955 Porsche 356 Outlaw Speedster Tiff & Co. by S-Klub on the showroom floor at Patton Motors, Pompano Beach Porsche 356 Outlaw Speedster Tiff & Co. by S-Klub Convertible $349,995" [ref=f14e184] [cursor=pointer]:
+          - /url: /used-vehicle-1955-porsche-356-outlaw-speedster-tiff-co.-by-s-klub-c-7/
+          - generic [ref=f14e185]: "1955"
+          - img "1955 Porsche 356 Outlaw Speedster Tiff & Co. by S-Klub on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e187]
+          - generic [ref=f14e188]: Porsche 356 Outlaw Speedster Tiff & Co. by S-Klub
+          - generic [ref=f14e189]: Convertible
+          - generic [ref=f14e190]: $349,995
+          - generic [ref=f14e191]: →
+        - link "1955 1955 Porsche 550 Speedster by S-Klub on the showroom floor at Patton Motors, Pompano Beach Porsche 550 Speedster by S-Klub — On request" [ref=f14e192] [cursor=pointer]:
+          - /url: /used-vehicle-1955-porsche-550-speedster-by-s-klub-c-32/
+          - generic [ref=f14e193]: "1955"
+          - img "1955 Porsche 550 Speedster by S-Klub on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e195]
+          - generic [ref=f14e196]: Porsche 550 Speedster by S-Klub
+          - generic [ref=f14e197]: —
+          - generic [ref=f14e198]: On request
+          - generic [ref=f14e199]: →
+        - link "1956 1956 Ferrari 612 TR by S-Klub Tempista on the showroom floor at Patton Motors, Pompano Beach Ferrari 612 TR by S-Klub Tempista Coupe On request" [ref=f14e200] [cursor=pointer]:
+          - /url: /used-vehicle-1956-ferrari-612-tr-by-s-klub-tempista-c-36/
+          - generic [ref=f14e201]: "1956"
+          - img "1956 Ferrari 612 TR by S-Klub Tempista on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e203]
+          - generic [ref=f14e204]: Ferrari 612 TR by S-Klub Tempista
+          - generic [ref=f14e205]: Coupe
+          - generic [ref=f14e206]: On request
+          - generic [ref=f14e207]: →
+        - generic [ref=f14e208]:
+          - generic [ref=f14e209]: 1960s
+          - generic [ref=f14e210]: 9 cars
+        - link "1961 1961 Ferrari Testa Rossa on the showroom floor at Patton Motors, Pompano Beach Ferrari Testa Rossa — On request" [ref=f14e211] [cursor=pointer]:
+          - /url: /used-vehicle-1961-ferrari-testa-rossa-c-55/
+          - generic [ref=f14e212]: "1961"
+          - img "1961 Ferrari Testa Rossa on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e214]
+          - generic [ref=f14e215]: Ferrari Testa Rossa
+          - generic [ref=f14e216]: —
+          - generic [ref=f14e217]: On request
+          - generic [ref=f14e218]: →
+        - link "1962 1962 Chevrolet ZRC1 on the showroom floor at Patton Motors, Pompano Beach Chevrolet ZRC1 — On request" [ref=f14e219] [cursor=pointer]:
+          - /url: /used-vehicle-1962-chevorlet-zrc1-c-29/
+          - generic [ref=f14e220]: "1962"
+          - img "1962 Chevrolet ZRC1 on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e222]
+          - generic [ref=f14e223]: Chevrolet ZRC1
+          - generic [ref=f14e224]: —
+          - generic [ref=f14e225]: On request
+          - generic [ref=f14e226]: →
+        - link "1962 1962 Excalibur RS Roadster on the showroom floor at Patton Motors, Pompano Beach Excalibur RS Roadster — On request" [ref=f14e227] [cursor=pointer]:
+          - /url: /used-vehicle-1962-excalibur-rs-roadster-c-13/
+          - generic [ref=f14e228]: "1962"
+          - img "1962 Excalibur RS Roadster on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e230]
+          - generic [ref=f14e231]: Excalibur RS Roadster
+          - generic [ref=f14e232]: —
+          - generic [ref=f14e233]: On request
+          - generic [ref=f14e234]: →
+        - link "1962 1962 Shelby Cobra CSX8000 50th Anniversary on the showroom floor at Patton Motors, Pompano Beach Shelby Cobra CSX8000 50th Anniversary Convertible On request" [ref=f14e235] [cursor=pointer]:
+          - /url: /used-vehicle-1962-shelby-cobra-csx8000-50th-anniversary-c-43/
+          - generic [ref=f14e236]: "1962"
+          - img "1962 Shelby Cobra CSX8000 50th Anniversary on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e238]
+          - generic [ref=f14e239]: Shelby Cobra CSX8000 50th Anniversary
+          - generic [ref=f14e240]: Convertible
+          - generic [ref=f14e241]: On request
+          - generic [ref=f14e242]: →
+        - link "1963 1963 Shelby Cobra Continuation Superformance Sebring Edition on the showroom floor at Patton Motors, Pompano Beach Shelby Cobra Continuation Superformance Sebring Edition Convertible On request" [ref=f14e243] [cursor=pointer]:
+          - /url: /used-vehicle-1963-shelby-cobra-continuation-superformance-sebring-edition-c-44/
+          - generic [ref=f14e244]: "1963"
+          - img "1963 Shelby Cobra Continuation Superformance Sebring Edition on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e246]
+          - generic [ref=f14e247]: Shelby Cobra Continuation Superformance Sebring Edition
+          - generic [ref=f14e248]: Convertible
+          - generic [ref=f14e249]: On request
+          - generic [ref=f14e250]: →
+        - link "1965 1965 Ferrari Cobrari Taormina V12 on the showroom floor at Patton Motors, Pompano Beach Ferrari Cobrari Taormina V12 — On request" [ref=f14e251] [cursor=pointer]:
+          - /url: /used-vehicle-1965-ferrari-cobrari-taormina-v12-c-51/
+          - generic [ref=f14e252]: "1965"
+          - img "1965 Ferrari Cobrari Taormina V12 on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e254]
+          - generic [ref=f14e255]: Ferrari Cobrari Taormina V12
+          - generic [ref=f14e256]: —
+          - generic [ref=f14e257]: On request
+          - generic [ref=f14e258]: →
+        - link "1965 1965 Shelby 427 S/c on the showroom floor at Patton Motors, Pompano Beach Shelby 427 S/c — On request" [ref=f14e259] [cursor=pointer]:
+          - /url: /used-vehicle-1965-shelby-cobra-427-s-c-c-68/
+          - generic [ref=f14e260]: "1965"
+          - img "1965 Shelby 427 S/c on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e262]
+          - generic [ref=f14e263]: Shelby 427 S/c
+          - generic [ref=f14e264]: —
+          - generic [ref=f14e265]: On request
+          - generic [ref=f14e266]: →
+        - link "1965 1965 Shelby Cobra 427 S/C on the showroom floor at Patton Motors, Pompano Beach Shelby Cobra 427 S/C — On request" [ref=f14e267] [cursor=pointer]:
+          - /url: /used-vehicle-1965-shelby-cobra-427-s-c-c-69/
+          - generic [ref=f14e268]: "1965"
+          - img "1965 Shelby Cobra 427 S/C on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e270]
+          - generic [ref=f14e271]: Shelby Cobra 427 S/C
+          - generic [ref=f14e272]: —
+          - generic [ref=f14e273]: On request
+          - generic [ref=f14e274]: →
+        - link "1969 1969 Ford Mustang Boss 429 Fastback on the showroom floor at Patton Motors, Pompano Beach Ford Mustang Boss 429 Fastback Coupe On request" [ref=f14e275] [cursor=pointer]:
+          - /url: /used-vehicle-1969-ford-mustang-boss-429-fastback-c-42/
+          - generic [ref=f14e276]: "1969"
+          - img "1969 Ford Mustang Boss 429 Fastback on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e278]
+          - generic [ref=f14e279]: Ford Mustang Boss 429 Fastback
+          - generic [ref=f14e280]: Coupe
+          - generic [ref=f14e281]: On request
+          - generic [ref=f14e282]: →
+        - generic [ref=f14e283]:
+          - generic [ref=f14e284]: 1970s
+          - generic [ref=f14e285]: 5 cars
+        - link "1970 1970 Fiat Jolly on the showroom floor at Patton Motors, Pompano Beach Fiat Jolly — $68,500" [ref=f14e286] [cursor=pointer]:
+          - /url: /used-vehicle-1970-fiat-jolly-c-58/
+          - generic [ref=f14e287]: "1970"
+          - img "1970 Fiat Jolly on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e289]
+          - generic [ref=f14e290]: Fiat Jolly
+          - generic [ref=f14e291]: —
+          - generic [ref=f14e292]: $68,500
+          - generic [ref=f14e293]: →
+        - link "1971 1971 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach De Tomaso Pantera — $265,000" [ref=f14e294] [cursor=pointer]:
+          - /url: /used-vehicle-1971-detomaso-pantera-c-72/
+          - generic [ref=f14e295]: "1971"
+          - img "1971 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e297]
+          - generic [ref=f14e298]: De Tomaso Pantera
+          - generic [ref=f14e299]: —
+          - generic [ref=f14e300]: $265,000
+          - generic [ref=f14e301]: →
+        - link "1972 1972 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach De Tomaso Pantera — $159,998" [ref=f14e302] [cursor=pointer]:
+          - /url: /used-vehicle-1972-detomaso-pantera-c-75/
+          - generic [ref=f14e303]: "1972"
+          - img "1972 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e305]
+          - generic [ref=f14e306]: De Tomaso Pantera
+          - generic [ref=f14e307]: —
+          - generic [ref=f14e308]: $159,998
+          - generic [ref=f14e309]: →
+        - link "1974 1974 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach De Tomaso Pantera — $299,999" [ref=f14e310] [cursor=pointer]:
+          - /url: /used-vehicle-1974-boss-429-powered-detomaso-pantera-c-76/
+          - generic [ref=f14e311]: "1974"
+          - img "1974 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e313]
+          - generic [ref=f14e314]: De Tomaso Pantera
+          - generic [ref=f14e315]: —
+          - generic [ref=f14e316]: $299,999
+          - generic [ref=f14e317]: →
+        - link "1974 1974 Ferrari Dino 246 GTS on the showroom floor at Patton Motors, Pompano Beach Ferrari Dino 246 GTS — On request" [ref=f14e318] [cursor=pointer]:
+          - /url: /used-vehicle-1974-ferrari-dino-246-gts-c-64/
+          - generic [ref=f14e319]: "1974"
+          - img "1974 Ferrari Dino 246 GTS on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e321]
+          - generic [ref=f14e322]: Ferrari Dino 246 GTS
+          - generic [ref=f14e323]: —
+          - generic [ref=f14e324]: On request
+          - generic [ref=f14e325]: →
+        - generic [ref=f14e326]:
+          - generic [ref=f14e327]: 1980s
+          - generic [ref=f14e328]: 3 cars
+        - link "1980 1980 Ferrari 308 GTSi on the showroom floor at Patton Motors, Pompano Beach Ferrari 308 GTSi — On request" [ref=f14e329] [cursor=pointer]:
+          - /url: /used-vehicle-1980-ferrari-308-gtsi-c-63/
+          - generic [ref=f14e330]: "1980"
+          - img "1980 Ferrari 308 GTSi on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e332]
+          - generic [ref=f14e333]: Ferrari 308 GTSi
+          - generic [ref=f14e334]: —
+          - generic [ref=f14e335]: On request
+          - generic [ref=f14e336]: →
+        - link "1984 1984 Ferrari 512 BBi on the showroom floor at Patton Motors, Pompano Beach Ferrari 512 BBi Coupe On request" [ref=f14e337] [cursor=pointer]:
+          - /url: /used-vehicle-1984-ferrari-512-bbi-c-47/
+          - generic [ref=f14e338]: "1984"
+          - img "1984 Ferrari 512 BBi on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e340]
+          - generic [ref=f14e341]: Ferrari 512 BBi
+          - generic [ref=f14e342]: Coupe
+          - generic [ref=f14e343]: On request
+          - generic [ref=f14e344]: →
+        - link "1984 1984 Ferrari 308 GTS Quattrovalvole on the showroom floor at Patton Motors, Pompano Beach Ferrari 308 GTS Quattrovalvole GTS On request" [ref=f14e345] [cursor=pointer]:
+          - /url: /used-vehicle-1984-ferrari-308-gts-quattrovalvole-c-62/
+          - generic [ref=f14e346]: "1984"
+          - img "1984 Ferrari 308 GTS Quattrovalvole on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e348]
+          - generic [ref=f14e349]: Ferrari 308 GTS Quattrovalvole
+          - generic [ref=f14e350]: GTS
+          - generic [ref=f14e351]: On request
+          - generic [ref=f14e352]: →
+        - generic [ref=f14e353]:
+          - generic [ref=f14e354]: 2000s
+          - generic [ref=f14e355]: 6 cars
+        - link "2006 Ford GT Coupe On request" [ref=f14e356] [cursor=pointer]:
+          - /url: /used-vehicle-2006-ford-gt-c-71/
+          - generic [ref=f14e357]: "2006"
+          - generic [ref=f14e359]: Ford GT
+          - generic [ref=f14e360]: Coupe
+          - generic [ref=f14e361]: On request
+          - generic [ref=f14e362]: →
+        - link "2006 2006 Spyker C8 Laviolette on the showroom floor at Patton Motors, Pompano Beach Spyker C8 Laviolette Laviolette On request" [ref=f14e363] [cursor=pointer]:
+          - /url: /used-vehicle-2006-spyker-c8-laviolette-c-77/
+          - generic [ref=f14e364]: "2006"
+          - img "2006 Spyker C8 Laviolette on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e366]
+          - generic [ref=f14e367]: Spyker C8 Laviolette
+          - generic [ref=f14e368]: Laviolette
+          - generic [ref=f14e369]: On request
+          - generic [ref=f14e370]: →
+        - link "2008 2008 Dodge Viper SRT/10 Hurst 50th Anniversary Convertible No. 2 SRT-10 on the showroom floor at Patton Motors, Pompano Beach Dodge Viper SRT/10 Hurst 50th Anniversary Convertible No. 2 SRT-10 Convertible On request" [ref=f14e371] [cursor=pointer]:
+          - /url: /used-vehicle-2008-dodge-viper-srt-10-hurst-50th-anniversary-convertible-no.-2-srt-10-c-65/
+          - generic [ref=f14e372]: "2008"
+          - img "2008 Dodge Viper SRT/10 Hurst 50th Anniversary Convertible No. 2 SRT-10 on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e374]
+          - generic [ref=f14e375]: Dodge Viper SRT/10 Hurst 50th Anniversary Convertible No. 2 SRT-10
+          - generic [ref=f14e376]: Convertible
+          - generic [ref=f14e377]: On request
+          - generic [ref=f14e378]: →
+        - link "2008 2008 Dodge Viper SRT/10 Hurst 50th Anniversary Coupe No. 1 SRT-10 on the showroom floor at Patton Motors, Pompano Beach Dodge Viper SRT/10 Hurst 50th Anniversary Coupe No. 1 SRT-10 Coupe On request" [ref=f14e379] [cursor=pointer]:
+          - /url: /used-vehicle-2008-dodge-viper-srt-10-hurst-50th-anniversary-coupe-no.-1-srt-10-c-66/
+          - generic [ref=f14e380]: "2008"
+          - img "2008 Dodge Viper SRT/10 Hurst 50th Anniversary Coupe No. 1 SRT-10 on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e382]
+          - generic [ref=f14e383]: Dodge Viper SRT/10 Hurst 50th Anniversary Coupe No. 1 SRT-10
+          - generic [ref=f14e384]: Coupe
+          - generic [ref=f14e385]: On request
+          - generic [ref=f14e386]: →
+        - link "2009 2009 Alfa Romeo 8C Spider on the showroom floor at Patton Motors, Pompano Beach Alfa Romeo 8C Spider Spider On request" [ref=f14e387] [cursor=pointer]:
+          - /url: /used-vehicle-2009-alfa-romeo-8c-spider-c-60/
+          - generic [ref=f14e388]: "2009"
+          - img "2009 Alfa Romeo 8C Spider on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e390]
+          - generic [ref=f14e391]: Alfa Romeo 8C Spider
+          - generic [ref=f14e392]: Spider
+          - generic [ref=f14e393]: On request
+          - generic [ref=f14e394]: →
+        - link "2009 2009 Mercedes-Benz SLR SLR McLaren Roadster 722 S on the showroom floor at Patton Motors, Pompano Beach Mercedes-Benz SLR SLR McLaren Roadster 722 S Convertible On request" [ref=f14e395] [cursor=pointer]:
+          - /url: /used-vehicle-2009-mercedes-benz-slr-slr-mclaren-roadster-722-s-c-49/
+          - generic [ref=f14e396]: "2009"
+          - img "2009 Mercedes-Benz SLR SLR McLaren Roadster 722 S on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e398]
+          - generic [ref=f14e399]: Mercedes-Benz SLR SLR McLaren Roadster 722 S
+          - generic [ref=f14e400]: Convertible
+          - generic [ref=f14e401]: On request
+          - generic [ref=f14e402]: →
+        - generic [ref=f14e403]:
+          - generic [ref=f14e404]: 2010s
+          - generic [ref=f14e405]: 1 car
+        - link "2018 2018 Kirkham Cobra 427 S/C on the showroom floor at Patton Motors, Pompano Beach Kirkham Cobra 427 S/C — On request" [ref=f14e406] [cursor=pointer]:
+          - /url: /used-vehicle-2018-kirkham-cobra-427-s-c-c-67/
+          - generic [ref=f14e407]: "2018"
+          - img "2018 Kirkham Cobra 427 S/C on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e409]
+          - generic [ref=f14e410]: Kirkham Cobra 427 S/C
+          - generic [ref=f14e411]: —
+          - generic [ref=f14e412]: On request
+          - generic [ref=f14e413]: →
+        - generic [ref=f14e414]:
+          - generic [ref=f14e415]: 2020s
+          - generic [ref=f14e416]: 4 cars
+        - link "2021 2021 Aston Martin DBS Superleggera on the showroom floor at Patton Motors, Pompano Beach Aston Martin DBS Superleggera Coupe On request" [ref=f14e417] [cursor=pointer]:
+          - /url: /used-vehicle-2021-aston-martin-dbs-superleggera-c-30/
+          - generic [ref=f14e418]: "2021"
+          - img "2021 Aston Martin DBS Superleggera on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e420]
+          - generic [ref=f14e421]: Aston Martin DBS Superleggera
+          - generic [ref=f14e422]: Coupe
+          - generic [ref=f14e423]: On request
+          - generic [ref=f14e424]: →
+        - link "2022 2022 Ferrari SF90 Spider on the showroom floor at Patton Motors, Pompano Beach Ferrari SF90 Spider Convertible On request" [ref=f14e425] [cursor=pointer]:
+          - /url: /used-vehicle-2022-ferrari-sf90-spider-c-19/
+          - generic [ref=f14e426]: "2022"
+          - img "2022 Ferrari SF90 Spider on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e428]
+          - generic [ref=f14e429]: Ferrari SF90 Spider
+          - generic [ref=f14e430]: Convertible
+          - generic [ref=f14e431]: On request
+          - generic [ref=f14e432]: →
+        - link "2023 2023 Ferrari 296 GTS Assetto Fiorano on the showroom floor at Patton Motors, Pompano Beach Ferrari 296 GTS Assetto Fiorano Convertible $475,000" [ref=f14e433] [cursor=pointer]:
+          - /url: /used-vehicle-2023-ferrari-296-gts-assetto-fiorano-c-48/
+          - generic [ref=f14e434]: "2023"
+          - img "2023 Ferrari 296 GTS Assetto Fiorano on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e436]
+          - generic [ref=f14e437]: Ferrari 296 GTS Assetto Fiorano
+          - generic [ref=f14e438]: Convertible
+          - generic [ref=f14e439]: $475,000
+          - generic [ref=f14e440]: →
+        - link "2023 2023 Little Car Co. Bugatti Baby II Vitesse on the showroom floor at Patton Motors, Pompano Beach Little Car Co. Bugatti Baby II Vitesse — $69,999" [ref=f14e441] [cursor=pointer]:
+          - /url: /used-vehicle-2023-the-little-car-company-bugatti-baby-ii-vitesse-c-78/
+          - generic [ref=f14e442]: "2023"
+          - img "2023 Little Car Co. Bugatti Baby II Vitesse on the showroom floor at Patton Motors, Pompano Beach" [ref=f14e444]
+          - generic [ref=f14e445]: Little Car Co. Bugatti Baby II Vitesse
+          - generic [ref=f14e446]: —
+          - generic [ref=f14e447]: $69,999
+          - generic [ref=f14e448]: →
+      - link "Search the full inventory" [ref=f14e450] [cursor=pointer]:
+        - /url: /inventory/
+    - generic [ref=f14e455]:
+      - generic [ref=f14e456]:
+        - generic [ref=f14e457]: Sell · Consign · Submit
+        - heading [level=2] [ref=f14e458]:
+          - text: Bring us the car.
+          - emphasis [ref=f14e459]: We will tell you which room it belongs in.
+        - paragraph [ref=f14e460]: Some cars sell faster standing on the floor with a price on them. Some do better in front of a room of bidders. We will say which, before you commit to either.
+        - generic [ref=f14e461]:
+          - link "Submit a vehicle" [ref=f14e462] [cursor=pointer]:
+            - /url: /sell-your-car/
+          - link "Or call 630 550 0741 →" [ref=f14e463] [cursor=pointer]:
+            - /url: tel:+16305500741
+            - text: Or call 630 550 0741
+            - generic [ref=f14e464]: →
+      - list [ref=f14e465]:
+        - listitem [ref=f14e466]:
+          - generic [ref=f14e467]: "01"
+          - generic [ref=f14e468]:
+            - heading "Tell us what it is" [level=3] [ref=f14e469]
+            - paragraph [ref=f14e470]: Specification, mileage, ownership, history. The detail decides the valuation more than the mileage does.
+        - listitem [ref=f14e471]:
+          - generic [ref=f14e472]: "02"
+          - generic [ref=f14e473]:
+            - heading "We route it" [level=3] [ref=f14e474]
+            - paragraph [ref=f14e475]: "A valuation against current market evidence, and a recommendation: outright sale, consignment on the floor, or a lot in the next sale."
+        - listitem [ref=f14e476]:
+          - generic [ref=f14e477]: "03"
+          - generic [ref=f14e478]:
+            - heading "We catalogue and sell it" [level=3] [ref=f14e479]
+            - paragraph [ref=f14e480]: Photography, the write-up, qualified buyers only. No fees, no commissions, enclosed transport arranged either way.
+    - generic [ref=f14e482]:
+      - generic [ref=f14e483]:
+        - heading [level=2] [ref=f14e484]:
+          - text: Why Patton
+          - emphasis [ref=f14e485]: Founded by Martin Patton
+        - paragraph [ref=f14e486]: Between Miami and Palm Beach, run as a collection that happens to be for sale. Exclusive dealer for S-Klub, Los Angeles.
+      - generic [ref=f14e487]:
+        - generic [ref=f14e488]:
+          - generic [ref=f14e489]: "30"
+          - generic [ref=f14e490]: Cars sold
+          - text: From a Chiron Super Sport to a 190 SL, delivered worldwide with enclosed transport.
+        - generic [ref=f14e491]:
+          - generic [ref=f14e492]: "17"
+          - generic [ref=f14e493]: Marques on the floor
+          - text: Ferrari to Excalibur. The floor is curated by interest, not by franchise.
+        - generic [ref=f14e494]:
+          - generic [ref=f14e495]: "70"
+          - generic [ref=f14e496]: Years represented
+          - text: 1955 to 2025, standing together in one room in Pompano Beach.
+        - generic [ref=f14e497]:
+          - generic [ref=f14e498]: 1 of 1
+          - generic [ref=f14e499]: S-Klub, exclusively
+          - text: The only dealer for S-Klub of Los Angeles — four of their builds are here now.
+    - generic [ref=f14e501]:
+      - heading [level=2] [ref=f14e502]:
+        - text: Come and stand in it.
+        - emphasis [ref=f14e503]: 2901 Center Port Circle, Pompano Beach
+      - generic [ref=f14e504]:
+        - link "Book a viewing" [ref=f14e505] [cursor=pointer]:
+          - /url: /directions/
+        - link "Contact the house" [ref=f14e506] [cursor=pointer]:
+          - /url: /contact-us/
+  - contentinfo [ref=f14e507]:
+    - generic [ref=f14e508]:
+      - generic [ref=f14e509]:
+        - generic [ref=f14e510]:
+          - img "Patton Motors" [ref=f14e511]
+          - paragraph [ref=f14e512]: Collector cars and auctions. 2901 Center Port Circle, Pompano Beach, FL 33064. Monday to Friday 8–6, Saturday 9–5, Sunday by appointment.
+        - generic [ref=f14e513]:
+          - heading "Acquire" [level=4] [ref=f14e514]
+          - list [ref=f14e515]:
+            - listitem [ref=f14e516]:
+              - link "Auctions" [ref=f14e517] [cursor=pointer]:
+                - /url: "#block"
+            - listitem [ref=f14e518]:
+              - link "Inventory" [ref=f14e519] [cursor=pointer]:
+                - /url: "#floor"
+            - listitem [ref=f14e520]:
+              - link "Register to bid" [ref=f14e521] [cursor=pointer]:
+                - /url: /auctions/register/
+            - listitem [ref=f14e522]:
+              - link "My Collection" [ref=f14e523] [cursor=pointer]:
+                - /url: /my-collection/
+        - generic [ref=f14e524]:
+          - heading "Sell" [level=4] [ref=f14e525]
+          - list [ref=f14e526]:
+            - listitem [ref=f14e527]:
+              - link "Submit a vehicle" [ref=f14e528] [cursor=pointer]:
+                - /url: /sell-your-car/
+            - listitem [ref=f14e529]:
+              - link "Consignment" [ref=f14e530] [cursor=pointer]:
+                - /url: /consignment/
+            - listitem [ref=f14e531]:
+              - link "Sold archive" [ref=f14e532] [cursor=pointer]:
+                - /url: /sold-inventory/
+        - generic [ref=f14e533]:
+          - heading "House" [level=4] [ref=f14e534]
+          - list [ref=f14e535]:
+            - listitem [ref=f14e536]:
+              - link "About" [ref=f14e537] [cursor=pointer]:
+                - /url: "#house"
+            - listitem [ref=f14e538]:
+              - link "S-Klub" [ref=f14e539] [cursor=pointer]:
+                - /url: /s-klub/
+            - listitem [ref=f14e540]:
+              - link "Visit" [ref=f14e541] [cursor=pointer]:
+                - /url: /directions/
+            - listitem [ref=f14e542]:
+              - link "630 550 0741" [ref=f14e543] [cursor=pointer]:
+                - /url: tel:+16305500741
+      - generic [ref=f14e544]:
+        - generic [ref=f14e545]:
+          - text: © 2026 Patton Motors. All rights reserved.
+          - link "Privacy" [ref=f14e546] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - link "Sitemap" [ref=f14e547] [cursor=pointer]:
+            - /url: /sitemap/
+        - generic [ref=f14e548]: Pompano Beach, Florida

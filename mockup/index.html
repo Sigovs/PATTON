@@ -1,573 +1,813 @@
 <!DOCTYPE html>
-<html lang="en-US" class="no-js">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Rare Exotics For Sale | Buy, Sell, &amp; Trade | Patton Motors</title>
-<meta name="description" content="Rare exotic and collector cars in Pompano Beach, Florida. Buy, sell, trade and consign with Patton Motors.">
-
-<!-- Base layer: the real compiled theme stylesheet (Bootstrap 4.0.0 + the whole
-     aanWordpress theme, already kit-branded). Custom layer loads after it. -->
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="css/patton.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patton Motors — Collector Cars and Auctions | Pompano Beach, Florida</title>
+<meta name="description" content="Collector cars and auctions in Pompano Beach, Florida. 4 lots on the block, 34 cars on the floor. Buy outright or bid.">
+<link rel="stylesheet" href="css/patton-marketplace.css">
 </head>
+<body>
 
-<body class="home">
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- ============================================================== header ==
-     Structural hook #header. [TIDY 2] one row, no two-line nav items, SHOP
-     listed once instead of twice, and the two icon-only utilities carry
-     visible labels so their destination is legible before commitment. -->
-<header id="header" class="pm-header">
-  <div class="pm-container">
-    <div class="pm-header__bar">
+<!-- ============================================================== header == -->
+<header class="hdr">
+  <div class="wrap hdr__bar">
+    <a class="hdr__brand" href="/" aria-label="Patton Motors — home">
+      <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors">
+      <span class="mono">Collector cars<br>+ auctions</span>
+    </a>
 
-      <div class="pm-brand">
-        <a href="/" class="pm-brand__logo" aria-label="Patton Motors — home">
-          <img src="assets/site/2LogoAUGUST2025.png" alt="Patton Motors Collection">
-          <span class="pm-brand__tag">Buy / Sell&#8209;Trade</span>
-        </a>
-        <a href="/s-klub/" class="pm-brand__sklub" aria-label="S-Klub LA">
-          <img src="assets/site/sklubb.png" alt="S-Klub LA">
-        </a>
-        <span class="pm-brand__ww">World Wide<br>24/7 By Appointment</span>
-      </div>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#floor">Inventory</a>
+      <a href="#block" aria-current="page">Auctions</a>
+      <a href="#sell">Sell &amp; Consign</a>
+      <a href="#house">About</a>
+      <a href="/s-klub/">S-Klub</a>
+      <span class="nav__sep" aria-hidden="true"></span>
+      <a href="/my-collection/">My Collection</a>
+    </nav>
 
-      <nav aria-label="Primary">
-        <ul class="pm-nav" id="pm-nav">
-          <li><a href="/inventory/">Inventory</a></li>
-          <li><a href="/our-collection/">Collection</a></li>
-          <li><a href="/s-klub/">S&#8209;Klub</a></li>
-          <li><a href="/shop/">Shop</a></li>
-          <li><a href="/sell-your-car/">Sell</a></li>
-          <li><a href="/about/">About</a></li>
-          <li><a href="/testimonials/">Testimonials</a></li>
-          <li><a href="/blog/">News</a></li>
-          <li><a href="/contact-us/">Contact</a></li>
-        </ul>
-      </nav>
+    <a class="mono hdr__tel" href="tel:+16305500741">630&#8201;550&#8201;0741</a>
 
-      <div class="pm-util">
-        <a href="/directions/"><img src="assets/icons/location.svg" alt="">Pompano Beach</a>
-        <a href="/contact-us/"><img src="assets/icons/mail.svg" alt="">Email</a>
-      </div>
-
-      <button type="button" class="pm-burger" id="pm-burger"
-              aria-expanded="false" aria-controls="pm-nav">Menu</button>
-
-    </div>
+    <button class="mono burger" id="burger" type="button"
+            aria-expanded="false" aria-controls="nav">Menu</button>
   </div>
 </header>
 
+<main id="main">
 
 <!-- ================================================================ hero ==
-     Structural hook .banner-section — the live hero is a single-slide Owl
-     carousel holding the welcome film. Kept as a film, with the transport
-     given to the visitor. -->
-<div class="banner-section pm-hero">
-  <div class="slider">
-    <div class="home-slider owl-carousel owl-theme">
-      <div class="item">
-        <video id="home-video" class="w-100 slide-image pm-hero__media"
-               preload="metadata" playsinline loop muted
-               poster="assets/site/homeInventory.jpg"
-               aria-label="Inside the Patton Motors showroom, Pompano Beach">
-          <source src="assets/site/welcomevid.mp4" type="video/mp4">
-        </video>
+     One car, at scale, on the deepest ground on the page — because the
+     headline lot is on the block. The two routes in are given equal weight:
+     bidding and buying are genuine alternatives, and ranking one above the
+     other would misrepresent the business. -->
+<section class="hero">
+  <div class="hero__grid">
+
+    <div class="hero__type">
+      <span class="mono eyebrow hero__eyebrow">Pompano&nbsp;Beach, Florida</span>
+      <h1 class="mega hero__title"><b>Forty cars</b> <em>on the floor.</em>
+        <b>Four</b> <em>on the block.</em></h1>
+      <p class="lead hero__lead">One room. Two ways to take a car out of it —
+        win it at auction, or buy it where it stands.</p>
+      <div class="hero__actions">
+        <a class="btn btn--gold" href="#block">View the auctions</a>
+        <a class="btn btn--ghost" href="#floor">Browse the floor</a>
       </div>
     </div>
-  </div>
-  <button type="button" class="pm-hero__transport" id="pm-hero-transport"
-          data-label-play="Play" data-label-pause="Pause">Pause</button>
 
-<!-- ========================================================= route cards ==
-     .browse_stock — four routes floated over the film's lower edge.
-     [TIDY 3] equal heights, balanced wraps, one scrim rule for all four. -->
-<section class="browse_stock">
-  <div class="pm-container">
-    <div class="pm-routes">
-
-      <a class="pm-route" href="/inventory/"
-         style="background-image:url('assets/site/browse_bg_1.png')">
-        <h2 class="pm-route__h"><span>Browse</span> our stock</h2>
-        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
-      </a>
-
-      <a class="pm-route" href="/sell-your-car/"
-         style="background-image:url('assets/site/browse_bg_2.png')">
-        <h2 class="pm-route__h"><span>Sell</span> your car</h2>
-        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
-      </a>
-
-      <a class="pm-route" href="/contact-us/"
-         style="background-image:url('assets/site/browse_bg_3.png')">
-        <h2 class="pm-route__h"><span>Get in touch</span> with us</h2>
-        <img class="pm-route__go" src="assets/icons/sell_icon.svg" alt="" aria-hidden="true">
-      </a>
-
-      <a class="pm-route pm-route--logo" href="/s-klub/"
-         style="background-image:url('assets/site/browse_bg_5.png')">
-        <img class="pm-route__mark" src="assets/site/newbox.png"
-             alt="Patton Motors Collection — S-Klub LA">
-      </a>
-
-    </div>
-  </div>
-</section>
-</div>
-
-
-<!-- =========================================================== inventory ==
-     .homeInventory — "A Showcase of Distinction". Real vehicles, real
-     photographs, pulled from the live /api/cars feed. -->
-<section class="homeInventory pm-section pm-section--photo" id="collection">
-  <span class="pm-bg" style="background-image:url('assets/site/homeInventory.jpg')"></span>
-  <div class="pm-container">
-
-    <div class="pm-h pm-h--split">
-      <h2>
-        <span class="pm-h__gold">A Showcase</span>
-        <span class="pm-h__white">of Distinction</span>
-      </h2>
-      <a class="btn-1 pm-pill" href="/our-collection/">View All Collection</a>
-    </div>
-
-    <div class="pm-cards">
-
-      <a class="pm-card" href="/used-vehicle-1955-mercedes-benz-300-slr-658-by-scuderia-bucci-c-41/">
-        <img class="pm-card__img" src="assets/img/car-41.jpg" loading="lazy"
-             alt="1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci at Patton Motors">
-        <h3 class="pm-card__title">1955 MERCEDES-BENZ 300 SLR #658 BY SCUDERIA BUCCI</h3>
-        <p class="pm-card__price">$475,000</p>
-      </a>
-
-      <a class="pm-card" href="/used-vehicle-2023-ferrari-296-gts-assetto-fiorano-c-48/">
-        <img class="pm-card__img" src="assets/img/car-48.jpg" loading="lazy"
-             alt="2023 Ferrari 296 GTS Assetto Fiorano at Patton Motors">
-        <h3 class="pm-card__title">2023 Ferrari 296 GTS Assetto Fiorano</h3>
-        <p class="pm-card__price">$475,000</p>
-      </a>
-
-      <a class="pm-card" href="/used-vehicle-1955-porsche-356-outlaw-speedster-tiff-co.-by-s-klub-c-7/">
-        <img class="pm-card__img" src="assets/img/car-7.jpg" loading="lazy"
-             alt="1955 Porsche 356 Outlaw Speedster Tiff &amp; Co. by S-Klub at Patton Motors">
-        <h3 class="pm-card__title">1955 Porsche 356 Outlaw Speedster Tiff &amp; Co. by S&#8209;Klub</h3>
-        <p class="pm-card__price">$349,995</p>
-      </a>
-
-      <a class="pm-card" href="/used-vehicle-1974-boss-429-powered-detomaso-pantera-c-76/">
-        <img class="pm-card__img" src="assets/img/car-76.jpg" loading="lazy"
-             alt="1974 Boss 429-powered De Tomaso Pantera at Patton Motors">
-        <h3 class="pm-card__title">1974 Boss 429&#8209;Powered De&nbsp;Tomaso Pantera</h3>
-        <p class="pm-card__price">$299,999</p>
-      </a>
-
-      <a class="pm-card" href="/used-vehicle-1971-detomaso-pantera-c-72/">
-        <img class="pm-card__img" src="assets/img/car-72.jpg" loading="lazy"
-             alt="1971 De Tomaso Pantera at Patton Motors">
-        <h3 class="pm-card__title">1971 De&nbsp;Tomaso Pantera</h3>
-        <p class="pm-card__price">$265,000</p>
-      </a>
-
-    </div>
-
-    <div class="pm-inventory__foot">
-      <a class="btn-1 pm-pill" href="/our-collection/">View All Collection</a>
-    </div>
+    <figure class="hero__media">
+      <img src="assets/img/car-52.jpg" alt="1965 Ferrari 250 GTO Coupe on the showroom floor at Patton Motors, Pompano Beach" width="1600" height="1067" fetchpriority="high">
+      <dl class="mono hero__plate">
+        <div><dt>Lot 104 &middot; 1965 Ferrari 250 GTO Coupe</dt></div>
+        <div><dd><span class="state state--live"><span class="state__dot"></span>Live now</span></dd></div>
+      </dl>
+    </figure>
 
   </div>
 </section>
 
+<!-- the house instrument: the one place the page reports its own live state -->
+<section class="tick" aria-label="Current state of the house">
+  <div class="wrap tick__row">
+    <div class="tick__cell">
+      <span class="mono tick__k">Lots live now</span>
+      <span class="tick__v">4</span>
+    </div>
+    <div class="tick__cell">
+      <span class="mono tick__k">Next lot closes</span>
+      <span class="tick__v tick__v--mono" data-countdown="8040">—</span>
+    </div>
+    <div class="tick__cell">
+      <span class="mono tick__k">Cars on the floor</span>
+      <span class="tick__v">34</span>
+    </div>
+    <div class="tick__cell">
+      <span class="mono tick__k">Sold to date</span>
+      <span class="tick__v">30</span>
+    </div>
+  </div>
+</section>
 
-<!-- ====================================================== where prestige == -->
-<section class="where_prestige pm-section pm-section--photo" id="about">
-  <span class="pm-bg pm-bg--right" style="background-image:url('assets/site/where_prestige_img.jpg')"></span>
-  <div class="pm-container">
-    <div class="pm-prestige__grid">
+<!-- =========================================================== the block ==
+     One lot at full width because it is the one closing next; the others as a
+     timing sheet. Six identical cards would be the auction-template look. -->
+<section class="sec sec--block" id="block">
+  <div class="wrap">
 
-      <figure class="pm-prestige__media">
-        <video class="pm-prestige__video" id="pm-prestige-video"
-               poster="assets/site/where_prestige_still.jpg"
-               muted playsinline loop preload="metadata"
-               aria-label="Inside the Patton Motors showroom, Pompano Beach">
-          <source src="assets/site/where_prestige.mp4" type="video/mp4">
-        </video>
-        <button type="button" class="pm-media__transport" id="pm-prestige-transport"
-                data-label-play="Play" data-label-pause="Pause">Pause</button>
+    <header class="sechead" data-reveal>
+      <h2 class="h2"><b>On the block</b> <em>Live and upcoming</em></h2>
+      <p class="sechead__note">Bidding is open to registered collectors. Every lot
+        is catalogued, photographed and inspected in the Pompano Beach showroom
+        before it opens.</p>
+    </header>
+
+    <article class="lot" data-reveal>
+      <figure class="lot__media">
+        <span class="mono lot__no">Lot 104</span>
+        <img src="assets/img/car-52.jpg" alt="1965 Ferrari 250 GTO Coupe on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="1200" height="900">
       </figure>
+      <div>
+        <span class="state state--live lot__state"><span class="state__dot"></span>Live now</span>
+        <h3 class="display lot__title">1965 Ferrari<br>250 GTO Coupe</h3>
+        <p class="mono lot__sub">Coupe &middot; Reserve met</p>
 
-      <div class="pm-prestige__body">
-        <h2 class="pm-h">
-          <span class="pm-h__gold">Where Prestige</span>
-          <span class="pm-h__white">Takes the Wheel</span>
-        </h2>
-
-        <p class="pm-italic">Where Curated Craftsmanship Meets Uncompromising
-          Performance</p>
-        <hr class="pm-rule">
-
-        <p class="pm-lead">At the intersection of legacy and innovation, our
-          dealership stands as a beacon for automotive connoisseurs. Founded by
-          Martin Patton with deep roots in luxury and sports industries, our
-          showroom offers more than just rare vehicles. Our inventory is
-          handpicked for those who demand excellence, rarity, and a story behind
-          every engine.</p>
-
-        <a class="btn-3 pm-pill" href="/about/">More</a>
-
-        <div class="pm-panel">
-          <a class="btn-3 pm-pill" href="/contact-us/">
-            <img src="assets/icons/drop_line.svg" alt="">Drop Me a Line</a>
-          <a class="btn-3 pm-pill" href="/directions/">
-            <img src="assets/icons/Pompano.svg" alt="">Pompano Beach, FL</a>
-          <div class="pm-social">
-            <a href="https://www.instagram.com/" aria-label="Patton Motors on Instagram">
-              <img src="assets/icons/insta.svg" alt=""></a>
-            <a href="https://www.tiktok.com/" aria-label="Patton Motors on TikTok">
-              <img src="assets/icons/tiktok.svg" alt=""></a>
+        <dl class="lot__figs">
+          <div class="lot__fig">
+            <dt class="mono">Current bid</dt>
+            <dd class="money">$3,410,000</dd>
           </div>
+          <div class="lot__fig">
+            <dt class="mono">Time remaining</dt>
+            <dd class="mono" data-countdown="8040" style="font-size:inherit">—</dd>
+          </div>
+          <div class="lot__fig">
+            <dt class="mono">Bids</dt>
+            <dd>27</dd>
+          </div>
+          <div class="lot__fig">
+            <dt class="mono">Lot</dt>
+            <dd>104</dd>
+          </div>
+        </dl>
+
+        <div class="lot__actions">
+          <a class="btn btn--gold" href="/used-vehicle-1965-ferrari-250-gto-coupe-c-52/">Place a bid</a>
+          <a class="btn btn--ghost" href="/used-vehicle-1965-ferrari-250-gto-coupe-c-52/">View the lot</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="sheet" data-reveal>
+      <div class="mono sheet__head" aria-hidden="true">
+        <span>State</span><span></span><span>Vehicle</span>
+        <span>Current bid</span><span>Closes</span><span>Bids</span><span></span>
+      </div>
+
+          <a class="sheet__row" href="/used-vehicle-1972-lamborghini-miura-p400-sv-c-73/">
+            <span class="state state--live">
+              <span class="state__dot"></span>Live</span>
+            <span class="sheet__thumb"><img src="assets/img/car-73.jpg" alt="1972 Lamborghini Miura P400 SV on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+            <span class="sheet__name"><b>Lamborghini</b> Miura P400 SV
+              <span class="mono" style="color:var(--muted)"> · 1972</span></span>
+            <span class="sheet__figs"><span class="money">$1,842,500</span></span>
+            <span class="mono sheet__time"><span data-countdown="19500">—</span></span>
+            <span class="mono sheet__bids">19 bids</span>
+            <span class="sheet__go" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a class="sheet__row" href="/used-vehicle-1967-alfa-romeo-33-stradale-c-8/">
+            <span class="state state--live">
+              <span class="state__dot"></span>Live</span>
+            <span class="sheet__thumb"><img src="assets/img/car-8.jpg" alt="1967 Alfa Romeo 33 Stradale on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+            <span class="sheet__name"><b>Alfa Romeo</b> 33 Stradale
+              <span class="mono" style="color:var(--muted)"> · 1967</span></span>
+            <span class="sheet__figs"><span class="money">$1,275,000</span></span>
+            <span class="mono sheet__time"><span data-countdown="34260">—</span></span>
+            <span class="mono sheet__bids">12 bids</span>
+            <span class="sheet__go" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a class="sheet__row" href="/used-vehicle-2024-aston-martin-valour-c-79/">
+            <span class="state state--live">
+              <span class="state__dot"></span>Live</span>
+            <span class="sheet__thumb"><img src="assets/img/car-79.jpg" alt="2024 Aston Martin Valour on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+            <span class="sheet__name"><b>Aston Martin</b> Valour
+              <span class="mono" style="color:var(--muted)"> · 2024</span></span>
+            <span class="sheet__figs"><span class="money">$742,000</span></span>
+            <span class="mono sheet__time"><span data-countdown="51180">—</span></span>
+            <span class="mono sheet__bids">31 bids</span>
+            <span class="sheet__go" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a class="sheet__row" href="/used-vehicle-2025-bugatti-mistral-c-54/">
+            <span class="state state--soon">
+              <span class="state__dot"></span>Upcoming</span>
+            <span class="sheet__thumb"><img src="assets/img/car-54.jpg" alt="2025 Bugatti Mistral on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+            <span class="sheet__name"><b>Bugatti</b> Mistral
+              <span class="mono" style="color:var(--muted)"> · 2025</span></span>
+            <span class="sheet__figs"><span class="mono" style="color:var(--bone-64)">Est. $4.2‑4.8m</span></span>
+            <span class="mono sheet__time">Fri 11:00</span>
+            <span class="mono sheet__bids">Lot 115</span>
+            <span class="sheet__go" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a class="sheet__row" href="/used-vehicle-2006-ford-gt-c-70/">
+            <span class="state state--soon">
+              <span class="state__dot"></span>Upcoming</span>
+            <span class="sheet__thumb"><img src="assets/img/car-70.jpg" alt="2006 Ford GT on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+            <span class="sheet__name"><b>Ford</b> GT
+              <span class="mono" style="color:var(--muted)"> · 2006</span></span>
+            <span class="sheet__figs"><span class="mono" style="color:var(--bone-64)">Est. $395‑460k</span></span>
+            <span class="mono sheet__time">Fri 11:00</span>
+            <span class="mono sheet__bids">Lot 118</span>
+            <span class="sheet__go" aria-hidden="true">&rarr;</span>
+          </a>
+    </div>
+
+    <div class="sheet__foot" data-reveal>
+      <a class="btn btn--ghost" href="/auctions/">All auctions</a>
+      <a class="link" href="/auctions/register/">Register to bid <i>&rarr;</i></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================== the floor ==
+     Same room, other state — and the state is carried by the material. The
+     block is a dark, time-bound event; the floor is a printed catalogue sheet.
+     The register runs chronologically with the year as its spine, because this
+     floor spans seventy years and that is the fact a collector wants. -->
+<section class="sec sec--floor" id="floor">
+  <div class="wrap">
+    <div class="panel">
+
+      <header class="sechead" data-reveal>
+        <h2 class="h2"><b>On the floor</b> <em>Available now</em></h2>
+        <p class="sechead__note">No bidding, no closing time. 34 cars
+          standing in the showroom, 26 of them priced on
+          request. Ask, and it is yours.</p>
+      </header>
+
+      <div class="reg">
+        <div class="mono reg__head" aria-hidden="true">
+          <span>Year</span><span></span><span>Marque and model</span>
+          <span>Body</span><span>Asking price</span><span></span>
+        </div>
+
+            <div class="decade">
+              <span class="mono decade__label">1950s</span>
+              <span class="mono decade__count">6 cars</span>
+            </div>
+
+            <a class="reg__row" href="/used-vehicle-1955-mercedes-benz-300-sl-gullwing-amg-by-s-klub-380-sl-c-31/">
+              <span class="mono reg__year">1955</span>
+              <span class="reg__thumb"><img src="assets/img/car-31.jpg" alt="1955 Mercedes-Benz 300 SL Gullwing AMG by S-Klub 380 SL on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Mercedes-Benz</b> 300 SL Gullwing AMG by S-Klub 380 SL</span>
+              <span class="mono reg__body">Coupe</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1955-mercedes-benz-by-kindig-design-300-sl-c-35/">
+              <span class="mono reg__year">1955</span>
+              <span class="reg__thumb"><img src="assets/img/car-35.jpg" alt="1955 Mercedes-Benz 300 SL on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Mercedes-Benz</b> 300 SL</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1955-mercedes-benz-300-slr-658-by-scuderia-bucci-c-41/">
+              <span class="mono reg__year">1955</span>
+              <span class="reg__thumb"><img src="assets/img/car-41.jpg" alt="1955 Mercedes-Benz 300 SLR #658 by Scuderia Bucci on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Mercedes-Benz</b> 300 SLR #658 by Scuderia Bucci</span>
+              <span class="mono reg__body">Convertible</span>
+              <span class="mono reg__price money">$475,000</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1955-porsche-356-outlaw-speedster-tiff-co.-by-s-klub-c-7/">
+              <span class="mono reg__year">1955</span>
+              <span class="reg__thumb"><img src="assets/img/car-7.jpg" alt="1955 Porsche 356 Outlaw Speedster Tiff &amp; Co. by S-Klub on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Porsche</b> 356 Outlaw Speedster Tiff &amp; Co. by S-Klub</span>
+              <span class="mono reg__body">Convertible</span>
+              <span class="mono reg__price money">$349,995</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1955-porsche-550-speedster-by-s-klub-c-32/">
+              <span class="mono reg__year">1955</span>
+              <span class="reg__thumb"><img src="assets/img/car-32.jpg" alt="1955 Porsche 550 Speedster by S-Klub on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Porsche</b> 550 Speedster by S-Klub</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1956-ferrari-612-tr-by-s-klub-tempista-c-36/">
+              <span class="mono reg__year">1956</span>
+              <span class="reg__thumb"><img src="assets/img/car-36.jpg" alt="1956 Ferrari 612 TR by S-Klub Tempista on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> 612 TR by S-Klub Tempista</span>
+              <span class="mono reg__body">Coupe</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <div class="decade">
+              <span class="mono decade__label">1960s</span>
+              <span class="mono decade__count">9 cars</span>
+            </div>
+
+            <a class="reg__row" href="/used-vehicle-1961-ferrari-testa-rossa-c-55/">
+              <span class="mono reg__year">1961</span>
+              <span class="reg__thumb"><img src="assets/img/car-55.jpg" alt="1961 Ferrari Testa Rossa on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> Testa Rossa</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1962-chevorlet-zrc1-c-29/">
+              <span class="mono reg__year">1962</span>
+              <span class="reg__thumb"><img src="assets/img/car-29.jpg" alt="1962 Chevrolet ZRC1 on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Chevrolet</b> ZRC1</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1962-excalibur-rs-roadster-c-13/">
+              <span class="mono reg__year">1962</span>
+              <span class="reg__thumb"><img src="assets/img/car-13.jpg" alt="1962 Excalibur RS Roadster on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Excalibur</b> RS Roadster</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1962-shelby-cobra-csx8000-50th-anniversary-c-43/">
+              <span class="mono reg__year">1962</span>
+              <span class="reg__thumb"><img src="assets/img/car-43.jpg" alt="1962 Shelby Cobra CSX8000 50th Anniversary on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Shelby</b> Cobra CSX8000 50th Anniversary</span>
+              <span class="mono reg__body">Convertible</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1963-shelby-cobra-continuation-superformance-sebring-edition-c-44/">
+              <span class="mono reg__year">1963</span>
+              <span class="reg__thumb"><img src="assets/img/car-44.jpg" alt="1963 Shelby Cobra Continuation Superformance Sebring Edition on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Shelby</b> Cobra Continuation Superformance Sebring Edition</span>
+              <span class="mono reg__body">Convertible</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1965-ferrari-cobrari-taormina-v12-c-51/">
+              <span class="mono reg__year">1965</span>
+              <span class="reg__thumb"><img src="assets/img/car-51.jpg" alt="1965 Ferrari Cobrari Taormina V12 on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> Cobrari Taormina V12</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1965-shelby-cobra-427-s-c-c-68/">
+              <span class="mono reg__year">1965</span>
+              <span class="reg__thumb"><img src="assets/img/car-68.jpg" alt="1965 Shelby 427 S/c on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Shelby</b> 427 S/c</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1965-shelby-cobra-427-s-c-c-69/">
+              <span class="mono reg__year">1965</span>
+              <span class="reg__thumb"><img src="assets/img/car-69.jpg" alt="1965 Shelby Cobra 427 S/C on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Shelby</b> Cobra 427 S/C</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1969-ford-mustang-boss-429-fastback-c-42/">
+              <span class="mono reg__year">1969</span>
+              <span class="reg__thumb"><img src="assets/img/car-42.jpg" alt="1969 Ford Mustang Boss 429 Fastback on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ford</b> Mustang Boss 429 Fastback</span>
+              <span class="mono reg__body">Coupe</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <div class="decade">
+              <span class="mono decade__label">1970s</span>
+              <span class="mono decade__count">5 cars</span>
+            </div>
+
+            <a class="reg__row" href="/used-vehicle-1970-fiat-jolly-c-58/">
+              <span class="mono reg__year">1970</span>
+              <span class="reg__thumb"><img src="assets/img/car-58.jpg" alt="1970 Fiat Jolly on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Fiat</b> Jolly</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money">$68,500</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1971-detomaso-pantera-c-72/">
+              <span class="mono reg__year">1971</span>
+              <span class="reg__thumb"><img src="assets/img/car-72.jpg" alt="1971 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>De Tomaso</b> Pantera</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money">$265,000</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1972-detomaso-pantera-c-75/">
+              <span class="mono reg__year">1972</span>
+              <span class="reg__thumb"><img src="assets/img/car-75.jpg" alt="1972 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>De Tomaso</b> Pantera</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money">$159,998</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1974-boss-429-powered-detomaso-pantera-c-76/">
+              <span class="mono reg__year">1974</span>
+              <span class="reg__thumb"><img src="assets/img/car-76.jpg" alt="1974 De Tomaso Pantera on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>De Tomaso</b> Pantera</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money">$299,999</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1974-ferrari-dino-246-gts-c-64/">
+              <span class="mono reg__year">1974</span>
+              <span class="reg__thumb"><img src="assets/img/car-64.jpg" alt="1974 Ferrari Dino 246 GTS on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> Dino 246 GTS</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <div class="decade">
+              <span class="mono decade__label">1980s</span>
+              <span class="mono decade__count">3 cars</span>
+            </div>
+
+            <a class="reg__row" href="/used-vehicle-1980-ferrari-308-gtsi-c-63/">
+              <span class="mono reg__year">1980</span>
+              <span class="reg__thumb"><img src="assets/img/car-63.jpg" alt="1980 Ferrari 308 GTSi on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> 308 GTSi</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1984-ferrari-512-bbi-c-47/">
+              <span class="mono reg__year">1984</span>
+              <span class="reg__thumb"><img src="assets/img/car-47.jpg" alt="1984 Ferrari 512 BBi on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> 512 BBi</span>
+              <span class="mono reg__body">Coupe</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-1984-ferrari-308-gts-quattrovalvole-c-62/">
+              <span class="mono reg__year">1984</span>
+              <span class="reg__thumb"><img src="assets/img/car-62.jpg" alt="1984 Ferrari 308 GTS Quattrovalvole on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> 308 GTS Quattrovalvole</span>
+              <span class="mono reg__body">GTS</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <div class="decade">
+              <span class="mono decade__label">2000s</span>
+              <span class="mono decade__count">6 cars</span>
+            </div>
+
+            <a class="reg__row" href="/used-vehicle-2006-ford-gt-c-71/">
+              <span class="mono reg__year">2006</span>
+              <span class="reg__thumb"></span>
+              <span class="reg__name"><b>Ford</b> GT</span>
+              <span class="mono reg__body">Coupe</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-2006-spyker-c8-laviolette-c-77/">
+              <span class="mono reg__year">2006</span>
+              <span class="reg__thumb"><img src="assets/img/car-77.jpg" alt="2006 Spyker C8 Laviolette on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Spyker</b> C8 Laviolette</span>
+              <span class="mono reg__body">Laviolette</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-2008-dodge-viper-srt-10-hurst-50th-anniversary-convertible-no.-2-srt-10-c-65/">
+              <span class="mono reg__year">2008</span>
+              <span class="reg__thumb"><img src="assets/img/car-65.jpg" alt="2008 Dodge Viper SRT/10 Hurst 50th Anniversary Convertible No. 2 SRT-10 on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Dodge</b> Viper SRT/10 Hurst 50th Anniversary Convertible No. 2 SRT-10</span>
+              <span class="mono reg__body">Convertible</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-2008-dodge-viper-srt-10-hurst-50th-anniversary-coupe-no.-1-srt-10-c-66/">
+              <span class="mono reg__year">2008</span>
+              <span class="reg__thumb"><img src="assets/img/car-66.jpg" alt="2008 Dodge Viper SRT/10 Hurst 50th Anniversary Coupe No. 1 SRT-10 on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Dodge</b> Viper SRT/10 Hurst 50th Anniversary Coupe No. 1 SRT-10</span>
+              <span class="mono reg__body">Coupe</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-2009-alfa-romeo-8c-spider-c-60/">
+              <span class="mono reg__year">2009</span>
+              <span class="reg__thumb"><img src="assets/img/car-60.jpg" alt="2009 Alfa Romeo 8C Spider on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Alfa Romeo</b> 8C Spider</span>
+              <span class="mono reg__body">Spider</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-2009-mercedes-benz-slr-slr-mclaren-roadster-722-s-c-49/">
+              <span class="mono reg__year">2009</span>
+              <span class="reg__thumb"><img src="assets/img/car-49.jpg" alt="2009 Mercedes-Benz SLR SLR McLaren Roadster 722 S on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Mercedes-Benz</b> SLR SLR McLaren Roadster 722 S</span>
+              <span class="mono reg__body">Convertible</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <div class="decade">
+              <span class="mono decade__label">2010s</span>
+              <span class="mono decade__count">1 car</span>
+            </div>
+
+            <a class="reg__row" href="/used-vehicle-2018-kirkham-cobra-427-s-c-c-67/">
+              <span class="mono reg__year">2018</span>
+              <span class="reg__thumb"><img src="assets/img/car-67.jpg" alt="2018 Kirkham Cobra 427 S/C on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Kirkham</b> Cobra 427 S/C</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <div class="decade">
+              <span class="mono decade__label">2020s</span>
+              <span class="mono decade__count">4 cars</span>
+            </div>
+
+            <a class="reg__row" href="/used-vehicle-2021-aston-martin-dbs-superleggera-c-30/">
+              <span class="mono reg__year">2021</span>
+              <span class="reg__thumb"><img src="assets/img/car-30.jpg" alt="2021 Aston Martin DBS Superleggera on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Aston Martin</b> DBS Superleggera</span>
+              <span class="mono reg__body">Coupe</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-2022-ferrari-sf90-spider-c-19/">
+              <span class="mono reg__year">2022</span>
+              <span class="reg__thumb"><img src="assets/img/car-19.jpg" alt="2022 Ferrari SF90 Spider on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> SF90 Spider</span>
+              <span class="mono reg__body">Convertible</span>
+              <span class="mono reg__price money money--none">On request</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-2023-ferrari-296-gts-assetto-fiorano-c-48/">
+              <span class="mono reg__year">2023</span>
+              <span class="reg__thumb"><img src="assets/img/car-48.jpg" alt="2023 Ferrari 296 GTS Assetto Fiorano on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Ferrari</b> 296 GTS Assetto Fiorano</span>
+              <span class="mono reg__body">Convertible</span>
+              <span class="mono reg__price money">$475,000</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+
+            <a class="reg__row" href="/used-vehicle-2023-the-little-car-company-bugatti-baby-ii-vitesse-c-78/">
+              <span class="mono reg__year">2023</span>
+              <span class="reg__thumb"><img src="assets/img/car-78.jpg" alt="2023 Little Car Co. Bugatti Baby II Vitesse on the showroom floor at Patton Motors, Pompano Beach" loading="lazy" width="240" height="160"></span>
+              <span class="reg__name"><b>Little Car Co.</b> Bugatti Baby II Vitesse</span>
+              <span class="mono reg__body">—</span>
+              <span class="mono reg__price money">$69,999</span>
+              <span class="reg__go" aria-hidden="true">&rarr;</span>
+            </a>
+      </div>
+
+      <div class="reg__foot">
+        <a class="btn btn--ghost" href="/inventory/">Search the full inventory</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================= sell ==
+     The one section where a photograph carries speech rather than evidence, so
+     it is the one place the ground is a picture. -->
+<section class="sell" id="sell">
+  <div class="sell__bg">
+    <img src="assets/site/where_prestige_still.jpg" alt="" aria-hidden="true">
+  </div>
+  <div class="wrap sell__inner">
+    <div class="sell__grid">
+
+      <div data-reveal>
+        <span class="mono eyebrow" style="margin-bottom:var(--s4)">Sell &middot; Consign &middot; Submit</span>
+        <h2 class="display" style="margin-bottom:var(--s5)"><b>Bring us the car.</b> <em>We will tell you
+          which room it belongs in.</em></h2>
+        <p class="lead" style="margin-bottom:var(--s7)">Some cars sell faster standing
+          on the floor with a price on them. Some do better in front of a room of
+          bidders. We will say which, before you commit to either.</p>
+        <div class="hero__actions">
+          <a class="btn btn--bone" href="/sell-your-car/">Submit a vehicle</a>
+          <a class="link" href="tel:+16305500741">Or call 630&#8201;550&#8201;0741 <i>&rarr;</i></a>
         </div>
       </div>
 
+      <ol class="steps" data-reveal>
+        <li class="step">
+          <span class="mono step__n">01</span>
+          <div>
+            <h3 class="h3">Tell us what it is</h3>
+            <p>Specification, mileage, ownership, history. The detail decides the
+              valuation more than the mileage does.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="mono step__n">02</span>
+          <div>
+            <h3 class="h3">We route it</h3>
+            <p>A valuation against current market evidence, and a recommendation:
+              outright sale, consignment on the floor, or a lot in the next sale.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="mono step__n">03</span>
+          <div>
+            <h3 class="h3">We catalogue and sell it</h3>
+            <p>Photography, the write-up, qualified buyers only. No fees, no
+              commissions, enclosed transport arranged either way.</p>
+          </div>
+        </li>
+      </ol>
+
     </div>
   </div>
 </section>
 
+<!-- ================================================================ house ==
+     Credibility as figures, not adjectives. -->
+<section class="sec sec--block" id="house">
+  <div class="wrap">
+    <header class="sechead" data-reveal>
+      <h2 class="h2"><b>Why Patton</b> <em>Founded by Martin Patton</em></h2>
+      <p class="sechead__note">Between Miami and Palm Beach, run as a collection
+        that happens to be for sale. Exclusive dealer for S-Klub, Los Angeles.</p>
+    </header>
 
-<!-- ========================================================== cash offer == -->
-<section class="cash_offer pm-section pm-section--photo" id="sell">
-  <span class="pm-bg" style="background-image:url('assets/site/ivaylo_aan.jpg')"></span>
-  <div class="pm-container">
-
-    <h2 class="pm-h">
-      <span class="pm-h__gold">Get a Cash Offer</span>
-      <span class="pm-h__white">Luxury Car Selling &mdash; Where Prestige Meets Performance</span>
-    </h2>
-
-    <ol class="pm-steps">
-      <li class="pm-step">
-        <img class="pm-step__img" src="assets/site/image-1.png" loading="lazy"
-             alt="A collector photographing a Porsche 911 to begin a valuation">
-        <span class="pm-step__no">step<br>01</span>
-        <h3 class="pm-step__h">Share Your Car's Story</h3>
-        <p>Tell us what makes your vehicle exceptional. From its specs to
-          mileage, every detail helps us spotlight its true value.</p>
-      </li>
-      <li class="pm-step">
-        <img class="pm-step__img" src="assets/site/step2.png" loading="lazy"
-             alt="A Patton Motors specialist preparing a valuation">
-        <span class="pm-step__no">step<br>02</span>
-        <h3 class="pm-step__h">Get a Curated Offer</h3>
-        <p>Our valuation experts craft a personalized offer based on market
-          trends and your car's prestige &mdash; no generic estimates.</p>
-      </li>
-      <li class="pm-step">
-        <img class="pm-step__img" src="assets/site/step3.png" loading="lazy"
-             alt="Closing a sale at the Patton Motors reception desk">
-        <span class="pm-step__no">step<br>03</span>
-        <h3 class="pm-step__h">Close with Ease</h3>
-        <p>No pressure. No fees. No commissions. Just a fast, secure transaction
-          with white-glove service from start to finish.</p>
-      </li>
-    </ol>
-
-    <div class="pm-cash__foot">
-      <a class="btn-2 pm-pill" href="/sell-your-car/">Start Selling Today</a>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ======================================================== testimonials == -->
-<section class="unmatched_service pm-section pm-section--photo" id="testimonials">
-  <span class="pm-bg pm-bg--08" style="background-image:url('assets/site/unmatched_service.jpg')"></span>
-  <div class="pm-container">
-
-    <h2 class="pm-h">
-      <span class="pm-h__gold">Unmatched Service</span>
-      <span class="pm-h__white">Our Clients Are Saying</span>
-    </h2>
-
-    <div class="pm-quotes testimonials-slider owl-carousel owl-theme">
-
-      <blockquote class="pm-quote">
-        <div class="pm-quote__stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="pm-quote__q">&ldquo;Selling a rare vehicle is usually a headache.
-          At Patton, it felt like a luxury experience in itself.&rdquo;</p>
-        <p class="pm-quote__b">I was hesitant to consign my Aston Martin Vanquish
-          at first, but the team put me at ease. They didn't just list my car
-          &mdash; they presented it like a masterpiece, with professional
-          photography and a write-up that captured its story. No tyre-kickers,
-          only serious, qualified leads.</p>
-        <footer class="pm-quote__by">&mdash; Daniel K., Fort Lauderdale</footer>
-      </blockquote>
-
-      <blockquote class="pm-quote">
-        <div class="pm-quote__stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="pm-quote__q">&ldquo;Patton Motors exceeded every expectation
-          I had.&rdquo;</p>
-        <p class="pm-quote__b">I had been searching for the right Porsche
-          Speedster for nearly a year. Communication was prompt and personal.
-          They arranged a virtual walkaround, coordinated with my bank, and
-          organized enclosed transport to my home in California.</p>
-        <footer class="pm-quote__by">&mdash; Rachel M., San Francisco</footer>
-      </blockquote>
-
-      <blockquote class="pm-quote">
-        <div class="pm-quote__stars" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="pm-quote__q">&ldquo;Buying my dream car through Patton Motors
-          was an experience I'll never forget.&rdquo;</p>
-        <p class="pm-quote__b">The quality of the listing stood out immediately:
-          clear, artistic photos, detailed specs, and even a video tour. It felt
-          less like buying a car, and more like being handed the keys to a dream.</p>
-        <footer class="pm-quote__by">&mdash; Jonathan M., Palm Beach</footer>
-      </blockquote>
-
-    </div>
-
-    <div class="pm-voices__foot">
-      <a class="btn-3 pm-pill" href="/testimonials/">Share Your Experience</a>
-      <a class="btn-2 pm-pill" href="/testimonials/">View All Reviews</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- =========================================================== instagram == -->
-<section class="Instagram_section pm-insta">
-  <div class="pm-container">
-    <img class="pm-insta__img" src="assets/site/insta-section-1.jpg" loading="lazy"
-         alt="Patton Motors on Instagram — cars, coffee and the showroom floor">
-    <div class="pm-insta__foot">
-      <a class="btn-3 pm-pill"
-         href="https://www.instagram.com/pattonmotors">Follow us</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================= moments ==
-     [TIDY] the live grid runs five equal cards in a four-column row, which
-     leaves one card alone against three empty columns. The feature article
-     becomes a lead, the four events fill one row, and nothing is dropped. -->
-<section class="motors_moments pm-section" id="news">
-  <div class="pm-container">
-
-    <h2 class="pm-h">
-      <span class="pm-h__gold">Motors &amp; Moments</span>
-      <span class="pm-h__white">Patton Pulse</span>
-    </h2>
-
-    <div class="pm-posts">
-
-      <article class="pm-post">
-        <img src="assets/site/download-2025-08-07T155034.812-750x375-1.jpeg" loading="lazy"
-             alt="A red Ferrari competition car on the Patton Motors showroom floor">
-        <h3 class="pm-post__h">Dealer Spotlight: 10 Must-See Exotic And Collector
-          Cars For Sale At Patton Motors</h3>
-        <p>Located between Miami and Palm Beach, Patton Motors brings together
-          rare exotics, automotive art, and a growing community of car
-          enthusiasts. It's the [&hellip;]</p>
-        <a class="pm-more" href="/dealer-spotlight-10-must-see-exotic-and-collector-cars-for-sale-at-patton-motors/">More
-          <span aria-hidden="true">&rarr;</span></a>
-      </article>
-
-      <article class="pm-post">
-        <img src="assets/site/DSC_2147.jpg" loading="lazy"
-             alt="The bar at the Patton Motors showroom set up for an evening event">
-        <h3 class="pm-post__h">Cocktails &amp; Cars &mdash; By Invitation Only</h3>
-        <p>The showroom becomes a lounge as designers and engineers from across
-          the automotive world unveil upcoming concept vehicles.</p>
-        <a class="pm-more" href="/blog/">More <span aria-hidden="true">&rarr;</span></a>
-      </article>
-
-      <article class="pm-post">
-        <img src="assets/site/DSC_2124.jpg" loading="lazy"
-             alt="An espresso machine at the Patton Motors showroom">
-        <h3 class="pm-post__h">Exotics &amp; Espresso &mdash; By Invitation Only</h3>
-        <p>Seasoned collectors share their stories, from barn finds to auction
-          battles, over a rich cup of espresso.</p>
-        <a class="pm-more" href="/blog/">More <span aria-hidden="true">&rarr;</span></a>
-      </article>
-
-      <article class="pm-post">
-        <img src="assets/site/Used-2015-Ferrari-LaFerrari-1750433272.jpg" loading="lazy"
-             alt="A Ferrari on the showroom floor at Patton Motors">
-        <h3 class="pm-post__h">Ferrari &amp; Flat Whites &mdash; By Invitation Only</h3>
-        <p>Italian engineering and espresso culture, with a showcase of the
-          latest Ferrari inventory and exclusive pre-release previews.</p>
-        <a class="pm-more" href="/blog/">More <span aria-hidden="true">&rarr;</span></a>
-      </article>
-
-      <article class="pm-post">
-        <img src="assets/site/DSC_2140.jpg" loading="lazy"
-             alt="The lounge at the Patton Motors showroom">
-        <h3 class="pm-post__h">Cars, Coffee, Cocktails &amp; Conversation</h3>
-        <p>Every Saturday at Patton Motors, 9am to 1pm. Where the engines purr,
-          the espresso flows, and every conversation feels cinematic.</p>
-        <a class="pm-more" href="/blog/">More <span aria-hidden="true">&rarr;</span></a>
-      </article>
-
-    </div>
-
-    <div class="pm-moments__foot">
-      <a class="btn-2 pm-pill" href="/blog/">View All Articles</a>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============================================================== footer == -->
-<footer id="footer" class="pm-footer">
-  <div class="pm-container">
-
-    <h2 class="pm-h">
-      <span class="pm-h__gold">Connect with</span>
-      <span class="pm-h__white">Patton Motors</span>
-    </h2>
-    <hr class="pm-rule">
-
-    <div class="pm-footer__cols">
-
-      <div>
-        <h3 class="pm-footer__h">Why Choose Us</h3>
-        <p>A concierge-level experience tailored to your needs, your vehicle,
-          and your privacy. We don't just manage cars &mdash; we curate
-          confidence.</p>
-        <a class="btn-3 pm-pill" href="/contact-us/">
-          <img src="assets/icons/calendar-check.svg" alt="">Schedule a visit</a>
+    <div class="house__grid" data-reveal>
+      <div class="house__fig">
+        <span class="house__n">30</span>
+        <span class="mono house__k">Cars sold</span>
+        <span class="house__d">From a Chiron Super Sport to a 190 SL, delivered
+          worldwide with enclosed transport.</span>
       </div>
-
-      <div>
-        <h3 class="pm-footer__h">Contact Us</h3>
-        <p>2901 Center Port Circle, Pompano Beach, FL 33064<br>
-          Mon&ndash;Fri 8:00am&ndash;6:00pm &middot; Sat 9:00am&ndash;5:00pm
-          &middot; Sun by appointment</p>
-        <a class="btn-3 pm-pill" href="/directions/">
-          <img src="assets/icons/Pompano.svg" alt="">Pompano Beach, FL</a>
+      <div class="house__fig">
+        <span class="house__n">17</span>
+        <span class="mono house__k">Marques on the floor</span>
+        <span class="house__d">Ferrari to Excalibur. The floor is curated by
+          interest, not by franchise.</span>
       </div>
-
-      <div>
-        <h3 class="pm-footer__h">Get In Touch</h3>
-        <p><a href="tel:+16305500741" style="color:#CA912B">630&#8201;550&#8201;0741</a></p>
-        <a class="btn-3 pm-pill" href="/contact-us/">
-          <img src="assets/icons/drop_line.svg" alt="">Drop Me a Line</a>
-        <div class="pm-social" style="margin-top:16px">
-          <a href="https://www.instagram.com/" aria-label="Patton Motors on Instagram">
-            <img src="assets/icons/insta.svg" alt=""></a>
-          <a href="https://www.tiktok.com/" aria-label="Patton Motors on TikTok">
-            <img src="assets/icons/tiktok.svg" alt=""></a>
-        </div>
+      <div class="house__fig">
+        <span class="house__n">70</span>
+        <span class="mono house__k">Years represented</span>
+        <span class="house__d">1955 to 2025, standing together in one room in
+          Pompano Beach.</span>
       </div>
-
+      <div class="house__fig">
+        <span class="house__n">1&nbsp;of&nbsp;1</span>
+        <span class="mono house__k">S-Klub, exclusively</span>
+        <span class="house__d">The only dealer for S-Klub of Los Angeles — four of
+          their builds are here now.</span>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="pm-footer__legal">
-      <span>Copyright &copy; 2026 Patton Motors. All rights reserved. &nbsp;|&nbsp;
-        <a href="/privacy-policy/">Privacy Policy</a> &nbsp;|&nbsp;
+<!-- ================================================================== cta == -->
+<section class="cta">
+  <div class="wrap cta__inner">
+    <h2 class="display"><b>Come and stand in it.</b> <em>2901 Center Port Circle, Pompano Beach</em></h2>
+    <div class="cta__actions">
+      <a class="btn btn--bone" href="/directions/">Book a viewing</a>
+      <a class="btn btn--ghost" href="/contact-us/">Contact the house</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =============================================================== footer == -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div class="ftr__brand">
+        <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors">
+        <p>Collector cars and auctions. 2901 Center Port Circle, Pompano Beach,
+          FL 33064. Monday to Friday 8&ndash;6, Saturday 9&ndash;5, Sunday by
+          appointment.</p>
+      </div>
+      <div>
+        <h4 class="mono">Acquire</h4>
+        <ul>
+          <li><a href="#block">Auctions</a></li>
+          <li><a href="#floor">Inventory</a></li>
+          <li><a href="/auctions/register/">Register to bid</a></li>
+          <li><a href="/my-collection/">My Collection</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mono">Sell</h4>
+        <ul>
+          <li><a href="/sell-your-car/">Submit a vehicle</a></li>
+          <li><a href="/consignment/">Consignment</a></li>
+          <li><a href="/sold-inventory/">Sold archive</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mono">House</h4>
+        <ul>
+          <li><a href="#house">About</a></li>
+          <li><a href="/s-klub/">S-Klub</a></li>
+          <li><a href="/directions/">Visit</a></li>
+          <li><a href="tel:+16305500741">630 550 0741</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mono ftr__legal">
+      <span>&copy; 2026 Patton Motors. All rights reserved.
+        &nbsp;<a href="/privacy-policy/">Privacy</a>&nbsp;
         <a href="/sitemap/">Sitemap</a></span>
-      <span>Powered by: All Auto Network</span>
+      <span>Pompano Beach, Florida</span>
     </div>
-
   </div>
 </footer>
 
-
-<!-- Base libraries, in the theme's own order. No CDN — everything self-hosted. -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-
 <script>
-/* WordPress runs jQuery in noConflict mode, so custom code is wrapped rather
-   than relying on a bare global $. jQuery 3.7.1, no Migrate — nothing
-   removed-in-3.x is used here. */
-jQuery(function ($) {
+/* ---------------------------------------------------------------------------
+   Vanilla. No dependencies, nothing to build.
+--------------------------------------------------------------------------- */
+(function () {
+  'use strict';
 
   var reduce = window.matchMedia &&
                window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- hero film: the visitor keeps the transport --------------------- */
-  var video = $('#home-video').get(0);
-  var $btn  = $('#pm-hero-transport');
-
-  if (video) {
-    var setLabel = function (playing) {
-      $btn.text(playing ? $btn.data('label-pause') : $btn.data('label-play'));
-      $btn.attr('aria-label', playing ? 'Pause the showroom film'
-                                      : 'Play the showroom film');
+  /* --- countdowns --------------------------------------------------------
+     Each element carries an offset in seconds from page load, so the sheet
+     reads correctly whenever the file is opened. Figures are tabular, so the
+     digits do not reflow as they tick. */
+  var clocks = [].slice.call(document.querySelectorAll('[data-countdown]'));
+  if (clocks.length) {
+    clocks.forEach(function (el) {
+      el.dataset.target = String(Date.now() + parseInt(el.dataset.countdown, 10) * 1000);
+    });
+    var pad = function (n) { return n < 10 ? '0' + n : String(n); };
+    var tick = function () {
+      clocks.forEach(function (el) {
+        var left = Math.max(0, Math.floor((+el.dataset.target - Date.now()) / 1000));
+        if (!left) { el.textContent = 'Closed'; return; }
+        var d = Math.floor(left / 86400), h = Math.floor(left % 86400 / 3600),
+            m = Math.floor(left % 3600 / 60), s = left % 60;
+        el.textContent = d ? d + 'd ' + pad(h) + ':' + pad(m) + ':' + pad(s)
+                           : pad(h) + ':' + pad(m) + ':' + pad(s);
+      });
     };
+    tick();
+    setInterval(tick, 1000);
+  }
 
-    /* Reduced motion gets the designed static path: the poster frame holds
-       and the transport offers the film rather than starting it. */
-    if (reduce) {
-      setLabel(false);
-    } else {
-      var starting = video.play();
-      if (starting && typeof starting.catch === 'function') {
-        starting.catch(function () { setLabel(false); });
+  /* --- reveals -----------------------------------------------------------
+     The hidden state is applied by script and only when motion is allowed, so
+     a JS failure or a reduced-motion request leaves every word on the page. */
+  var reveals = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (reveals.length && !reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+    /* a stalled observer must never be the reason a section is blank */
+    setTimeout(function () {
+      reveals.forEach(function (el) { el.classList.add('is-in'); });
+    }, 3000);
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* --- navigation --------------------------------------------------------- */
+  var burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  if (burger && nav) {
+    burger.addEventListener('click', function () {
+      var open = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
       }
-      setLabel(true);
-    }
-
-    $btn.on('click', function () {
-      if (video.paused) { video.play(); setLabel(true); }
-      else              { video.pause(); setLabel(false); }
     });
   }
-
-  /* ---- the Where Prestige background film ----------------------------- */
-  var pv    = $('#pm-prestige-video').get(0);
-  var $pvBtn = $('#pm-prestige-transport');
-
-  if (pv) {
-    var setPv = function (playing) {
-      $pvBtn.text(playing ? 'Pause' : 'Play');
-      $pvBtn.attr('aria-label', playing ? $pvBtn.data('label-pause')
-                                        : $pvBtn.data('label-play'));
-    };
-
-    /* It sits behind a paragraph, so it never starts itself under reduced
-       motion and the visitor can stop it at any time. */
-    if (reduce) {
-      setPv(false);
-    } else {
-      pv.play().then(function () { setPv(true); })
-               .catch(function () { setPv(false); });
-    }
-
-    $pvBtn.on('click', function () {
-      if (pv.paused) { pv.play(); setPv(true); }
-      else           { pv.pause(); setPv(false); }
-    });
-  }
-
-  /* ---- carousels: Owl Carousel 2.3.4, the theme's only slider ---------- */
-  $('.home-slider').owlCarousel({
-    items: 1, loop: false, nav: false, dots: false, autoplay: false,
-    mouseDrag: false, touchDrag: false
-  });
-
-  $('.testimonials-slider').owlCarousel({
-    items: 2, margin: 30, loop: true, center: true, nav: true, dots: false,
-    autoplay: false, navText: ['<span>&larr;</span>', '<span>&rarr;</span>'],
-    responsive: { 0: { items: 1 }, 768: { items: 2 } }
-  });
-
-  /* ---- mobile navigation ---------------------------------------------- */
-  $('#pm-burger').on('click', function () {
-    var open = $(this).attr('aria-expanded') === 'true';
-    $(this).attr('aria-expanded', String(!open));
-    $('#pm-nav').toggleClass('is-open', !open);
-  });
-
-});
+})();
 </script>
 
 </body>
