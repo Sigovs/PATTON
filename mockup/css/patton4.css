@@ -1,0 +1,406 @@
+/* ============================================================================
+   PATTON MOTORS — v4, the page as one composition
+   Custom layer over the AAN theme's compiled style.css.
+   ----------------------------------------------------------------------------
+   WHY THIS VERSION EXISTS
+
+   v3 passed every invariant and still read as flat. Two measured causes:
+
+   · Five chapters opened identically — mono eyebrow, two-line serif left,
+     paragraph right — so the page gave no cue about where the visitor was.
+     C7: uniform repetition reads as machine output.
+   · Five sections were within a few percent of one viewport tall. A metronome.
+
+   So v4 changes composition, scale, rhythm and motion. It does NOT touch the
+   hero film or the vehicle photography — those were not the problem.
+
+   THE PALETTE IS DERIVED, AND IT LEAVES THE WARM DEFAULT ON PURPOSE.
+
+   v3's pair was a warm near-black with a cream sampled off the showroom floor.
+   The derivation was sound and the destination was the category default: dark
+   plus cream plus gold is what every premium automotive page arrives at, and
+   `anti-patterns` D10 is template anonymity.
+
+   Re-derived from the fleet instead of the building. Sampling fourteen
+   inventory frames for pixels above 45% saturation between 25% and 72%
+   lightness — the car bodies, not the floor or the ceiling:
+
+     hue 350°  31.4%      hue 360°  20.6%      hue 20°  13.5%
+     hue   0°  10.8%      hue  30°   4.0%      hue 50°   3.2%
+
+   Two thirds of every saturated pixel this business owns is red. That is the
+   subject, and it decides the ground rather than the accent: a warm cream under
+   a red car turns both to mud, and a cool graphite makes the same car read.
+   So the grounds go cold and the accent leaves the warm end entirely.
+
+     --ink    #0A0C0E   cool near-black, 3° cooler than v3's #131312
+     --steel  #C4CACE   cool concrete — the poured floor read without its
+                        tungsten cast, which is what the room is actually made of
+     --live   #00C97B   the ONE accent, and it carries auction state only.
+                        Motorsport timing towers are the only place in this
+                        industry where a live state has a colour, and it is not
+                        gold. Deliberately a hue the fleet barely contains
+                        (140° is 2.5% of saturated pixels) so it can never
+                        compete with a car.
+
+   Contrast measured on the composite, not on the token — v3 shipped --ink-3 at
+   3.7:1 by trusting the swatch:
+     --bone on --ink   15.9:1      --live on --ink    9.1:1
+     --ink  on --steel 14.8:1      --ink-64 on --steel 5.4:1
+   ========================================================================== */
+
+:root {
+  --ink:      #0A0C0E;
+  --ink-2:    #12161A;
+  --ink-3:    #1B2126;
+
+  --bone:     #E8EBED;
+  --bone-72:  rgba(232, 235, 237, 0.72);
+  --bone-46:  rgba(232, 235, 237, 0.46);
+  --rule:     rgba(232, 235, 237, 0.14);
+  --rule-hi:  rgba(232, 235, 237, 0.38);
+
+  --steel:    #C4CACE;
+  --ink-64:   rgba(10, 12, 14, 0.64);
+  --rule-lt:  rgba(10, 12, 14, 0.18);
+
+  --live:     #00C97B;
+
+  /* TYPE — four events, not one. v3's scale topped out at 62px and everything
+     below fell to 20px, so the hero was the only typographic moment on a
+     ten-viewport page. This scale has room between the display and the body,
+     and each event is a different SIZE as well as a different job. */
+  --t-mega:   clamp(56px, 12.5vw, 190px);   /* the hero, and the floor's numeral */
+  --t-huge:   clamp(40px,  7.2vw, 104px);   /* section events — four of them   */
+  --t-big:    clamp(30px,  3.6vw,  52px);   /* the quiet close                 */
+  --t-lead:   clamp(17px,  1.35vw, 21px);
+  --t-body:   16px;
+  --t-micro:  14px;                          /* the functional floor. Never below. */
+
+  --measure-tight: 21ch;
+  --measure:       58ch;
+
+  /* SPACE — a 4px scale, but the page uses its ENDS, not its middle. v3 spent
+     everything near s-7 and the whitespace stopped meaning anything by the
+     third screen. Compression is a tool here, not an absence of one. */
+  --s-1: 4px;  --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+  --s-5: 24px; --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
+  --s-9: 96px; --s-10: 144px; --s-11: 200px;
+
+  --wrap: 1440px;
+  --gut:  clamp(20px, 4.2vw, 72px);
+
+  /* MOTION — automotive means inertia and precision, so easing is a long
+     decelerating curve and nothing overshoots. No bounce anywhere. */
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:   cubic-bezier(0.55, 0, 0.35, 1);
+  --d-1: 240ms; --d-2: 520ms; --d-3: 820ms; --d-4: 1200ms;
+}
+
+/* ------------------------------------------------------------------ reset */
+
+.pm4 * { box-sizing: border-box; }
+.pm4 {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: var(--t-body);
+  line-height: 1.5;
+  overflow-x: hidden;                 /* U6: never a horizontal page scroll */
+}
+.pm4 h1, .pm4 h2, .pm4 h3, .pm4 p, .pm4 figure { margin: 0; }
+.pm4 img, .pm4 video { display: block; max-width: 100%; }
+
+.pm4 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gut); }
+
+/* Both link states are named. Bootstrap 4's reboot sets
+   a:hover{text-decoration:underline} and the AAN theme ships it — naming one
+   state only lets the underline back in. */
+.pm4 a,
+.pm4 a:hover,
+.pm4 a:focus { text-decoration: none; }
+.pm4 :focus-visible { outline: 2px solid var(--live); outline-offset: 3px; }
+
+.disp { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; line-height: 0.92; letter-spacing: -0.015em; }
+.mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace; font-size: var(--t-micro); letter-spacing: 0.08em; text-transform: uppercase; }
+.tab  { font-variant-numeric: tabular-nums; }
+
+/* =============================================================== header ==
+   v4 reuses v3's header classes but not its stylesheet, so the bar is restated
+   here rather than left to inherit whatever the AAN theme happens to set. One
+   wordmark, four routes and the telephone — the live site's nine items plus a
+   badge and two unlabelled icons are what make it read as a dealer. */
+
+/* The AAN theme styles #header by ID, so a class selector loses on specificity
+   — that is what put a 116px light band above a full-bleed hero. Matching the
+   id here is not a hack, it is the only way to win against the kit without
+   !important, which would then have to be beaten by the next override. */
+.pm4 #header.pm-hdr {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+  background: linear-gradient(to bottom, rgba(10,12,14,.86), rgba(10,12,14,0));
+  /* A ramp, not a panel: the hero film has to stay continuous under it.
+     It is a background scrim for legibility, not a decorative gradient. */
+  transition: background-color var(--d-2) var(--ease);
+}
+.pm4 #header .pm-hdr__bar { display: flex; align-items: center; gap: var(--s-7); padding-block: var(--s-5); }
+.pm4 .pm-hdr__brand { flex: 0 0 auto; }
+.pm4 .pm-hdr__brand img { width: 132px; height: auto; }
+.pm4 .pm-nav { display: flex; gap: var(--s-6); margin-left: auto; }
+.pm4 .pm-nav a {
+  color: var(--bone-72); font-size: var(--t-micro); letter-spacing: 0.06em; text-transform: uppercase;
+  padding-block: var(--s-2);
+  border-bottom: 1px solid transparent;      /* the state is a rule, never an underline */
+  transition: color var(--d-1) var(--ease), border-color var(--d-1) var(--ease);
+}
+.pm4 .pm-nav a:hover,
+.pm4 .pm-nav a:focus-visible { color: var(--bone); border-bottom-color: var(--rule-hi); }
+.pm4 .pm-hdr__tel { color: var(--bone-72); transition: color var(--d-1) var(--ease); }
+.pm4 .pm-hdr__tel:hover { color: var(--bone); }
+
+.pm4 .pm-skip { position: absolute; left: -9999px; }
+.pm4 .pm-skip:focus { left: var(--gut); top: var(--s-4); z-index: 60; background: var(--ink); color: var(--bone); padding: var(--s-3) var(--s-5); }
+
+@media (max-width: 900px) {
+  .pm4 .pm-nav { display: none; }
+  .pm4 .pm-hdr__tel { margin-left: auto; }
+}
+
+/* ======================================================== 1 · hero, dark ==
+   Untouched in intent: one frame, type inside it, one action. The only change
+   is scale — the display now runs to 190px so it reads as the page's largest
+   event rather than as a heading that happens to be first. */
+
+.pm4-hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: var(--ink); }
+.pm4-hero__film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Legibility is bought at the background layer, never with a shadow on type.
+   color-taste I4. */
+.pm4-hero__ramp {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,12,14,.92) 0%, rgba(10,12,14,.72) 28%, rgba(10,12,14,.18) 62%, rgba(10,12,14,.06) 100%);
+}
+.pm4-hero__in { position: relative; padding-block: var(--s-9) var(--s-8); }
+.pm4-hero__brow { color: var(--bone-72); margin-bottom: var(--s-5); }
+.pm4-hero__h { font-size: var(--t-mega); max-width: 14ch; margin-bottom: var(--s-5); }
+.pm4-hero__sub { font-size: var(--t-lead); color: var(--bone-72); max-width: 44ch; margin-bottom: var(--s-7); }
+
+.pm4-cta {
+  display: inline-flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-4) var(--s-6);
+  border: 1px solid var(--rule-hi); border-radius: 0;
+  color: var(--bone); font-size: var(--t-micro); letter-spacing: 0.1em; text-transform: uppercase;
+  transition: border-color var(--d-1) var(--ease), background-color var(--d-1) var(--ease);
+}
+/* No gradient, no shadow — D2 and D3. The state change is the rule and the ground. */
+.pm4-cta:hover { border-color: var(--bone); background: rgba(232,235,237,.06); }
+.pm4-cta__go { transition: transform var(--d-2) var(--ease); }
+.pm4-cta:hover .pm4-cta__go { transform: translateX(6px); }
+
+/* ===================================================== 2 · routes, dense ==
+   COMPRESSION. v3 gave this band a quarter of a viewport of air; here it is a
+   tight rule-separated strip so the auction below lands against something
+   solid rather than floating in more of the same space. */
+
+.pm4-routes { border-block: 1px solid var(--rule); background: var(--ink-2); }
+.pm4-routes__g { display: grid; grid-template-columns: repeat(4, 1fr); }
+.pm4-route {
+  display: grid; gap: var(--s-2);
+  padding: var(--s-6) var(--s-5);
+  border-left: 1px solid var(--rule);
+  color: var(--bone);
+  transition: background-color var(--d-1) var(--ease);
+}
+.pm4-route:first-child { border-left: 0; }
+.pm4-route:hover { background: var(--ink-3); }
+.pm4-route__k { color: var(--bone-46); }
+.pm4-route__v { font-size: clamp(20px, 2vw, 30px); line-height: 1.05; }
+.pm4-route__m { color: var(--bone-46); font-size: var(--t-micro); }
+.pm4-live { color: var(--live); display: inline-flex; align-items: center; gap: var(--s-2); }
+.pm4-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--live); }
+
+/* ==================================================== 3 · the block, LIVE ==
+   The auction is the compositional centre of the page — a thing with a clock
+   outranks a thing without one — so it is the densest section and the only one
+   whose parts share a frame rather than sitting as separate editorial blocks.
+
+   The countdown is set at display scale and shares a baseline with the lot
+   title, so time and identity read as one object. Urgency comes from
+   hierarchy and proximity, not from a red badge. */
+
+.pm4-block { background: var(--ink); padding-block: var(--s-10) var(--s-9); position: relative; }
+.pm4-block__head { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,26ch); gap: var(--s-8); align-items: end; margin-bottom: var(--s-8); }
+.pm4-block__h { font-size: var(--t-huge); max-width: 15ch; }
+.pm4-block__lede { font-size: var(--t-lead); color: var(--bone-72); }
+
+/* The clock, at display scale, tabular so the digits do not dance. */
+.pm4-clock { display: flex; align-items: baseline; gap: var(--s-4); margin-block: var(--s-7) var(--s-6); border-top: 1px solid var(--rule); padding-top: var(--s-5); }
+.pm4-clock__t { font-size: clamp(38px, 6.4vw, 88px); line-height: 1; color: var(--live); }
+.pm4-clock__l { color: var(--bone-46); }
+
+.pm4-sample { border-left: 2px solid var(--live); padding: var(--s-3) var(--s-5); color: var(--bone-72); font-size: var(--t-micro); max-width: 72ch; margin-bottom: var(--s-8); }
+.pm4-sample b { color: var(--bone); font-weight: 600; }
+
+/* ASYMMETRY, and one element crossing the grid: the leading lot's frame runs
+   past the right gutter to the viewport edge. The information column stays
+   narrow beside it — a narrow column against an oversized field. */
+.pm4-lead { display: grid; grid-template-columns: minmax(0, 30ch) minmax(0, 1fr); gap: var(--s-8); align-items: start; }
+.pm4-lead__fig { position: relative; margin-right: calc(var(--gut) * -1); }
+.pm4-lead__fig img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.pm4-state { position: absolute; top: var(--s-4); left: var(--s-4); display: inline-flex; align-items: center; gap: var(--s-2); padding: var(--s-2) var(--s-4); background: rgba(10,12,14,.78); color: var(--live); }
+.pm4-lead__k { color: var(--bone-46); margin-bottom: var(--s-3); }
+.pm4-lead__h { font-size: clamp(26px, 2.9vw, 40px); line-height: 1.02; margin-bottom: var(--s-3); }
+.pm4-lead__spec { color: var(--bone-72); font-size: var(--t-micro); margin-bottom: var(--s-6); }
+
+.pm4-plate { border-top: 1px solid var(--rule); }
+.pm4-plate div { display: flex; justify-content: space-between; gap: var(--s-4); padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+.pm4-plate dt, .pm4-plate .k { color: var(--bone-46); }
+.pm4-plate dd, .pm4-plate .v { margin: 0; color: var(--bone); }
+
+/* The other three lots: a horizontal rank, not a card grid. */
+.pm4-rank { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); margin-top: var(--s-8); border-top: 1px solid var(--rule); padding-top: var(--s-6); }
+.pm4-lot { display: grid; gap: var(--s-3); color: var(--bone); }
+.pm4-lot__fig { overflow: hidden; }
+.pm4-lot__fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform var(--d-3) var(--ease); }
+.pm4-lot:hover .pm4-lot__fig img { transform: scale(1.04); }
+.pm4-lot__h { font-size: clamp(17px, 1.5vw, 21px); line-height: 1.15; }
+
+/* ======================================================= 4 · the hold ====
+   THE PAUSE, and it is short on purpose. v3 gave silence a full viewport,
+   which is not a pause but another section. One line, one rule, a quarter of
+   a screen — the page holds its breath and moves on. */
+
+.pm4-hold { background: var(--ink-2); border-block: 1px solid var(--rule); padding-block: var(--s-8); }
+.pm4-hold__in { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s-5); }
+.pm4-hold__h { font-size: clamp(22px, 2.6vw, 38px); max-width: 30ch; }
+
+/* ================================================ 5 · the floor, light ====
+   The ground changes ONCE here and once back at the room — two changes for
+   the page, per hbbody-com-en-home: without tonal contrast layering does not
+   register, and with too much of it nothing does.
+
+   The typographic event is the NUMERAL. "Forty" is set at mega scale as a
+   figure the eye reads before any word, with the sentence wrapped around it —
+   type participating in the composition rather than labelling it. */
+
+.pm4-floor { background: var(--steel); color: var(--ink); padding-block: var(--s-10); }
+.pm4-floor .mono { color: var(--ink-64); }
+.pm4-floor__head { display: grid; grid-template-columns: auto minmax(0,1fr); gap: var(--s-7); align-items: start; margin-bottom: var(--s-9); }
+.pm4-floor__n { font-size: var(--t-mega); line-height: 0.78; letter-spacing: -0.04em; }
+.pm4-floor__h { font-size: clamp(28px, 3.4vw, 48px); line-height: 1.02; max-width: 18ch; margin-bottom: var(--s-4); }
+.pm4-floor__lede { font-size: var(--t-lead); color: var(--ink-64); max-width: var(--measure); }
+
+/* Asymmetric inventory: one wide lead frame, then a 2 + 1 rhythm. Not a
+   conventional dealership grid of equal thirds. */
+.pm4-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--s-6) var(--s-5); }
+.pm4-car { grid-column: span 2; display: grid; gap: var(--s-3); color: var(--ink); }
+.pm4-car--wide { grid-column: span 4; }
+.pm4-car__fig { overflow: hidden; }
+.pm4-car__fig img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform var(--d-3) var(--ease); }
+.pm4-car--wide .pm4-car__fig img { aspect-ratio: 16 / 9; }
+.pm4-car:hover .pm4-car__fig img { transform: scale(1.03); }
+.pm4-car__h { font-size: clamp(18px, 1.6vw, 23px); line-height: 1.15; }
+.pm4-car__sub { color: var(--ink-64); font-size: var(--t-micro); }
+.pm4-car .pm4-plate { border-color: var(--rule-lt); }
+.pm4-car .pm4-plate div { border-color: var(--rule-lt); }
+.pm4-car .pm4-plate .k { color: var(--ink-64); }
+.pm4-car .pm4-plate .v { color: var(--ink); }
+
+/* ================================================= 6 · sell, the stagger ==
+   A different spatial logic again: three routes stepped down and to the
+   right, oversized numerals crossing the column they belong to. The steps
+   make the sequence legible before a word of it is read. */
+
+.pm4-sell { background: var(--steel); color: var(--ink); padding-block: var(--s-9) var(--s-10); border-top: 1px solid var(--rule-lt); }
+.pm4-sell__h { font-size: var(--t-huge); max-width: 13ch; margin-bottom: var(--s-5); }
+.pm4-sell__lede { font-size: var(--t-lead); color: var(--ink-64); max-width: 52ch; margin-bottom: var(--s-9); }
+.pm4-steps { display: grid; gap: var(--s-7); }
+.pm4-step { display: grid; grid-template-columns: minmax(0, 9ch) minmax(0, 46ch); gap: var(--s-6); align-items: start; }
+.pm4-step:nth-child(2) { margin-left: clamp(0px, 8vw, 140px); }
+.pm4-step:nth-child(3) { margin-left: clamp(0px, 16vw, 280px); }
+.pm4-step__n { font-size: clamp(44px, 5.6vw, 82px); line-height: 0.8; color: var(--ink); opacity: .26; }
+.pm4-step__h { font-size: clamp(21px, 2vw, 28px); line-height: 1.05; margin-bottom: var(--s-3); }
+.pm4-step__p { color: var(--ink-64); }
+
+/* ============================================== 7 · who is behind it ======
+   Not a data table. A wide measure offset to the right, with the address
+   plate bleeding off the LEFT gutter as a physical object — the building
+   given presence rather than listed. */
+
+.pm4-why { background: var(--steel); color: var(--ink); padding-block: var(--s-9) var(--s-10); }
+.pm4-why__g { display: grid; grid-template-columns: minmax(0, 34ch) minmax(0, 1fr); gap: var(--s-9); align-items: start; }
+.pm4-why__h { font-size: var(--t-huge); line-height: 0.94; }
+.pm4-why__body { display: grid; gap: var(--s-6); max-width: var(--measure); }
+.pm4-why__item h3 { font-size: clamp(18px, 1.5vw, 22px); line-height: 1.2; margin-bottom: var(--s-2); }
+.pm4-why__item p { color: var(--ink-64); }
+
+.pm4-card {
+  margin-left: calc(var(--gut) * -1);
+  margin-top: var(--s-8);
+  background: var(--ink); color: var(--bone);
+  padding: var(--s-7) var(--s-7) var(--s-7) var(--gut);
+  display: grid; gap: var(--s-4);
+}
+.pm4-card .k { color: var(--bone-46); }
+.pm4-card .v { color: var(--bone); }
+.pm4-card div { display: flex; justify-content: space-between; gap: var(--s-5); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-3); }
+.pm4-card div:last-child { border-bottom: 0; padding-bottom: 0; }
+
+/* ==================================================== 8 · the room, dark ==
+   The ground returns. Quiet, centred, one line and one action — the only
+   centred composition on the page, which is what lets it read as a close. */
+
+.pm4-room { background: var(--ink); padding-block: var(--s-10); text-align: center; }
+.pm4-room__h { font-size: var(--t-big); max-width: 22ch; margin-inline: auto; margin-block: var(--s-5); }
+.pm4-room__p { color: var(--bone-72); max-width: 62ch; margin-inline: auto; margin-bottom: var(--s-7); }
+
+/* =============================================================== motion ==
+   One language for the whole page. Nothing is hidden until the script has
+   checked prefers-reduced-motion and added .m-on, so a blocked script or a
+   reduced-motion setting leaves every section complete and readable.
+
+   Four behaviours only — a clipped rise for type, a mask wipe for images, a
+   staggered entrance for data rows, and the countdown. Everything else stays
+   still so the moving things carry weight. */
+
+.m-on [data-rise] > * { transform: translateY(112%); }
+[data-rise] { overflow: hidden; }
+[data-rise] > * { display: block; transition: transform var(--d-3) var(--ease); }
+.m-on [data-rise].in > * { transform: none; }
+
+.m-on [data-mask] { clip-path: inset(0 0 100% 0); }
+[data-mask] { transition: clip-path var(--d-4) var(--ease); }
+.m-on [data-mask].in { clip-path: inset(0 0 0 0); }
+
+.m-on [data-rows] > * { opacity: 0; transform: translateY(10px); }
+[data-rows] > * { transition: opacity var(--d-2) var(--ease), transform var(--d-2) var(--ease); }
+.m-on [data-rows].in > * { opacity: 1; transform: none; }
+.m-on [data-rows].in > *:nth-child(2) { transition-delay: 70ms; }
+.m-on [data-rows].in > *:nth-child(3) { transition-delay: 140ms; }
+.m-on [data-rows].in > *:nth-child(4) { transition-delay: 210ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pm4 *, .pm4 *::before, .pm4 *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-rise] > *, [data-mask], [data-rows] > * { transform: none !important; clip-path: none !important; opacity: 1 !important; }
+}
+
+/* =============================================================== mobile ==
+   Authored, not reduced. The crossing elements come back inside the gutter,
+   the stagger flattens, and the two-column heads stack — a 390px screen has
+   no room for a narrow column beside an oversized field. */
+
+@media (max-width: 900px) {
+  .pm4-routes__g { grid-template-columns: repeat(2, 1fr); }
+  .pm4-route:nth-child(3) { border-left: 0; }
+  .pm4-route:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+  .pm4-block__head, .pm4-lead, .pm4-floor__head, .pm4-why__g { grid-template-columns: 1fr; gap: var(--s-6); }
+  .pm4-lead__fig { margin-right: 0; }
+  .pm4-rank { grid-template-columns: 1fr; }
+  .pm4-grid { grid-template-columns: repeat(2, 1fr); }
+  .pm4-car, .pm4-car--wide { grid-column: span 2; }
+  .pm4-step { grid-template-columns: 1fr; gap: var(--s-3); }
+  .pm4-step:nth-child(2), .pm4-step:nth-child(3) { margin-left: 0; }
+  .pm4-card { margin-left: 0; padding-left: var(--s-7); }
+}
