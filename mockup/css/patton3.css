@@ -46,6 +46,35 @@
   --rule:    rgba(237, 233, 214, 0.16);
   --rule-hi: rgba(237, 233, 214, 0.42);
 
+  /* THE SECOND GROUND, DERIVED — not chosen.
+     EVIDENCE.md records colour as UNKNOWN and darkness sits on approved and
+     rejected records alike, so a dark page is never a shortcut to seriousness
+     and a light one is not a preference either. It has to come from something
+     the project contains.
+
+     Sampled: the quantised modal colour of the lower 12% of eight inventory
+     photographs — the reflective floor every one of the forty cars actually
+     stands on, and the single thing all forty frames have in common.
+
+       car-52 #F4F4E4 · car-19 #DCD4C4 · car-70 #D4D4CC · car-77 #F4F4EC
+       car-7  #D4D4CC · car-58 #C4C4BC · car-79 #FCFCF4 · car-41 #E4DCDC
+       mean   #E2E0D7   hue 49°  sat 4.9%   ← --floor
+
+     The dark ground is corroborated the same way: the upper 8% of the same
+     frames returns #141414–#44444C, and the brand's own measured ground is
+     #2A2A2A. The building and the identity already agree, which is why
+     --ink-900 and --ink-700 stay exactly as they were.
+
+     Judged where it lands, per color-taste I5: at 4.9% saturation this is a
+     material rather than a hue — it reads as the poured floor it came from,
+     and it is the one value that cannot make a car photographed on that floor
+     look like it was cut out and pasted onto a page. */
+  --floor:     #E2E0D7;                /* 14.1:1 under --ink-900 */
+  --ink-68:    rgba(19, 19, 18, 0.68); /*  5.7:1 on --floor — micro-labels */
+  --rule-lt:   rgba(19, 19, 18, 0.20); /* hairline on the pale ground */
+
+  /* ONE accent, and it carries auction state only — live, closing, sold.
+     It therefore never appears on --floor, because the auction never does. */
   --gold:      #CA912B;                /* measured off the wordmark gradient */
   --gold-lift: #E0A63A;
 
@@ -53,6 +82,10 @@
   --f-mono:  ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
   --t-hero:  clamp(34px, 3.9vw, 62px);
+  --t-hold:  clamp(56px, 10vw, 148px); /* the clock. The page's one oversized
+                                          number, and its only disruption */
+  --t-h2:    clamp(28px, 3.4vw, 50px);
+  --t-h3:    clamp(19px, 1.5vw, 24px); /* a lot's name, on the card */
   --t-lead:  clamp(17px, 1.4vw, 22px); /* widened: at 1440 the old scale
                                           resolved to 15px, which put the one
                                           line that identifies the business
@@ -62,6 +95,13 @@
 
   --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px;
   --s7: 48px; --s8: 64px; --s9: 80px; --s10: 112px;
+  --s11: 144px; --s12: 176px;          /* still 4px-based: 36×4 and 44×4 */
+
+  /* Section rhythm. Bottom deeper than top so every chapter exhales downward
+     — auction-editorial P5. The ratio holds across the whole range: 1:1.75 on
+     a phone, 1:1.57 at 1440, never outside 1:1.5–1:2. */
+  --sec-t: clamp(var(--s8),  7vw, var(--s10));
+  --sec-b: clamp(var(--s10), 11vw, var(--s12));
 
   --wrap: 1440px;
   --gutter: clamp(20px, 3vw, 40px);
@@ -316,6 +356,15 @@ h1, p, figure { margin: 0; }
 }
 .pm-btn:hover, .pm-btn:focus { background: transparent; color: var(--bone); }
 
+/* the same control on the pale ground — the second door of equal rank. Ink on
+   floor, 14.1:1, and the hover inverts the same way rather than introducing a
+   second interaction language. */
+.pm-btn--ink {
+  border-color: var(--ink-900);
+  background: var(--ink-900); color: var(--floor);
+}
+.pm-btn--ink:hover, .pm-btn--ink:focus { background: transparent; color: var(--ink-900); }
+
 .pm-film__btn {
   position: absolute; right: var(--gutter); bottom: var(--s5); z-index: 3;
   display: inline-flex; align-items: center;
@@ -462,3 +511,536 @@ h1, p, figure { margin: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) { .pm-dot { animation: none; } }
+
+
+/* ==========================================================================
+   THE PAGE BELOW THE ROUTES
+   --------------------------------------------------------------------------
+   Six masses, named before a single component — the brief's own scheme:
+
+     1  hero      one held frame, the business's own sentence, one route out
+     2  routes    four doors of equal rank, each carrying a live fact
+     3  BLOCK     the clock. The page's dominant, and its centre
+     4  floor     forty lots as a curated collection
+     5  consign   the second door, a different shape from the first
+     6  room      Saturdays 9-1, the address, the human close
+
+   THE COMPOSITIONAL CENTRE IS THE AUCTION BAND, NOT THE HERO. A thing with a
+   clock outranks a thing without one, and the hero's job is to hand over to it
+   rather than to hold. Four mechanisms make it dominant and none of them is
+   size alone: it is the last and largest mass of the dark chapter; it owns the
+   only accent on the page; it carries the only moving element after the film;
+   and it culminates in the one oversized number the whole design allows.
+
+   TWO GROUND CHANGES FOR THE ENTIRE PAGE, and the two scroll overlays sit on
+   exactly those two seams — never a transition between every block. That is
+   Alex's own `hbbody-com-en-home` record read in both directions: it names why
+   layering needs tonal contrast to register at all, and it names the cost of
+   forgetting it, which is repeated intensity leaving no room for silence.
+
+     dark ......... hero, routes, block          ] change 1 + overlay 1
+     pale ......... floor, consign, why Patton   ] change 2 + overlay 2
+     dark ......... footer
+
+   THE DECLARED ASSET DEPENDENCY. The dealer's photography is uneven and will
+   stay uneven, so the identity rests on interval, plate and rule rather than
+   on any frame: one crop ratio everywhere, a mono plate under every car,
+   hairlines, and air. Swap any photograph below for an ordinary phone snap and
+   the composition still stands, because no section is carried by an image.
+   ========================================================================== */
+
+/* ------------------------------------------------ the overlay mechanism --
+   Not an animation: two elements that hold their place while the next chapter
+   rides over them. There is no script, no scroll listener and no hijack, so
+   there is nothing for prefers-reduced-motion to switch off — every frame the
+   visitor can stop on is a composition that was laid out, which is exactly
+   what motion-judgment MJ4 asks for. */
+
+.pm-hold, .pm-room {
+  position: sticky; top: 0; z-index: 0;
+  height: 100vh; height: 100dvh;
+  overflow: hidden;
+}
+/* the chapters that ride over them carry their own opaque ground */
+.pm-rise { position: relative; z-index: 1; background: var(--floor); }
+.pm-footer { position: relative; z-index: 1; background: var(--ink-900); }
+
+/* --------------------------------------------------------- section head --
+   One component, both grounds. The h2 takes the left field and the reading
+   line takes the right, set on the same baseline — composed asymmetry with a
+   counterweight rather than a centred stack, and it recurs so that the page
+   has a meter to depart from. */
+
+.pm-sec { padding-block: var(--sec-t) var(--sec-b); }
+
+.pm-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 46ch);
+  gap: var(--s6) var(--s8);
+  align-items: end;
+  margin-bottom: var(--s9);
+}
+/* Colour is NAMED here, never inherited. The AAN theme ships a compiled
+   Bootstrap base with its own dark h2 and p colours, so a heading that relies
+   on `body { color }` comes out near-black on a near-black ground. Everything
+   written in this file is an override; inheritance is not one. */
+.pm-h2 {
+  margin: 0;
+  font-size: var(--t-h2);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.02em;              /* I3 — large type tightens */
+  text-wrap: balance;
+  color: var(--bone);                   /* 15.2:1 on the dark chapter */
+}
+.pm-head .pm-eyebrow { margin-bottom: var(--s4); }
+.pm-lead {
+  margin: 0; font-size: var(--t-lead); line-height: 1.5;
+  color: var(--bone-80);                /* 11.9:1 */
+}
+
+/* the pale chapter's ink, stated once and never inherited */
+.pm-rise { color: var(--ink-900); }
+.pm-rise .pm-h2      { color: var(--ink-900); }       /* 14.1:1 */
+.pm-rise .pm-eyebrow { color: var(--ink-68); }        /*  5.7:1 */
+.pm-rise .pm-lead    { color: var(--ink-68); }        /*  5.7:1 */
+.pm-rise p           { color: var(--ink-900); }
+
+/* a text route, never a second button. D5 — both states are named, or the
+   theme's Bootstrap reboot puts the underline back on hover. */
+.pm-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px;                                   /* tap target */
+  font-family: var(--f-mono); font-size: var(--t-micro);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border-bottom: 1px solid currentColor;              /* a rule, not an underline */
+  padding-bottom: 2px;
+  transition: color var(--dur-1) var(--ease-out),
+              border-color var(--dur-1) var(--ease-out);
+}
+.pm-rise .pm-link          { color: var(--ink-900); border-color: var(--rule-lt); }
+.pm-rise .pm-link:hover,
+.pm-rise .pm-link:focus    { color: var(--ink-900); border-color: var(--ink-900); }
+.pm-link span { transition: transform var(--dur-1) var(--ease-out); }
+.pm-link:hover span { transform: translateX(4px); }
+
+/* ============================================================== the card ==
+   ONE component for auctions and for the floor. Same anatomy every time —
+   frame, key, name, derivative, plate — and the ONLY thing that separates a
+   lot from a car is what the plate says: state, bid and time against an asking
+   price. That is the brief's rule and it is the reason the page reads as one
+   catalogue rather than as two widgets.
+
+   No container, no border, no button. Semler's showroom (3, in, seven approved
+   layers) solves "a premium page must still behave like inventory" by giving
+   the photograph most of the visual space and arranging the facts as a
+   restrained layer under it rather than as dealer chrome on top of it. The
+   whole card is the target, so there is no button to repeat forty times —
+   which is also how D6 is kept honest on a grid.
+
+   Internal gaps 8-16px against external gaps of 48-64px: proximity does the
+   grouping, and that ratio is the difference between a collection and a
+   database. */
+
+.pm-card { position: relative; display: grid; align-content: start; gap: var(--s4); }
+
+.pm-card__media {
+  position: relative; overflow: hidden;
+  background: var(--ink-800);
+  border-radius: 2px;                  /* one radius on the page, and this is it */
+}
+.pm-card__media img {
+  width: 100%; height: 100%;
+  aspect-ratio: 3 / 2;                 /* the source ratio — no crop through a
+                                          wheel or a roofline. C9 */
+  object-fit: cover;
+  transition: opacity var(--dur-2) var(--ease-out);
+}
+.pm-card:hover .pm-card__media img { opacity: 0.88; }
+
+/* the state chip rides on the frame, never over the car's face */
+.pm-chip {
+  position: absolute; left: var(--s3); top: var(--s3); z-index: 2;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(14, 14, 13, 0.82);
+  color: var(--gold);                  /* 6.7:1 — and the WORD is always there */
+  font-family: var(--f-mono); font-size: var(--t-micro);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 7px 12px; border-radius: 2px;
+}
+
+.pm-card__k {
+  margin: 0;
+  font-family: var(--f-mono); font-size: var(--t-micro);
+  letter-spacing: 0.18em; text-transform: uppercase;
+}
+.pm-card__h {
+  margin: 0;
+  font-size: var(--t-h3); font-weight: 600;
+  line-height: 1.16; letter-spacing: -0.015em;
+}
+/* the whole card is one target, and it is one link — not a link per element */
+.pm-card__h a::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+.pm-card__sub {
+  margin: -6px 0 0;
+  font-size: var(--t-micro); line-height: 1.4;
+}
+
+.pm-block .pm-card__k   { color: var(--muted); }
+.pm-block .pm-card__h a { color: var(--bone); }
+.pm-block .pm-card__sub { color: var(--bone-58); }
+.pm-rise  .pm-card__k   { color: var(--ink-68); }
+.pm-rise  .pm-card__h a { color: var(--ink-900); }
+.pm-rise  .pm-card__sub { color: var(--ink-68); }
+
+/* ----------------------------------------------------------- the plate --
+   The component's spine, and the only thing that tells a lot from a car.
+   Mono keys, tabular values, hairline rules, no box and no zebra — the
+   catalogue raisonné layout, where the key column is subordinate so the
+   VALUES form the reading line. typography D4. */
+
+.pm-plate { margin: var(--s2) 0 0; display: grid; grid-template-columns: auto 1fr; }
+.pm-plate dt, .pm-plate dd {
+  margin: 0; padding-block: 9px;
+  font-size: var(--t-micro); line-height: 1.3;
+}
+.pm-plate dt {
+  font-family: var(--f-mono);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding-right: var(--s5);
+}
+.pm-plate dd { text-align: right; font-variant-numeric: tabular-nums; }
+.pm-plate dt, .pm-plate dd { border-top: 1px solid var(--rule); }
+.pm-block .pm-plate dt { color: var(--muted); }
+.pm-block .pm-plate dd { color: var(--bone); }
+.pm-rise  .pm-plate dt { color: var(--ink-68); }
+.pm-rise  .pm-plate dd { color: var(--ink-900); }
+.pm-rise  .pm-plate dt,
+.pm-rise  .pm-plate dd { border-top-color: var(--rule-lt); }
+
+.pm-plate__lead { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+.pm-plate--ask dd { font-variant-numeric: normal; }   /* "on request" is words */
+
+/* =============================================================== BLOCK ==
+   The dominant. An auction has ranks — one lot closes first — so its
+   composition is ranked too: the closing lot at roughly two and a half times
+   the others, held against a rail of three. The counterweight for that single
+   large quiet mass is the density of the stack beside it, which is what keeps
+   the asymmetry from tipping. academic-composition D1.
+
+   The floor gets the opposite treatment on purpose, because a floor has no
+   ranks. Two card sections with the same meter is precisely the rmsothebys
+   failure (1, out): "the repeated card cadence becomes metronomic... the grid
+   measures correctly without composing meaningfully." */
+
+.pm-block { background: var(--ink-900); }
+
+/* the disclosure sits IN the reading path at the 14px floor, not in a corner.
+   Sample data that is not marked is the failure; marked quietly is not. */
+.pm-note {
+  margin: calc(var(--s9) * -1 + var(--s6)) 0 var(--s9);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--rule);
+  max-width: 92ch;
+  font-family: var(--f-mono); font-size: var(--t-micro); line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: var(--bone-58);
+}
+.pm-note b { color: var(--bone); font-weight: 500; }
+
+.pm-block__grid {
+  display: grid;
+  grid-template-columns: 1.42fr 1fr;
+  gap: var(--s8);
+  align-items: start;
+}
+.pm-rail { display: grid; gap: var(--s6); align-content: start; }
+
+/* the same component, laid on its side. The anatomy does not change. */
+.pm-card--row {
+  grid-template-columns: minmax(0, 132px) minmax(0, 1fr);
+  column-gap: var(--s5); row-gap: 6px; align-items: start;
+}
+.pm-card--row .pm-card__media { grid-row: 1 / span 4; }
+.pm-card--row .pm-card__h  { font-size: 17px; }
+.pm-card--row .pm-plate    { margin-top: 4px; }
+.pm-card--row .pm-plate dt,
+.pm-card--row .pm-plate dd { padding-block: 6px; }
+
+.pm-card--lead .pm-card__h { font-size: clamp(24px, 2.4vw, 34px); font-weight: 300;
+                             letter-spacing: -0.022em; }
+.pm-card--lead .pm-plate   { max-width: 460px; }
+
+/* ------------------------------------------------------------ mechanics --
+   A ruled row, not three cards. The same row returns under Sell & Consign
+   carrying the other side of the same transaction — a device used twice is
+   rhythm; a device used once is novelty, and D10 asks the page for one
+   structural decision that belongs to THIS content. */
+
+.pm-steps {
+  list-style: none; margin: var(--s10) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s7);
+}
+.pm-steps li { padding-top: var(--s4); border-top: 1px solid var(--rule); }
+.pm-rise .pm-steps li { border-top-color: var(--rule-lt); }
+.pm-steps__n {
+  display: block; margin-bottom: var(--s4);
+  font-family: var(--f-mono); font-size: var(--t-micro);
+  letter-spacing: 0.18em; color: var(--gold);
+}
+.pm-rise .pm-steps__n { color: var(--ink-68); }   /* the accent is auction-only */
+.pm-steps__h {
+  margin: 0 0 var(--s2);
+  font-size: 19px; font-weight: 600; letter-spacing: -0.012em;
+}
+.pm-steps p { margin: 0; font-size: var(--t-micro); line-height: 1.6; }
+.pm-block .pm-steps__h { color: var(--bone); }
+.pm-block .pm-steps p  { color: var(--bone-58); }
+.pm-rise  .pm-steps__h { color: var(--ink-900); }
+.pm-rise  .pm-steps p  { color: var(--ink-68); }
+
+/* ------------------------------------------------------- the held frame --
+   The auction's culmination and the first of the two seams. The clock is the
+   one oversized number the page allows — auction-editorial P4, one committed
+   gesture — and it is a number rather than an image on purpose, because a
+   held frame carrying a photograph would rest the page's biggest moment on
+   the one asset class the brief says will stay uneven. */
+
+.pm-hold {
+  background: var(--ink-900);
+  display: grid; place-items: center; text-align: center;
+  border-top: 1px solid var(--rule);
+}
+.pm-hold__in { padding: var(--s8) var(--gutter); }
+.pm-hold__clock {
+  display: block; margin: var(--s5) 0 var(--s4);
+  font-family: var(--f-mono); font-size: var(--t-hold);
+  font-weight: 300; line-height: 0.9; letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;   /* I5 — the digits must not jump */
+  color: var(--bone);
+}
+.pm-hold__say {
+  margin: 0 auto var(--s8); max-width: 40ch;
+  font-size: var(--t-lead); line-height: 1.5; color: var(--bone-80);
+}
+
+/* =============================================================== FLOOR ==
+   Even meter, no ranks, and the count set as the headline — Semler's move,
+   taken as a principle rather than as a layout: the inventory's own scale is
+   the strongest thing that can be said about it, so it is said as the h2
+   instead of a marketing line. */
+
+.pm-cars {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s9) var(--s6);            /* row gap deeper than column gap:
+                                          rows are chapters, columns are peers */
+}
+.pm-floor__foot {
+  margin-top: var(--s9); padding-top: var(--s5);
+  border-top: 1px solid var(--rule-lt);
+  display: flex; flex-wrap: wrap; gap: var(--s5) var(--s7);
+  align-items: baseline; justify-content: space-between;
+}
+
+/* ============================================================== CONSIGN ==
+   The second door, and deliberately not a third grid: a declarative type mass
+   against a record. Three ways out of a garage is exactly the kind of fact a
+   printed catalogue sets as a plate — P3, metadata composed rather than
+   appended. */
+
+.pm-two {
+  display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: var(--s8) var(--s10); align-items: start;
+}
+.pm-two__say .pm-h2 { margin-bottom: var(--s5); }
+.pm-two__say .pm-lead { margin-bottom: var(--s7); }
+
+.pm-plate--wide { grid-template-columns: minmax(9rem, 13rem) 1fr; }
+.pm-plate--wide dt,
+.pm-plate--wide dd { padding-block: var(--s5); font-size: var(--t-micro); }
+.pm-plate--wide dd { text-align: left; font-size: 16px; line-height: 1.55; }
+
+/* ================================================================ ROOM ==
+   The second seam. Everything above claims "a bohemian car place"; this is the
+   only frame on the site that proves it, and it sat unused in assets/site/
+   through three passes of design work.
+
+   The type sits left, not centred: the hero owns centred, and two full-bleed
+   frames doing the same thing with the same treatment is how a page starts
+   reading as a template. Legibility is a left-weighted scrim fixed at the
+   background layer and sized to the white Chesterfields the block overlaps —
+   color-taste I4, never a shadow on the type. */
+
+.pm-room__img {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: 42% 50%;
+}
+/* MEASURED. The first setting put the lead at 4.55:1 against the white
+   Chesterfield its last third overlapped — over the line, but by 0.05, and a
+   recrop or a re-encode would take it under. I4's ladder says reposition into
+   a quiet region BEFORE darkening further, so the measure comes in to 38ch,
+   which pulls the block clear of the sofa and reads better besides; the scrim
+   then only has to firm up its middle stop rather than swallow the room.
+   The photograph is the one frame on the site that proves "bohemian", so the
+   fix is the smallest one that holds. */
+.pm-room__ramp {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(14, 14, 13, 0.90) 0%,
+      rgba(14, 14, 13, 0.80) 30%,
+      rgba(14, 14, 13, 0.42) 58%,
+      rgba(14, 14, 13, 0.12) 100%),
+    linear-gradient(0deg,
+      rgba(14, 14, 13, 0.44) 0%,
+      rgba(14, 14, 13, 0.00) 42%);
+}
+.pm-room { display: grid; align-items: center; }
+.pm-room__inner {
+  position: relative; z-index: 2;
+  width: 100%;
+  display: grid; justify-items: start; gap: var(--s5);
+  max-width: var(--wrap);
+  padding-block: var(--s9);
+}
+.pm-room__inner .pm-h2   { max-width: 16ch; color: var(--bone); }
+.pm-room__inner .pm-lead { max-width: 38ch; color: var(--bone-80); }
+/* Written gold first, then reverted. The rule declared one line above the
+   palette is that the accent carries auction state only — and the room is not
+   a lot. Spending it here would have been decoration wearing the costume of a
+   system, which is the drift this file exists to catch. It is also
+   color-taste D5: over a photograph, text is near-white or ink. */
+.pm-room .pm-eyebrow     { color: var(--bone-80); }
+.pm-room .pm-link        { color: var(--bone); border-color: var(--rule-hi); }
+.pm-room .pm-link:hover,
+.pm-room .pm-link:focus  { color: var(--bone); border-color: var(--bone); }
+
+/* ============================================================= PROVENANCE ==
+   What "Why Choose Us" is when the facts happen to be real. A plate, because
+   provenance is scanned rather than read. */
+
+.pm-why { border-top: 1px solid var(--rule-lt); }
+
+/* the micro-plate for a physical place — address, hours, contact set as a
+   technical counterpoint rather than as a paragraph. Borrowed from
+   rekorderstudios for this one thing only. */
+.pm-visit {
+  margin-top: var(--s9); padding-top: var(--s5);
+  border-top: 1px solid var(--rule-lt);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s6);
+}
+.pm-visit div { display: grid; align-content: start; gap: 6px; }
+.pm-visit dt, .pm-visit .pm-eyebrow { letter-spacing: 0.16em; }
+.pm-visit p {
+  margin: 0; font-family: var(--f-mono); font-size: var(--t-micro);
+  line-height: 1.6; color: var(--ink-900); font-variant-numeric: tabular-nums;
+}
+/* D5 — both states named, or the theme's Bootstrap reboot returns the
+   underline on hover. The rule under it is the affordance, not a decoration.
+   Measured at 390px it was a 104×17 target: a telephone number is the most
+   likely thing anyone taps on a dealer's page, so it gets the full 44. */
+.pm-visit a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--ink-900); border-bottom: 1px solid var(--rule-lt);
+}
+.pm-visit a:hover, .pm-visit a:focus { color: var(--ink-900); border-bottom-color: var(--ink-900); }
+
+/* ============================================================== FOOTER ==
+   The number is the page's last type mass. For a dealer the telephone IS the
+   action, and setting it at display scale in the mono voice is the one
+   structural decision here that belongs to this content and to no other page
+   — which is the single thing D10 asks for, nameable in a line. It introduces
+   no new voice: mono is already the register every fact on this page is set
+   in. */
+
+.pm-footer { background: var(--ink-900); color: var(--bone); }
+.pm-foot__top {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+  gap: var(--s8) var(--s10); align-items: end;
+  padding-bottom: var(--s9);
+}
+.pm-foot__tel {
+  display: inline-flex; align-items: center; min-height: 44px;  /* tap target:
+                                          at 390px the number sets at 38px and
+                                          its own box was 38 tall */
+  margin-top: var(--s4);
+  font-family: var(--f-mono); font-size: clamp(38px, 5.4vw, 82px);
+  font-weight: 300; letter-spacing: -0.03em; line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--bone);
+  transition: color var(--dur-1) var(--ease-out);
+}
+.pm-foot__tel:hover, .pm-foot__tel:focus { color: var(--gold-lift); }
+
+.pm-foot__nav {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s6);
+  padding-block: var(--s8);
+  border-top: 1px solid var(--rule);
+}
+.pm-foot__nav div { display: grid; align-content: start; gap: 2px; }
+.pm-foot__nav .pm-eyebrow { margin-bottom: var(--s3); }
+.pm-foot__nav a {
+  display: inline-flex; align-items: center; min-height: 44px;   /* tap target */
+  font-size: 15px; color: var(--bone-80);
+  transition: color var(--dur-1) var(--ease-out);
+}
+.pm-foot__nav a:hover, .pm-foot__nav a:focus { color: var(--bone); }
+
+.pm-foot__legal {
+  display: flex; flex-wrap: wrap; gap: var(--s3) var(--s6);
+  justify-content: space-between;
+  padding-top: var(--s5); border-top: 1px solid var(--rule);
+  font-family: var(--f-mono); font-size: var(--t-micro);
+  color: var(--bone-58);
+}
+.pm-foot__legal a {
+  display: inline-flex; align-items: center; min-height: 44px;  /* tap target */
+  color: var(--bone-58);
+}
+.pm-foot__legal a:hover, .pm-foot__legal a:focus { color: var(--bone); }
+
+
+/* ====================================================== responsive, below ==
+   C12 — each width re-establishes the governing idea, not merely the content.
+
+   The auction's rank survives one column because rank was never carried by the
+   left-hand position: the closing lot keeps its scale and the rail stays a
+   rail, three compact rows reading as a set beneath it. The floor's even meter
+   survives by staying even. And the two seams give up their pinning below
+   992px, on Alex's own reading of the hbbody record — a pinned scene on a
+   phone stops feeling like layering and starts feeling like resistance to the
+   scroll. Nothing content-bearing is dropped at any width. */
+
+@media (max-width: 1199.98px) {
+  .pm-block__grid { grid-template-columns: 1fr; gap: var(--s8); }
+  .pm-rail { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s6); }
+  .pm-card--row { grid-template-columns: minmax(0, 1fr); }
+  .pm-card--row .pm-card__media { grid-row: auto; }
+  .pm-card--row .pm-card__h { font-size: var(--t-h3); }
+  .pm-two { grid-template-columns: 1fr; gap: var(--s8); }
+}
+
+@media (max-width: 991.98px) {
+  /* the seams release: normal flow, no pinning */
+  .pm-hold, .pm-room { position: relative; height: auto; }
+  .pm-hold { padding-block: var(--sec-t) var(--sec-b); }
+  .pm-room { min-height: 78vh; min-height: 78dvh; display: grid; }
+
+  .pm-head { grid-template-columns: 1fr; gap: var(--s5); align-items: start; }
+  .pm-cars { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s8) var(--s5); }
+  .pm-steps { grid-template-columns: 1fr; gap: var(--s6); }
+  .pm-visit { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s6); }
+  .pm-foot__top { grid-template-columns: 1fr; gap: var(--s7); align-items: start; }
+  .pm-foot__nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 575.98px) {
+  .pm-rail { grid-template-columns: 1fr; }
+  .pm-cars { grid-template-columns: 1fr; gap: var(--s8); }
+  .pm-visit, .pm-foot__nav { grid-template-columns: 1fr; }
+  .pm-plate--wide { grid-template-columns: 1fr; }
+  .pm-plate--wide dd { border-top: 0; padding-top: 0; padding-bottom: var(--s5); }
+  .pm-floor__foot { flex-direction: column; align-items: flex-start; }
+  .pm-btn { width: 100%; max-width: 340px; }
+}

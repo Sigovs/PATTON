@@ -16,8 +16,6 @@
 
 <a class="pm-skip" href="#main">Skip to content</a>
 
-<div class="pm-screen">
-
 <!-- ============================================================== header ==
      Structural hook #header.
      The live header carries nine nav items, an S-Klub badge, a two-line
@@ -96,8 +94,6 @@
 
 </section>
 
-</div><!-- /.pm-screen -->
-
 <!-- ============================================================== routes ==
      Structural hook .browse_stock — the live site's four route cards, kept as
      a band but rebuilt: each one now carries a live fact instead of a label.
@@ -121,14 +117,14 @@
       <span class="pm-route__go" aria-hidden="true">&rarr;</span>
     </a>
 
-    <a class="pm-route" href="/sell-your-car/">
+    <a class="pm-route" href="#sell">
       <span class="pm-route__k">Sell &amp; consign</span>
       <span class="pm-route__v">Submit a car</span>
       <span class="pm-route__m">Outright, consignment or a lot</span>
       <span class="pm-route__go" aria-hidden="true">&rarr;</span>
     </a>
 
-    <a class="pm-route" href="/directions/">
+    <a class="pm-route" href="#room">
       <span class="pm-route__k">The room</span>
       <span class="pm-route__v">Open Saturday</span>
       <span class="pm-route__m">9&ndash;1 &middot; coffee, cars, conversation</span>
@@ -138,7 +134,473 @@
   </div>
 </section>
 
+
+<!-- =============================================================== BLOCK ==
+     THE PAGE'S DOMINANT AND ITS COMPOSITIONAL CENTRE — not the hero. A thing
+     with a clock outranks a thing without one, and the hero's job is to hand
+     over to this rather than to hold.
+
+     Ranked composition, because an auction has ranks: the lot that closes
+     first is set at roughly two and a half times the three behind it, and the
+     counterweight to that one large quiet mass is the density of the rail
+     beside it. The floor below gets an even meter for the opposite reason.
+     Two card sections at the same cadence is the rmsothebys failure exactly
+     — "the repeated card cadence becomes metronomic". -->
+<section class="pm-block pm-sec" id="block" aria-labelledby="block-h">
+  <div class="pm-wrap">
+
+    <div class="pm-head">
+      <div>
+        <p class="pm-eyebrow">On the block</p>
+        <h2 class="pm-h2" id="block-h">Four lots, and<br>a clock on each</h2>
+      </div>
+      <p class="pm-lead">Bidding opens to registered buyers seven days before the
+        hammer. Lots close on Sunday evening, twenty minutes apart, and every car
+        on the block comes off the floor while it is running.</p>
+    </div>
+
+    <p class="pm-note"><b>Sample auction data.</b> Bids, bid counts and closing
+      times on this page are placeholders while the auction is being built. The
+      vehicles, and everything stated about them, are real Patton stock.</p>
+
+    <div class="pm-block__grid">
+
+      <article class="pm-card pm-card--lead">
+        <figure class="pm-card__media">
+          <img src="assets/img/car-52.jpg" width="767" height="511" loading="lazy"
+               alt="A 1965 Ferrari 250 GTO in Rosso Corsa on the Patton Motors floor">
+          <span class="pm-chip"><span class="pm-dot" aria-hidden="true"></span>Live</span>
+        </figure>
+        <p class="pm-card__k">Lot 01 &middot; closes first</p>
+        <h3 class="pm-card__h"><a href="/lots/1965-ferrari-250-gto/">1965 Ferrari
+          250&nbsp;GTO</a></h3>
+        <p class="pm-card__sub">Coupe &middot; Rosso Corsa over Nero &middot; 4.0 V12</p>
+        <dl class="pm-plate">
+          <dt>Current bid</dt><dd class="pm-plate__lead">$612,000</dd>
+          <dt>Bids</dt><dd>24</dd>
+          <dt>Reserve</dt><dd>Met</dd>
+          <dt>Closes in</dt><dd data-count="8040">&mdash;</dd>
+        </dl>
+      </article>
+
+      <div class="pm-rail">
+
+        <article class="pm-card pm-card--row">
+          <figure class="pm-card__media">
+            <img src="assets/img/car-73.jpg" width="767" height="511" loading="lazy"
+                 alt="A 1972 Lamborghini Miura P400 SV in blue over gold">
+          </figure>
+          <p class="pm-card__k">Lot 02</p>
+          <h3 class="pm-card__h"><a href="/lots/1972-lamborghini-miura-p400-sv/">1972
+            Lamborghini Miura P400&nbsp;SV</a></h3>
+          <dl class="pm-plate">
+            <dt>Bid</dt><dd>$1,240,000 &middot; 31</dd>
+            <dt>Closes</dt><dd>Sun 19:40</dd>
+          </dl>
+        </article>
+
+        <article class="pm-card pm-card--row">
+          <figure class="pm-card__media">
+            <img src="assets/img/car-79.jpg" width="767" height="511" loading="lazy"
+                 alt="A 2024 Aston Martin Valour in black with gold detailing">
+          </figure>
+          <p class="pm-card__k">Lot 03</p>
+          <h3 class="pm-card__h"><a href="/lots/2024-aston-martin-valour/">2024 Aston
+            Martin Valour</a></h3>
+          <dl class="pm-plate">
+            <dt>Bid</dt><dd>$2,150,000 &middot; 12</dd>
+            <dt>Closes</dt><dd>Sun 20:00</dd>
+          </dl>
+        </article>
+
+        <article class="pm-card pm-card--row">
+          <figure class="pm-card__media">
+            <img src="assets/img/car-41.jpg" width="767" height="511" loading="lazy"
+                 alt="A 1955 Mercedes-Benz 300 SLR, number 658, beside its sister car">
+          </figure>
+          <p class="pm-card__k">Lot 04</p>
+          <h3 class="pm-card__h"><a href="/lots/1955-mercedes-benz-300-slr-658/">1955
+            Mercedes-Benz 300&nbsp;SLR #658</a></h3>
+          <dl class="pm-plate">
+            <dt>Bid</dt><dd>$455,000 &middot; 18</dd>
+            <dt>Closes</dt><dd>Sun 20:20</dd>
+          </dl>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- the mechanics as a ruled row, not three cards. The same row returns
+         under Sell & Consign with the other side of the transaction. -->
+    <ol class="pm-steps" aria-label="How bidding works">
+      <li>
+        <span class="pm-steps__n">01</span>
+        <h3 class="pm-steps__h">Register to bid</h3>
+        <p>Identity and a card on file. Approved inside a day, and good for every
+          sale after this one.</p>
+      </li>
+      <li>
+        <span class="pm-steps__n">02</span>
+        <h3 class="pm-steps__h">Bidding</h3>
+        <p>Bid from the room or from your phone. Every bid is binding, and a bid
+          inside the last two minutes moves the clock.</p>
+      </li>
+      <li>
+        <span class="pm-steps__n">03</span>
+        <h3 class="pm-steps__h">Winning</h3>
+        <p>Sign, settle, and we arrange transport. The car stays on our floor,
+          insured, until the truck comes.</p>
+      </li>
+    </ol>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== held frame 1 ==
+     The auction's culmination, and the first of the page's two seams. It holds
+     its place while the pale chapter rides up over it.
+
+     The clock is the one oversized number the design allows — P4, a single
+     committed gesture. It is a NUMBER and not a photograph on purpose: a held
+     frame carrying an image would rest the page's largest moment on the one
+     asset class the brief says will stay uneven. -->
+<section class="pm-hold" aria-labelledby="hold-h">
+  <div class="pm-hold__in">
+    <p class="pm-eyebrow">The sale closes Sunday evening</p>
+    <strong class="pm-hold__clock" id="hold-h" data-count="8040">&mdash;</strong>
+    <p class="pm-hold__say">until the first hammer. Four lots, twenty minutes
+      apart, and the last two minutes extend on a bid.</p>
+    <a class="pm-btn" href="/register-to-bid/">Register to bid</a>
+  </div>
+</section>
+
+
+<!-- The pale chapter. Ground change one: it rides over the held frame. -->
+<div class="pm-rise">
+
+<!-- =============================================================== FLOOR ==
+     The count is the headline. Semler's showroom solves "a premium page must
+     still behave like inventory" by giving the photograph the space and
+     arranging the facts as a restrained layer under it — so here the h2 is the
+     floor's own scale rather than a marketing line, and the plate carries the
+     qualifier the feed actually returns: most of this stock has no public
+     price, which is how this end of the market works. -->
+<section class="pm-floor pm-sec" id="floor" aria-labelledby="floor-h">
+  <div class="pm-wrap">
+
+    <div class="pm-head">
+      <div>
+        <p class="pm-eyebrow">The floor &middot; Pompano Beach</p>
+        <h2 class="pm-h2" id="floor-h">Forty cars, seventeen<br>marques, seventy
+          years apart</h2>
+      </div>
+      <p class="pm-lead">A Chiron stands feet from a 997 GT3 RS and a Fiat Jolly.
+        Eight cars carry a price and the rest are on request — not coyness, just
+        how this end of the market works.</p>
+    </div>
+
+    <div class="pm-cars">
+
+      <article class="pm-card">
+        <figure class="pm-card__media">
+          <img src="assets/img/car-7.jpg" width="767" height="511" loading="lazy"
+               alt="A 1955 Porsche 356 Outlaw Speedster in grey pearlescent">
+        </figure>
+        <h3 class="pm-card__h"><a href="/inventory/1955-porsche-356-outlaw-speedster/">1955
+          Porsche 356 Outlaw Speedster</a></h3>
+        <p class="pm-card__sub">Tiff &amp; Co. by S-Klub</p>
+        <dl class="pm-plate">
+          <dt>Asking</dt><dd class="pm-plate__lead">$349,995</dd>
+          <dt>Odometer</dt><dd>200 mi</dd>
+        </dl>
+      </article>
+
+      <article class="pm-card">
+        <figure class="pm-card__media">
+          <img src="assets/img/car-19.jpg" width="767" height="511" loading="lazy"
+               alt="A 2022 Ferrari SF90 Spider in Argento Nurburgring">
+        </figure>
+        <h3 class="pm-card__h"><a href="/inventory/2022-ferrari-sf90-spider/">2022
+          Ferrari SF90 Spider</a></h3>
+        <p class="pm-card__sub">Assetto Fiorano livery</p>
+        <dl class="pm-plate pm-plate--ask">
+          <dt>Asking</dt><dd class="pm-plate__lead">On request</dd>
+          <dt>Odometer</dt><dd>494 mi</dd>
+        </dl>
+      </article>
+
+      <article class="pm-card">
+        <figure class="pm-card__media">
+          <img src="assets/img/car-70.jpg" width="767" height="511" loading="lazy"
+               alt="A 2006 Ford GT in Gulf blue and orange">
+        </figure>
+        <h3 class="pm-card__h"><a href="/inventory/2006-ford-gt/">2006 Ford
+          GT</a></h3>
+        <p class="pm-card__sub">Heritage Edition</p>
+        <dl class="pm-plate pm-plate--ask">
+          <dt>Asking</dt><dd class="pm-plate__lead">On request</dd>
+          <dt>Odometer</dt><dd>15,750 mi</dd>
+        </dl>
+      </article>
+
+      <article class="pm-card">
+        <figure class="pm-card__media">
+          <img src="assets/img/car-58.jpg" width="767" height="511" loading="lazy"
+               alt="A 1970 Fiat Jolly in pale green with a fringed surrey top">
+        </figure>
+        <h3 class="pm-card__h"><a href="/inventory/1970-fiat-jolly/">1970 Fiat
+          Jolly</a></h3>
+        <p class="pm-card__sub">Wicker seats, surrey top</p>
+        <dl class="pm-plate">
+          <dt>Asking</dt><dd class="pm-plate__lead">$68,500</dd>
+          <dt>Odometer</dt><dd>Delivery miles</dd>
+        </dl>
+      </article>
+
+      <article class="pm-card">
+        <figure class="pm-card__media">
+          <img src="assets/img/car-77.jpg" width="767" height="511" loading="lazy"
+               alt="A 2006 Spyker C8 Laviolette in red">
+        </figure>
+        <h3 class="pm-card__h"><a href="/inventory/2006-spyker-c8-laviolette/">2006
+          Spyker C8 Laviolette</a></h3>
+        <p class="pm-card__sub">Exposed linkage, aviation cabin</p>
+        <dl class="pm-plate pm-plate--ask">
+          <dt>Asking</dt><dd class="pm-plate__lead">On request</dd>
+          <dt>Odometer</dt><dd>2,100 mi</dd>
+        </dl>
+      </article>
+
+      <article class="pm-card">
+        <figure class="pm-card__media">
+          <img src="assets/img/car-42.jpg" width="767" height="511" loading="lazy"
+               alt="A 1969 Ford Mustang Boss 429 Fastback in Candy Apple Red">
+        </figure>
+        <h3 class="pm-card__h"><a href="/inventory/1969-ford-mustang-boss-429/">1969
+          Ford Mustang Boss 429</a></h3>
+        <p class="pm-card__sub">Fastback, numbers matching</p>
+        <dl class="pm-plate pm-plate--ask">
+          <dt>Asking</dt><dd class="pm-plate__lead">On request</dd>
+          <dt>Odometer</dt><dd>44,064 mi</dd>
+        </dl>
+      </article>
+
+    </div>
+
+    <div class="pm-floor__foot">
+      <p class="pm-lead" style="margin:0">Four of the forty are on the block this
+        week and are not shown here.</p>
+      <a class="pm-link" href="/inventory/">All forty cars
+        <span aria-hidden="true">&rarr;</span></a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================== CONSIGN ==
+     The second door of equal rank, and deliberately not a third grid: a
+     declarative type mass against a record. Three ways out of a garage is
+     exactly the kind of fact a printed catalogue sets as a plate. -->
+<section class="pm-sell pm-sec" id="sell" aria-labelledby="sell-h">
+  <div class="pm-wrap">
+
+    <div class="pm-two">
+      <div class="pm-two__say">
+        <p class="pm-eyebrow">Sell &amp; consign</p>
+        <h2 class="pm-h2" id="sell-h">Three ways out<br>of your garage</h2>
+        <p class="pm-lead">Tell us what you have and we will tell you which of the
+          three gets you the most for it — including when the answer is none of
+          them.</p>
+        <a class="pm-btn pm-btn--ink" href="/sell-your-car/">Submit your vehicle</a>
+      </div>
+
+      <dl class="pm-plate pm-plate--wide">
+        <dt>Outright</dt>
+        <dd>We buy it today, with our own money. The fastest route, and you trade a
+          little of the number for the certainty.</dd>
+        <dt>Consignment</dt>
+        <dd>It sits on our floor, insured, detailed and photographed properly, and
+          we sell it as one of ours. You set the reserve.</dd>
+        <dt>A lot</dt>
+        <dd>It goes on the block with a reserve and a date. Best for the cars where
+          the price is an argument rather than a listing.</dd>
+      </dl>
+    </div>
+
+    <ol class="pm-steps" aria-label="How selling works">
+      <li>
+        <span class="pm-steps__n">01</span>
+        <h3 class="pm-steps__h">Submit your vehicle</h3>
+        <p>Photographs, history, VIN, and the number in your head. Twenty minutes
+          of one evening.</p>
+      </li>
+      <li>
+        <span class="pm-steps__n">02</span>
+        <h3 class="pm-steps__h">Final approval</h3>
+        <p>We inspect it, we agree the route and the reserve, and you sign a single
+          page.</p>
+      </li>
+      <li>
+        <span class="pm-steps__n">03</span>
+        <h3 class="pm-steps__h">Go time</h3>
+        <p>It ships to Pompano Beach, is photographed on our floor, and goes to work
+          in front of the people who buy this.</p>
+      </li>
+    </ol>
+
+  </div>
+</section>
+
+
+<!-- =========================================================== PROVENANCE ==
+     What "Why Choose Us" is when the facts happen to be real. A plate, because
+     provenance is scanned rather than read — and then the address, hours and
+     telephone set as a mono micro-plate, which is the one thing borrowed from
+     rekorderstudios: a physical place stated as a technical record. -->
+<section class="pm-why pm-sec" aria-labelledby="why-h">
+  <div class="pm-wrap">
+
+    <div class="pm-two">
+      <div class="pm-two__say">
+        <p class="pm-eyebrow">Why Patton</p>
+        <h2 class="pm-h2" id="why-h">Who is<br>behind it</h2>
+      </div>
+
+      <dl class="pm-plate pm-plate--wide">
+        <dt>The logo</dt>
+        <dd>Drawn by Dave Kindig, of Kindig Design.</dd>
+        <dt>S-Klub</dt>
+        <dd>Exclusive United States dealer for S-Klub, Los Angeles.</dd>
+        <dt>Built here</dt>
+        <dd>John and Edison Sarkisyan build in this building, and their cars place
+          at SEMA.</dd>
+        <dt>In the back</dt>
+        <dd>An art studio: paintings, sculpture, 3D-printed cars and personalised
+          slot-car sets, all made on site.</dd>
+        <dt>Where</dt>
+        <dd>Between Palm Beach and Miami, in one of the largest car cultures in the
+          country.</dd>
+      </dl>
+    </div>
+
+    <div class="pm-visit">
+      <div>
+        <p class="pm-eyebrow">Address</p>
+        <p>2901 Center Port Circle<br>Pompano Beach, FL 33064</p>
+      </div>
+      <div>
+        <p class="pm-eyebrow">Weekdays</p>
+        <p>Monday to Friday<br>8:00 &ndash; 18:00</p>
+      </div>
+      <div>
+        <p class="pm-eyebrow">Saturday</p>
+        <p>9:00 &ndash; 13:00<br>and the bar is open</p>
+      </div>
+      <div>
+        <p class="pm-eyebrow">Telephone</p>
+        <p><a href="tel:+16305500741">630 550 0741</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /.pm-rise -->
+
+
+<!-- ======================================================== held frame 2 ==
+     The second seam, and the last mass before the close. Everything above
+     claims "a bohemian car place"; this is the only frame on the site that
+     proves it, and it sat unused through three passes of design work.
+
+     The type sits left, not centred — the hero owns centred, and two full-bleed
+     frames treated identically is how a page starts reading as a template. -->
+<section class="pm-room" id="room" aria-labelledby="room-h">
+  <img class="pm-room__img" src="assets/site/DSC_2140.jpg" loading="lazy"
+       alt="The Patton Motors lounge: black walls with a gold cornice, white
+            Chesterfields, a gold monkey on a rope, a white deer head and a racing
+            game on the big screen">
+  <div class="pm-room__ramp" aria-hidden="true"></div>
+  <div class="pm-wrap pm-room__inner">
+    <p class="pm-eyebrow">Saturdays, 9 to 1</p>
+    <h2 class="pm-h2" id="room-h">Cars, coffee, cocktails and conversation</h2>
+    <p class="pm-lead">Black walls and a gold cornice, white Chesterfields, a gold
+      monkey on a rope, a white deer head, a racing game on the big screen and a
+      full bar. There is an art studio in the back.</p>
+    <a class="pm-link" href="/directions/">Directions
+      <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+
 </main>
+
+
+<!-- ============================================================== footer ==
+     Ground change two: the dark returns and rides over the room.
+
+     The telephone number is the page's last type mass. For a dealer the
+     telephone IS the action, and setting it at display scale in the mono voice
+     is the one structural decision here that belongs to this content and to no
+     other page. It adds no voice — mono is already the register every fact on
+     this page is set in. -->
+<footer id="footer" class="pm-footer pm-sec">
+  <div class="pm-wrap">
+
+    <div class="pm-foot__top">
+      <div>
+        <p class="pm-eyebrow">Call the room</p>
+        <!-- Plain spaces, not hair spaces. At 78px the &#8202; the header uses
+             at 14px collapses to nothing and the number reads 6305500741,
+             which is a telephone that cannot be dialled from a glance. -->
+        <a class="pm-foot__tel" href="tel:+16305500741">630 550 0741</a>
+      </div>
+      <dl class="pm-plate">
+        <dt>Address</dt><dd>2901 Center Port Circle, Pompano Beach FL</dd>
+        <dt>Weekdays</dt><dd>8:00 &ndash; 18:00</dd>
+        <dt>Saturday</dt><dd>9:00 &ndash; 13:00</dd>
+        <dt>Sunday</dt><dd>By appointment</dd>
+      </dl>
+    </div>
+
+    <nav class="pm-foot__nav" aria-label="Footer">
+      <div>
+        <p class="pm-eyebrow">Buy</p>
+        <a href="#floor">Inventory</a>
+        <a href="#block">Auctions</a>
+        <a href="/register-to-bid/">Register to bid</a>
+        <a href="/s-klub/">S-Klub</a>
+      </div>
+      <div>
+        <p class="pm-eyebrow">Sell</p>
+        <a href="/sell-your-car/">Submit your vehicle</a>
+        <a href="/sell-your-car/#consign">Consignment</a>
+        <a href="/sell-your-car/#trade">Trade</a>
+      </div>
+      <div>
+        <p class="pm-eyebrow">The place</p>
+        <a href="#room">The room</a>
+        <a href="/directions/">Directions</a>
+        <a href="/about/">About Patton</a>
+        <a href="/contact-us/">Contact</a>
+      </div>
+      <div>
+        <p class="pm-eyebrow">Follow</p>
+        <a href="https://www.instagram.com/pattonmotors">Instagram</a>
+        <a href="https://www.tiktok.com/">TikTok</a>
+      </div>
+    </nav>
+
+    <div class="pm-foot__legal">
+      <span>&copy; 2026 Patton Motors. All rights reserved.</span>
+      <span><a href="/privacy-policy/">Privacy</a> &middot;
+            <a href="/sitemap/">Sitemap</a> &middot;
+            Powered by All Auto Network</span>
+    </div>
+
+  </div>
+</footer>
 
 <!-- Base libraries in the theme's own order. No CDN — everything self-hosted. -->
 <script src="assets/js/jquery.min.js"></script>
