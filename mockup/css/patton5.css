@@ -1,0 +1,535 @@
+/* ============================================================================
+   PATTON MOTORS — v5. ONE MASTER GRID.
+   Custom layer over the AAN theme's compiled style.css.
+   ----------------------------------------------------------------------------
+   WHY THIS VERSION EXISTS
+
+   v4 had the better individual ideas and did not hold together spatially. The
+   asymmetry was arbitrary: objects were placed where space happened to be
+   available rather than on a shared geometry, and the floor was the clearest
+   case — one wide card, one small, two below, another wide, and large empty
+   fields around them. That is not editorial asymmetry, it is availability.
+
+   So v5 changes exactly one thing, and everything follows from it: there is
+   now ONE 12-column grid, and every object on the page has a column span.
+
+     .g12   width min(90vw, 1760px), 12 columns, one gutter token
+            outer margin 5vw a side, identical in every section
+
+   THE LEFT AXIS. Column 1's left edge is the same line in the hero, the
+   routes, the auction, the floor, the sell block, the credentials and the
+   room. Nothing is centred inside a section. Nothing floats. The axis is what
+   makes eight different compositions read as one page.
+
+   BREAKING THE GRID is allowed twice and both are deliberate: the auction's
+   primary vehicle runs from column 5 to the right viewport edge, and the room
+   is full-bleed. Everything else stays inside its span.
+
+   CARRIED FROM v4 UNCHANGED — this pass is composition only:
+   the palette and its derivation, the three type voices, the 4px space scale,
+   the motion language, the hero film and every vehicle photograph.
+   ========================================================================== */
+
+:root {
+  /* ---- palette, carried from v4 with its derivation intact --------------
+     Sampled from fourteen inventory frames, pixels above 45% saturation
+     between 25% and 72% lightness — the car bodies, not the room. Two thirds
+     of every saturated pixel this business owns is red, so the grounds go
+     cold to let the fleet read, and the accent leaves the warm end entirely.
+       --bone on --ink  15.9:1     --live on --ink   9.1:1
+       --ink on --steel 14.8:1     --ink-64 on --steel 5.4:1 */
+  --ink:      #0A0C0E;
+  --ink-2:    #12161A;
+  --ink-3:    #1B2126;
+
+  --bone:     #E8EBED;
+  --bone-72:  rgba(232, 235, 237, 0.72);
+  /* Carried from v4 as 0.46 and corrected here. Measured on the rendered page,
+     0.46 gives 4.09:1 on --ink and 4.09:1 on --ink-2 — and it is the ink of
+     EVERY mono micro-label on the dark ground, so thirty-one functional labels
+     were failing AA at once: the lot keys, the plate keys, the route labels,
+     the building's whole fact column. 0.492 is the minimum that clears 4.5 on
+     both dark grounds; 0.54 is taken for headroom against a section ground
+     changing later. Composition-only pass, but an invariant does not yield. */
+  --bone-46:  rgba(232, 235, 237, 0.54);   /* 5.24:1 on --ink · 5.16:1 on --ink-2 */
+  --rule:     rgba(232, 235, 237, 0.14);
+  --rule-hi:  rgba(232, 235, 237, 0.38);
+
+  --steel:    #C4CACE;
+  --ink-64:   rgba(10, 12, 14, 0.64);
+  --rule-lt:  rgba(10, 12, 14, 0.18);
+
+  --live:     #00C97B;                 /* auction state only, nowhere else */
+
+  /* ---- type, carried from v4 -------------------------------------------
+     Fewer compositions than v4, same roles and same scale. Every body
+     section now opens the same way — mono eyebrow, serif heading on the
+     field's first column — so scale is what distinguishes them, not a new
+     arrangement each time. */
+  --t-mega:   clamp(56px, 12.5vw, 190px);
+  --t-huge:   clamp(38px,  5.6vw,  86px);
+  --t-big:    clamp(28px,  3.2vw,  46px);
+  --t-mid:    clamp(21px,  1.9vw,  27px);
+  --t-lead:   clamp(17px,  1.35vw, 21px);
+  --t-body:   16px;
+  --t-micro:  14px;                    /* the functional floor. Never below. */
+
+  /* ---- space, carried from v4 ------------------------------------------ */
+  --s-1: 4px;  --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+  --s-5: 24px; --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
+  --s-9: 96px; --s-10: 144px; --s-11: 200px;
+
+  /* ---- THE GRID -------------------------------------------------------- */
+  --page:     90vw;                    /* inside the 88–92vw band */
+  --page-max: 1760px;
+  --col-gap:  clamp(16px, 1.6vw, 28px);
+  --edge:     calc((100vw - min(var(--page), var(--page-max))) / 2);
+
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+  --d-1: 240ms; --d-2: 520ms; --d-3: 820ms; --d-4: 1200ms;
+}
+
+/* ------------------------------------------------------------------ reset */
+
+.pm5 * { box-sizing: border-box; }
+.pm5 {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: var(--t-body);
+  line-height: 1.5;
+  overflow-x: hidden;                  /* U6 — never a horizontal page scroll */
+}
+.pm5 h1, .pm5 h2, .pm5 h3, .pm5 h4, .pm5 p, .pm5 figure, .pm5 dl, .pm5 dd { margin: 0; }
+/* The AAN theme's compiled base sets its own dark colour on h1–h4, and a
+   heading that relies on the body colour therefore renders near-black on the
+   dark ground. Everything in this file is an override, and inheritance is not
+   one — this makes headings take the colour of the section they are in, which
+   is bone on --ink and --ink on --steel. */
+.pm5 h1, .pm5 h2, .pm5 h3, .pm5 h4 { color: inherit; }
+.pm5 img, .pm5 video { display: block; max-width: 100%; }
+
+/* Both link states are named. Bootstrap 4's reboot sets
+   a:hover{text-decoration:underline} and the AAN theme ships it. */
+.pm5 a, .pm5 a:hover, .pm5 a:focus { text-decoration: none; }
+.pm5 :focus-visible { outline: 2px solid var(--live); outline-offset: 3px; }
+
+.disp { font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
+        line-height: 0.94; letter-spacing: -0.015em; }
+.mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+        font-size: var(--t-micro); letter-spacing: 0.08em; text-transform: uppercase; }
+.tab  { font-variant-numeric: tabular-nums; }
+
+/* ========================================================= THE MASTER GRID ==
+   One container. Every section uses it, and every child of it declares a
+   column span. There is no other layout container on the page. */
+
+.g12 {
+  width: min(var(--page), var(--page-max));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+}
+
+/* the spans the page actually uses, named once */
+.c1-4  { grid-column: 1 / span 4;  }
+.c1-7  { grid-column: 1 / span 7;  }
+.c1-12 { grid-column: 1 / span 12; }
+.c5-12 { grid-column: 5 / span 8;  }
+.c8-12 { grid-column: 8 / span 5;  }
+
+/* ---- the one shared section opening ------------------------------------
+   Mono eyebrow, serif heading, both on the first column of whatever field
+   they sit in. Used by every body section, so the heading anchors the
+   section's geometry instead of floating above it. */
+.head__brow { color: var(--bone-46); margin-bottom: var(--s-4); }
+.head__h    { font-size: var(--t-huge); }
+.steel .head__brow { color: var(--ink-64); }
+
+.lede { font-size: var(--t-lead); color: var(--bone-72); }
+.steel .lede { color: var(--ink-64); }
+
+/* the one control, carried from v4 — no gradient, no shadow, no radius */
+.cta {
+  display: inline-flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-4) var(--s-6);
+  border: 1px solid var(--rule-hi);
+  color: var(--bone); font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: var(--t-micro); letter-spacing: 0.1em; text-transform: uppercase;
+  transition: border-color var(--d-1) var(--ease), background-color var(--d-1) var(--ease);
+}
+.cta:hover { border-color: var(--bone); background: rgba(232,235,237,.06); }
+.cta__go { transition: transform var(--d-2) var(--ease); }
+.cta:hover .cta__go { transform: translateX(6px); }
+.steel .cta { border-color: var(--rule-lt); color: var(--ink); }
+.steel .cta:hover { border-color: var(--ink); background: rgba(10,12,14,.05); }
+
+/* the data plate, carried from v4 — mono keys, tabular values, hairlines */
+.plate { border-top: 1px solid var(--rule); }
+.plate div { display: flex; justify-content: space-between; gap: var(--s-4);
+             padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+.plate dt, .plate .k { color: var(--bone-46); }
+.plate dd, .plate .v { color: var(--bone); }
+.steel .plate, .steel .plate div { border-color: var(--rule-lt); }
+.steel .plate dt, .steel .plate .k { color: var(--ink-64); }
+.steel .plate dd, .steel .plate .v { color: var(--ink); }
+
+/* =============================================================== header ==
+   The AAN theme styles #header by ID, so a class selector loses on
+   specificity. Matching the id is the only way to win without !important. */
+
+.pm5 #header.pm-hdr {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+  background: linear-gradient(to bottom, rgba(10,12,14,.86), rgba(10,12,14,0));
+}
+.pm5 #header .g12 { align-items: center; padding-block: var(--s-5); }
+.pm5 .pm-hdr__brand { grid-column: 1 / span 3; }
+.pm5 .pm-hdr__brand img { width: 132px; height: auto; }
+.pm5 .pm-nav { grid-column: 6 / span 5; display: flex; gap: var(--s-6); justify-content: flex-end; }
+.pm5 .pm-nav a {
+  color: var(--bone-72); font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: var(--t-micro); letter-spacing: 0.06em; text-transform: uppercase;
+  padding-block: var(--s-2);
+  border-bottom: 1px solid transparent;   /* a rule, never an underline */
+  transition: color var(--d-1) var(--ease), border-color var(--d-1) var(--ease);
+}
+.pm5 .pm-nav a:hover, .pm5 .pm-nav a:focus-visible { color: var(--bone); border-bottom-color: var(--rule-hi); }
+.pm5 .pm-hdr__tel { grid-column: 11 / span 2; text-align: right; color: var(--bone-72);
+                    transition: color var(--d-1) var(--ease); }
+.pm5 .pm-hdr__tel:hover { color: var(--bone); }
+
+.pm5 .pm-skip { position: absolute; left: -9999px; }
+.pm5 .pm-skip:focus { left: var(--s-4); top: var(--s-4); z-index: 60;
+                      background: var(--ink); color: var(--bone); padding: var(--s-3) var(--s-5); }
+
+/* ================================================== 1 · hero — unchanged ==
+   Film, ramp, scale, copy and control are exactly v4's. The only change is
+   that the type block now starts on column 1 of the master grid instead of on
+   its own container, because the left axis has to begin somewhere and this is
+   where the visitor first sees it. */
+
+.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end;
+        overflow: hidden; background: var(--ink); }
+.hero__film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* legibility bought at the background layer, never a shadow on type — I4 */
+.hero__ramp {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,12,14,.92) 0%, rgba(10,12,14,.72) 28%,
+                                      rgba(10,12,14,.18) 62%, rgba(10,12,14,.06) 100%);
+}
+.hero .g12 { position: relative; padding-block: var(--s-9) var(--s-8); }
+.hero__in { grid-column: 1 / span 7; }
+.hero__brow { color: var(--bone-72); margin-bottom: var(--s-5); }
+.hero__h { font-size: var(--t-mega); margin-bottom: var(--s-5); }
+.hero__sub { font-size: var(--t-lead); color: var(--bone-72); max-width: 44ch; margin-bottom: var(--s-7); }
+
+/* ============================================= 2 · routes — TIGHT, span 3 ==
+   The first beat, and it is compression. Four doors of equal rank, three
+   columns each, separated by the grid's own gutters and a hairline. */
+
+.routes { border-block: 1px solid var(--rule); background: var(--ink-2); }
+.route {
+  grid-column: span 3;
+  display: grid; gap: var(--s-2); align-content: start;
+  padding: var(--s-6) 0 var(--s-6) var(--s-5);
+  border-left: 1px solid var(--rule);
+  color: var(--bone);
+  transition: background-color var(--d-1) var(--ease);
+}
+.route:first-child { border-left: 0; padding-left: 0; }
+.route:hover { background: var(--ink-3); }
+.route__k { color: var(--bone-46); }
+.route__v { font-size: var(--t-mid); line-height: 1.05; }
+.route__m { color: var(--bone-46); }
+.live { color: var(--live); display: inline-flex; align-items: center; gap: var(--s-2); }
+.dot  { width: 7px; height: 7px; border-radius: 50%; background: var(--live); flex: 0 0 auto; }
+
+/* ================================================ 3 · auctions — DENSE ====
+   The page's compositional centre, and the strongest single statement of the
+   grid: FOUR columns of information against EIGHT columns of vehicle.
+
+   The information column carries, in order, the whole of what the visitor
+   needs to act — section title, lot state, bid plate, countdown, supporting
+   copy. It is one stack on one axis, not five objects distributed around a
+   section, which is what v4 did.
+
+   The primary vehicle occupies columns 5 to 12 and then keeps going to the
+   viewport edge. That is the first of the page's two deliberate grid breaks
+   and it exists to make the vehicle dominate rather than to be interesting. */
+
+.block { background: var(--ink); padding-block: var(--s-10) var(--s-9); }
+.block .g12 { row-gap: var(--s-9); align-items: start; }
+
+.block__info { grid-column: 1 / span 4; display: grid; gap: var(--s-6); align-content: start; }
+.block__h { font-size: var(--t-big); }
+
+.block__state { display: flex; align-items: center; gap: var(--s-3); color: var(--live); }
+.block__lot { display: grid; gap: var(--s-2); }
+.block__name { font-size: var(--t-mid); line-height: 1.1; }
+.block__spec { color: var(--bone-46); }
+
+/* the countdown, at the section's second scale — one object with the plate
+   above it, so time and money are read as the same fact */
+.block__clock { display: flex; align-items: baseline; gap: var(--s-4); flex-wrap: wrap; }
+.block__clock b { font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
+                  font-size: clamp(40px, 4.4vw, 68px); line-height: 0.9;
+                  color: var(--live); font-variant-numeric: tabular-nums; }
+.block__clock span { color: var(--bone-46); }
+
+.sample { border-left: 2px solid var(--live); padding: var(--s-3) var(--s-5);
+          color: var(--bone-72); font-size: var(--t-micro); }
+.sample b { color: var(--bone); font-weight: 600; }
+
+/* the deliberate break: column 5 to the right edge of the viewport */
+.block__fig { grid-column: 5 / span 8; position: relative; margin-right: calc(var(--edge) * -1); }
+.block__fig img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.state {
+  position: absolute; top: var(--s-4); left: var(--s-4);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-2) var(--s-4); background: rgba(10,12,14,.78); color: var(--live);
+}
+
+/* ONE row underneath, three lots of four columns each. Not scattered. */
+.rank { grid-column: 1 / span 12; display: grid;
+        grid-template-columns: subgrid; border-top: 1px solid var(--rule); padding-top: var(--s-6); }
+@supports not (grid-template-columns: subgrid) {
+  .rank { grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); }
+}
+.lot { grid-column: span 4; display: grid; gap: var(--s-3); align-content: start; color: var(--bone); }
+.lot__fig { overflow: hidden; }
+.lot__fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
+                transition: transform var(--d-3) var(--ease); }
+.lot:hover .lot__fig img { transform: scale(1.04); }
+.lot__k { color: var(--bone-46); }
+.lot__h { font-size: var(--t-mid); line-height: 1.12; }
+
+/* ================================================== 4 · hold — RELEASE ====
+   The page's short exhale. One line, one action, a rule above and below. It
+   is a beat, not a section — v3 gave silence a full viewport, which is
+   another section wearing silence as a costume. */
+
+.hold { background: var(--ink-2); border-block: 1px solid var(--rule); padding-block: var(--s-8); }
+.hold .g12 { align-items: center; row-gap: var(--s-5); }
+.hold__h { grid-column: 1 / span 8; font-size: var(--t-big); }
+.hold__a { grid-column: 10 / span 3; justify-self: end; }
+
+/* ================================================= 5 · the floor — DENSE ==
+   Ground change one of two.
+
+   System A of the two offered: a SEVEN-column featured vehicle against a
+   FIVE-column vertical index. The head takes the same 7 / 5 split, so the
+   heading anchors the section's geometry rather than sitting above it.
+
+   The index is the answer to the real problem — five cards cannot say that a
+   floor of forty exists. A dense list can, and it is the honest form: this is
+   what a floor looks like written down. */
+
+.floor { background: var(--steel); color: var(--ink); padding-block: var(--s-10); }
+.floor .g12 { row-gap: var(--s-9); align-items: start; }
+
+.feat { grid-column: 1 / span 7; display: grid; gap: var(--s-5); }
+.feat__fig { overflow: hidden; }
+.feat__fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
+                 transition: transform var(--d-3) var(--ease); }
+.feat:hover .feat__fig img { transform: scale(1.03); }
+.feat__k { color: var(--ink-64); }
+.feat__h { font-size: var(--t-big); line-height: 1.02; }
+.feat__sub { color: var(--ink-64); }
+.feat__foot { display: flex; flex-wrap: wrap; gap: var(--s-5) var(--s-8); align-items: baseline;
+              border-top: 1px solid var(--rule-lt); padding-top: var(--s-4); }
+.feat__price { font-family: "Instrument Serif", Georgia, serif; font-size: var(--t-mid);
+               font-variant-numeric: tabular-nums; }
+
+/* the index: the numeral belongs HERE, where it is the thing being counted */
+.index { grid-column: 8 / span 5; display: grid; align-content: start; }
+.index__top { display: flex; align-items: baseline; gap: var(--s-4);
+              border-bottom: 1px solid var(--ink); padding-bottom: var(--s-4); margin-bottom: var(--s-2); }
+.index__n { font-family: "Instrument Serif", Georgia, serif; font-size: clamp(44px, 4.6vw, 72px);
+            line-height: 0.82; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.index__l { color: var(--ink-64); }
+.index__row {
+  display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--s-4);
+  align-items: baseline; padding-block: var(--s-3);
+  border-bottom: 1px solid var(--rule-lt); color: var(--ink);
+  transition: padding-left var(--d-1) var(--ease), border-color var(--d-1) var(--ease);
+}
+.index__row:hover { padding-left: var(--s-3); border-bottom-color: var(--ink); }
+.index__nm { font-size: var(--t-body); }
+.index__nm i { font-style: normal; color: var(--ink-64); }
+.index__pr { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--t-micro);
+             font-variant-numeric: tabular-nums; color: var(--ink-64); }
+.index__row:hover .index__pr { color: var(--ink); }
+.index__more { margin-top: var(--s-6); }
+
+/* =============================================== 6 · sell — 4 against 8 ====
+   Four columns say what this is. Eight columns carry the three routes as ONE
+   connected system: a single ruled ledger, not three cards and not a
+   staircase. The spatial hierarchy does the explaining — the auction row is
+   set at the largest step because it is the route this business is built on,
+   and the two below it step down in scale rather than in decoration. */
+
+.sell { background: var(--steel); color: var(--ink); padding-block: var(--s-10);
+        border-top: 1px solid var(--rule-lt); }
+.sell .g12 { align-items: start; row-gap: var(--s-8); }
+.sell__say { grid-column: 1 / span 4; display: grid; gap: var(--s-5); align-content: start; }
+.sell__h { font-size: var(--t-big); }
+
+.routes3 { grid-column: 5 / span 8; border-top: 1px solid var(--ink); }
+.route3 {
+  display: grid; grid-template-columns: minmax(0, 5ch) minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--s-5) var(--s-6); align-items: start;
+  padding-block: var(--s-7); border-bottom: 1px solid var(--rule-lt);
+}
+.route3:last-child { border-bottom: 0; }
+.route3__n { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--t-micro);
+             letter-spacing: 0.08em; color: var(--ink-64); font-variant-numeric: tabular-nums;
+             padding-top: 0.5em; }
+.route3__h { font-size: var(--t-mid); line-height: 1.05; }
+.route3--lead .route3__h { font-size: var(--t-big); }
+.route3__p { color: var(--ink-64); }
+.route3--lead .route3__p { color: var(--ink); font-size: var(--t-lead); }
+
+/* ======================================= 7 · who is behind it — 7 / 5 ======
+   A chapter, not an appendix. Seven columns of story and identity against
+   five columns of verifiable fact, on the same axis as everything above it.
+   The fact column is the page's one dark object on the light ground, which
+   is what gives the section mass rather than a border. */
+
+/* The light chapter is three sections on one ground, so its internal
+   boundaries have to be marked or 288px of pale reads as a void rather than a
+   chapter break. `.sell` already carries this rule; measured on the rendered
+   page, `.why` did not, so one of the two boundaries said "new chapter" and
+   the other said "nothing here". Same rule, both boundaries. */
+.why { background: var(--steel); color: var(--ink); padding-block: var(--s-10);
+       border-top: 1px solid var(--rule-lt); }
+.why .g12 { align-items: start; row-gap: var(--s-8); }
+.why__say { grid-column: 1 / span 7; display: grid; gap: var(--s-6); align-content: start; }
+.why__h { font-size: var(--t-huge); }
+.why__story { font-size: var(--t-lead); max-width: 46ch; }
+.why__items { display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
+              gap: var(--s-6) var(--s-7); margin-top: var(--s-2); }
+.why__item h3 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
+                font-size: var(--t-mid); line-height: 1.1; margin-bottom: var(--s-2); }
+.why__item p { color: var(--ink-64); }
+
+.facts { grid-column: 8 / span 5; background: var(--ink); color: var(--bone);
+         padding: var(--s-8) var(--s-7); display: grid; gap: var(--s-5); align-content: start; }
+.facts__k { color: var(--bone-46); }
+.facts__row { display: flex; justify-content: space-between; gap: var(--s-5);
+              padding-bottom: var(--s-3); border-bottom: 1px solid var(--rule);
+              font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--t-micro);
+              font-variant-numeric: tabular-nums; }
+.facts__row:last-of-type { border-bottom: 0; padding-bottom: 0; }
+.facts__row span:first-child { color: var(--bone-46); text-transform: uppercase; letter-spacing: 0.08em; }
+.facts__row span:last-child  { color: var(--bone); text-align: right; }
+
+/* ================================================ 8 · the room — RELEASE ==
+   Ground change two, and the page's one full-bleed object. This is the second
+   and last deliberate escape from the grid: the photograph takes the whole
+   viewport width because the room is the only claim on this page that a
+   photograph can actually prove.
+
+   The type inside it still starts on column 1. Escaping the grid is not the
+   same as leaving the axis. */
+
+.room { position: relative; background: var(--ink); min-height: 82svh;
+        display: flex; align-items: flex-end; overflow: hidden; }
+.room__img { position: absolute; inset: 0; width: 100%; height: 100%;
+             object-fit: cover; object-position: 44% 50%; }
+/* left-weighted, sized to the white Chesterfields the type block overlaps */
+.room__ramp {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10,12,14,.92) 0%, rgba(10,12,14,.80) 32%,
+                           rgba(10,12,14,.40) 60%, rgba(10,12,14,.10) 100%),
+    linear-gradient(0deg,  rgba(10,12,14,.50) 0%, rgba(10,12,14,0) 46%);
+}
+.room .g12 { position: relative; padding-block: var(--s-10) var(--s-9); }
+.room__in { grid-column: 1 / span 6; display: grid; gap: var(--s-5); justify-items: start; }
+/* Measured on the render: at --bone-46 this label came out 3.98:1 against the
+   photograph, and the ground beneath it is already rgb(30,31,33) — darkening
+   the scrim further would cost the room its light for nothing. So the ink
+   moves, not the ground. This is the exception I4 allows: the background is
+   not the failing layer. */
+.room .head__brow { color: var(--bone-72); }
+.room__h { font-size: var(--t-big); }
+.room__p { color: var(--bone-72); max-width: 40ch; }
+
+/* =============================================================== motion ==
+   Carried from v4 unchanged and not extended. The static composition is the
+   deliverable in this pass; nothing here is load-bearing, and every section
+   is complete with the script blocked or reduced motion set. */
+
+.m-on [data-rise] > * { transform: translateY(112%); }
+[data-rise] { overflow: hidden; }
+[data-rise] > * { display: block; transition: transform var(--d-3) var(--ease); }
+.m-on [data-rise].in > * { transform: none; }
+
+.m-on [data-mask] { clip-path: inset(0 0 100% 0); }
+[data-mask] { transition: clip-path var(--d-4) var(--ease); }
+.m-on [data-mask].in { clip-path: inset(0 0 0 0); }
+
+.m-on [data-rows] > * { opacity: 0; transform: translateY(10px); }
+[data-rows] > * { transition: opacity var(--d-2) var(--ease), transform var(--d-2) var(--ease); }
+.m-on [data-rows].in > * { opacity: 1; transform: none; }
+.m-on [data-rows].in > *:nth-child(2) { transition-delay: 70ms; }
+.m-on [data-rows].in > *:nth-child(3) { transition-delay: 140ms; }
+.m-on [data-rows].in > *:nth-child(4) { transition-delay: 210ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pm5 *, .pm5 *::before, .pm5 *::after {
+    transition-duration: 1ms !important; animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-rise] > *, [data-mask], [data-rows] > * {
+    transform: none !important; clip-path: none !important; opacity: 1 !important;
+  }
+}
+
+/* =============================================================== tablet ==
+   The 12 columns survive; the spans widen. The grid is not abandoned until
+   there is genuinely no room for two fields side by side. */
+
+@media (max-width: 1100px) {
+  .block__info { grid-column: 1 / span 5; }
+  .block__fig  { grid-column: 6 / span 7; }
+  .lot { grid-column: span 4; }
+  .feat  { grid-column: 1 / span 6; }
+  .index { grid-column: 7 / span 6; }
+  .sell__say { grid-column: 1 / span 5; }
+  .routes3   { grid-column: 6 / span 7; }
+  .why__say  { grid-column: 1 / span 6; }
+  .facts     { grid-column: 7 / span 6; }
+  .hero__in  { grid-column: 1 / span 9; }
+  .room__in  { grid-column: 1 / span 8; }
+  .hold__h   { grid-column: 1 / span 7; }
+  .hold__a   { grid-column: 9 / span 4; }
+}
+
+/* =============================================================== mobile ==
+   One column, and the axis is the same one. Authored, not reduced: the two
+   grid breaks come back inside the page, the ledger keeps its rules, and the
+   index stays an index rather than becoming cards. */
+
+@media (max-width: 800px) {
+  :root { --page: 92vw; }
+  .pm5 .pm-nav { display: none; }
+  .pm5 .pm-hdr__brand { grid-column: 1 / span 6; }
+  .pm5 .pm-hdr__tel { grid-column: 7 / span 6; }
+
+  .hero__in, .room__in,
+  .block__info, .block__fig, .rank, .lot,
+  .feat, .index, .sell__say, .routes3, .why__say, .facts,
+  .hold__h, .hold__a, .route { grid-column: 1 / span 12; }
+
+  .block__fig { margin-right: 0; }
+  .hold__a { justify-self: start; }
+  .route { border-left: 0; padding: var(--s-5) 0; border-top: 1px solid var(--rule); }
+  .route:first-child { border-top: 0; }
+  .rank { row-gap: var(--s-7); }
+  .why__items { grid-template-columns: 1fr; }
+  .route3 { grid-template-columns: minmax(0, 4ch) minmax(0, 1fr); }
+  .route3__p { grid-column: 2; }
+  .block .g12, .floor .g12 { row-gap: var(--s-8); }
+}
