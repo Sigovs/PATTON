@@ -52,13 +52,13 @@
   <div class="hero__ramp" aria-hidden="true"></div>
 
   <div class="g12">
-    <div class="hero__in">
+    <div class="hero__in stack">
       <p class="hero__brow mono">Pompano&nbsp;Beach, Florida</p>
-      <h1 class="hero__h disp">
+      <h1 class="hero__h disp" data-t><span>
         <span data-rise><span>A bohemian</span></span>
         <span data-rise><span>car place</span></span>
-      </h1>
-      <p class="hero__sub">Forty collector cars on the floor in Pompano Beach,
+      </span></h1>
+      <p class="hero__sub" data-p>Forty collector cars on the floor in Pompano Beach,
         and four on the block this week.</p>
       <a class="cta" href="#floor">See the floor <span class="cta__go" aria-hidden="true">&rarr;</span></a>
     </div>
@@ -104,10 +104,10 @@
 <section class="block" id="block" aria-labelledby="block-h">
   <div class="g12">
 
-    <div class="block__info">
+    <div class="block__info stack">
       <div>
         <p class="head__brow mono">On the block</p>
-        <h2 class="block__h head__h disp" id="block-h">Four lots, and a clock on each</h2>
+        <h2 class="block__h head__h disp" id="block-h" data-t><span>Four lots, and a clock on each</span></h2>
       </div>
 
       <div class="block__lot">
@@ -125,7 +125,7 @@
       <p class="block__clock"><b class="tab" id="clock">2:14:08</b>
         <span class="mono">until the first hammer</span></p>
 
-      <p class="lede">Bidding opens to registered buyers seven days before the
+      <p class="lede" data-p>Bidding opens to registered buyers seven days before the
         hammer. Lots close on Sunday evening, twenty minutes apart, and every car
         on the block comes off the floor while it is running.</p>
 
@@ -136,7 +136,7 @@
 
     <figure class="block__fig" data-mask>
       <img src="assets/img/car-52.jpg" alt="1965 Ferrari 250 GTO on the Patton Motors floor" loading="lazy">
-      <span class="state mono"><span class="dot" aria-hidden="true"></span>Live</span>
+      <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
     </figure>
 
     <div class="rank">
@@ -177,12 +177,12 @@
 <section class="hold" aria-labelledby="hold-h">
   <!-- Atmosphere, not inventory. This car is not Patton stock and carries no
        lot number, no price and no plate — it carries the hour. -->
-  <img class="hold__img" src="assets/img/atmo-911-dusk.jpg" loading="lazy"
+  <img class="hold__img" data-pximg src="assets/img/atmo-911-dusk.jpg" loading="lazy"
        alt="A 911 Turbo at dusk on a mountain road">
   <div class="hold__ramp" aria-hidden="true"></div>
   <div class="g12">
-    <h2 class="hold__h disp" id="hold-h">The sale closes Sunday evening. The last
-      two minutes extend on a bid.</h2>
+    <h2 class="hold__h disp" id="hold-h" data-t><span>The sale closes Sunday evening. The last
+      two minutes extend on a bid.</span></h2>
     <div class="hold__a">
       <a class="cta" href="#block">Register to bid <span class="cta__go" aria-hidden="true">&rarr;</span></a>
     </div>
@@ -203,17 +203,17 @@
 
     <div class="c1-7">
       <p class="head__brow mono">The floor &middot; Pompano Beach</p>
-      <h2 class="head__h disp" id="floor-h">Seventeen marques, seventy years apart</h2>
+      <h2 class="head__h disp" id="floor-h" data-t><span>Seventeen marques, seventy years apart</span></h2>
     </div>
-    <p class="lede c8-12">A Chiron stands feet from a 997 GT3 RS and a Fiat Jolly.
+    <p class="lede c8-12" data-p data-t="r">A Chiron stands feet from a 997 GT3 RS and a Fiat Jolly.
       Eight cars carry a price and the rest are on request — not coyness, just
       how this end of the market works.</p>
 
-    <a class="feat" href="#floor">
-      <figure class="feat__fig" data-mask>
+    <a class="feat stack" href="#floor">
+      <figure class="feat__fig" data-mask data-px>
         <img src="assets/img/car-7.jpg" alt="1955 Porsche 356 Outlaw Speedster" loading="lazy">
       </figure>
-      <p class="feat__k mono">Featured on the floor</p>
+      <p class="feat__k"><span class="pill pill--onlight">Featured</span></p>
       <h3 class="feat__h disp">1955 Porsche 356 Outlaw Speedster</h3>
       <p class="feat__sub mono">Tiff &amp; Co. by S-Klub &middot; Grey pearlescent over oxblood</p>
       <div class="feat__foot">
@@ -241,7 +241,7 @@
       <a class="index__row" href="#floor"><span class="index__nm">1962 Shelby Cobra CSX8000</span><span class="index__pr">On request</span></a>
       <a class="index__row" href="#floor"><span class="index__nm">2009 Alfa Romeo 8C Spider</span><span class="index__pr">On request</span></a>
       <div class="index__more">
-        <a class="cta" href="#floor">All forty cars <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+        <a class="cta cta--ghost" href="#floor">All forty cars <span class="cta__go" aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
 
@@ -257,12 +257,12 @@
 <section class="sell paper" id="sell" aria-labelledby="sell-h">
   <div class="g12">
 
-    <div class="sell__say">
+    <div class="sell__say stack">
       <div>
         <p class="head__brow mono">Sell &amp; consign</p>
-        <h2 class="sell__h head__h disp" id="sell-h">Three ways out of your garage</h2>
+        <h2 class="sell__h head__h disp" id="sell-h" data-t><span>Three ways out of your garage</span></h2>
       </div>
-      <p class="lede">Tell us what you have and we will tell you which of the three
+      <p class="lede" data-p>Tell us what you have and we will tell you which of the three
         gets you the most for it — including when the answer is none of them.</p>
       <div><a class="cta" href="#sell">Submit your vehicle <span class="cta__go" aria-hidden="true">&rarr;</span></a></div>
     </div>
@@ -306,7 +306,7 @@
            alt="A Porsche 356 Speedster photographed on a street in autumn">
     </figure>
 
-    <div class="why__say">
+    <div class="why__say stack">
       <div>
         <p class="head__brow mono">Who is behind it</p>
         <h2 class="why__h head__h disp" id="why-h">
@@ -320,7 +320,7 @@
            culture, and the three businesses. The previous draft joined them
            with a "because" that stated a motive the client never gave. The
            facts stay; the invented reason goes. -->
-      <p class="why__story">Founded by Martin Patton, the building sits between
+      <p class="why__story" data-p>Founded by Martin Patton, the building sits between
         Palm Beach and Miami, in one of the largest car cultures in the country.
         Three businesses share its floor: a dealership, an auction house, and a
         room that opens on Saturday mornings for anyone who wants to stand next
@@ -369,19 +369,19 @@
      photograph can actually prove. The type inside it still starts on column
      1 — escaping the grid is not the same as leaving the axis. -->
 <section class="room" id="room" aria-labelledby="room-h">
-  <img class="room__img" src="assets/site/DSC_2140.jpg" loading="lazy"
+  <img class="room__img" data-pximg src="assets/site/DSC_2140.jpg" loading="lazy"
        alt="The Patton Motors lounge: black walls with a gold cornice, white
             Chesterfields, a gold monkey on a rope, a white deer head and a
             racing game on the big screen">
   <div class="room__ramp" aria-hidden="true"></div>
   <div class="g12">
-    <div class="room__in">
-      <p class="head__brow mono">Saturdays, 9 to 1</p>
-      <h2 class="room__h disp" id="room-h">Cars, coffee, cocktails and conversation</h2>
-      <p class="room__p">Black walls and a gold cornice, white Chesterfields, a
+    <div class="room__in stack">
+      <p class="head__brow"><span class="pill">Open Saturday &middot; 9 to 1</span></p>
+      <h2 class="room__h disp" id="room-h" data-t><span>Cars, coffee, cocktails and conversation</span></h2>
+      <p class="room__p" data-p>Black walls and a gold cornice, white Chesterfields, a
         gold monkey on a rope, a white deer head, a racing game on the big screen
         and a full bar. There is an art studio in the back.</p>
-      <a class="cta" href="#room">Directions <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+      <a class="cta cta--ghost" href="#room">Directions <span class="cta__go" aria-hidden="true">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -406,7 +406,7 @@
 <footer id="footer" class="foot">
   <div class="g12">
 
-    <div class="foot__id">
+    <div class="foot__id stack">
       <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors" width="132">
       <p class="foot__say">Collector cars on the floor, four lots on the block most
         weeks, and a room that opens on Saturday mornings. Pompano Beach, Florida,
@@ -454,25 +454,32 @@
 </footer>
 
 <script>
-/* Carried from v4 unchanged. Motion is armed by script only AFTER checking
-   prefers-reduced-motion, so nothing is ever hidden by CSS alone and a blocked
-   script leaves the page complete. Scroll-TRIGGERED, not scroll-linked. */
-(function () {
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce) {
-    document.body.classList.add('m-on');
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      });
-    }, { rootMargin: '-12% 0px -12% 0px' });
-    document.querySelectorAll('[data-rise],[data-mask],[data-rows]').forEach(function (el) { io.observe(el); });
-  }
+/* ===========================================================================
+   MOTION CONTROLLER
 
-  var el = document.getElementById('clock');
-  if (el) {
+   Roles, one line each, per MJ1 — an effect with no role is not refined, it
+   is removed:
+     title reveal   hierarchy      the chapter announces itself
+     paragraph rise hierarchy      it follows its heading, so reading order
+                                   is stated in time as well as in space
+     row stagger    state change   a lot's facts arrive as one set
+     parallax       continuity     two frames only, the page's one depth idea
+     countdown      state change   the only continuous motion anywhere
+
+   MJ5 / MJ9: nothing is hidden until this script has confirmed motion is
+   allowed. A blocked script, a failed script or prefers-reduced-motion all
+   leave the finished page — every start-state lives behind .m-on.
+
+   MJ6: scroll-TRIGGERED, never scroll-linked. Nothing is pinned, nothing is
+   hijacked, nothing must be watched to completion. The reader keeps pacing.
+   =========================================================================== */
+(function () {
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var doc = document.documentElement;
+
+  var clock = (function () {
+    var el = document.getElementById('clock');
+    if (!el) return function () {};
     var end = Date.now() + (2 * 3600 + 14 * 60 + 8) * 1000, t;
     var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
     var tick = function () {
@@ -484,8 +491,76 @@
       if (!document.hidden) { tick(); t = setInterval(tick, 1000); }
     };
     document.addEventListener('visibilitychange', run);
-    run();
+    return run;
+  })();
+  clock();   /* the countdown runs under reduced motion too — it is
+                information, not decoration, and MJ9 asks for the meaning to
+                survive rather than the movement */
+
+  var io = null, raf = 0, px = [];
+
+  function stopMotion() {
+    document.body.classList.remove('m-on');
+    if (io) { io.disconnect(); io = null; }
+    px.forEach(function (o) { o.el.style.transform = ''; });
+    px = [];
   }
+
+  function startMotion() {
+    document.body.classList.add('m-on');
+
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);            /* once. Nothing re-animates on the
+                                              way back up — a page that replays
+                                              itself is a page you cannot leave */
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
+
+    document.querySelectorAll('[data-t],[data-p],[data-rows],[data-mask]')
+      .forEach(function (el) { io.observe(el); });
+
+    /* --- parallax: three frames, and the container never shows an edge ---
+       The image is 112% of its box and starts 6% high, so ±6% of travel is
+       always inside the frame no matter where the scroll stops. Read in one
+       batch and written in one batch, inside a single rAF, so this cannot
+       thrash layout. */
+    px = [].slice.call(document.querySelectorAll('[data-pximg], [data-px] img'))
+      .map(function (el) { return { el: el, box: el.parentElement }; });
+
+    if (px.length) {
+      var onScroll = function () {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = 0;
+          var vh = window.innerHeight;
+          var reads = px.map(function (o) { return o.box.getBoundingClientRect(); });
+          px.forEach(function (o, i) {
+            var r = reads[i];
+            if (r.bottom < -200 || r.top > vh + 200) return;
+            var p = (r.top + r.height / 2 - vh / 2) / vh;   /* -1 … 1 */
+            o.el.style.transform = 'translate3d(0,' + (p * -6).toFixed(2) + '%,0) scale(1.12)';
+          });
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
+    }
+  }
+
+  /* MJ8 — mobile is decided, not inherited. Below 800px the parallax and the
+     horizontal title travel are dropped: a phone has no spatial room for
+     either, and both cost frames on the device with the least to spare. The
+     paragraph rise stays, because it is 28px and it carries reading order. */
+  function apply() {
+    stopMotion();
+    if (!mq.matches) startMotion();
+  }
+  (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(apply);
+  apply();
 })();
 </script>
 

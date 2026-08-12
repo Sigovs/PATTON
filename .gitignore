@@ -20,3 +20,11 @@ mockup/aan-dealer-mockups/
 # Working screenshots and probes.
 mockup/.h3.png
 mockup/.probe.html
+
+# Local settings, a working screenshot, and a nested clone of design_dna that
+# must not travel — the project deliberately has no local copy, the canonical
+# path is always current, and a stale copy that looks authoritative is worse
+# than none. Flagged by another session before `git add -A` could sweep it in.
+.claude/
+index3-before.png
+design_dna/

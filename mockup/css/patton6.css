@@ -126,10 +126,41 @@
   --t-body:   16px;
   --t-micro:  14px;                    /* the functional floor. Never below. */
 
-  /* ---- space, carried from v4 ------------------------------------------ */
+  /* ---- SPACE: the scale, and then the RELATIONSHIPS ---------------------
+     The scale is 4px-based and carried from v4. It is the only source of
+     spacing values on this page — spacing I2, no magic numbers. */
   --s-1: 4px;  --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
   --s-5: 24px; --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
   --s-9: 96px; --s-10: 144px; --s-11: 200px;
+
+  /* THE SEMANTIC LAYER. A scale alone does not stop drift — it only makes the
+     drift tokenised. What actually drifted here was MEANING: the same
+     relationship, card image to card title, was 24px in the featured vehicle,
+     12px in an auction lot and 16px in a floor card. All three are valid
+     tokens and all three are the same relationship, so two of them were wrong.
+
+     So every repeated relationship is named once, here, and referred to by
+     name everywhere else. If two elements have the same semantic relationship
+     they now cannot have different spacing, because there is only one place
+     the number lives.
+
+     spacing I1 is the source of this shape — it prescribes exactly these
+     relationships and says to set them as a component rather than by hand. */
+  --sp-label-title:  var(--s-4);   /* 16 · eyebrow or section label → title   */
+  --sp-title-body:   var(--s-5);   /* 24 · title → supporting paragraph       */
+  --sp-body-cta:     var(--s-7);   /* 48 · paragraph → button                 */
+  --sp-title-data:   var(--s-5);   /* 24 · title → plate, specs, metadata     */
+  --sp-media-title:  var(--s-4);   /* 16 · card image → card title            */
+  --sp-title-meta:   var(--s-2);   /*  8 · card title → derivative line       */
+  --sp-intro-body:   var(--s-9);   /* 96 · section intro → section content    */
+  --sp-row:          var(--s-3);   /* 12 · row → row inside a plate or index  */
+  --sp-group:        var(--s-4);   /* 16 · control → control in a group       */
+  --sp-pill-text:    var(--s-2);   /*  8 · pill → the text beside it          */
+  --sp-block-rule:   var(--s-6);   /* 32 · content block → the rule under it  */
+
+  /* Section padding is deliberately NOT in this list. Density is a property
+     of a section — the auction is dense, the room is not — and the brief says
+     so. What may not vary is what happens INSIDE a component. */
 
   /* ---- THE GRID -------------------------------------------------------- */
   --page:     90vw;                    /* inside the 88–92vw band */
@@ -216,27 +247,70 @@
    Mono eyebrow, serif heading, both on the first column of whatever field
    they sit in. Used by every body section, so the heading anchors the
    section's geometry instead of floating above it. */
-.head__brow { color: var(--bone-46); margin-bottom: var(--s-4); }
+.head__brow { color: var(--bone-46); margin-bottom: var(--sp-label-title); }
 .head__h    { font-size: var(--t-huge); }
 .paper .head__brow { color: var(--ink-64); }
 
 .lede { font-size: var(--t-lead); color: var(--bone-72); }
 .paper .lede { color: var(--ink-64); }
 
-/* the one control, carried from v4 — no gradient, no shadow, no radius */
+/* ============================================================== CONTROLS ==
+   THREE LEVELS AND NO MORE. A tertiary button style is how an action hierarchy
+   stops being a hierarchy, so the ladder is fixed here and nothing may be
+   added below it:
+
+     .cta            PRIMARY   — solid. One per view.
+     .cta--ghost     SECONDARY — outline, same geometry, same size.
+     .link           TEXT      — words and an arrow, no container at all.
+
+   2px radius, not a capsule. A control on this page should read machined
+   rather than soft — the same reason the plates are hairlines and not cards.
+   No gradient, no shadow: anti-patterns D2 and D3, and neither has a
+   yields-when this page can claim. */
+
 .cta {
   display: inline-flex; align-items: center; gap: var(--s-3);
-  padding: var(--s-4) var(--s-6);
-  border: 1px solid var(--rule-hi);
-  color: var(--bone); font-family: var(--f);
-  font-size: var(--t-micro); letter-spacing: 0.1em; text-transform: uppercase;
-  transition: border-color var(--d-1) var(--ease), background-color var(--d-1) var(--ease);
+  padding: var(--s-4) var(--s-6); border: 1px solid transparent; border-radius: 2px;
+  font-family: var(--f); font-size: var(--t-micro); font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--bone); color: var(--ink);            /* 16.4:1 */
+  transition: background-color var(--d-1) var(--ease), color var(--d-1) var(--ease),
+              border-color var(--d-1) var(--ease);
 }
-.cta:hover { border-color: var(--bone); background: rgba(232,235,237,.06); }
-.cta__go { transition: transform var(--d-2) var(--ease); }
-.cta:hover .cta__go { transform: translateX(6px); }
-.paper .cta { border-color: var(--rule-ctl); color: var(--ink); }
-.paper .cta:hover { border-color: var(--ink); background: rgba(10,12,14,.05); }
+.cta:hover, .cta:focus-visible { background: #FFFFFF; }
+.paper .cta { background: var(--ink); color: var(--paper); }   /* 11.8:1 */
+.paper .cta:hover, .paper .cta:focus-visible { background: #000000; }
+
+.cta--ghost {
+  background: transparent; color: var(--bone); border-color: var(--rule-hi);  /* 3.1:1 */
+}
+.cta--ghost:hover, .cta--ghost:focus-visible { background: transparent; border-color: var(--bone); }
+.paper .cta--ghost { background: transparent; color: var(--ink); border-color: var(--rule-ctl); }
+.paper .cta--ghost:hover, .paper .cta--ghost:focus-visible { background: transparent; border-color: var(--ink); }
+
+/* the arrow moves, and it moves once — no return trip, no bounce */
+.cta__go { transition: transform var(--d-1) var(--ease); }
+.cta:hover .cta__go, .cta:focus-visible .cta__go { transform: translateX(5px); }
+
+/* ================================================================= PILLS ==
+   SEMANTIC ONLY. A pill on this page means a STATE — something that is true
+   now and can stop being true. Live, featured, open. Nothing decorative and
+   nothing navigational ever takes this shape, because the moment a pill can
+   mean "this is a link" it stops meaning "this is happening".
+
+   Four on the whole page. Compact, 2px, uppercase at the 14px floor, and the
+   live one always carries its dot AND its word so the state survives
+   greyscale — color-taste I2, meaning is never hue alone. */
+.pill {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: var(--s-2) var(--s-3); border-radius: 2px;
+  font-size: var(--t-micro); font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; line-height: 1;
+  background: rgba(10,12,14,.82); color: var(--bone);
+  backdrop-filter: none;                 /* no glass — D-tier ban, and it costs frames */
+}
+.pill--live { color: var(--live); }       /* 8.5:1 on the pill's own ground */
+.pill--onlight { background: var(--ink); color: var(--paper); }
 
 /* the data plate, carried from v4 — mono keys, tabular values, hairlines */
 .plate { border-top: 1px solid var(--rule); }
@@ -280,6 +354,31 @@
 .pm6 .pm-skip:focus { left: var(--s-4); top: var(--s-4); z-index: 60;
                       background: var(--ink); color: var(--bone); padding: var(--s-3) var(--s-5); }
 
+/* ======================================================== THE TEXT STACK ==
+   spacing I1 asks for these relationships to be set as a COMPONENT rather
+   than by hand, so this is that component. Any block of eyebrow → title →
+   paragraph → control carries .stack and inherits the page's relationships:
+   no section restates them, and no heading carries a margin of its own.
+
+   `gap` is deliberately NOT used here. gap is uniform, and the entire point
+   of I1's hard form is that these intervals must NOT be uniform — a label
+   sits closer to its title than the title sits to its paragraph, and that
+   difference is what encodes the grouping. The seven containers that use
+   this had seven different answers before it existed. */
+.stack > * + *                    { margin-block-start: var(--sp-title-body); }
+.stack > .head__brow + *,
+.stack > .hero__brow + *          { margin-block-start: var(--sp-label-title); }
+.stack > * + .plate,
+.stack > * + .feat__foot          { margin-block-start: var(--sp-title-data); }
+.stack > figure + *               { margin-block-start: var(--sp-media-title); }
+.stack > .lede + *,
+.stack > .hero__sub + *,
+.stack > .room__p + *,
+.stack > .why__story + *          { margin-block-start: var(--sp-body-cta); }
+.stack > * + .cta,
+.stack > * + .ctas                { margin-block-start: var(--sp-body-cta); }
+.ctas { display: flex; flex-wrap: wrap; gap: var(--sp-group); }
+
 /* ================================================== 1 · hero — unchanged ==
    Film, ramp, scale, copy and control are exactly v4's. The only change is
    that the type block now starts on column 1 of the master grid instead of on
@@ -296,10 +395,10 @@
                                       rgba(10,12,14,.18) 62%, rgba(10,12,14,.06) 100%);
 }
 .hero .g12 { position: relative; padding-block: var(--s-9) var(--s-8); }
-.hero__in { grid-column: 1 / span 7; }
-.hero__brow { color: var(--bone-72); margin-bottom: var(--s-5); }
-.hero__h { font-size: var(--t-mega); margin-bottom: var(--s-5); }
-.hero__sub { font-size: var(--t-lead); color: var(--bone-72); max-width: 44ch; margin-bottom: var(--s-7); }
+.hero__in { grid-column: 1 / span 7; display: block; }
+.hero__brow { color: var(--bone-72); }
+.hero__h { font-size: var(--t-mega); }
+.hero__sub { font-size: var(--t-lead); color: var(--bone-72); max-width: 44ch; }
 
 /* ============================================= 2 · routes — TIGHT, span 3 ==
    The first beat, and it is compression. Four doors of equal rank, three
@@ -319,7 +418,7 @@
 .route__k { color: var(--bone-46); }
 .route__v { font-size: var(--t-mid); line-height: 1.05; }
 .route__m { color: var(--bone-46); }
-.live { color: var(--live); display: inline-flex; align-items: center; gap: var(--s-2); }
+.live { color: var(--live); display: inline-flex; align-items: center; gap: var(--sp-pill-text); }
 .dot  { width: 7px; height: 7px; border-radius: 50%; background: var(--live); flex: 0 0 auto; }
 
 /* ================================================ 3 · auctions — DENSE ====
@@ -338,7 +437,7 @@
 .block { background: var(--ink); padding-block: var(--s-10) var(--s-9); }
 .block .g12 { row-gap: var(--s-9); align-items: start; }
 
-.block__info { grid-column: 1 / span 4; display: grid; gap: var(--s-6); align-content: start; }
+.block__info { grid-column: 1 / span 4; display: block; }
 .block__h { font-size: var(--t-big); }
 
 .block__state { display: flex; align-items: center; gap: var(--s-3); color: var(--live); }
@@ -373,13 +472,14 @@
 @supports not (grid-template-columns: subgrid) {
   .rank { grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); }
 }
-.lot { grid-column: span 4; display: grid; gap: var(--s-3); align-content: start; color: var(--bone); }
+.lot { grid-column: span 4; display: grid; gap: var(--sp-media-title); align-content: start; color: var(--bone); }
 .lot__fig { overflow: hidden; }
 .lot__fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
                 transition: transform var(--d-3) var(--ease); }
 .lot:hover .lot__fig img { transform: scale(1.04); }
 .lot__k { color: var(--bone-46); }
 .lot__h { font-size: var(--t-mid); line-height: 1.12; }
+.lot .plate { margin-block-start: var(--sp-title-data); }
 
 /* ================================================== 4 · hold — RELEASE ====
    The page's short exhale. One line, one action, a rule above and below. It
@@ -424,16 +524,16 @@
 .floor { background: var(--paper); color: var(--ink); padding-block: var(--s-10); }
 .floor .g12 { row-gap: var(--s-9); align-items: start; }
 
-.feat { grid-column: 1 / span 7; display: grid; gap: var(--s-5); }
+.feat { grid-column: 1 / span 7; display: block; }
 .feat__fig { overflow: hidden; }
 .feat__fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
                  transition: transform var(--d-3) var(--ease); }
 .feat:hover .feat__fig img { transform: scale(1.03); }
 .feat__k { color: var(--ink-64); }
 .feat__h { font-size: var(--t-big); line-height: 1.02; }
-.feat__sub { color: var(--ink-64); }
-.feat__foot { display: flex; flex-wrap: wrap; gap: var(--s-5) var(--s-8); align-items: baseline;
-              border-top: 1px solid var(--rule-lt); padding-top: var(--s-4); }
+.feat__sub { color: var(--ink-64); margin-block-start: var(--sp-title-meta); }
+.feat__foot { display: flex; flex-wrap: wrap; gap: var(--sp-row) var(--s-8); align-items: baseline;
+              border-top: 1px solid var(--rule-lt); padding-top: var(--sp-title-data); }
 .feat__price { font-family: var(--f); font-size: var(--t-mid);
                font-variant-numeric: tabular-nums; }
 
@@ -468,7 +568,7 @@
 .sell { background: var(--paper); color: var(--ink); padding-block: var(--s-10);
         border-top: 1px solid var(--rule-lt); }
 .sell .g12 { align-items: start; row-gap: var(--s-8); }
-.sell__say { grid-column: 1 / span 4; display: grid; gap: var(--s-5); align-content: start; }
+.sell__say { grid-column: 1 / span 4; display: block; }
 .sell__h { font-size: var(--t-big); }
 
 .routes3 { grid-column: 5 / span 8; border-top: 1px solid var(--ink); }
@@ -480,7 +580,7 @@
 .route3:last-child { border-bottom: 0; }
 .route3__n { font-family: var(--f); font-size: var(--t-micro);
              letter-spacing: 0.08em; color: var(--ink-64); font-variant-numeric: tabular-nums;
-             padding-top: 0.5em; }
+             padding-top: var(--s-1); }
 .route3__h { font-size: var(--t-mid); line-height: 1.05; }
 .route3--lead .route3__h { font-size: var(--t-big); }
 .route3__p { color: var(--ink-64); }
@@ -508,7 +608,7 @@
 .why__fig img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
                 transition: transform var(--d-3) var(--ease); }
 .why__fig:hover img { transform: scale(1.03); }
-.why__say { grid-column: 4 / span 4; display: grid; gap: var(--s-6); align-content: start; }
+.why__say { grid-column: 4 / span 4; display: block; }
 .why__h { font-size: var(--t-big); }
 .why__story { font-size: var(--t-lead); }
 /* One column, not two. The story field is four columns wide now that the
@@ -523,7 +623,7 @@
 .why__item p { color: var(--ink-64); }
 
 .facts { grid-column: 8 / span 5; background: var(--ink); color: var(--bone);
-         padding: var(--s-8) var(--s-7); display: grid; gap: var(--s-5); align-content: start; }
+         padding: var(--s-8) var(--s-7); display: grid; gap: var(--sp-row); align-content: start; }
 .facts__k { color: var(--bone-46); }
 .facts__row { display: flex; justify-content: space-between; gap: var(--s-5);
               padding-bottom: var(--s-3); border-bottom: 1px solid var(--rule);
@@ -555,7 +655,7 @@
     linear-gradient(0deg,  rgba(10,12,14,.50) 0%, rgba(10,12,14,0) 46%);
 }
 .room .g12 { position: relative; padding-block: var(--s-10) var(--s-9); }
-.room__in { grid-column: 1 / span 6; display: grid; gap: var(--s-5); justify-items: start; }
+.room__in { grid-column: 1 / span 6; display: block; }
 /* Measured on the render: at --bone-46 this label came out 3.98:1 against the
    photograph, and the ground beneath it is already rgb(30,31,33) — darkening
    the scrim further would cost the room its light for nothing. So the ink
@@ -592,7 +692,7 @@
         padding-block: var(--s-10) var(--s-8); }
 .foot .g12 { row-gap: var(--s-9); }
 
-.foot__id { grid-column: 1 / span 4; display: grid; gap: var(--s-5); align-content: start; }
+.foot__id { grid-column: 1 / span 4; display: block; }
 .foot__id img { width: 132px; height: auto; }
 .foot__say { color: var(--bone-72); max-width: 34ch; }
 .foot__addr { font-style: normal; color: var(--bone-72); }
@@ -602,7 +702,7 @@
 .foot__col { display: grid; align-content: start; gap: var(--s-2); }
 .foot__col h3 { color: var(--bone-46); font-family: var(--f);
                 font-size: var(--t-micro); font-weight: 400; letter-spacing: 0.08em;
-                text-transform: uppercase; margin-bottom: var(--s-3); }
+                text-transform: uppercase; margin-bottom: var(--sp-label-title); }
 /* Tracked mono uppercase, generously spaced — the register two of the four
    footers use for nav, and the one this page already uses for every label.
    The airy line rhythm is 360's; a footer nav read at a glance wants the
@@ -631,7 +731,7 @@
   transition: color var(--d-1) var(--ease);
 }
 .foot__call a:hover, .foot__call a:focus-visible { color: var(--live); }
-.foot__hours { display: grid; gap: var(--s-2); border-top: 1px solid var(--rule);
+.foot__hours { display: grid; gap: var(--sp-row); border-top: 1px solid var(--rule);
                padding-top: var(--s-4); }
 .foot__hrow { display: flex; justify-content: space-between; gap: var(--s-4);
               font-family: var(--f); font-size: var(--t-micro);
@@ -666,30 +766,143 @@
    deliverable in this pass; nothing here is load-bearing, and every section
    is complete with the script blocked or reduced motion set. */
 
-.m-on [data-rise] > * { transform: translateY(112%); }
-[data-rise] { overflow: hidden; }
-[data-rise] > * { display: block; transition: transform var(--d-3) var(--ease); }
-.m-on [data-rise].in > * { transform: none; }
+/* ONE EASING LANGUAGE for the whole page. --ease is a hard deceleration with
+   no overshoot: things arrive fast and settle, which is what a machine does
+   and what a spring does not. There is no second curve, no bounce, no elastic
+   and no delay that was not calculated from a heading's own arrival.
 
-.m-on [data-mask] { clip-path: inset(0 0 100% 0); }
-[data-mask] { transition: clip-path var(--d-4) var(--ease); }
-.m-on [data-mask].in { clip-path: inset(0 0 0 0); }
+   NOTHING IS HIDDEN BY CSS ALONE. Every start-state below is gated on .m-on,
+   which the script adds only after checking prefers-reduced-motion — so a
+   blocked script, a failed script or a reduced-motion setting all leave the
+   page complete and readable rather than blank. MJ5 and MJ9. */
 
-.m-on [data-rows] > * { opacity: 0; transform: translateY(10px); }
+/* --- 1 · titles: revealed, not translated -------------------------------
+   The heading sits in a clipping box and slides out of its own edge, so it
+   reads as uncovered rather than as an object that flew in. Travel is 48px —
+   inside the brief's 30–70 and small enough that a fast scroller sees a
+   heading rather than a movement. Direction follows the composition: left-set
+   titles come from the left, and the two right-hand ledes come from the right. */
+[data-t] { display: block; overflow: hidden; }
+[data-t] > * { display: block; transition: transform var(--d-3) var(--ease); }
+.m-on [data-t] > *        { transform: translateX(-48px); }
+.m-on [data-t="r"] > *    { transform: translateX(48px); }
+.m-on [data-t].in > *     { transform: none; }
+
+/* --- 2 · paragraphs: from below, and always AFTER their heading ---------
+   28px and opacity, moved as one block — never per line and never per word.
+   The 120ms delay is the whole point: the heading leads, the paragraph
+   follows, and the order of reading is stated in time as well as in space. */
+[data-p] { transition: opacity var(--d-2) var(--ease), transform var(--d-2) var(--ease); }
+.m-on [data-p]      { opacity: 0; transform: translateY(28px); }
+.m-on [data-p].in   { opacity: 1; transform: none; transition-delay: 120ms; }
+
+/* --- 3 · data rows: a short stagger, and only for the auction ------------
+   The lot's facts are one set, so they arrive as a set — 60ms apart, four
+   rows, done in under a quarter second. The figures themselves never roll or
+   count: the money is not temporal, the clock is, and only one thing on this
+   page is allowed to be the primary temporal idea. */
 [data-rows] > * { transition: opacity var(--d-2) var(--ease), transform var(--d-2) var(--ease); }
+.m-on [data-rows] > *    { opacity: 0; transform: translateY(8px); }
 .m-on [data-rows].in > * { opacity: 1; transform: none; }
-.m-on [data-rows].in > *:nth-child(2) { transition-delay: 70ms; }
-.m-on [data-rows].in > *:nth-child(3) { transition-delay: 140ms; }
-.m-on [data-rows].in > *:nth-child(4) { transition-delay: 210ms; }
+.m-on [data-rows].in > *:nth-child(2) { transition-delay: 60ms; }
+.m-on [data-rows].in > *:nth-child(3) { transition-delay: 120ms; }
+.m-on [data-rows].in > *:nth-child(4) { transition-delay: 180ms; }
 
+/* --- 4 · image reveal, for the two largest frames only ------------------
+   THE CLIP GOES ON THE IMAGE, NOT ON THE OBSERVED ELEMENT. Clipping an
+   element to zero height also empties its intersection rectangle, so a
+   fully-clipped figure never intersects the viewport, never receives .in,
+   and never unclips — the effect deadlocks and the photograph is simply
+   gone. That bug has been in this file since v4 and only surfaced now
+   because earlier screenshots forced the end state by hand instead of
+   scrolling to it. The figure stays unclipped and observable; the image
+   inside it is what moves. */
+[data-mask] img { transition: clip-path var(--d-4) var(--ease); }
+.m-on [data-mask] img { clip-path: inset(0 0 100% 0); }
+.m-on [data-mask].in img { clip-path: inset(0 0 0 0); }
+
+/* --- 5 · parallax ------------------------------------------------------
+   THREE frames on the page, and not one card. The container is fixed in the
+   layout and oversized by 12%; the image moves inside it, so the frame's
+   edges can never be exposed no matter where the scroll stops — which is the
+   failure this technique usually ships with. Travel is ~6% of image height,
+   inside the brief's 4–8. DM6: one depth idea for the page, and this is it. */
+[data-px], .hold, .room { overflow: hidden; }
+[data-px] img, [data-pximg] { will-change: transform; }
+/* The frame is oversized by 12% and offset by half of that, so ±6% of travel
+   is always inside it. Measured on the render, the two full-bleed frames were
+   NOT getting this — the rule only reached [data-px] img — and both were
+   showing a 20–38px band of section ground at the top of the image. That is
+   the failure this technique is famous for and the brief names it outright. */
+/* The oversize is a SCALE, not a percentage height. A percentage height does
+   not resolve against a container whose own height is auto — which is exactly
+   what .feat__fig is — so the first attempt oversized two frames and left the
+   third at 100%, and the render showed a 30px band of section ground sliding
+   in at the top. scale(1.12) is independent of how the container's height was
+   arrived at, so ±6% of travel is inside the frame in all three cases.
+   The scale lives in the transform the script writes, so there is one
+   property being animated and no second source of truth. */
+.m-on [data-px] img, .m-on [data-pximg] { transform: scale(1.12); }
+
+/* --- 6 · hover: feedback, and nothing louder --------------------------- */
+.feat__fig img, .lot__fig img, .why__fig img, .card__media img {
+  transition: transform var(--d-3) var(--ease);
+}
+.feat:hover .feat__fig img,
+.lot:hover .lot__fig img,
+.why__fig:hover img { transform: scale(1.035); }
+
+/* rows answer with a small precise shift and a rule that firms up */
+.index__row, .route, .route3 { transition: background-color var(--d-1) var(--ease),
+                                            border-color var(--d-1) var(--ease); }
+.route3:hover { border-bottom-color: var(--ink); }
+.route3__h, .index__nm { transition: transform var(--d-1) var(--ease); }
+.route3:hover .route3__h, .index__row:hover .index__nm { transform: translateX(4px); }
+
+/* ============================================================== OVERLAPS ==
+   EXACTLY TWO on the whole page, both at a chapter seam, both making the page
+   read as layered rather than stacked. Every other transition stays flat —
+   an overlap used everywhere is a texture, not a structure.
+
+     A. the auction hands over to the transition frame
+     B. the room rises into the light chapter above it
+
+   The section above each one carries extra bottom padding so the overlap
+   never lands on its content, and z-index is explicit at both seams so there
+   is nothing for the stacking context to decide by accident. */
+.hold, .room { position: relative; z-index: 2; }
+.hold { margin-top: calc(clamp(50px, 5vw, 110px) * -1); }
+.room { margin-top: calc(clamp(50px, 5vw, 110px) * -1); }
+.block { padding-bottom: calc(var(--s-9) + clamp(50px, 5vw, 110px)); }
+.why   { padding-bottom: calc(var(--s-10) + clamp(50px, 5vw, 110px)); }
+
+/* --- mobile: choreography decided separately, not inherited (MJ8/DM10) ----
+   The phone drops the two effects that depend on spatial room it does not
+   have — parallax and the horizontal title travel — and keeps the paragraph
+   rise, which is 28px and carries reading order rather than atmosphere. The
+   two overlaps shrink to a quarter, because a 110px overlap on a 390px screen
+   is a collision, not a layer. */
+@media (max-width: 800px) {
+  .m-on [data-px] img, .m-on [data-pximg] { height: auto; top: 0; transform: none !important; }
+  .m-on [data-t] > *, .m-on [data-t="r"] > * { transform: none; }
+  [data-t] { overflow: visible; }
+  .hold, .room { margin-top: calc(var(--s-6) * -1); }
+  .block { padding-bottom: calc(var(--s-8) + var(--s-6)); }
+  .why   { padding-bottom: calc(var(--s-9) + var(--s-6)); }
+}
+
+/* --- reduced motion: an authored still, not a disabled interface (MJ9) ----
+   Nothing here needs to undo a start-state, because no start-state was ever
+   applied — .m-on is never added. This block only stops the transitions that
+   would otherwise animate a hover. The countdown keeps running: it is
+   information, and MJ9 asks that the meaning survive, not the movement. */
 @media (prefers-reduced-motion: reduce) {
   .pm6 *, .pm6 *::before, .pm6 *::after {
     transition-duration: 1ms !important; animation-duration: 1ms !important;
     scroll-behavior: auto !important;
   }
-  [data-rise] > *, [data-mask], [data-rows] > * {
-    transform: none !important; clip-path: none !important; opacity: 1 !important;
-  }
+  [data-px] img, [data-pximg] { transform: none !important; height: auto; top: 0; }
+  .hold, .room { margin-top: 0; }
 }
 
 /* =============================================================== tablet ==
