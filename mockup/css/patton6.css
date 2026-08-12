@@ -612,7 +612,10 @@
 /* .pm6-scoped so these outrank `.pm6 .route`, which sets the card's own
    padding later in the file and won the first time this was written. */
 .pm6 .hero__strip > .g12 { padding-block: 0; }
-.pm6 .hero__strip .route { padding-block: 0; }
+/* the rule is drawn on this edge, so the label needs air under it — 16px, the
+   same step the label uses everywhere else. The foot stays at zero: the strip
+   below it carries that clearance. */
+.pm6 .hero__strip .route { padding-block: var(--s-4) 0; }
 .pm6 .hero__strip .route__m { min-height: 0; }   /* the two-line reservation is
                                                     for a card, not for a band
                                                     that has to fit a screen */
@@ -626,9 +629,21 @@
    continuous image. */
 .hero__ramp {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,12,14,.96) 0%, rgba(10,12,14,.90) 22%,
-                                      rgba(10,12,14,.74) 38%, rgba(10,12,14,.24) 64%,
-                                      rgba(10,12,14,.06) 100%);
+  /* TWO gradients on one layer, so it is still one darkening of the picture
+     and not a stack of veils. The vertical ramp is unchanged. The horizontal
+     one is new and is a MEASURED value, not a taste one: with the type block
+     lowered into the frame the headline now crosses the film's bright band,
+     and on the real glyph extents — read with Range rects, not the block box —
+     it fell to 2.45:1 at 7.2s against a 3.0 floor for display sizes.
+     0.18 over the left 38% takes the worst composited ground from L .297 to
+     L .199, which is 3.42:1. It runs out entirely by 62%, so the right half of
+     the frame — where the car is — is untouched. */
+  background:
+    linear-gradient(to right, rgba(10,12,14,.18) 0%, rgba(10,12,14,.18) 38%,
+                              rgba(10,12,14,0) 62%),
+    linear-gradient(to top, rgba(10,12,14,.96) 0%, rgba(10,12,14,.90) 22%,
+                            rgba(10,12,14,.74) 38%, rgba(10,12,14,.24) 64%,
+                            rgba(10,12,14,.06) 100%);
 }
 /* symmetrical now — an asymmetric pad was what made "centred" impossible;
    the header still needs clearing, so the top carries its height */
@@ -638,7 +653,11 @@
    the requirement that both the hero and the four doors sit above the fold
    outranks the header clearance — and the header carries a scrim for exactly
    that case. One expression, both ends on the scale. */
-.hero .g12 { position: relative; padding-block: clamp(var(--s-3), 5svh, var(--hdr-h)); }
+/* > , NOT a descendant. The routes strip now lives inside the hero, so a
+   `.hero .g12` rule reaches its grid as well and was handing the card band the
+   hero's own 166px top clearance — 166px of empty film between the buttons and
+   the cards, and the reason the band would not come above the fold. */
+.hero > .g12 { position: relative; padding-block: clamp(var(--s-3), 5svh, var(--hdr-h)); }
 .hero__in { grid-column: 1 / span 7; display: block; }
 .hero__brow { color: var(--bone-72); }
 /* THE HERO'S OWN INTERVALS. The semantic layer is global on purpose — the same
@@ -1532,7 +1551,7 @@
 .hold, .room { position: relative; z-index: 1; }
 .hold__img, .hold__ramp, .room__img, .room__ramp,
 .hero__film, .hero__ramp { z-index: 0; }
-.hold .g12, .room .g12, .hero .g12 { position: relative; z-index: 2; }
+.hold .g12, .room .g12, .hero > .g12 { position: relative; z-index: 2; }
 
 /* seam A — the interstitial hands over to the floor */
 .hold  { padding-bottom: calc(var(--overlap) + var(--crossing)); }
@@ -2208,7 +2227,18 @@
    The floor it cannot cross is U2: the label holds 5.24:1 and the value
    15.18:1 against the gradient's DARKEST stop, not its average. */
 .pm6 .routes { background: var(--ink); border-block: 0; }
-.pm6 .routes .g12 { gap: var(--col-gap); padding-block: var(--s-6); }
+.pm6 .routes .g12 { gap: var(--col-gap); padding-block: var(--s-2) 0; }
+/* THE BAND SITS ABOVE THE FOLD. At 860px the four cards were finishing ~100px
+   under the screen's edge, so the one thing that tells a visitor the page has
+   four doors was the one thing they had to scroll to find. The strip gives up
+   its bottom clearance and the cards give up their own vertical padding — the
+   type and the intervals inside a card are untouched. */
+/* Measured, not guessed: at 860 the last card was finishing 37px under the
+   screen. 48px comes back from clearance ONLY — 16 from the strip's foot, 16
+   from the band's head, 16 from the card's own top and bottom. No type moved,
+   no interval inside a card changed, and the text block keeps the lower
+   position it was just given. */
+.pm6 .hero__strip { padding-bottom: var(--s-2); }
 .pm6 .route {
   grid-column: span 3;
   /* NO PLATE. The four routes stand on the film itself — no panel, no blur, no
@@ -2221,7 +2251,7 @@
   -webkit-backdrop-filter: none; backdrop-filter: none;
   border: 0;
   border-radius: 0;
-  padding: var(--s-6) var(--s-5) var(--s-6) 0;
+  padding: var(--s-5) var(--s-5) var(--s-5) 0;
   transition: border-color var(--dur-out-ui) var(--ease-in),
               transform    var(--dur-out-ui) var(--ease-in);
 }
@@ -2354,8 +2384,25 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
 /* the top clears the header outright rather than being centred into it —
    anchored, the eyebrow is always one header plus 24px down, at every height,
    which is the single collision this arrangement had. */
-.pm6 .hero .g12 { padding-top: calc(var(--hdr-h) + var(--s-4));
-                  padding-bottom: var(--s-5); }
+/* dropped a step: the block was riding high against the chrome once the type
+   tightened, so the top clearance goes from header+16 to header+56 and the
+   whole mass settles into the frame rather than hanging off its top edge */
+.pm6 .hero > .g12 { padding-top: calc(var(--hdr-h) + var(--s-7));
+                  padding-bottom: var(--s-2); }
+
+/* THE SENTENCE RUNS WIDE. With the eyebrow gone the block opens on the headline
+   and the paragraph is the only thing under it, so it can take the headline's
+   own width instead of the narrow 26ch column it needed when it was one of
+   four steps. Two lines, authored with a <br> — the measure is 48ch, which
+   holds the intended break at every width above the one-column rule and never
+   lets it fall to three. */
+.pm6 .hero__sub { max-width: 48ch; }
+@media (max-width: 800px) {
+  /* on a phone the authored break would run past the screen, so it is released
+     and the paragraph wraps on its own again */
+  .pm6 .hero__sub { max-width: 30ch; }
+  .pm6 .hero__sub br { display: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   .pm6 .route { backdrop-filter: none; -webkit-backdrop-filter: none; background: none; }
 }
@@ -2395,12 +2442,30 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
 .pm6 .foot__social svg * { fill: none; stroke: currentColor; stroke-width: 1.75;
                            stroke-linecap: round; stroke-linejoin: round; }
 
-/* the card darkens under the pointer — one change, on the ground, replacing
-   the lift so the four stay level with each other while one answers */
-.pm6 .route:hover, .pm6 .route:focus-visible {
-  background: linear-gradient(180deg,
-    rgba(8, 12, 17, 0.88) 0%, rgba(6, 10, 14, 0.91) 62%, rgba(5, 8, 11, 0.94) 100%);
-  transform: none;
+/* HOVER IS A RULE THAT DRAWS ITSELF, NOT A PLATE.
+   The darkening gradient is gone: it was a panel arriving under the pointer,
+   and this band's whole argument is that the four cards stand on the film with
+   no panel at all. What answers instead is a 2px rule along the top edge that
+   grows from a short mark to the full width of the card — the same gesture the
+   page already uses for its section rules, played on demand.
+   It is drawn with scaleX off the left origin, so the animation is composited
+   and nothing reflows. Off the pointer it retracts on the shorter out-curve. */
+.pm6 .route { position: relative; }
+.pm6 .route::before {
+  content: ""; position: absolute; inset-inline: 0; top: 0; height: 2px;
+  background: var(--bone);
+  transform: scaleX(0.14); transform-origin: left center;
+  transition: transform var(--dur-out-ui) var(--ease-in);
+}
+.pm6 .route:first-child::before { inset-inline-start: var(--s-6); }
+.pm6 .route:hover::before, .pm6 .route:focus-visible::before {
+  transform: scaleX(1);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+.pm6 .route:hover, .pm6 .route:focus-visible { background: none; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  /* the rule still answers, it just does not travel */
+  .pm6 .route::before { transition: none; }
 }
 
 /* MOBILE: the four cards over a phone-height film. At desktop padding the 2x2
@@ -2428,7 +2493,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
   /* clears the header and no more — this used to add another 32px on top of
      an already generous block, and with the routes now inside the hero every
      pixel here pushes the cards off the screen */
-  .pm6 .hero .g12 { padding-block: calc(var(--hdr-h) + var(--s-4)) var(--s-5); }
+  .pm6 .hero > .g12 { padding-block: calc(var(--hdr-h) + var(--s-7)) var(--s-2); }
 }
 
 /* ═══════════════════════ THE HERO ENTRANCE, AS A STAIRCASE ═══════════════
@@ -2446,18 +2511,27 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
                                       opacity   var(--dur-reveal) var(--ease-out); }
 .m-on [data-hero] .hstep { transform: translateX(-48px); opacity: 0; }
 .m-on [data-hero].in .hstep { transform: none; opacity: 1; }
-.m-on [data-hero].in .hstep:nth-of-type(1) { transition-delay: 0ms; }
-.m-on [data-hero].in .hero__h .hstep:nth-of-type(1) { transition-delay: 90ms; }
-.m-on [data-hero].in .hero__h .hstep:nth-of-type(2) { transition-delay: 180ms; }
-.m-on [data-hero].in .hero__sub { transition-delay: 270ms; }
-.m-on [data-hero].in .cta.hstep { transition-delay: 360ms; }
+/* Four steps, not five — the eyebrow is gone, so the staircase starts on the
+   headline's first line rather than 90ms after nothing. Named per element and
+   NOT by nth-of-type: with the eyebrow removed the button row became the first
+   div of its type and was collecting the 0ms slot, which entered it before the
+   headline it is supposed to follow. */
+.m-on [data-hero].in .hero__h .hstep:nth-of-type(1) { transition-delay: 0ms; }
+.m-on [data-hero].in .hero__h .hstep:nth-of-type(2) { transition-delay: 90ms; }
+.m-on [data-hero].in .hero__sub { transition-delay: 180ms; }
+.m-on [data-hero].in .btnrow.hstep { transition-delay: 270ms; }
 
 /* the stack relationships the old markup got from .stack, restated for the
    five steps so the intervals are the page's own and not the browser's */
-.pm6 [data-hero] > * + *        { margin-block-start: var(--sp-title-body); }
-.pm6 [data-hero] > .hero__brow + * { margin-block-start: var(--sp-label-title); }
-.pm6 [data-hero] > .hero__h + *    { margin-block-start: var(--s-7); }
-.pm6 [data-hero] > .hero__sub + *  { margin-block-start: var(--s-8); }
+/* TIGHTER, one step down each. The block was set when it had a whole screen to
+   itself; with the routes now inside the hero it has to hold together as one
+   mass rather than spread to fill. Every interval is still a token off the 4px
+   scale — 24→16 under the eyebrow, 48→32 under the headline, 64→48 under the
+   sentence — so the intervals still step up in the same order, just closer. */
+.pm6 [data-hero] > * + *           { margin-block-start: var(--s-4); }
+.pm6 [data-hero] > .hero__brow + * { margin-block-start: var(--s-4); }
+.pm6 [data-hero] > .hero__h + *    { margin-block-start: var(--s-5); }
+.pm6 [data-hero] > .hero__sub + *  { margin-block-start: var(--s-6); }
 .pm6 [data-hero] > .cta            { width: fit-content; }
 
 /* ---- the four doors arrive from below, in step -------------------------
@@ -2483,9 +2557,8 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
    pointer, ever */
 .pm6 [data-cards].in .route:hover, .pm6 [data-cards].in .route:focus-visible {
   transition-delay: 0ms;
-  transition: background-color var(--dur-ui) var(--ease-out),
-              border-color     var(--dur-ui) var(--ease-out);
 }
+.pm6 [data-cards].in .route::before { transition-delay: 0ms; }
 
 /* THE ONE HONEST LIMIT OF THIS COMPOSITION.
    The hero's own block is 494px and the card band is 251px. With the header's
@@ -2503,7 +2576,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
 @media (max-height: 945px) {
   .pm6 .hero { min-height: 100svh; height: auto; }
   .pm6 .routes { margin: 0; }
-  .pm6 .hero .g12 { padding-bottom: var(--s-5); }
+  .pm6 .hero > .g12 { padding-bottom: var(--s-2); }
 }
 
 
