@@ -600,10 +600,17 @@
         overflow: hidden; background: var(--ink); }
 .hero__film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* legibility bought at the background layer, never a shadow on type — I4 */
+/* The band of routes sits at 70–95% of the frame and now has no plate under
+   it, so the FRAME has to carry the legibility. Measured with the plate gone,
+   the two 15px labels came in at 3.72:1 and 4.24:1 against a 4.5 floor. The
+   ramp is deepened across exactly that band — this is the picture's own
+   darkening, not a panel drawn behind the cards, so the frame stays one
+   continuous image. */
 .hero__ramp {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,12,14,.92) 0%, rgba(10,12,14,.72) 28%,
-                                      rgba(10,12,14,.18) 62%, rgba(10,12,14,.06) 100%);
+  background: linear-gradient(to top, rgba(10,12,14,.96) 0%, rgba(10,12,14,.90) 22%,
+                                      rgba(10,12,14,.74) 38%, rgba(10,12,14,.24) 64%,
+                                      rgba(10,12,14,.06) 100%);
 }
 /* symmetrical now — an asymmetric pad was what made "centred" impossible;
    the header still needs clearing, so the top carries its height */
@@ -739,8 +746,11 @@
    24px further right than the other three and broke the one rhythm the band
    depends on — four identical doors. The left axis is what has to be flush,
    and that is the first item, which already is. */
-.route:hover, .route:focus-visible { background: var(--ink-3); }
-.route__k { color: var(--bone-46); transition: color var(--d-1) var(--ease); }
+/* hover paints no ground: on the film a panel appearing under the cursor is
+   the plate coming back for a moment */
+.route:hover, .route:focus-visible { background: none; }
+/* more ink than the panel version needed — on the film .54 measured 3.72:1 */
+.route__k { color: var(--bone-72); transition: color var(--d-1) var(--ease); }
 .route:hover .route__k, .route:focus-visible .route__k { color: var(--bone-72); }
 
 .route .route__v {
@@ -761,7 +771,7 @@
 /* Two lines reserved, for the same reason as v7: the four route labels wrap
    unevenly, and a row of cards whose baselines disagree reads as four things
    rather than one set. In `lh` so it tracks the line-height. */
-.route__m { color: var(--bone-46); min-height: 2.8em; min-height: 2lh; }
+.route__m { color: var(--bone-72); min-height: 2.8em; min-height: 2lh; }
 .live { color: inherit; display: inline-flex; align-items: center; gap: var(--sp-pill-text); }
 .dot  { width: 7px; height: 7px; border-radius: 50%; background: var(--live); flex: 0 0 auto; }
 
@@ -2183,23 +2193,23 @@
 .pm6 .routes .g12 { gap: var(--col-gap); padding-block: var(--s-6); }
 .pm6 .route {
   grid-column: span 3;
-  /* The cards now sit ON the film, so the plate is translucent and blurred
-     rather than an opaque slab: the frame has to stay visible through it or
-     they are back to standing on a panel. Same two stops as before, carried
-     to alpha, so the card keeps the vertical fall it had. */
-  background: linear-gradient(180deg, rgba(22,32,44,.72) 0%, rgba(16,24,32,.66) 62%,
-                                      rgba(12,18,25,.62) 100%);
-  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-  border: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
-  border-radius: var(--r-media);
-  padding: var(--s-6);
+  /* NO PLATE. The four routes stand on the film itself — no panel, no blur, no
+     border, no card. A translucent plate is still a plate, and it was still
+     ending the picture behind each label.
+     Legibility comes from the hero's own ramp, which runs to .92 exactly where
+     this band sits, so the type is already on a dark ground that belongs to
+     the frame rather than to a box drawn over it. Measured in the report. */
+  background: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  border: 0;
+  border-radius: 0;
+  padding: var(--s-6) var(--s-5) var(--s-6) 0;
   transition: border-color var(--dur-out-ui) var(--ease-in),
               transform    var(--dur-out-ui) var(--ease-in);
 }
 .pm6 .route:first-child { padding-left: var(--s-6); }
 .pm6 .route:hover, .pm6 .route:focus-visible {
-  border-color: var(--rule-hi); transform: translateY(-2px);
+  transform: translateY(-2px);
   transition: border-color var(--dur-ui) var(--ease-out),
               transform    var(--dur-ui) var(--ease-out);
 }
@@ -2304,12 +2314,16 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
   margin-bottom: var(--s-7);
   background: transparent; border-block: 0;
 }
+/* NO PLATE UNDER THE CARDS. This rule used to paint a translucent gradient and
+   a blur under each route, and a translucent plate is still a plate — it ended
+   the picture behind every label. The routes stand on the film itself.
+   Legibility is the hero's own ramp, which runs to .92 exactly where this band
+   sits, so the type is on a dark ground belonging to the frame rather than to
+   a box drawn over it. Ratios in the report. */
 .pm6 .route {
-  background: linear-gradient(180deg,
-    rgba(22, 32, 44, 0.72) 0%, rgba(16, 24, 32, 0.78) 62%, rgba(12, 18, 25, 0.82) 100%);
-  backdrop-filter: blur(14px) saturate(115%);
-  -webkit-backdrop-filter: blur(14px) saturate(115%);
-  border-color: rgba(232, 235, 237, 0.20);
+  background: none;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  border: 0;
 }
 /* the hero's own block keeps clear of them */
 /* the TOP is a hard floor at the header's height — the fluid clamp was
@@ -2325,8 +2339,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
 .pm6 .hero .g12 { padding-top: calc(var(--hdr-h) + var(--s-5));
                   padding-bottom: calc(var(--routes-h) + var(--s-7) + var(--s-6)); }
 @media (prefers-reduced-motion: reduce) {
-  .pm6 .route { backdrop-filter: none; -webkit-backdrop-filter: none;
-                background: linear-gradient(180deg, #16202C 0%, #101820 62%, #0C1219 100%); }
+  .pm6 .route { backdrop-filter: none; -webkit-backdrop-filter: none; background: none; }
 }
 
 /* ---- the interstitial statement arrives as a staircase ------------------
