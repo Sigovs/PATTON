@@ -1046,6 +1046,102 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 
 /* ═══════════════════════════════════════════════════════ TESTIMONIALS */
 
+/* ---- 9 · MOTORS & MOMENTS -------------------------------------------
+   Four short records on the dark ground, continuing the room rather than
+   arriving as a news module. The card is the page's existing card — frame on
+   top, a mono key, a display line, one sentence — at a smaller scale, so this
+   section joins the language instead of adding to it.
+
+   The paragraph reserves two lines the way the route cards do, so the four
+   read as one row and the links sit on one baseline. */
+.pulse { background: var(--ground); padding-block: var(--s-10) var(--s-9); }
+.pulse__head { grid-column: 1 / span 7; }
+/* no eyebrow here — the heading is the whole opening, so it carries no
+   top margin to sit under */
+.pulse__head .head { font-size: var(--t-big); }
+.pulse__lead { grid-column: 8 / span 5; align-self: end; color: var(--bone-78); }
+
+.pulse__grid {
+  grid-column: 1 / -1; margin-top: var(--s-9);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--col-gap);
+}
+
+.note { display: grid; align-content: start; color: var(--bone); }
+.note__fig { overflow: hidden; border-radius: var(--r-box); background: #1A1416;
+             position: relative; }
+.note__fig img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+  transition: transform var(--d-3) var(--ease);
+}
+/* The four frames sit under the section's own ink, so they are held down and
+   lift when you point at one. A separate layer rather than a filter on the
+   image: filter would rasterise the scale as well and cost frames, and this
+   way the darkening and the zoom are two properties that can be tuned apart.
+   The ground colour is the page's own, so the frames read as recessed into
+   the section rather than tinted by something foreign. */
+.note__fig::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: rgba(18, 14, 15, .46);
+  transition: opacity var(--d-2) var(--ease);
+}
+.note:hover .note__fig img, .note:focus-visible .note__fig img { transform: scale(1.045); }
+.note:hover .note__fig::after, .note:focus-visible .note__fig::after { opacity: 0; }
+.note__k {
+  margin-top: var(--sp-media-title);
+  font-size: var(--t-micro); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold);
+}
+.note__h {
+  margin-top: var(--sp-eyebrow-title);
+  /* Smaller than a card title elsewhere on the page: these four are notes, not
+     lots, and at --t-mid they were competing with the inventory. */
+  font-size: clamp(18px, 1.35vw, 21px); line-height: 1.14;
+  transition: color var(--d-2) var(--ease);
+  /* Two lines held. Three of these titles wrap and one does not, and measured
+     on the render that put one card's link 26px above the other three. The
+     same reservation the route cards use, for the same reason. */
+  min-height: 2.28em; min-height: 2lh;
+}
+.pm7 .note__p {
+  margin-top: var(--sp-title-meta);
+  /* 14px and dimmer — these are notes under a title, and they should read as
+     the quiet layer. --bone-56 is the dimmest ink on this page and it is the
+     floor rather than a taste value: measured 5.7:1 on --ground, against the
+     4.5 that 14px requires. Below this the text stops being readable, so this
+     is as transparent as it goes. */
+  /* 14px explicitly, not --t-micro: that token is 15 on this page and Alex
+     asked for 14, which is the floor and still legal. Scoped .pm7 because the
+     element-level colour reset outranks a bare class — the same trap that has
+     now caught the heading colour, the heading family and this. */
+  color: var(--bone-56); font-size: 14px; line-height: 1.5;
+  min-height: 4.5em; min-height: 3lh;    /* three lines held, so the four
+                                            links land on one baseline */
+}
+.note__go {
+  margin-top: var(--sp-title-body);
+  display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px;
+  font-size: var(--t-micro); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--bone-78);
+  transition: color var(--d-1) var(--ease);
+}
+.note:hover .note__go, .note:focus-visible .note__go { color: var(--gold); }
+
+/* ---- IN THEIR WORDS — the blue field returns, on the RIGHT -------------
+   The same treatment as Why Patton and deliberately the same family: three
+   overlapping radials at different radii so the edge never resolves into a
+   circle, dirty dark blue, static, behind nothing that is read at length.
+   Mirrored to the right-hand side so the page's two blue fields sit on
+   opposite flanks rather than stacking down one edge — the third appearance
+   of a device is where it either becomes a system or becomes wallpaper, and
+   alternating the side is what makes it the first. */
+.says { position: relative; isolation: isolate; }
+.says::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(42% 46% at 96% 26%,  rgba(46, 66, 92, .26) 0%, rgba(46, 66, 92, 0) 74%),
+    radial-gradient(28% 52% at 82% 62%,  rgba(38, 54, 78, .22) 0%, rgba(38, 54, 78, 0) 76%),
+    radial-gradient(54% 28% at 104% 86%, rgba(30, 44, 66, .20) 0%, rgba(30, 44, 66, 0) 70%);
+}
 .says { padding-block: var(--s-10) var(--s-8); }
 .says__head { grid-column: 1 / span 8; }
 .says__head .head { font-size: var(--t-big); margin-top: var(--sp-eyebrow-title); }
