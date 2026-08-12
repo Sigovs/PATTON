@@ -2191,13 +2191,35 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
    over the film's brightest region. */
 /* height, not min-height: "full screen at any size" has to be a ceiling as
    well as a floor, or tall content simply pushes past the fold again */
-.pm6 .hero { height: 100svh; min-height: 0; overflow: hidden; }
+/* align-items: START, not center. Centring a block whose padding already
+   reserves the header above it and the cards below it means any overflow is
+   split between the two — and the half that goes up lands behind the
+   wordmark. Anchored to the top, the eyebrow is always exactly one header
+   plus 24px down, at every height, and the reserve below still holds the
+   block off the cards. */
+/* THE OVERLAY IS BACKED OUT, and the reason is worth keeping.
+
+   The cards were pulled up over the film with a negative margin. The hero's
+   own block reserved space for them with a padding calculation, and the two
+   positions were derived from different arithmetic — so on 780–900px
+   viewports the headline and the cards overlapped by 14–134px while both
+   "fitted" by their own reckoning. Two sources of truth for one boundary.
+
+   The film still takes the screen it is given; the cards close it directly
+   underneath, which is the arrangement that measured clean at six heights.
+   Re-doing the overlay properly means putting the band inside the hero as an
+   absolutely-positioned child so there is only one number — worth doing, but
+   not worth guessing at. */
+.pm6 .hero { height: calc(100svh - var(--routes-h)); min-height: 0;
+             overflow: hidden; align-items: center;
+             /* the SECTION carries the header clearance, so the flex box the
+                block is centred in begins BELOW the bar. Clearance and true
+                centring stop competing: one is structure, the other is
+                alignment inside what the structure left. */
+             padding-top: var(--hdr-h); }
 .pm6 .routes {
   position: relative; z-index: 3;
-  /* lifted clear of the film's bottom edge — the band sat flush on it and
-     read as a sill rather than as something laid over the picture */
-  margin-top: calc((var(--routes-h) + var(--s-7)) * -1);
-  margin-bottom: var(--s-7);
+  margin-top: 0;
   background: transparent; border-block: 0;
 }
 .pm6 .route {
@@ -2208,7 +2230,14 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
   border-color: rgba(232, 235, 237, 0.20);
 }
 /* the hero's own block keeps clear of them */
-.pm6 .hero .g12 { padding-bottom: calc(var(--routes-h) + var(--s-7) + clamp(var(--s-3), 5svh, var(--hdr-h))); }
+/* the TOP is a hard floor at the header's height — the fluid clamp was
+   allowed to fall to 12px, and the eyebrow ended up behind the wordmark.
+   Only the bottom stays fluid, so the block still centres in whatever space
+   the header and the cards leave it. */
+/* symmetric and equal to the header: the centring is true, and the top can
+   never fall behind the wordmark. Both requirements at once, which was only
+   possible once the cards stopped being overlaid. */
+.pm6 .hero .g12 { padding-block: var(--s-6); }
 @media (prefers-reduced-motion: reduce) {
   .pm6 .route { backdrop-filter: none; -webkit-backdrop-filter: none;
                 background: linear-gradient(180deg, #16202C 0%, #101820 62%, #0C1219 100%); }
@@ -2336,4 +2365,11 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
   transition-delay: 0ms;
   transition: background-color var(--dur-ui) var(--ease-out),
               border-color     var(--dur-ui) var(--ease-out);
+}
+
+/* Below ~820px of viewport the hero's own words need more room than
+   100svh minus the card band leaves them, and text integrity outranks the
+   fold: the film grows to fit and the cards follow underneath. */
+@media (max-height: 820px) {
+  .pm6 .hero { height: auto; min-height: 0; }
 }
