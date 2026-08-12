@@ -531,10 +531,18 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
    export or a vector carrying COLLECTION ever exists, this is the one number
    to change. */
 .hdr__logo { width: 140px; height: auto; display: block; }
+/* nav 4–7, meta 8–12. They used to be 4–9 and 9–12, sharing column 9, and a
+   grid with two items in one cell wraps: the place and the telephone dropped
+   to a second row and the bar grew to hold them. Same bug as v6, same fix. */
 .hdr__nav {
-  grid-column: 4 / span 6;
-  display: flex; gap: clamp(18px, 2.3vw, 40px); justify-content: center;
+  grid-column: 4 / span 5;
+  display: flex; gap: clamp(12px, 1.25vw, 22px); justify-content: center;
 }
+/* Never wrap a nav item. "The room" broke across two lines the moment the
+   column narrowed, and a two-line item in a one-line bar is what grows the
+   bar. If the row ever genuinely runs out of width the breakpoint below takes
+   the words away, which is a decision — a wrap is not. */
+.hdr__nav a { white-space: nowrap; }
 .hdr__nav a {
   font-size: var(--t-micro); font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -550,15 +558,10 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 .hdr__meta { grid-column: 9 / span 4; justify-self: end;
              display: flex; align-items: center; gap: var(--s-5); }
 .hdr__tel { min-height: 50px; padding-block: 13px; }
-.hdr__pin {
-  display: inline-flex; align-items: center; gap: var(--s-2);
-  min-height: 44px;                                   /* tap target */
-  font-size: var(--t-micro); font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--bone-78);
-  white-space: nowrap;
-  transition: color var(--d-1) var(--ease);
-}
-.hdr__pin:hover, .hdr__pin:focus-visible { color: var(--bone); }
+/* The place is set exactly as the telephone is — same ghost control, same
+   height, same padding. They are a pair: how to reach them and where they are,
+   and a pair that looks like two different things is not read as one. */
+.hdr__pin { min-height: 50px; padding-block: 13px; white-space: nowrap; }
 /* Same set, same stroke, same 17px as the telephone — one icon family on the
    page, which is what stops two glyphs reading as two systems. */
 .ico-pin {
