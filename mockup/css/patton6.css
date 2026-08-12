@@ -705,7 +705,10 @@
 .route:hover .route__go, .route:focus-visible .route__go {
   color: var(--bone); transform: translateX(6px);
 }
-.route__m { color: var(--bone-46); }
+/* Two lines reserved, for the same reason as v7: the four route labels wrap
+   unevenly, and a row of cards whose baselines disagree reads as four things
+   rather than one set. In `lh` so it tracks the line-height. */
+.route__m { color: var(--bone-46); min-height: 2.8em; min-height: 2lh; }
 .live { color: inherit; display: inline-flex; align-items: center; gap: var(--sp-pill-text); }
 .dot  { width: 7px; height: 7px; border-radius: 50%; background: var(--live); flex: 0 0 auto; }
 

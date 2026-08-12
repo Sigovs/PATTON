@@ -881,6 +881,15 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 .rc__s {
   grid-column: 1; margin-top: var(--s-3);
   font-size: var(--t-body); line-height: 1.4; color: rgba(242,239,236,.88);
+  /* TWO LINES ARE RESERVED whether or not the copy needs them. Three of the
+     four routes wrap and "Buy" does not, so the panels came out different
+     heights and the four titles sat on different lines — a row of cards whose
+     baselines disagree reads as four separate things rather than one set.
+     The reservation is in `lh`, so it follows the line-height rather than
+     restating it as a pixel value that would drift the moment the type moves.
+     `em` fallback first for engines without `lh`. */
+  min-height: 2.8em;
+  min-height: 2lh;
 }
 .go--box {
   grid-column: 2; grid-row: 1 / span 2;
