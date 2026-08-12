@@ -40,7 +40,7 @@
      is the whole stylesheet.
 <link rel="stylesheet" href="assets/css/style.css"> -->
 
-<link rel="stylesheet" href="css/patton6.css?v=6">
+<link rel="stylesheet" href="css/patton6.css?v=9">
 
 </head>
 
@@ -78,10 +78,16 @@
 
     <!-- the glyph accompanies the number, it never replaces it: the digits
          stay the carrier of meaning (typography I9) -->
+    <div class="pm-hdr__meta">
+    <a class="pm-hdr__pin mono" href="#why">
+      <svg class="pm-hdr__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      <span>Pompano&nbsp;Beach</span>
+    </a>
     <a class="pm-hdr__tel mono" href="tel:+16305500741">
       <svg class="pm-hdr__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z"/></svg>
       <span>630&#8201;550&#8201;0741</span>
     </a>
+    </div>
 
   </div>
 
@@ -130,7 +136,15 @@
       </h1>
       <p class="hero__sub hstep">Forty collector cars on the floor in Pompano Beach,
         and four on the block this week.</p>
-      <a class="cta hstep" href="#floor">See the floor <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+      <div class="btnrow hstep">
+        <a class="cta" href="#floor">See the floor <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+        <!-- The credential sits with the action: exclusive United States dealer
+             for S-Klub is a reason to press the button, not a badge strip. -->
+        <span class="klub">
+          <img src="assets/logo/sklub.png" alt="S-KLUB.LA" width="150" height="65">
+          <span class="klub__k">Exclusive US dealer</span>
+        </span>
+      </div>
     </div>
 
   </div>

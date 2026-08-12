@@ -543,7 +543,30 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
   transition: color var(--d-1) var(--ease);
 }
 .hdr__nav a:hover, .hdr__nav a:focus-visible { color: var(--bone); }
-.hdr__tel { grid-column: 10 / span 3; justify-self: end; min-height: 50px; padding-block: 13px; }
+/* The telephone and the place travel together: one is how you reach them, the
+   other is where they are, and a visitor deciding to drive over wants both in
+   the same glance. The pin is a plain link, not a second button — two buttons
+   in a header is two primary actions. */
+.hdr__meta { grid-column: 9 / span 4; justify-self: end;
+             display: flex; align-items: center; gap: var(--s-5); }
+.hdr__tel { min-height: 50px; padding-block: 13px; }
+.hdr__pin {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  min-height: 44px;                                   /* tap target */
+  font-size: var(--t-micro); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--bone-78);
+  white-space: nowrap;
+  transition: color var(--d-1) var(--ease);
+}
+.hdr__pin:hover, .hdr__pin:focus-visible { color: var(--bone); }
+/* Same set, same stroke, same 17px as the telephone — one icon family on the
+   page, which is what stops two glyphs reading as two systems. */
+.ico-pin {
+  width: 17px; height: 17px; flex: none; display: inline-block;
+  background: currentColor;
+  -webkit-mask: no-repeat center/17px 17px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+          mask: no-repeat center/17px 17px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+}
 
 [id] { scroll-margin-top: 100px; }       /* the sticky mass, honoured */
 
@@ -1046,6 +1069,35 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 
 /* ═══════════════════════════════════════════════════════ TESTIMONIALS */
 
+
+/* ---- THE S-KLUB CREDENTIAL, beside the actions ------------------------
+   A mark this loud — red ribbon, white type — cannot sit next to a gold
+   button at full strength without becoming the second thing the eye goes to,
+   and the first thing has a clock on it. So it is held at .82 and lifts to
+   full on hover of the row, which is the same behaviour the four note frames
+   use: present, subordinate, and awake when you point at it.
+
+   A hairline separates it from the buttons, because it is not one — it is a
+   fact about who sells these cars, and the rule is what says so. It wraps
+   below the buttons before it ever squeezes them. */
+.klub {
+  display: inline-flex; align-items: center; gap: var(--s-3);
+  padding-left: var(--s-5); margin-left: var(--s-2);
+  border-left: 1px solid var(--rule);
+}
+.klub img {
+  width: 150px; height: auto; display: block;
+  opacity: .82; transition: opacity var(--d-2) var(--ease);
+}
+.btnrow:hover .klub img, .klub:hover img { opacity: 1; }
+.klub__k {
+  font-size: var(--t-micro); font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--bone-56); white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .klub { padding-left: 0; margin-left: 0; border-left: 0; width: 100%; }
+}
+
 /* ---- 9 · MOTORS & MOMENTS -------------------------------------------
    Four short records on the dark ground, continuing the room rather than
    arriving as a news module. The card is the page's existing card — frame on
@@ -1410,7 +1462,8 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 @media (max-width: 1180px) {
   :root { --page: 92vw; }
   .hdr__nav { grid-column: 4 / span 5; gap: 14px; }
-  .hdr__tel { grid-column: 9 / span 4; }
+  .hdr__meta { grid-column: 9 / span 4; gap: var(--s-4); }
+  .hdr__pin span { display: none; }   /* the pin keeps its target, loses its word */
   .claim__say { grid-column: 1 / span 7; }
   .steps { grid-column: 8 / span 5; }
   .auct__info { grid-column: 1 / span 5; }
@@ -1432,7 +1485,8 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
   .hdr__nav { display: none; }             /* U12: every route it held is
                                               repeated in the hero strip, the
                                               route cards and the footer */
-  .hdr__tel { grid-column: 9 / span 4; }
+  .hdr__meta { grid-column: 9 / span 4; gap: var(--s-4); }
+  .hdr__pin span { display: none; }   /* the pin keeps its target, loses its word */
   [id] { scroll-margin-top: 76px; }
 
   .hero > .g12 { padding-block: 116px var(--s-8); min-height: 78vh; }

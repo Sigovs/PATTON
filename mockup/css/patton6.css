@@ -505,7 +505,9 @@
    one over-sizes the other. Held at 140px, which is a downscale from the
    source and therefore sharp, rather than the 172 the wide wordmark used. */
 .pm6 .pm-hdr__brand img { width: 140px; height: auto; }
-.pm6 .pm-nav { grid-column: 3 / span 8; display: flex; gap: var(--s-7); justify-content: flex-end; }
+/* tighter: at 48px the five items read as five separate places rather than one
+   set, and the row is a set */
+.pm6 .pm-nav { grid-column: 3 / span 6; display: flex; gap: var(--s-6); justify-content: flex-end; }
 .pm6 .pm-nav a {
   color: var(--bone-72); font-family: var(--f);
   font-size: var(--t-body); font-weight: 500;
@@ -518,7 +520,11 @@
 .pm6 .pm-nav a:hover, .pm6 .pm-nav a:focus-visible { color: var(--bone); border-bottom-color: var(--rule-hi); }
 /* the telephone is a peer of the nav, not a footnote to it, so it takes the
    same step — and keeps tabular figures so the number reads as a number */
-.pm6 .pm-hdr__tel { grid-column: 11 / span 2; justify-self: end; color: var(--bone-72);
+/* The place and the telephone are one group in one cell, or the header becomes
+   two rows the moment a second item is added to a fixed twelve. */
+.pm6 .pm-hdr__meta { grid-column: 9 / span 4; justify-self: end;
+                     display: flex; align-items: center; gap: var(--s-5); }
+.pm6 .pm-hdr__tel { color: var(--bone-72);
                     font-size: var(--t-body); font-variant-numeric: tabular-nums;
                     display: inline-flex; align-items: center; min-height: 44px;   /* tap target */
                     transition: color var(--d-1) var(--ease); }
@@ -678,6 +684,36 @@
    they had without a panel being drawn to give it to them. Each card keeps its
    own translucent plate, which is what separates it from the film; the section
    behind them carries nothing. */
+.btnrow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-group); }
+
+/* ---- THE S-KLUB CREDENTIAL, beside the actions ------------------------
+   A mark this loud — red ribbon, white type — cannot sit next to a gold
+   button at full strength without becoming the second thing the eye goes to,
+   and the first thing has a clock on it. So it is held at .82 and lifts to
+   full on hover of the row, which is the same behaviour the four note frames
+   use: present, subordinate, and awake when you point at it.
+
+   A hairline separates it from the buttons, because it is not one — it is a
+   fact about who sells these cars, and the rule is what says so. It wraps
+   below the buttons before it ever squeezes them. */
+.klub {
+  display: inline-flex; align-items: center; gap: var(--s-3);
+  padding-left: var(--s-5); margin-left: var(--s-2);
+  border-left: 1px solid var(--rule);
+}
+.klub img {
+  width: 150px; height: auto; display: block;
+  opacity: .82; transition: opacity var(--d-2) var(--ease);
+}
+.btnrow:hover .klub img, .klub:hover img { opacity: 1; }
+.klub__k {
+  font-size: var(--t-micro); font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--bone-46); white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .klub { padding-left: 0; margin-left: 0; border-left: 0; width: 100%; }
+}
+
 .routes {
   position: relative; z-index: 2;
   margin-top: calc(clamp(96px, 12vh, 168px) * -1);
@@ -1563,7 +1599,7 @@
   :root { --page: 92vw; }
   .pm6 .pm-nav { display: none; }
   .pm6 .pm-hdr__brand { grid-column: 1 / span 6; }
-  .pm6 .pm-hdr__tel { grid-column: 7 / span 6; }
+  .pm6 .pm-hdr__meta { grid-column: 7 / span 6; }
 
   .hero__in, .room__in,
   .block__info, .block__fig, .rank, .lot,
@@ -2430,4 +2466,23 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
   .pm6 .hero { height: auto; min-height: 0; }
   .pm6 .routes { margin-top: 0; margin-bottom: 0; }
   .pm6 .hero .g12 { padding-bottom: var(--s-8); }
+}
+
+
+/* ---- the place travels with the telephone ------------------------------
+   One is how you reach them, the other is where they are, and a visitor
+   deciding to drive over wants both in one glance. A plain link, not a second
+   control — the same icon geometry as the telephone beside it, so the header
+   carries one icon family rather than two. */
+.pm6 .pm-hdr__pin {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  min-height: 44px;                                  /* tap target */
+  color: var(--bone-72); white-space: nowrap;
+  transition: color var(--d-1) var(--ease);
+}
+.pm6 .pm-hdr__pin:hover, .pm6 .pm-hdr__pin:focus-visible { color: var(--bone); }
+.pm6 .pm-hdr__pin .pm-hdr__ico { fill: none; stroke: currentColor; stroke-width: 1.8;
+                                 stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 991.98px) {
+  .pm6 .pm-hdr__pin span { display: none; }
 }
