@@ -1716,7 +1716,7 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 
 /* ---- 17 · THE STEPPED FRAMES: photo 2 moves left, and they zoom -------- */
 .step--b { grid-column: 2 / span 4; }
-.m-wide .step:hover img { --pz: 1.24; }
+/* (the --pz hover was dead: an inline transform on the image wins) */
 .step img { transition: transform var(--d-3) var(--ease); }
 .m-on:not(.m-wide) .step:hover img { transform: scale(1.05); }
 
@@ -1891,4 +1891,15 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
               transform var(--d-3) var(--ease),
               box-shadow var(--d-2) var(--ease),
               opacity var(--d-2) var(--ease);
+}
+
+/* ---- 25 · STEPPED FRAME HOVER ZOOM, ON THE FRAME ----------------------
+   The image carries an inline transform from the parallax, so a scale on the
+   image cannot win. The frame takes the zoom instead — no layout shift, and
+   the caption travels with its picture. `.out` still owns the exit, and the
+   two never apply at once. */
+.m-wide .step:hover { transform: scale(1.018); z-index: 4; }
+.m-wide .step.out:hover { transform: translate3d(0, -70px, 0); }
+@media (prefers-reduced-motion: reduce) {
+  .pm7 .step:hover { transform: none !important; }
 }

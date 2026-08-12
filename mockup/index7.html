@@ -873,7 +873,7 @@
   function stop() {
     document.body.classList.remove('m-on', 'm-wide');
     if (io) { io.disconnect(); io = null; }
-    px.forEach(function (o) { o.el.style.removeProperty('--py'); });
+    px.forEach(function (o) { o.el.style.transform = ''; });
     px = [];
   }
 
@@ -895,10 +895,12 @@
 
     if (!mqW.matches) return;
 
-    /* Parallax: the image is 114% of its box and starts 7% high, so ±7% of
-       travel is always inside the frame wherever the scroll stops — an edge is
-       never exposed. Read in one batch, written in one batch, inside a single
-       rAF, so this cannot thrash layout. */
+    /* Parallax: the image is 116% of its box and travels ±6%, so the 8%
+       overhang on each side always covers the frame and an edge is never
+       exposed. Only the TRAVEL is written here, as --py; the scale stays in
+       CSS as --pz, so the hover zoom on the stepped frames can change it
+       without fighting an inline style. Read in one batch, written in one
+       batch, inside a single rAF, so this cannot thrash layout. */
     /* The stepped frames leave upward once they have passed the top of the
        viewport, in the same order they arrived. Read in the same rAF as the
        parallax, so this adds no second scroll listener. */
@@ -924,7 +926,11 @@
           var r = reads[i];
           if (r.bottom < -240 || r.top > vh + 240) return;
           var p = (r.top + r.height / 2 - vh / 2) / vh;      /* -1 … 1 */
-          o.el.style.transform = 'translate3d(0,' + (p * -7).toFixed(2) + '%,0) scale(1.14)';
+          /* The inline transform carries the travel and REFERENCES --pz for the
+             scale, so hovering a stepped frame can still zoom it. Writing a
+             plain scale here is what silently killed that hover for a while. */
+          o.el.style.transform =
+            'translate3d(0,' + (p * -6).toFixed(2) + '%,0) scale(var(--pz, 1.16))';
         });
       });
     };
