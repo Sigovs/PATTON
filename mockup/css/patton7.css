@@ -839,6 +839,19 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
   padding-top: var(--s-4);
   border-top: 1px solid var(--rule-lt);
   display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+  flex-wrap: nowrap;
+}
+/* MEASURED: the foot is 302px and the link takes 150, so a price chip has
+   about 140 to live in. "$475,000" is 142 and fits; "Price on request" was 199
+   and "The collection" 179, and both pushed the link off the card and onto a
+   second line. The words are shortened — but a label is content and content
+   changes, so the geometry is made safe as well: the link can never be
+   compressed or displaced, and a chip that outgrows its room truncates inside
+   itself instead of moving anything. */
+.car__foot > * { min-width: 0; }
+.car__foot .txtlink { flex: 0 0 auto; }
+.car__foot .pill {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .price {
   font-family: var(--f-disp); font-variation-settings: "wdth" 108, "wght" 600;
