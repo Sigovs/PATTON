@@ -1137,10 +1137,17 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 .says { position: relative; isolation: isolate; }
 .says::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  /* Pushed DOWN the section and given a twin on the opposite flank, so the
+     field sits under the quotes rather than beside the heading and the section
+     is held from both sides. Six radials, no two the same radius or centre —
+     the edge never resolves into a circle on either side. */
   background:
-    radial-gradient(42% 46% at 96% 26%,  rgba(46, 66, 92, .26) 0%, rgba(46, 66, 92, 0) 74%),
-    radial-gradient(28% 52% at 82% 62%,  rgba(38, 54, 78, .22) 0%, rgba(38, 54, 78, 0) 76%),
-    radial-gradient(54% 28% at 104% 86%, rgba(30, 44, 66, .20) 0%, rgba(30, 44, 66, 0) 70%);
+    radial-gradient(40% 40% at 98% 62%,  rgba(46, 66, 92, .26) 0%, rgba(46, 66, 92, 0) 74%),
+    radial-gradient(26% 46% at 86% 84%,  rgba(38, 54, 78, .22) 0%, rgba(38, 54, 78, 0) 76%),
+    radial-gradient(52% 26% at 106% 98%, rgba(30, 44, 66, .20) 0%, rgba(30, 44, 66, 0) 70%),
+    radial-gradient(38% 38% at 2% 70%,   rgba(46, 66, 92, .24) 0%, rgba(46, 66, 92, 0) 74%),
+    radial-gradient(24% 44% at 14% 90%,  rgba(38, 54, 78, .20) 0%, rgba(38, 54, 78, 0) 76%),
+    radial-gradient(50% 24% at -6% 104%, rgba(30, 44, 66, .18) 0%, rgba(30, 44, 66, 0) 70%);
 }
 .says { padding-block: var(--s-10) var(--s-8); }
 .says__head { grid-column: 1 / span 8; }

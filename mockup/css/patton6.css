@@ -666,12 +666,29 @@
    each item gets the arrow the page's own controls use, travelling on hover
    and on focus. Statistics do not have arrows. */
 
-.routes { border-block: 1px solid var(--rule); background: var(--ink-2); }
+/* THE CARDS STAND ON THE FILM. The hero is a full screen and the routes used
+   to begin below it on their own dark panel, which meant the film stopped, a
+   band of section ground started, and the four cards sat on the band rather
+   than on the picture. The panel was doing nothing except ending the film
+   early.
+
+   The band is pulled up over the foot of the hero and its ground removed, so
+   the cards land on the frame itself. The hero's ramp already darkens exactly
+   that region — it runs to .92 at the bottom — so the labels keep the contrast
+   they had without a panel being drawn to give it to them. Each card keeps its
+   own translucent plate, which is what separates it from the film; the section
+   behind them carries nothing. */
+.routes {
+  position: relative; z-index: 2;
+  margin-top: calc(clamp(96px, 12vh, 168px) * -1);
+  border-block: 0;
+  background: transparent;
+}
+.routes .g12 { gap: var(--col-gap); }
 .route {
   grid-column: span 3;
   display: grid; align-content: start;
   padding: var(--s-6) var(--s-5);
-  border-left: 1px solid var(--rule);
   color: var(--bone);
   transition: background-color var(--d-1) var(--ease);
 }
@@ -726,6 +743,22 @@
    and it exists to make the vehicle dominate rather than to be interesting. */
 
 .block { background: var(--ink); padding-block: var(--s-10) var(--s-9); }
+
+/* ---- the auction card gets the irregular blue field, from the LEFT --------
+   The same treatment the page already uses elsewhere and deliberately the same
+   family: three overlapping radials at different radii and different centres,
+   so the edge never resolves into a circle. Dirty dark blue, static, and
+   behind data rather than behind prose — the plate reads over it because the
+   field never rises above .28. */
+.block__head, .auct, .block__grid { position: relative; }
+.block__grid::before, .auct::before {
+  content: ""; position: absolute; inset: -8% -4% -8% -12%; z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(44% 42% at 4% 26%,  rgba(46, 66, 92, .28) 0%, rgba(46, 66, 92, 0) 72%),
+    radial-gradient(28% 54% at 18% 60%, rgba(38, 54, 78, .22) 0%, rgba(38, 54, 78, 0) 74%),
+    radial-gradient(56% 30% at -6% 88%, rgba(30, 44, 66, .20) 0%, rgba(30, 44, 66, 0) 68%);
+}
 .block .g12 { row-gap: var(--s-9); align-items: start; }
 
 .block__info { grid-column: 1 / span 4; display: block; }
@@ -2114,7 +2147,13 @@
 .pm6 .routes .g12 { gap: var(--col-gap); padding-block: var(--s-6); }
 .pm6 .route {
   grid-column: span 3;
-  background: linear-gradient(180deg, #16202C 0%, #101820 62%, #0C1219 100%);
+  /* The cards now sit ON the film, so the plate is translucent and blurred
+     rather than an opaque slab: the frame has to stay visible through it or
+     they are back to standing on a panel. Same two stops as before, carried
+     to alpha, so the card keeps the vertical fall it had. */
+  background: linear-gradient(180deg, rgba(22,32,44,.72) 0%, rgba(16,24,32,.66) 62%,
+                                      rgba(12,18,25,.62) 100%);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border: 1px solid var(--rule);
   border-left: 1px solid var(--rule);
   border-radius: var(--r-media);
