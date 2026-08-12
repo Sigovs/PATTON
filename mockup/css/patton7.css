@@ -1869,3 +1869,26 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) {
   .pm7 .strip > div:hover { transform: none !important; }
 }
+
+/* ---- 24 · THE HERO FACT CARDS ARRIVE FROM BELOW, IN ORDER -------------
+   A staircase: each card follows the one before it, after the paragraph and
+   the buttons have landed. The last thing the first screen does. */
+.m-on .strip > div {
+  opacity: 0;
+  transform: translate3d(0, 38px, 0);
+}
+.m-on .strip.in > div { opacity: 1; transform: none; }
+.m-on .strip.in > div:nth-child(1) { transition-delay: 560ms; }
+.m-on .strip.in > div:nth-child(2) { transition-delay: 650ms; }
+.m-on .strip.in > div:nth-child(3) { transition-delay: 740ms; }
+.m-on .strip.in > div:nth-child(4) { transition-delay: 830ms; }
+/* once they have arrived, the delay must not come back on hover */
+.m-on .strip.in > div:hover { transition-delay: 0ms; }
+/* opacity joins the transition list, or the cards travel without fading */
+.strip > div {
+  transition: background-color var(--d-2) var(--ease),
+              border-color var(--d-2) var(--ease),
+              transform var(--d-3) var(--ease),
+              box-shadow var(--d-2) var(--ease),
+              opacity var(--d-2) var(--ease);
+}
