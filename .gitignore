@@ -9,7 +9,10 @@ node_modules/
 # git — the mockup references assets/video/hero_large.mp4 locally.
 HERO VIDEO/
 patton old files videos/
-mockup/assets/video/
+# The encoded hero film IS committed — 25MB, and without it the GitHub Pages
+# preview opens on a black hero. Everything else under video/ stays out.
+mockup/assets/video/*
+!mockup/assets/video/hero_large.mp4
 
 # A copy of the installed aan-dealer-mockups skill, not project source.
 mockup/aan-dealer-mockups/
