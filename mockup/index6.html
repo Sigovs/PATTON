@@ -818,6 +818,14 @@
     };
     set();
     window.addEventListener('resize', set, { passive: true });
+    /* AND after everything has actually painted. The header's height is the
+       wordmark's height, so measuring it before that SVG has loaded returns a
+       short bar — which is why the hero cleared the header locally, off a warm
+       cache, and collided with it on the live page. Three more triggers, all
+       cheap, and the token is right whenever the answer changes. */
+    window.addEventListener('load', set);
+    var mark0 = document.querySelector('.pm-hdr__brand img');
+    if (mark0) { if (mark0.complete) set(); else mark0.addEventListener('load', set); }
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(set);
   })();
 
