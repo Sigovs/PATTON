@@ -1,0 +1,6 @@
+- [Patton Motors redesign](patton-motors-redesign.md) — copy in index.html, redesign work in index3.html, and what state each file is in
+- [Patton is three pillars](patton-three-pillars.md) — dealer, auction house and a lounge; "a bohemian car place" and the facts the homepage never uses
+- [Vault: the automotive hero register](patton-vault-hero-register.md) — open the shots and EVIDENCE.md, and what the six approved automotive heroes all do
+- [Patton live tokens & API](patton-motors-live-tokens.md) — measured palette, type, spacing, and the open /api/cars inventory feed
+- [Copy first, then redesign](alex-copy-then-redesign.md) — what Alex means by "повторяем", and how he scopes work
+- [AAN dealer-mockups skill](aan-dealer-mockups-skill.md) — Ivaylo's skill, where it hid, and the stack it locks
