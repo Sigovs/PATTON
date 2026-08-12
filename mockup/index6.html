@@ -1,568 +1,907 @@
-<!DOCTYPE html>
-<html lang="en-US" class="no-js">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<title>Patton Motors — Collector Cars and Auctions | Pompano Beach, Florida</title>
-
-<!-- v5. ONE 12-column master grid across the whole page. Content, palette,
-     type voices, motion language, hero film and vehicle photography all carried
-     from v4 unchanged — this pass rebuilds the layout, nothing else. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Oswald + Roboto Condensed — the pairing Alex's own builds use in seventeen
-     places, and the register of Vegas Auto Gallery: condensed grotesque, the
-     language of timing towers and auction catalogues. Actually LOADED, which
-     none of v4's or v5's three declared families ever were. -->
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="css/patton6.css?v=1">
-</head>
-
-<body class="home pm6">
-
-<a class="pm-skip" href="#main">Skip to content</a>
-
-<header id="header" class="pm-hdr">
-  <div class="g12">
-    <a class="pm-hdr__brand" href="/" aria-label="Patton Motors — home">
-      <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors" width="132">
-    </a>
-    <nav class="pm-nav" aria-label="Primary">
-      <a href="#block">Auctions</a>
-      <a href="#floor">Inventory</a>
-      <a href="#sell">Sell &amp; Consign</a>
-      <a href="#why">About</a>
-    </nav>
-    <a class="pm-hdr__tel mono" href="tel:+16305500741">630&#8201;550&#8201;0741</a>
-  </div>
-</header>
-
-<main id="main">
-
-<!-- ═══════════════════════════════════════════════════ 1 · hero — unchanged
-     Film, ramp, scale, copy and control are v4's exactly. The only change is
-     that the type block starts on column 1 of the master grid, because the
-     left axis has to begin where the visitor first looks. -->
-<section class="hero">
-  <video class="hero__film" muted playsinline loop autoplay preload="auto"
-         aria-label="A walk through the Patton Motors showroom, Pompano Beach">
-    <source src="assets/video/hero_large.mp4" type="video/mp4">
-  </video>
-  <div class="hero__ramp" aria-hidden="true"></div>
-
-  <div class="g12">
-    <div class="hero__in stack">
-      <p class="hero__brow mono">Pompano&nbsp;Beach, Florida</p>
-      <h1 class="hero__h disp" data-t><span>
-        <span data-rise><span>A bohemian</span></span>
-        <span data-rise><span>car place</span></span>
-      </span></h1>
-      <p class="hero__sub" data-p>Forty collector cars on the floor in Pompano Beach,
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<title>Patton Motors — Collector Cars and Auctions | Pompano Beach, Florida</title>
+
+<!-- v5. ONE 12-column master grid across the whole page. Content, palette,
+     type voices, motion language, hero film and vehicle photography all carried
+     from v4 unchanged — this pass rebuilds the layout, nothing else. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Oswald + Roboto Condensed — the pairing Alex's own builds use in seventeen
+     places, and the register of Vegas Auto Gallery: condensed grotesque, the
+     language of timing towers and auction catalogues. Actually LOADED, which
+     none of v4's or v5's three declared families ever were. -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- The AAN theme is OFF for now. Everything in patton6.css was written as an
+     override on it, and roughly a third of this build's bugs were the theme
+     winning a specificity contest nobody entered: p font-size, element
+     font-family, h1-h4 margins, the .stack component, the auction's grid
+     break, and finally a:hover in #082A52 at 1.37:1. With it out, this file
+     is the whole stylesheet.
+<link rel="stylesheet" href="assets/css/style.css"> -->
+<link rel="stylesheet" href="css/patton6.css?v=1">
+</head>
+
+<body class="home pm6">
+
+<a class="pm-skip" href="#main">Skip to content</a>
+
+<header id="header" class="pm-hdr">
+  <div class="g12">
+    <a class="pm-hdr__brand" href="/" aria-label="Patton Motors — home">
+      <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors" width="132">
+    </a>
+    <nav class="pm-nav" aria-label="Primary">
+      <a href="#block">Auctions</a>
+      <a href="#floor">Inventory</a>
+      <a href="#sell">Sell &amp; Consign</a>
+      <a href="#why">About</a>
+    </nav>
+    <!-- the glyph accompanies the number, it never replaces it: the digits
+         stay the carrier of meaning (typography I9) -->
+    <a class="pm-hdr__tel mono" href="tel:+16305500741">
+      <svg class="pm-hdr__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+      <span>630&#8201;550&#8201;0741</span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════════════════════════════════════════════ 1 · hero — unchanged
+     Film, ramp, scale, copy and control are v4's exactly. The only change is
+     that the type block starts on column 1 of the master grid, because the
+     left axis has to begin where the visitor first looks. -->
+<section class="hero">
+  <video class="hero__film" muted playsinline loop autoplay preload="auto"
+         aria-label="A walk through the Patton Motors showroom, Pompano Beach">
+    <source src="assets/video/hero_large.mp4" type="video/mp4">
+  </video>
+  <div class="hero__ramp" aria-hidden="true"></div>
+
+  <div class="g12">
+    <!-- THE PAGE'S ONE ENTRANCE. Five steps, all from the left, 90ms apart:
+         the label, each line of the headline, the sentence, the control. The
+         whole cascade finishes inside a second, which is the single entrance
+         motion-taste D4 allows a page. Everything is visible by default; the
+         start-states only exist once the controller confirms motion. -->
+    <div class="hero__in" data-hero>
+      <p class="hero__brow mono hstep">Pompano&nbsp;Beach, Florida</p>
+      <h1 class="hero__h disp">
+        <span class="hstep">A bohemian</span>
+        <span class="hstep">car place</span>
+      </h1>
+      <p class="hero__sub hstep">Forty collector cars on the floor in Pompano Beach,
         and four on the block this week.</p>
-      <a class="cta" href="#floor">See the floor <span class="cta__go" aria-hidden="true">&rarr;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════ 2 · routes — TIGHT, 3+3+3+3
-     The first beat is compression. Four doors of equal rank, three columns
-     each, so the auction below lands against something solid. -->
-<section class="routes">
-  <div class="g12" data-rows>
-    <a class="route" href="#block">
-      <span class="route__k mono">Auctions</span>
-      <span class="route__v live"><span class="dot" aria-hidden="true"></span>4 live now</span>
-      <span class="route__m mono tab">Closes Sunday 19:20</span>
-    </a>
-    <a class="route" href="#floor">
-      <span class="route__k mono">The floor</span>
-      <span class="route__v">40 cars</span>
-      <span class="route__m mono tab">1955&ndash;2025 &middot; 17 marques</span>
-    </a>
-    <a class="route" href="#sell">
-      <span class="route__k mono">Sell &amp; consign</span>
-      <span class="route__v">Submit a car</span>
-      <span class="route__m mono">Auction, consignment or an offer</span>
-    </a>
-    <a class="route" href="#room">
-      <span class="route__k mono">The room</span>
-      <span class="route__v">Open Saturday</span>
-      <span class="route__m mono tab">9&ndash;1 &middot; coffee, cars, conversation</span>
-    </a>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════ 3 · auctions — DENSE, 4 + 8
-     The page's compositional centre and the clearest statement of the grid.
-
-     FOUR columns carry everything needed to act, as one stack on one axis:
-     section title, lot state, bid plate, countdown, supporting copy. EIGHT
-     columns carry the vehicle, and it keeps going to the viewport edge — the
-     first of the page's two deliberate grid breaks, taken so the car
-     dominates. The three remaining lots form ONE row of four columns each. -->
-<section class="block" id="block" aria-labelledby="block-h">
-  <div class="g12">
-
-    <div class="block__info stack">
-      <div>
-        <p class="head__brow">On the block <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>4 lots live</span></p>
-        <h2 class="block__h head__h disp" id="block-h" data-t><span>Four lots, and a clock on each</span></h2>
-      </div>
-
-      <div class="block__lot">
-        <span class="block__state mono"><span class="dot" aria-hidden="true"></span>Live &middot; Lot 01 &middot; closes first</span>
-        <h3 class="block__name disp">1965 Ferrari 250&nbsp;GTO</h3>
-        <p class="block__spec mono">Coupe &middot; Rosso Corsa over Nero &middot; 4.0 V12</p>
-      </div>
-
-      <dl class="plate mono tab" data-rows>
-        <div><dt>Current bid</dt><dd>$612,000</dd></div>
-        <div><dt>Bids</dt><dd>24</dd></div>
-        <div><dt>Reserve</dt><dd>Met</dd></div>
-      </dl>
-
-      <p class="block__clock"><b class="tab" id="clock">2:14:08</b>
-        <span class="mono">until the first hammer</span></p>
-
-      <p class="lede" data-p>Bidding opens to registered buyers seven days before the
-        hammer. Lots close on Sunday evening, twenty minutes apart, and every car
-        on the block comes off the floor while it is running.</p>
-
-      <p class="sample mono"><b>Sample auction data.</b> Bids, bid counts and
-        closing times are placeholders while the auction is being built. The
-        vehicles, and everything stated about them, are real Patton stock.</p>
+      <a class="cta hstep" href="#floor">See the floor <span class="cta__go" aria-hidden="true">&rarr;</span></a>
     </div>
 
-    <figure class="block__fig" data-mask>
-      <img src="assets/img/car-52.jpg" alt="1965 Ferrari 250 GTO on the Patton Motors floor" loading="lazy">
-      <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
-    </figure>
-
-    <div class="rank">
-      <a class="lot" href="#block">
-        <figure class="lot__fig"><img src="assets/img/car-73.jpg" alt="1972 Lamborghini Miura P400 SV" loading="lazy">
-            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
-          </figure>
-        <p class="lot__k mono">Lot 02</p>
-        <h4 class="lot__h disp">1972 Lamborghini Miura P400&nbsp;SV</h4>
-        <dl class="plate mono tab">
-          <div><dt>Bid</dt><dd>$1,240,000 &middot; 31</dd></div>
-          <div><dt>Closes</dt><dd>Sun 19:40</dd></div>
-        </dl>
-      </a>
-      <a class="lot" href="#block">
-        <figure class="lot__fig"><img src="assets/img/car-79.jpg" alt="2024 Aston Martin Valour" loading="lazy">
-            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
-          </figure>
-        <p class="lot__k mono">Lot 03</p>
-        <h4 class="lot__h disp">2024 Aston Martin Valour</h4>
-        <dl class="plate mono tab">
-          <div><dt>Bid</dt><dd>$2,150,000 &middot; 12</dd></div>
-          <div><dt>Closes</dt><dd>Sun 20:00</dd></div>
-        </dl>
-      </a>
-      <a class="lot" href="#block">
-        <figure class="lot__fig"><img src="assets/img/car-41.jpg" alt="1955 Mercedes-Benz 300 SLR" loading="lazy">
-            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
-          </figure>
-        <p class="lot__k mono">Lot 04</p>
-        <h4 class="lot__h disp">1955 Mercedes-Benz 300&nbsp;SLR&nbsp;#658</h4>
-        <dl class="plate mono tab">
-          <div><dt>Bid</dt><dd>$455,000 &middot; 18</dd></div>
-          <div><dt>Closes</dt><dd>Sun 20:20</dd></div>
-        </dl>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════ 4 · hold — RELEASE
-     A beat, not a section. One line on columns 1–8, one action on 10–12. -->
-<section class="hold" aria-labelledby="hold-h">
-  <!-- Atmosphere, not inventory. This car is not Patton stock and carries no
-       lot number, no price and no plate — it carries the hour. -->
-  <img class="hold__img" data-pximg src="assets/img/atmo-911-dusk.jpg" loading="lazy"
-       alt="A 911 Turbo at dusk on a mountain road">
-  <div class="hold__ramp" aria-hidden="true"></div>
-  <div class="g12">
-    <h2 class="hold__h disp" id="hold-h" data-t><span>The sale closes Sunday evening. The last
-      two minutes extend on a bid.</span></h2>
-    <div class="hold__a">
-      <a class="cta" href="#block">Register to bid <span class="cta__go" aria-hidden="true">&rarr;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════ 5 · the floor — DENSE, 7 + 5
-     Ground change one of two, and system A of the two offered: a seven-column
-     featured vehicle against a five-column vertical index. The head takes the
-     same 7 / 5 split, so the heading anchors the geometry instead of floating
-     above it.
-
-     The index is the answer to the actual problem. Five cards cannot say that
-     a floor of forty exists; a dense list can, and it is the honest form —
-     this is what a floor looks like written down. -->
-<section class="floor paper" id="floor" aria-labelledby="floor-h">
-  <div class="g12">
-
-    <div class="c1-7">
-      <p class="head__brow">The floor &middot; Pompano Beach <span class="pill pill--onlight">40 available</span></p>
-      <h2 class="head__h disp" id="floor-h" data-t><span>Seventeen marques, seventy years apart</span></h2>
-    </div>
-    <p class="lede c8-12" data-p data-t="r">A Chiron stands feet from a 997 GT3 RS and a Fiat Jolly.
-      Eight cars carry a price and the rest are on request — not coyness, just
-      how this end of the market works.</p>
-
-    <a class="feat stack" href="#floor">
-      <figure class="feat__fig" data-mask data-px>
-        <img src="assets/img/car-7.jpg" alt="1955 Porsche 356 Outlaw Speedster" loading="lazy">
-      </figure>
-      <p class="feat__k"><span class="pill pill--onlight">Featured</span></p>
-      <h3 class="feat__h disp">1955 Porsche 356 Outlaw Speedster</h3>
-      <p class="feat__sub mono">Tiff &amp; Co. by S-Klub &middot; Grey pearlescent over oxblood</p>
-      <div class="feat__foot">
-        <span class="feat__price">$349,995</span>
-        <span class="mono tab">200 mi</span>
-        <span class="mono tab">Flat four &middot; 4-speed</span>
-      </div>
-    </a>
-
-    <div class="index">
-      <div class="index__top">
-        <span class="index__n tab">40</span>
-        <span class="index__l mono">cars on the floor today</span>
-      </div>
-      <a class="index__row" href="#floor"><span class="index__nm">2023 Ferrari 296 GTS <i>Assetto Fiorano</i></span><span class="index__pr">$475,000</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">2022 Ferrari SF90 Spider</span><span class="index__pr">On request</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">2006 Ford GT <i>Heritage</i></span><span class="index__pr">On request</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">2006 Spyker C8 Laviolette</span><span class="index__pr">On request</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">1974 Ferrari Dino 246 GTS</span><span class="index__pr">On request</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">1972 DeTomaso Pantera</span><span class="index__pr">$159,998</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">1971 DeTomaso Pantera</span><span class="index__pr">$265,000</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">1970 Fiat Jolly</span><span class="index__pr">$68,500</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">1969 Ford Mustang Boss 429</span><span class="index__pr">On request</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">1965 Shelby Cobra 427 S/C</span><span class="index__pr">On request</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">1962 Shelby Cobra CSX8000</span><span class="index__pr">On request</span></a>
-      <a class="index__row" href="#floor"><span class="index__nm">2009 Alfa Romeo 8C Spider</span><span class="index__pr">On request</span></a>
-      <div class="index__more">
-        <a class="cta cta--ghost" href="#floor">All forty cars <span class="cta__go" aria-hidden="true">&rarr;</span></a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═════════════════════════════════════════════ 6 · sell — 4 against 8
-     Four columns say what this is. Eight columns carry the three routes as one
-     connected ledger — not three cards, not a staircase. The spatial hierarchy
-     does the explaining: the auction row is set at the largest step because it
-     is the route this business is built on, and the two below step down in
-     scale rather than in decoration. -->
-<section class="sell paper" id="sell" aria-labelledby="sell-h">
-  <div class="g12">
-
-    <div class="sell__say stack">
-      <div>
-        <p class="head__brow mono">Sell &amp; consign</p>
-        <h2 class="sell__h head__h disp" id="sell-h" data-t><span>Three ways out of your garage</span></h2>
-      </div>
-      <p class="lede" data-p>Tell us what you have and we will tell you which of the three
-        gets you the most for it — including when the answer is none of them.</p>
-      <div><a class="cta" href="#sell">Submit your vehicle <span class="cta__go" aria-hidden="true">&rarr;</span></a></div>
-    </div>
-
-    <div class="routes3">
-      <div class="route3 route3--lead">
-        <span class="route3__n tab">01</span>
-        <h3 class="route3__h disp">Auction</h3>
-        <p class="route3__p">It goes on the block with a reserve and a date. Best
-          for the cars where the price is an argument rather than a listing, and
-          the room is the argument.</p>
-      </div>
-      <div class="route3">
-        <span class="route3__n tab">02</span>
-        <h3 class="route3__h disp">Consignment</h3>
-        <p class="route3__p">It sits on our floor, insured, detailed and
-          photographed properly, and we sell it as one of ours. You set the
-          reserve.</p>
-      </div>
-      <div class="route3">
-        <span class="route3__n tab">03</span>
-        <h3 class="route3__h disp">Direct offer</h3>
-        <p class="route3__p">We buy it today, with our own money. The fastest
-          route, and you trade a little of the number for the certainty.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════════════════════════════════ 7 · who is behind it — 7 + 5
-     A chapter, not an appendix. Seven columns of story and identity against
-     five columns of verifiable fact, on the same axis as everything above.
-     The fact column is the page's one dark object on the light ground, which
-     is what gives the section mass without a border. -->
-<section class="why paper" id="why" aria-labelledby="why-h">
-  <div class="g12">
-
-    <p class="head__brow why__brow">Who is behind it</p>
-
-    <h2 class="why__h disp" id="why-h" data-t><span>Built by people<br>who keep the cars</span></h2>
-
-    <p class="why__story" data-p>Founded by Martin Patton, the building sits between
-      Palm Beach and Miami, in one of the largest car cultures in the country.
-      Three businesses share its floor: a dealership, an auction house, and a room
-      that opens on Saturday mornings for anyone who wants to stand next to the
-      cars.</p>
-
-    <figure class="why__fig" data-px>
-      <img src="assets/img/atmo-356-speedster.jpg" loading="lazy"
-           alt="A Porsche 356 Speedster photographed on the street outside the building">
-    </figure>
-
-    <!-- PROOF. Values large, labels small, and not one of them inside a card —
-         the numbers are the evidence and a box would be the decoration. Every
-         figure is real: the floor count, the marque count, the range the
-         inventory actually spans, and where the building is. -->
-    <dl class="proof" data-rows>
-      <div><dt class="proof__v tab">40</dt><dd class="proof__l">Cars on the floor</dd></div>
-      <div><dt class="proof__v tab">17</dt><dd class="proof__l">Marques represented</dd></div>
-      <div><dt class="proof__v tab">70</dt><dd class="proof__l">Years covered &middot; 1955&ndash;2025</dd></div>
-      <div><dt class="proof__v proof__v--word">Pompano&nbsp;Beach</dt><dd class="proof__l">Florida, between Palm Beach and Miami</dd></div>
-    </dl>
-
-    <!-- Four small discoveries about Patton as one rail rather than four rows
-         of a table. Numbered because they are a sequence to read, not a set to
-         compare. -->
-    <ol class="rail" data-rows>
-      <li><span class="rail__n tab">01</span><h3 class="rail__h">The logo</h3>
-          <p>Drawn by Dave Kindig, of Kindig Design.</p></li>
-      <li><span class="rail__n tab">02</span><h3 class="rail__h">S-Klub</h3>
-          <p>Exclusive United States dealer, Los Angeles.</p></li>
-      <li><span class="rail__n tab">03</span><h3 class="rail__h">Built here</h3>
-          <p>John and Edison Sarkisyan, whose cars place at SEMA.</p></li>
-      <li><span class="rail__n tab">04</span><h3 class="rail__h">In the back</h3>
-          <p>An art studio: paintings, sculpture, slot cars, made on site.</p></li>
-    </ol>
-
-    <!-- The operational facts: findable, and deliberately quiet. This replaces
-         the black panel, which carried the visual weight of the section's
-         subject while holding its least important content. -->
-    <div class="util">
-      <div><span class="util__k">The building</span>
-           <span class="util__v">2901 Center Port Circle, Pompano Beach, FL 33064</span></div>
-      <div><span class="util__k">Mon&ndash;Fri</span><span class="util__v tab">8:00 &ndash; 18:00</span></div>
-      <div><span class="util__k">Saturday</span><span class="util__v tab">9:00 &ndash; 13:00</span></div>
-      <div><span class="util__k">Telephone</span>
-           <span class="util__v tab"><a href="tel:+16305500741">630 550 0741</a></span></div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════ 8 · the room — RELEASE
-     Ground change two, and the page's one full-bleed object: the second and
-     last deliberate escape from the grid. The photograph takes the whole
-     viewport width because the room is the only claim on this page a
-     photograph can actually prove. The type inside it still starts on column
-     1 — escaping the grid is not the same as leaving the axis. -->
-<section class="room" id="room" aria-labelledby="room-h">
-  <img class="room__img" data-pximg src="assets/site/DSC_2140.jpg" loading="lazy"
-       alt="The Patton Motors lounge: black walls with a gold cornice, white
-            Chesterfields, a gold monkey on a rope, a white deer head and a
-            racing game on the big screen">
-  <div class="room__ramp" aria-hidden="true"></div>
-  <div class="g12">
-    <div class="room__in stack">
-      <p class="head__brow"><span class="pill">Open Saturday &middot; 9 to 1</span></p>
-      <h2 class="room__h disp" id="room-h" data-t><span>Cars, coffee, cocktails and conversation</span></h2>
-      <p class="room__p" data-p>Black walls and a gold cornice, white Chesterfields, a
-        gold monkey on a rope, a white deer head, a racing game on the big screen
-        and a full bar. There is an art studio in the back.</p>
-      <a class="cta cta--ghost" href="#room">Directions <span class="cta__go" aria-hidden="true">&rarr;</span></a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ═══════════════════════════════════════════════════════ 9 · footer
-     Built off Alex's own four footers, read as a system rather than copied:
-     Prestige (identity as a SENTENCE, facts in their own ruled band),
-     Bentley Palm Beach (five quiet columns), Sports Car Rescue (the business's
-     own line carrying the left field), and 360 Auto Care — the closest of the
-     four to this problem, which sets a tracked label, the telephone at display
-     scale beneath it, a hairline, then the hours.
-
-     What all four share, and what this does: the footer SAYS what the business
-     is and where it is before it lists anywhere to go; the nav is quiet;
-     exactly one fact is set at scale; and the place is named again in the
-     legal row — Fernandina Beach, Lynbrook, North Miami Beach, and here
-     Pompano Beach.
-
-     It sits on the same twelve columns as everything above it. -->
-<footer id="footer" class="foot">
-  <div class="g12">
-
-    <div class="foot__id stack">
-      <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors" width="132">
-      <p class="foot__say">Collector cars on the floor, four lots on the block most
-        weeks, and a room that opens on Saturday mornings. Pompano Beach, Florida,
-        between Palm Beach and Miami.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ 2 · routes — TIGHT, 3+3+3+3
+     The first beat is compression. Four doors of equal rank, three columns
+     each, so the auction below lands against something solid. -->
+<section class="routes">
+  <div class="g12" data-cards>
+    <a class="route" href="#block">
+      <span class="route__k mono">Auctions</span>
+      <span class="route__v disp"><span class="live"><span class="dot" aria-hidden="true"></span>4 live now</span><svg class="route__go" viewBox="0 0 24 12" aria-hidden="true"><path class="go-shaft" d="M1 6h18"/><path class="go-head" d="M15.5 2 19.5 6 15.5 10"/></svg></span>
+      <span class="route__m mono tab">Closes Sunday 19:20</span>
+    </a>
+    <a class="route" href="#floor">
+      <span class="route__k mono">The floor</span>
+      <span class="route__v disp"><span>40 cars</span><svg class="route__go" viewBox="0 0 24 12" aria-hidden="true"><path class="go-shaft" d="M1 6h18"/><path class="go-head" d="M15.5 2 19.5 6 15.5 10"/></svg></span>
+      <span class="route__m mono tab">1955&ndash;2025 &middot; 17 brands</span>
+    </a>
+    <a class="route" href="#sell">
+      <span class="route__k mono">Sell &amp; consign</span>
+      <span class="route__v disp"><span>Submit a car</span><svg class="route__go" viewBox="0 0 24 12" aria-hidden="true"><path class="go-shaft" d="M1 6h18"/><path class="go-head" d="M15.5 2 19.5 6 15.5 10"/></svg></span>
+      <span class="route__m mono">Auction, consignment or&nbsp;an&nbsp;offer</span>
+    </a>
+    <a class="route" href="#room">
+      <span class="route__k mono">The room</span>
+      <span class="route__v disp"><span>Open Saturday</span><svg class="route__go" viewBox="0 0 24 12" aria-hidden="true"><path class="go-shaft" d="M1 6h18"/><path class="go-head" d="M15.5 2 19.5 6 15.5 10"/></svg></span>
+      <span class="route__m mono tab">9&ndash;1 &middot; coffee, cars,&nbsp;conversation</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ 3 · auctions — DENSE, 4 + 8
+     The page's compositional centre and the clearest statement of the grid.
+
+     FOUR columns carry everything needed to act, as one stack on one axis:
+     section title, lot state, bid plate, countdown, supporting copy. EIGHT
+     columns carry the vehicle, and it keeps going to the viewport edge — the
+     first of the page's two deliberate grid breaks, taken so the car
+     dominates. The three remaining lots form ONE row of four columns each. -->
+<section class="block" id="block" aria-labelledby="block-h">
+  <div class="g12">
+
+    <div class="block__card">
+
+    <!-- The left column had seven objects stacked at six sizes, and read as a
+         list of small things rather than as the two facts an auction actually
+         has. Rebuilt to one descent: what this is → what is on the block →
+         the two numbers → why → the way in. Everything that is a
+         SPECIFICATION rather than a decision now sits below the control, as
+         a plate, where it can be read second. -->
+    <div class="block__info stack">
+      <div>
+        <p class="head__brow">Live auction <span class="brow__note">&middot; sample data</span></p>
+        <h2 class="block__h head__h disp" id="block-h" data-t><span>Four lots, and a clock on each</span></h2>
+      </div>
+
+      <h3 class="block__name disp">1965 Ferrari 250&nbsp;GTO</h3>
+
+      <!-- THE TWO FACTS. Money and time, as one pair at one size: label above,
+           value below, which is what makes them read as a matched set rather
+           than as two rows of a table. The countdown keeps the accent — it is
+           the only thing on this page that is still changing. -->
+      <dl class="figs figs--pair">
+        <div>
+          <dt class="figs__k mono">Current bid</dt>
+          <dd class="figs__v tab">$612,000</dd>
+        </div>
+        <div>
+          <dt class="figs__k mono">Closes in</dt>
+          <dd class="figs__v figs__v--live tab" id="clock">2:14:08</dd>
+        </div>
+      </dl>
+
+      <p class="lede" data-p>Bidding opens to registered buyers seven days before the
+        hammer. Lots close on Sunday evening, twenty minutes apart, and every car
+        on the block comes off the floor while it is running.</p>
+
+      <div class="ctas">
+        <a class="cta" href="#block">View lot <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+        <a class="cta cta--ghost" href="#why">Contact us</a>
+      </div>
+
+      <!-- SECONDARY. The lot's own particulars, demoted out of the reading
+           line and set as the page's standard plate. -->
+      <dl class="plate mono tab">
+        <div><dt>Lot</dt><dd>01 &middot; closes first</dd></div>
+        <div><dt>Bids</dt><dd>24</dd></div>
+        <div><dt>Reserve</dt><dd>Met</dd></div>
+        <div><dt>Specification</dt><dd>Coupe &middot; Rosso Corsa over Nero &middot; 4.0 V12</dd></div>
+      </dl>
+
+    </div>
+
+    <figure class="block__fig" data-mask>
+      <img src="assets/img/car-52.jpg" alt="1965 Ferrari 250 GTO on the Patton Motors floor" loading="lazy">
+      <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
+    </figure>
+
+    </div>
+
+    <div class="rank">
+      <a class="lot" href="#block">
+        <figure class="lot__fig"><img src="assets/img/car-73.jpg" alt="1972 Lamborghini Miura P400 SV" loading="lazy">
+            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
+          </figure>
+        <p class="lot__k"><span class="pill">Lot 02</span></p>
+        <h4 class="lot__h disp">1972 Lamborghini Miura P400&nbsp;SV</h4>
+        <dl class="plate mono tab">
+          <div><dt>Bid</dt><dd>$1,240,000 &middot; 31</dd></div>
+          <div><dt>Closes</dt><dd>Sun 19:40</dd></div>
+        </dl>
+      </a>
+      <a class="lot" href="#block">
+        <figure class="lot__fig"><img src="assets/img/car-79.jpg" alt="2024 Aston Martin Valour" loading="lazy">
+            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
+          </figure>
+        <p class="lot__k"><span class="pill">Lot 03</span></p>
+        <h4 class="lot__h disp">2024 Aston Martin Valour</h4>
+        <dl class="plate mono tab">
+          <div><dt>Bid</dt><dd>$2,150,000 &middot; 12</dd></div>
+          <div><dt>Closes</dt><dd>Sun 20:00</dd></div>
+        </dl>
+      </a>
+      <a class="lot" href="#block">
+        <figure class="lot__fig"><img src="assets/img/car-41.jpg" alt="1955 Mercedes-Benz 300 SLR" loading="lazy">
+            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
+          </figure>
+        <p class="lot__k"><span class="pill">Lot 04</span></p>
+        <h4 class="lot__h disp">1955 Mercedes-Benz 300&nbsp;SLR&nbsp;#658</h4>
+        <dl class="plate mono tab">
+          <div><dt>Bid</dt><dd>$455,000 &middot; 18</dd></div>
+          <div><dt>Closes</dt><dd>Sun 20:20</dd></div>
+        </dl>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ 4 · hold — RELEASE
+     A beat, not a section. One line on columns 1–8, one action on 10–12. -->
+<section class="hold" aria-labelledby="hold-h">
+  <!-- Atmosphere, not inventory. Like the frame it replaces, this car is NOT
+       Patton stock and is never labelled as though it were — no lot number, no
+       price, no plate, no claim. It carries the hour, not a vehicle.
+       Chosen for its geometry as much as its mood: the subject sits right of
+       centre and the left half of the frame is all but black, which is exactly
+       where the statement stands. -->
+  <img class="hold__img" data-pximg src="assets/img/atmo-hall-night.jpg" loading="lazy"
+       alt="A dark sports car alone in a concrete hall under two strip lights,
+            reflected in the wet floor">
+  <div class="hold__ramp" aria-hidden="true"></div>
+  <div class="g12">
+    <h2 class="hold__h disp" id="hold-h" data-t><span class="step">The sale closes</span>
+      <span class="step">Sunday evening. The last</span>
+      <span class="step">two minutes extend on a bid.</span></h2>
+    <div class="hold__a">
+      <a class="cta" href="#block">Register to bid <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ 5 · the floor — DENSE, 7 + 5
+     Ground change one of two, and system A of the two offered: a seven-column
+     featured vehicle against a five-column vertical index. The head takes the
+     same 7 / 5 split, so the heading anchors the geometry instead of floating
+     above it.
+
+     The index is the answer to the actual problem. Five cards cannot say that
+     a floor of forty exists; a dense list can, and it is the honest form —
+     this is what a floor looks like written down. -->
+<section class="floor paper" id="floor" aria-labelledby="floor-h">
+  <div class="g12">
+
+    <!-- THE CROSSING ELEMENT. This photograph is the only thing that enters
+         the overlap zone above it — no text on either side of the seam is
+         touched, and the zone contains nothing else. It is what makes a 64px
+         ground offset legible as depth instead of as a boundary. -->
+    <!-- The wrapper is stretched to the full height of the row so the sticky
+         block inside it can travel the WHOLE length of the list. The seam lift
+         lives on the wrapper, which is static; putting it on the sticky element
+         itself was what cut its travel short. -->
+    <div class="feat">
+      <div class="feat__in">
+      <!-- TWO LAYERS, always. The incoming photograph is decoded into the
+           stack BEFORE the crossfade starts, so there is never a frame where
+           the frame is empty or showing the wrong car. The pair simply swap
+           roles; neither is ever removed. -->
+      <figure class="feat__fig">
+        <img class="feat__img is-on" id="feat-img" src="assets/img/car-7.jpg"
+             alt="1955 Porsche 356 Outlaw Speedster on the Patton Motors floor" loading="eager">
+        <img class="feat__img" id="feat-img-b" alt="" aria-hidden="true" loading="eager">
+        <!-- an accelerator, not the route: the index beside it is the primary
+             way to choose a car, and these step the same selection -->
+        <div class="feat__nav">
+          <button class="feat__btn" type="button" data-step="-1" aria-label="Previous vehicle">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="feat__btn" type="button" data-step="1" aria-label="Next vehicle">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </figure>
+      <p class="feat__k"><span class="pill pill--onlight">Featured</span></p>
+      <!-- the caption crossfades WITH the photograph, as one object -->
+      <div class="feat__text">
+        <h3 class="feat__h disp" id="feat-name">1955 Porsche 356 Outlaw Speedster</h3>
+        <p class="feat__sub mono" id="feat-sub">Tiff &amp; Co. by S-Klub &middot; Grey pearlescent over oxblood</p>
+        <div class="feat__foot">
+          <span class="feat__price tab" id="feat-price">$349,995</span>
+          <span class="mono tab" id="feat-meta">200 mi &middot; Flat four &middot; 4-speed</span>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="index">
+      <p class="head__brow">The floor &middot; Pompano Beach</p>
+      <h2 class="head__h disp" id="floor-h" data-t="r"><span>Seventeen brands, seventy years apart</span></h2>
+      <p class="lede" data-p>A Chiron stands feet from a 997 GT3 RS and a Fiat Jolly. Eight cars
+        carry a price and the rest are on request &mdash; not coyness, just how
+        this end of the market works.</p>
+
+      <div class="index__top">
+        <span class="index__n tab">40</span>
+        <span class="index__l mono">Cars on the floor</span>
+      </div>
+
+      <!-- Buttons rather than links, and deliberately: in this build the row's
+           job is to SELECT which car is shown beside it. The route to the real
+           inventory is the control underneath, so no destination is hidden. -->
+      <div class="index__rows" role="group" aria-label="Choose a vehicle to preview">
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-48.jpg"
+                data-name="2023 Ferrari 296 GTS" data-sub="Assetto Fiorano"
+                data-price="$475,000" data-meta="647 mi · Argento Nurburgring/Blue Corsa">
+          <span class="index__i tab" aria-hidden="true">01</span>
+          <span class="index__nm">2023 Ferrari 296 GTS <i>Assetto Fiorano</i></span>
+          <span class="index__pr tab">$475,000</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-19.jpg"
+                data-name="2022 Ferrari SF90 Spider" data-sub="494 mi · Argento Nurburgring Metallic"
+                data-price="On request" data-meta="494 mi · Argento Nurburgring Metallic">
+          <span class="index__i tab" aria-hidden="true">02</span>
+          <span class="index__nm">2022 Ferrari SF90 Spider</span>
+          <span class="index__pr tab">On request</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-79.jpg"
+                data-name="2024 Aston Martin Valour" data-sub="225 mi"
+                data-price="On request" data-meta="225 mi">
+          <span class="index__i tab" aria-hidden="true">03</span>
+          <span class="index__nm">2024 Aston Martin Valour</span>
+          <span class="index__pr tab">On request</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-54.jpg"
+                data-name="2025 Bugatti Mistral" data-sub=""
+                data-price="On request" data-meta="">
+          <span class="index__i tab" aria-hidden="true">04</span>
+          <span class="index__nm">2025 Bugatti Mistral</span>
+          <span class="index__pr tab">On request</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-70.jpg"
+                data-name="2006 Ford GT" data-sub="15,750 mi"
+                data-price="On request" data-meta="15,750 mi">
+          <span class="index__i tab" aria-hidden="true">05</span>
+          <span class="index__nm">2006 Ford GT</span>
+          <span class="index__pr tab">On request</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-77.jpg"
+                data-name="2006 Spyker C8 Laviolette" data-sub="2,100 mi"
+                data-price="On request" data-meta="2,100 mi">
+          <span class="index__i tab" aria-hidden="true">06</span>
+          <span class="index__nm">2006 Spyker C8 Laviolette</span>
+          <span class="index__pr tab">On request</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-64.jpg"
+                data-name="1974 Ferrari Dino 246 GTS" data-sub="12,303 mi · Beige"
+                data-price="On request" data-meta="12,303 mi · Beige">
+          <span class="index__i tab" aria-hidden="true">07</span>
+          <span class="index__nm">1974 Ferrari Dino 246 GTS</span>
+          <span class="index__pr tab">On request</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-75.jpg"
+                data-name="1972 DeTomaso Pantera" data-sub="2,050 mi · Silver"
+                data-price="$159,998" data-meta="2,050 mi · Silver">
+          <span class="index__i tab" aria-hidden="true">08</span>
+          <span class="index__nm">1972 DeTomaso Pantera</span>
+          <span class="index__pr tab">$159,998</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-72.jpg"
+                data-name="1971 DeTomaso Pantera" data-sub="6,300 mi"
+                data-price="$265,000" data-meta="6,300 mi">
+          <span class="index__i tab" aria-hidden="true">09</span>
+          <span class="index__nm">1971 DeTomaso Pantera</span>
+          <span class="index__pr tab">$265,000</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-58.jpg"
+                data-name="1970 Fiat Jolly" data-sub=""
+                data-price="$68,500" data-meta="">
+          <span class="index__i tab" aria-hidden="true">10</span>
+          <span class="index__nm">1970 Fiat Jolly</span>
+          <span class="index__pr tab">$68,500</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-42.jpg"
+                data-name="1969 Ford Mustang Boss 429" data-sub="Fastback"
+                data-price="On request" data-meta="44,064 mi · Candy Apple Red">
+          <span class="index__i tab" aria-hidden="true">11</span>
+          <span class="index__nm">1969 Ford Mustang Boss 429 <i>Fastback</i></span>
+          <span class="index__pr tab">On request</span>
+        </button>
+        <button class="index__row" type="button" aria-pressed="false"
+                data-img="assets/img/car-68.jpg"
+                data-name="1965 Shelby Cobra 427 S/C" data-sub=""
+                data-price="On request" data-meta="">
+          <span class="index__i tab" aria-hidden="true">12</span>
+          <span class="index__nm">1965 Shelby Cobra 427 S/C</span>
+          <span class="index__pr tab">On request</span>
+        </button>
+      </div>
+
+      <div class="index__more">
+        <a class="cta cta--ghost" href="#floor">All forty cars <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════ 6 · sell — 4 against 8
+     Four columns say what this is. Eight columns carry the three routes as one
+     connected ledger — not three cards, not a staircase. The spatial hierarchy
+     does the explaining: the auction row is set at the largest step because it
+     is the route this business is built on, and the two below step down in
+     scale rather than in decoration. -->
+<section class="sell paper" id="sell" aria-labelledby="sell-h">
+  <div class="g12">
+
+    <div class="sell__say stack">
+      <div>
+        <p class="head__brow mono">Sell &amp; consign</p>
+        <h2 class="sell__h head__h disp" id="sell-h" data-t><span>Three ways out of your garage</span></h2>
+      </div>
+      <p class="lede" data-p>Tell us what you have and we will tell you which of the three
+        gets you the most for it — including when the answer is none of them.</p>
+      <a class="cta" href="#sell">Submit your vehicle <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+    </div>
+
+    <div class="routes3">
+      <a class="route3" href="#sell">
+        <span class="route3__n tab">01</span>
+        <span class="route3__h disp">Auction</span>
+        <i class="route3__go" aria-hidden="true">&rarr;</i>
+        <p class="route3__p">The block, with a reserve and a date. Best where price is an argument.</p>
+      </a>
+      <a class="route3" href="#sell">
+        <span class="route3__n tab">02</span>
+        <span class="route3__h disp">Consignment</span>
+        <i class="route3__go" aria-hidden="true">&rarr;</i>
+        <p class="route3__p">Our floor, insured and photographed properly. You set the reserve.</p>
+      </a>
+      <a class="route3" href="#sell">
+        <span class="route3__n tab">03</span>
+        <span class="route3__h disp">Direct offer</span>
+        <i class="route3__go" aria-hidden="true">&rarr;</i>
+        <p class="route3__p">We buy it today, with our own money. Certainty instead of the last bid.</p>
+      </a>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ 7 · who is behind it — 7 + 5
+     A chapter, not an appendix. Seven columns of story and identity against
+     five columns of verifiable fact, on the same axis as everything above.
+     The fact column is the page's one dark object on the light ground, which
+     is what gives the section mass without a border. -->
+<section class="why paper" id="why" aria-labelledby="why-h">
+  <div class="g12">
+
+    <p class="head__brow why__brow">Who is behind it</p>
+
+    <h2 class="why__h disp" id="why-h" data-t><span>Built by people<br>who keep the cars</span></h2>
+
+    <p class="why__story" data-p>Founded by Martin Patton, the building sits between
+      Palm Beach and Miami, in one of the largest car cultures in the country.
+      Three businesses share its floor: a dealership, an auction house, and a room
+      that opens on Saturday mornings for anyone who wants to stand next to the
+      cars.</p>
+
+    <!-- The real floor, and both cars in it are Patton stock: the green 300 SL
+         Gullwing and the brown 550 Speedster, both S-Klub builds, both in
+         cars.json. A section called "built by people who keep the cars" was
+         illustrated by a car on a street outside; this is the room the
+         sentence is about. -->
+    <figure class="why__fig">
+      <img src="assets/img/floor-sklub-pair.jpg" loading="lazy"
+           alt="Two S-Klub builds on the Patton Motors floor: a green Mercedes-Benz
+                300 SL Gullwing with its door raised, and a brown Porsche 550
+                Speedster with tan leather and PATTON stitched into the seat">
+    </figure>
+
+    <!-- PROOF. Values large, labels small, and not one of them inside a card —
+         the numbers are the evidence and a box would be the decoration. Every
+         figure is real: the floor count, the marque count, the range the
+         inventory actually spans, and where the building is. -->
+    <dl class="proof">
+      <div><dt class="proof__v tab">40</dt><dd class="proof__l">Cars on the floor</dd></div>
+      <div><dt class="proof__v tab">17</dt><dd class="proof__l">Brands represented</dd></div>
+      <div><dt class="proof__v tab">70</dt><dd class="proof__l">Years covered &middot; 1955&ndash;2025</dd></div>
+      <div><dt class="proof__v proof__v--word">Pompano&nbsp;Beach</dt><dd class="proof__l">Florida, between Palm Beach and Miami</dd></div>
+    </dl>
+
+    <!-- Four small discoveries about Patton as one rail rather than four rows
+         of a table. Numbered because they are a sequence to read, not a set to
+         compare. -->
+    <ol class="rail">
+      <li><span class="rail__n tab">01</span><h3 class="rail__h">The logo</h3>
+          <p>Drawn by Dave Kindig, of Kindig Design.</p></li>
+      <li><span class="rail__n tab">02</span><h3 class="rail__h">S-Klub</h3>
+          <p>Exclusive United States dealer, Los Angeles.</p></li>
+      <li><span class="rail__n tab">03</span><h3 class="rail__h">Built here</h3>
+          <p>John and Edison Sarkisyan, whose cars place at SEMA.</p></li>
+      <li><span class="rail__n tab">04</span><h3 class="rail__h">In the back</h3>
+          <p>An art studio: paintings, sculpture, slot cars, made on site.</p></li>
+    </ol>
+
+    <!-- The operational facts: findable, and deliberately quiet. This replaces
+         the black panel, which carried the visual weight of the section's
+         subject while holding its least important content. -->
+    <div class="util">
+      <div><span class="util__k">The building</span>
+           <span class="util__v">2901 Center Port Circle, Pompano Beach, FL 33064</span></div>
+      <div><span class="util__k">Mon&ndash;Fri</span><span class="util__v tab">8:00 &ndash; 18:00</span></div>
+      <div><span class="util__k">Saturday</span><span class="util__v tab">9:00 &ndash; 13:00</span></div>
+      <div><span class="util__k">Telephone</span>
+           <span class="util__v tab"><a href="tel:+16305500741">630 550 0741</a></span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ 8 · the room — RELEASE
+     Ground change two, and the page's one full-bleed object: the second and
+     last deliberate escape from the grid. The photograph takes the whole
+     viewport width because the room is the only claim on this page a
+     photograph can actually prove. The type inside it still starts on column
+     1 — escaping the grid is not the same as leaving the axis. -->
+<section class="room" id="room" aria-labelledby="room-h">
+  <img class="room__img" data-pximg src="assets/img/room-lounge.webp" loading="lazy"
+       alt="The Patton Motors lounge: black walls with a gold cornice, white
+            Chesterfield sofas and armchairs, a gold monkey on a rope, a white
+            deer head, table lamps and a car on the big screen">
+  <div class="room__ramp" aria-hidden="true"></div>
+  <div class="g12">
+    <div class="room__in stack">
+      <p class="head__brow"><span class="pill">Open Saturday &middot; 9 to 1</span></p>
+      <h2 class="room__h disp" id="room-h" data-t><span>Cars, coffee, cocktails<br>and conversation</span></h2>
+      <p class="room__p" data-p>Black walls and a gold cornice, white Chesterfields, a
+        gold monkey on a rope, a white deer head, a racing game on the big screen
+        and a full bar. There is an art studio in the back.</p>
+      <a class="cta cta--ghost" href="#room">Directions <span class="cta__go" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════ 9 · footer
+     Built off Alex's own four footers, read as a system rather than copied:
+     Prestige (identity as a SENTENCE, facts in their own ruled band),
+     Bentley Palm Beach (five quiet columns), Sports Car Rescue (the business's
+     own line carrying the left field), and 360 Auto Care — the closest of the
+     four to this problem, which sets a tracked label, the telephone at display
+     scale beneath it, a hairline, then the hours.
+
+     What all four share, and what this does: the footer SAYS what the business
+     is and where it is before it lists anywhere to go; the nav is quiet;
+     exactly one fact is set at scale; and the place is named again in the
+     legal row — Fernandina Beach, Lynbrook, North Miami Beach, and here
+     Pompano Beach.
+
+     It sits on the same twelve columns as everything above it. -->
+<footer id="footer" class="foot">
+  <div class="g12">
+
+    <div class="foot__id stack">
+      <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors" width="132">
+      <p class="foot__say">Collector cars on the floor, four lots on the block most
+        weeks, and a room that opens on Saturday mornings. Pompano Beach, Florida,
+        between Palm Beach and Miami.</p>
       <address class="foot__addr mono">2901 Center Port Circle<br>Pompano Beach, FL 33064</address>
-    </div>
-
-    <nav class="foot__nav" aria-label="Footer">
-      <div class="foot__col">
-        <h3>Buy</h3>
-        <a href="#block">Auctions</a>
-        <a href="#floor">Inventory</a>
-        <a href="#block">Register to bid</a>
-        <a href="#why">S-Klub</a>
-      </div>
-      <div class="foot__col">
-        <h3>Sell &amp; visit</h3>
-        <a href="#sell">Submit your vehicle</a>
-        <a href="#sell">Consignment</a>
-        <a href="#room">The room</a>
-        <a href="#why">About Patton</a>
-      </div>
-    </nav>
-
-    <div class="foot__call">
-      <p class="head__brow mono">Call the floor</p>
-      <a href="tel:+16305500741">630 550 0741</a>
-      <div class="foot__hours">
-        <p class="foot__hrow"><span>Weekdays</span><span>8:00 &ndash; 18:00</span></p>
-        <p class="foot__hrow"><span>Saturday</span><span>9:00 &ndash; 13:00</span></p>
-        <p class="foot__hrow"><span>Sunday</span><span>By appointment</span></p>
-      </div>
-    </div>
-
-    <div class="foot__legal">
-      <p>&copy; 2026 Patton Motors &middot; Pompano Beach, Florida</p>
-      <div class="foot__meta">
-        <a href="#footer">Privacy</a>
-        <a href="#footer">Sitemap</a>
-        <span>Powered by All Auto Network</span>
-      </div>
-    </div>
-
-  </div>
-</footer>
-
-<script>
-/* ===========================================================================
-   MOTION CONTROLLER
-
-   Roles, one line each, per MJ1 — an effect with no role is not refined, it
-   is removed:
-     title reveal   hierarchy      the chapter announces itself
-     paragraph rise hierarchy      it follows its heading, so reading order
-                                   is stated in time as well as in space
-     row stagger    state change   a lot's facts arrive as one set
-     parallax       continuity     two frames only, the page's one depth idea
-     countdown      state change   the only continuous motion anywhere
-
-   MJ5 / MJ9: nothing is hidden until this script has confirmed motion is
-   allowed. A blocked script, a failed script or prefers-reduced-motion all
-   leave the finished page — every start-state lives behind .m-on.
-
-   MJ6: scroll-TRIGGERED, never scroll-linked. Nothing is pinned, nothing is
-   hijacked, nothing must be watched to completion. The reader keeps pacing.
-   =========================================================================== */
-(function () {
-  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var doc = document.documentElement;
-
-  var clock = (function () {
-    var el = document.getElementById('clock');
-    if (!el) return function () {};
-    var end = Date.now() + (2 * 3600 + 14 * 60 + 8) * 1000, t;
-    var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
-    var tick = function () {
-      var s = Math.max(0, Math.floor((end - Date.now()) / 1000));
-      el.textContent = Math.floor(s / 3600) + ':' + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60);
+      <!-- established platform marks, so the glyph may stand alone — but each
+           carries its label for anything that is not looking (I9). -->
+      <div class="foot__social">
+        <a href="#footer" aria-label="Patton Motors on Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#footer" aria-label="Patton Motors on Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5h2.5V5.5H14c-2 0-3.2 1.3-3.2 3.3V11H8.5v3h2.3v6.5h3.2V14h2.3l.5-3h-2.8V9.3c0-.5.3-.8 1-.8Z"/></svg>
+        </a>
+        <a href="#footer" aria-label="Patton Motors on YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.2 9.3 15 12l-4.8 2.7Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="foot__nav" aria-label="Footer">
+      <div class="foot__col">
+        <h3>Buy</h3>
+        <a href="#block">Auctions</a>
+        <a href="#floor">Inventory</a>
+        <a href="#block">Register to bid</a>
+        <a href="#why">S-Klub</a>
+      </div>
+      <div class="foot__col">
+        <h3>Sell &amp; visit</h3>
+        <a href="#sell">Submit your vehicle</a>
+        <a href="#sell">Consignment</a>
+        <a href="#room">The room</a>
+        <a href="#why">About Patton</a>
+      </div>
+    </nav>
+
+    <div class="foot__call">
+      <p class="head__brow mono">Call the floor</p>
+      <a href="tel:+16305500741">630 550 0741</a>
+      <div class="foot__hours">
+        <p class="foot__hrow"><span>Weekdays</span><span>8:00 &ndash; 18:00</span></p>
+        <p class="foot__hrow"><span>Saturday</span><span>9:00 &ndash; 13:00</span></p>
+        <p class="foot__hrow"><span>Sunday</span><span>By appointment</span></p>
+      </div>
+    </div>
+
+    <div class="foot__legal">
+      <p>&copy; 2026 Patton Motors &middot; Pompano Beach, Florida</p>
+      <div class="foot__meta">
+        <a href="#footer">Privacy</a>
+        <a href="#footer">Sitemap</a>
+        <span>Powered by All Auto Network</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+/* ===========================================================================
+   MOTION CONTROLLER
+
+   Roles, one line each, per MJ1 — an effect with no role is not refined, it
+   is removed:
+     title reveal   hierarchy      the chapter announces itself — SEVEN of
+                                   them on the page, and nothing else
+     paragraph rise hierarchy      it follows its heading, so reading order
+                                   is stated in time as well as in space
+     (row stagger REMOVED — data is not a chapter, and every one of those
+      rows already answers a pointer)
+     parallax       continuity     TWO frames only — the interstitial and
+                                   the room. Never the sticky floor block,
+                                   never a card, never text. 5% of travel.
+     countdown      state change   the only continuous motion anywhere
+
+   MJ5 / MJ9: nothing is hidden until this script has confirmed motion is
+   allowed. A blocked script, a failed script or prefers-reduced-motion all
+   leave the finished page — every start-state lives behind .m-on.
+
+   MJ6: scroll-TRIGGERED, never scroll-linked. Nothing is pinned, nothing is
+   hijacked, nothing must be watched to completion. The reader keeps pacing.
+   =========================================================================== */
+(function () {
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var doc = document.documentElement;
+
+  var clock = (function () {
+    var el = document.getElementById('clock');
+    if (!el) return function () {};
+    var end = Date.now() + (2 * 3600 + 14 * 60 + 8) * 1000, t;
+    var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+    var tick = function () {
+      var s = Math.max(0, Math.floor((end - Date.now()) / 1000));
+      el.textContent = Math.floor(s / 3600) + ':' + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60);
+    };
+    var run = function () {
+      clearInterval(t);
+      if (!document.hidden) { tick(); t = setInterval(tick, 1000); }
+    };
+    document.addEventListener('visibilitychange', run);
+    return run;
+  })();
+  clock();   /* the countdown runs under reduced motion too — it is
+                information, not decoration, and MJ9 asks for the meaning to
+                survive rather than the movement */
+
+  /* ---- THE INDEX SELECTS THE PHOTOGRAPH ----------------------------------
+     Not motion, so it lives outside the motion controller and runs under
+     prefers-reduced-motion like any other control: the picture still changes,
+     it just changes instantly.
+
+     Hover previews, focus previews (keyboard parity — the same rows are
+     reachable by Tab and behave identically), click commits. Leaving the list
+     returns to whatever was committed, so a pointer crossing the column on its
+     way somewhere else never leaves the page in a state nobody chose.
+
+     Every row's photograph is that car's OWN photograph: the rows are built
+     from assets/cars.json and the file names are car-<id>.jpg against the same
+     ids, so nothing here can label one car with another car's picture. */
+  (function () {
+    var rows = [].slice.call(document.querySelectorAll('.index__row'));
+    var fig  = document.querySelector('.feat__fig');
+    var img  = document.getElementById('feat-img');
+    if (!rows.length || !img || !fig) return;
+
+    var imgB = document.getElementById('feat-img-b');
+    var out = {
+      name:  document.getElementById('feat-name'),
+      sub:   document.getElementById('feat-sub'),
+      price: document.getElementById('feat-price'),
+      meta:  document.getElementById('feat-meta')
+    };
+    var text = document.querySelector('.feat__text');
+    /* the opening state is the featured car, and it belongs to no row — kept
+       so that leaving the list before choosing restores exactly what loaded */
+    var base = {
+      img: img.getAttribute('src'), alt: img.getAttribute('alt'),
+      name: out.name.textContent, sub: out.sub.textContent,
+      price: out.price.textContent, meta: out.meta.textContent
+    };
+    var pinned = base, swap;
+
+    /* TWO LAYERS THAT SWAP ROLES. `live` is whichever <img> is currently on;
+       the other one is loaded and DECODED first, and only then do the classes
+       flip — so the crossfade always begins with both frames present and the
+       visitor never sees an empty box or a half-painted photograph.
+
+       decode() is awaited rather than assumed. On a cached image it resolves
+       in the same frame, so a fast pointer across the list still feels
+       immediate; on a cold one the outgoing photograph simply holds until the
+       incoming is ready, which is the correct thing to look at meanwhile. */
+    var live = img, spare = imgB, token = 0;
+
+    function show(s) {
+      if (live.getAttribute('src') === s.img) return;
+      var mine = ++token;
+      spare.src = s.img;
+      spare.alt = s.alt || (s.name + ' on the Patton Motors floor');
+
+      var ready = spare.decode ? spare.decode().catch(function () {}) : Promise.resolve();
+      ready.then(function () {
+        if (mine !== token) return;          /* a newer hover already won */
+        live.classList.remove('is-on');
+        live.classList.add('is-off');
+        spare.classList.remove('is-off');
+        spare.classList.add('is-on');
+        /* the layer that just left stops describing the picture */
+        live.setAttribute('aria-hidden', 'true');
+        live.alt = '';
+        spare.removeAttribute('aria-hidden');
+        var t = live; live = spare; spare = t;
+
+        if (text) { text.classList.add('is-swapping'); }
+        clearTimeout(swap);
+        swap = setTimeout(function () {
+          out.name.textContent  = s.name;
+          out.sub.textContent   = s.sub;
+          out.price.textContent = s.price;
+          out.meta.textContent  = s.meta;
+          if (text) { text.classList.remove('is-swapping'); }
+        }, 140);
+      });
+    }
+    function read(el) {
+      return { img: el.dataset.img, alt: '', name: el.dataset.name,
+               sub: el.dataset.sub, price: el.dataset.price, meta: el.dataset.meta };
+    }
+
+    rows.forEach(function (el) {
+      el.addEventListener('mouseenter', function () { show(read(el)); });
+      el.addEventListener('focus',      function () { show(read(el)); });
+      el.addEventListener('click', function () {
+        rows.forEach(function (r) { r.setAttribute('aria-pressed', 'false'); });
+        el.setAttribute('aria-pressed', 'true');
+        pinned = read(el);
+        show(pinned);
+      });
+    });
+    /* the chevrons walk the same list, so there is one source of truth for
+       which car is shown and the pressed row always matches the picture */
+    function stepTo(i) {
+      var n = rows.length;
+      var el = rows[((i % n) + n) % n];
+      rows.forEach(function (r) { r.setAttribute('aria-pressed', 'false'); });
+      el.setAttribute('aria-pressed', 'true');
+      pinned = read(el);
+      show(pinned);
+    }
+    [].slice.call(document.querySelectorAll('.feat__btn')).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var at = rows.findIndex(function (r) { return r.getAttribute('aria-pressed') === 'true'; });
+        stepTo(at + Number(b.dataset.step));
+      });
+    });
+
+    var list = document.querySelector('.index__rows');
+    list.addEventListener('mouseleave', function () { show(pinned); });
+    list.addEventListener('focusout', function (e) {
+      if (!list.contains(e.relatedTarget)) show(pinned);
+    });
+  })();
+
+  /* THE FIRST SCREEN. The hero is sized against the route band's REAL
+     height, measured after layout and re-measured on resize, so the two
+     together close the first screen at any width and any type scale. Runs
+     outside the motion controller: this is layout, not animation, and it
+     must hold under prefers-reduced-motion like everything else. */
+  (function () {
+    /* the header is measured too, and for the same reason: its height is set
+       by the wordmark's own aspect ratio, so any CSS token guessing it goes
+       stale the moment the logo changes size. --hdr-h feeds the sticky
+       column's rest point and every anchor's scroll-margin. */
+    var hdrEl = document.getElementById('header');
+    var band = document.querySelector('.routes');
+    if (!band) return;
+    var set = function () {
+      document.documentElement.style.setProperty('--routes-h', band.offsetHeight + 'px');
+      if (hdrEl) document.documentElement.style.setProperty('--hdr-h', hdrEl.offsetHeight + 'px');
     };
-    var run = function () {
-      clearInterval(t);
-      if (!document.hidden) { tick(); t = setInterval(tick, 1000); }
-    };
-    document.addEventListener('visibilitychange', run);
-    return run;
+    set();
+    window.addEventListener('resize', set, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(set);
   })();
-  clock();   /* the countdown runs under reduced motion too — it is
-                information, not decoration, and MJ9 asks for the meaning to
-                survive rather than the movement */
 
-  var io = null, raf = 0, px = [];
+  /* THE HEADER EARNS ITS GROUND ONCE THE HERO IS BEHIND IT.
+     At rest it sits on the film and its ramp is enough. Past the hero it
+     crosses three LIGHT sections, where --bone-72 on --paper measures 1.11:1
+     — the navigation was not dim there, it was gone. A class rather than a
+     scroll-linked value: one state change, no work per frame. */
+  (function () {
+    var hdr = document.getElementById('header');
+    if (!hdr) return;
+    var mark = function () {
+      document.body.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    mark();
+    window.addEventListener('scroll', mark, { passive: true });
+  })();
 
-  function stopMotion() {
-    document.body.classList.remove('m-on');
-    if (io) { io.disconnect(); io = null; }
-    px.forEach(function (o) { o.el.style.transform = ''; });
-    px = [];
-  }
-
-  function startMotion() {
-    document.body.classList.add('m-on');
-
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        io.unobserve(e.target);            /* once. Nothing re-animates on the
-                                              way back up — a page that replays
-                                              itself is a page you cannot leave */
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
-
-    document.querySelectorAll('[data-t],[data-p],[data-rows],[data-mask]')
-      .forEach(function (el) { io.observe(el); });
-
-    /* --- parallax: three frames, and the container never shows an edge ---
-       The image is 112% of its box and starts 6% high, so ±6% of travel is
-       always inside the frame no matter where the scroll stops. Read in one
-       batch and written in one batch, inside a single rAF, so this cannot
-       thrash layout. */
-    px = [].slice.call(document.querySelectorAll('[data-pximg], [data-px] img'))
-      .map(function (el) { return { el: el, box: el.parentElement }; });
-
-    if (px.length) {
-      var onScroll = function () {
-        if (raf) return;
-        raf = requestAnimationFrame(function () {
-          raf = 0;
-          var vh = window.innerHeight;
-          var reads = px.map(function (o) { return o.box.getBoundingClientRect(); });
-          px.forEach(function (o, i) {
-            var r = reads[i];
-            if (r.bottom < -200 || r.top > vh + 200) return;
-            var p = (r.top + r.height / 2 - vh / 2) / vh;   /* -1 … 1 */
-            o.el.style.transform = 'translate3d(0,' + (p * -6).toFixed(2) + '%,0) scale(1.12)';
-          });
-        });
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      onScroll();
-    }
-  }
-
-  /* MJ8 — mobile is decided, not inherited. Below 800px the parallax and the
-     horizontal title travel are dropped: a phone has no spatial room for
-     either, and both cost frames on the device with the least to spare. The
-     paragraph rise stays, because it is 28px and it carries reading order. */
-  function apply() {
-    stopMotion();
-    if (!mq.matches) startMotion();
-  }
-  (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(apply);
-  apply();
-})();
-</script>
-
-</body>
-</html>
+  var io = null, raf = 0, px = [];
+
+  function stopMotion() {
+    document.body.classList.remove('m-on');
+    if (io) { io.disconnect(); io = null; }
+    px.forEach(function (o) { o.el.style.transform = ''; });
+    px = [];
+  }
+
+  function startMotion() {
+    document.body.classList.add('m-on');
+
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);            /* once. Nothing re-animates on the
+                                              way back up — a page that replays
+                                              itself is a page you cannot leave */
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
+
+    document.querySelectorAll('[data-t],[data-p],[data-mask],[data-hero],[data-cards]')
+      .forEach(function (el) { io.observe(el); });
+
+    /* --- parallax: three frames, and the container never shows an edge ---
+       The image is 112% of its box and starts 6% high, so ±6% of travel is
+       always inside the frame no matter where the scroll stops. Read in one
+       batch and written in one batch, inside a single rAF, so this cannot
+       thrash layout. */
+    px = [].slice.call(document.querySelectorAll('[data-pximg], [data-px] img'))
+      .map(function (el) { return { el: el, box: el.parentElement }; });
+
+    if (px.length) {
+      var onScroll = function () {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = 0;
+          var vh = window.innerHeight;
+          var reads = px.map(function (o) { return o.box.getBoundingClientRect(); });
+          px.forEach(function (o, i) {
+            var r = reads[i];
+            if (r.bottom < -200 || r.top > vh + 200) return;
+            var p = (r.top + r.height / 2 - vh / 2) / vh;   /* -1 … 1 */
+            o.el.style.transform = 'translate3d(0,' + (p * -5).toFixed(2) + '%,0) scale(1.12)';
+          });
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
+    }
+  }
+
+  /* MJ8 — mobile is decided, not inherited. Below 800px the parallax and the
+     horizontal title travel are dropped: a phone has no spatial room for
+     either, and both cost frames on the device with the least to spare. The
+     paragraph rise stays, because it is 28px and it carries reading order. */
+  function apply() {
+    stopMotion();
+    if (!mq.matches) startMotion();
+  }
+  (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(apply);
+  apply();
+})();
+</script>
+
+</body>
+</html>

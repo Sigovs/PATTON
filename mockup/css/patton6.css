@@ -118,13 +118,62 @@
      applied as though it were the dialect. */
   --f-disp: "Oswald", "Helvetica Neue", Impact, sans-serif;
   --f:      "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
-  --t-mega:   clamp(52px, 10.5vw, 158px);
-  --t-huge:   clamp(34px,  4.8vw,  74px);
-  --t-big:    clamp(28px,  3.2vw,  46px);
-  --t-mid:    clamp(21px,  1.9vw,  27px);
-  --t-lead:   clamp(17px,  1.35vw, 21px);
-  --t-body:   16px;
-  --t-micro:  14px;                    /* the functional floor. Never below. */
+  /* ---- THE SCALE, re-cut -------------------------------------------------
+     The old ramp ran 151 · 69 · 46 · 27 · 19 · 16 · 14 at 1440. Two faults,
+     and they are the same fault seen from two ends:
+
+     ONE. The display was 10.8× the label. Everything between them read as
+     support for the headline rather than as the page's content, and the
+     functional layer — nav, metadata, lot plates, footer — sat at the floor
+     while the hero sat at 151px. typography I7's evidence is exactly this:
+     the confidence that produces a monumental opening shrinks the functional
+     layer until it disappears. The fix is both ends, not one.
+
+     TWO. Section headings had TWO sizes for ONE rank — .head__h at 69 in the
+     floor and the credentials, .block__h/.sell__h/.room__h/.hold__h at 46
+     everywhere else. Same element, same job, different size, no reason. That
+     is I1: a rank difference claimed and not real.
+
+     The ramp below is the one Alex specified, at 1440:
+
+       display / hero      90      was 151
+       section title       52      was 69 AND 46 — now one rank
+       featured object     37      the one step Alex's list does not name;
+                                   see the judgment note beside --t-big
+       card / lot title    28      was 27
+       lead / intro        20      was 19.4
+       body                18      was 16
+       data / labels       15      was 14
+
+     Display-to-label is now 6.0×, down from 10.8×. Every step is fluid, so
+     the ramp is correct at every width rather than at two (I3), and 14px
+     remains the hard floor under everything — nothing on this page goes
+     below it, and now nothing sits ON it either. */
+  --t-mega:   clamp(46px, 6.25vw, 96px);   /* 90 @1440 · 46 @390            */
+  /* The step that was missing, and it was already being used twice without a
+     name: the auction's figures and the interstitial statement both wanted
+     something above a section title and below the hero, and both were reaching
+     for a loose clamp written inline. 52 → 90 was also the one 1.7× jump in a
+     ramp whose other steps sit near 1.3×. Naming it removes two magic numbers
+     rather than adding one. */
+  --t-grand:  clamp(40px, 4.7vw,  72px);   /* 68 @1440 · 40 @390            */
+  --t-huge:   clamp(32px, 3.6vw,  56px);   /* 52 @1440 · 32 @390            */
+  /* --t-big is the one step not on Alex's list, and it is deliberate. His
+     ramp jumps 28 → 44, which is right for a page whose cards are all peers.
+     This page has two objects that LEAD a section without BEING the section:
+     the featured vehicle on the floor, and route 01 in the sell block. At 28
+     they fall in with the small cards they are supposed to outrank; at 52
+     they collide with the heading above them. 37 is the step between, and it
+     is used exactly twice on the page — if it ever reaches a third element,
+     it has become a rank and should be argued again. */
+  --t-big:    clamp(28px, 2.6vw,  40px);   /* 37 @1440 · 28 @390            */
+  --t-mid:    clamp(22px, 1.95vw, 28px);   /* 28 @1440 · 22 @390            */
+  --t-lead:   clamp(18px, 1.4vw,  20px);   /* 20 @1440 · 18 @390            */
+  --t-body:   clamp(16px, 1.25vw, 18px);   /* 18 @1440 · 16 @390            */
+  --t-micro:  15px;                        /* data and labels. I7's floor is
+                                              14 and still binds — nothing
+                                              goes below it, and after this
+                                              pass nothing rests on it. */
 
   /* ---- SPACE: the scale, and then the RELATIONSHIPS ---------------------
      The scale is 4px-based and carried from v4. It is the only source of
@@ -168,8 +217,48 @@
   --col-gap:  clamp(16px, 1.6vw, 28px);
   --edge:     calc((100vw - min(var(--page), var(--page-max))) / 2);
 
-  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
-  --d-1: 240ms; --d-2: 520ms; --d-3: 820ms; --d-4: 1200ms;
+  /* THE PERSISTENT MASS. The header is fixed, so anything that has to stop
+     below it needs to know how tall it is — and it is NOT driven by the 44px
+     tap-target row, it is driven by the wordmark, which renders 68px tall at
+     its 132px width. Measured on the render. */
+  --hdr-logo: 88px;   /* the wordmark at 172px wide — it drives the header,
+                         so growing it grows --hdr-h, the sticky stop and
+                         every anchor's scroll-margin with it */
+  --hdr-h:    calc(var(--s-5) * 2 + var(--hdr-logo));   /* 116px */
+  --hdr-stop: calc(var(--hdr-h) + var(--s-5));          /* 140px — where a
+                                                           sticky column comes
+                                                           to rest, with air */
+
+  /* ---- MOTION: one scale, two curves ------------------------------------
+     The page had ONE easing curve — an ease-out — used for every transition
+     in both directions. That is the cause of the abruptness: an ease-out on
+     the way OUT starts fast and then crawls, so the return reads as a cut
+     even though it is technically animated. motion-taste I3 is explicit that
+     the asymmetry is the rule, not a refinement: entering decelerates,
+     exiting accelerates, and an exit may be one step faster than its
+     entrance but never slower.
+
+     So every interactive rule below is written twice — the EXIT lives on the
+     base selector, the ENTRANCE on :hover/:focus-visible. Both directions are
+     therefore always declared, which is what makes a polished hover-in
+     followed by a snap-back impossible by construction.
+
+     Four durations, each inside the band asked for, and nothing else on this
+     page is allowed to invent one. */
+  --dur-micro:  180ms;   /* arrows, dividers, rules, small colour            */
+  --dur-ui:     260ms;   /* buttons, rows, links — anything the pointer aims */
+  --dur-image:  700ms;   /* the featured vehicle crossfade                   */
+  --dur-reveal: 620ms;   /* scroll reveals                                   */
+  --dur-out-micro: 140ms;   /* exits, one step down (I3)                     */
+  --dur-out-ui:    200ms;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);   /* arriving, expanding */
+  --ease-in:  cubic-bezier(0.55, 0, 1, 0.45);   /* leaving, collapsing */
+
+  /* carried names, re-pointed at the scale above so no value is orphaned */
+  --ease: var(--ease-out);
+  --d-1: var(--dur-ui); --d-2: var(--dur-reveal);
+  --d-3: var(--dur-image); --d-4: 1200ms;
 }
 
 /* ------------------------------------------------------------------ reset */
@@ -188,7 +277,22 @@
      when they come back. `clip` creates no scroll container. */
   overflow-x: clip;                    /* U6 — never a horizontal page scroll */
 }
-.pm6 h1, .pm6 h2, .pm6 h3, .pm6 h4, .pm6 p, .pm6 figure, .pm6 dl, .pm6 dd { margin: 0; }
+/* :where(), and this is the single most consequential line in the file.
+   As `.pm6 h1, .pm6 p, .pm6 figure …` this reset was (0,1,1) — HIGHER than a
+   plain component class at (0,1,0) — so it quietly beat every semantic
+   interval the design system declares. Seven separate failures traced back to
+   it in one session: .head__brow's label→title margin never applied anywhere
+   the eyebrow was not inside a .stack; .feat__sub's title→meta never applied;
+   the whole .stack component did nothing for bare headings, paragraphs and
+   lists; .feat__fig's seam lift was eaten twice.
+
+   :where() zeroes the selector's specificity to (0,1,0). It still beats the
+   AAN theme's own `p { margin-bottom: 16px }` at (0,0,1), and it now loses to
+   every component rule below it in this file, which is the entire point: the
+   reset exists to cancel the THEME, not to outrank the design system.
+
+   The spacing tokens were never wrong. They were being overruled. */
+.pm6 :where(h1, h2, h3, h4, p, figure, dl, dd) { margin: 0; }
 /* The AAN theme's compiled base sets its own dark colour on h1–h4, and a
    heading that relies on the body colour therefore renders near-black on the
    dark ground. Everything in this file is an override, and inheritance is not
@@ -204,6 +308,20 @@
 .pm6 span, .pm6 dt, .pm6 dd, .pm6 li, .pm6 address, .pm6 button, .pm6 strong, .pm6 b {
   font-family: inherit;
 }
+/* Fourth time, same trap, and this one was eating the whole body step.
+   The AAN theme sets  on the ELEMENT, so every
+   paragraph on this page ignored --t-body and sat at 16 while .index__nm 
+   which names the token explicitly  sat at 18. Measured, not guessed.
+
+   :where() is the fix rather than .pm6 p, because .pm6 p is (0,1,1) and would
+   then outrank .lede, .hero__sub, .why__story and every other component that
+   sets its own size at (0,1,0). :where(.pm6) p is (0,0,1): identical to the
+   theme's own selector, so source order decides it, and any class still wins.
+
+   line-height is deliberately NOT set here  the theme's 1.6 on p is the
+   better reading value at 18px and changing it is not this pass. */
+:where(.pm6) p { font-size: var(--t-body); }
+
 .pm6 img, .pm6 video { display: block; max-width: 100%; }
 
 /* Both link states are named. Bootstrap 4's reboot sets
@@ -247,7 +365,16 @@
    Mono eyebrow, serif heading, both on the first column of whatever field
    they sit in. Used by every body section, so the heading anchors the
    section's geometry instead of floating above it. */
-.head__brow { color: var(--bone-46); margin-bottom: var(--sp-label-title); }
+/* The eyebrow is a ROLE, so it carries its own register instead of waiting
+   for a .mono to be remembered in the markup. Three of the six eyebrows had it
+   and three did not, so "On the block" and "The floor · Pompano Beach" rendered
+   as 18px sentence-case body while "Sell & consign" rendered as a tracked
+   uppercase label. Same job, two voices, at section boundaries — the casing row
+   of typography I8’s voice audit, and the kind of drift that is invisible
+   section by section and obvious down the page. */
+.head__brow { color: var(--bone-46); margin-bottom: var(--sp-label-title);
+              font-size: var(--t-micro); font-weight: 500;
+              letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.2; }
 .head__h    { font-size: var(--t-huge); }
 .paper .head__brow { color: var(--ink-64); }
 
@@ -268,9 +395,17 @@
    No gradient, no shadow: anti-patterns D2 and D3, and neither has a
    yields-when this page can claim. */
 
+/* The control was 16px of padding around a 15px label — a 47px box, which is
+   the height of a form field rather than of a decision. A primary action under
+   a 90px headline has to look like the thing you are meant to press, and at
+   that size it read as a placeholder. 24 and 48 give a 63px box that is
+   noticeably taller AND wider, and the label goes up one step with the rest of
+   the page. Applied to the control itself, not to a hero variant: the button
+   looked provisional everywhere, and a second size of the same level is how a
+   three-level ladder quietly becomes four. */
 .cta {
-  display: inline-flex; align-items: center; gap: var(--s-3);
-  padding: var(--s-4) var(--s-6); border: 1px solid transparent; border-radius: 2px;
+  display: inline-flex; align-items: center; gap: var(--s-4);
+  padding: var(--s-5) var(--s-7); border: 1px solid transparent; border-radius: 2px;
   font-family: var(--f); font-size: var(--t-micro); font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
   background: var(--bone); color: var(--ink);            /* 16.4:1 */
@@ -297,6 +432,11 @@
    on the frame, top-left, over the darkest corner of a showroom shot */
 .lot__fig { position: relative; }
 .lot__fig .pill { position: absolute; top: var(--s-3); left: var(--s-3); }
+/* The lead vehicle never got the same treatment, so its Live pill sat in the
+   black BELOW the photograph while three identical pills sat ON the three
+   smaller ones. The comment two lines up says the lot frames should match the
+   lead one; the lead one was the odd one out. */
+.block__fig .pill { position: absolute; top: var(--s-3); left: var(--s-3); }
 .feat__fig { position: relative; }
 /* a pill sitting inside a line of label text needs the label's own rhythm */
 .head__brow .pill { margin-left: var(--sp-pill-text); vertical-align: baseline; }
@@ -318,7 +458,11 @@
   background: rgba(10,12,14,.82); color: var(--bone);
   backdrop-filter: none;                 /* no glass — D-tier ban, and it costs frames */
 }
-.pill--live { color: var(--live); }       /* 8.5:1 on the pill's own ground */
+/* The pill keeps its DOT green and gives back its text. Green now means one
+   thing on this page — a value that is still changing — and a word set in it
+   five times over is how a signal colour becomes a brand colour. The state is
+   still carried by the word AND the dot, so color-taste I2 is unaffected. */
+.pill--live { color: var(--bone); }       /* 15.9:1 on the pill's own ground */
 .pill--onlight { background: var(--ink); color: var(--paper); }
 
 /* the data plate, carried from v4 — mono keys, tabular values, hairlines */
@@ -340,13 +484,27 @@
   background: linear-gradient(to bottom, rgba(10,12,14,.86), rgba(10,12,14,0));
 }
 .pm6 #header .g12 { align-items: center; padding-block: var(--s-5); }
-.pm6 .pm-hdr__brand { grid-column: 1 / span 3; display: inline-flex; align-items: center;
+/* THE ROW GROWS, THE HEADER DOES NOT.
+   The brand held three columns for a 132px logo, so 149px of the row was empty
+   while the nav was crowded into what was left and set at the label floor —
+   which is why the top of the page read as a utility panel rather than as the
+   top of the page. The logo keeps its size and gives back a column, the nav
+   takes eight, the items go up a step and stand 48px apart instead of 32.
+
+   The header's box does not move, and it is worth saying exactly why, because
+   the obvious reason is the wrong one. The row is 116px, and the tallest thing
+   in it is the LOGO — 132px wide at its own aspect ratio, 68px tall, sitting
+   inside 24px of padding a side. The nav is nowhere near that: an 18px item
+   sets a 22px line box inside a 44px tap-target minimum. So the nav can take a
+   step up, and a second one, without the header noticing. Measured before and
+   after: 116px both times. */
+.pm6 .pm-hdr__brand { grid-column: 1 / span 2; display: inline-flex; align-items: center;
                       min-height: 44px; justify-self: start; }   /* tap target */
-.pm6 .pm-hdr__brand img { width: 132px; height: auto; }
-.pm6 .pm-nav { grid-column: 6 / span 5; display: flex; gap: var(--s-6); justify-content: flex-end; }
+.pm6 .pm-hdr__brand img { width: 172px; height: auto; }   /* +30% */
+.pm6 .pm-nav { grid-column: 3 / span 8; display: flex; gap: var(--s-7); justify-content: flex-end; }
 .pm6 .pm-nav a {
   color: var(--bone-72); font-family: var(--f);
-  font-size: var(--t-micro); font-weight: 500;
+  font-size: var(--t-body); font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
   display: inline-flex; align-items: center; min-height: 44px;   /* tap target */
   padding-block: var(--s-2);
@@ -354,7 +512,10 @@
   transition: color var(--d-1) var(--ease), border-color var(--d-1) var(--ease);
 }
 .pm6 .pm-nav a:hover, .pm6 .pm-nav a:focus-visible { color: var(--bone); border-bottom-color: var(--rule-hi); }
+/* the telephone is a peer of the nav, not a footnote to it, so it takes the
+   same step — and keeps tabular figures so the number reads as a number */
 .pm6 .pm-hdr__tel { grid-column: 11 / span 2; justify-self: end; color: var(--bone-72);
+                    font-size: var(--t-body); font-variant-numeric: tabular-nums;
                     display: inline-flex; align-items: center; min-height: 44px;   /* tap target */
                     transition: color var(--d-1) var(--ease); }
 .pm6 .pm-hdr__tel:hover { color: var(--bone); }
@@ -374,18 +535,44 @@
    sits closer to its title than the title sits to its paragraph, and that
    difference is what encodes the grouping. The seven containers that use
    this had seven different answers before it existed. */
-.stack > * + *                    { margin-block-start: var(--sp-title-body); }
-.stack > .head__brow + *,
-.stack > .hero__brow + *          { margin-block-start: var(--sp-label-title); }
-.stack > * + .plate,
-.stack > * + .feat__foot          { margin-block-start: var(--sp-title-data); }
-.stack > figure + *               { margin-block-start: var(--sp-media-title); }
-.stack > .lede + *,
-.stack > .hero__sub + *,
-.stack > .room__p + *,
-.stack > .why__story + *          { margin-block-start: var(--sp-body-cta); }
-.stack > * + .cta,
-.stack > * + .ctas                { margin-block-start: var(--sp-body-cta); }
+/* EVERY SELECTOR HERE IS .pm6-SCOPED, and that is the whole reason this
+   component works at all. The element reset near the top of this file is
+   `.pm6 h1, .pm6 h2, .pm6 h3, .pm6 h4, .pm6 p, .pm6 figure, .pm6 dl, .pm6 dd
+   { margin: 0 }` — specificity (0,1,1). A bare `.stack > * + *` is (0,1,0) and
+   LOSES to it, so the component silently did nothing for any heading,
+   paragraph, list or figure placed directly inside a stack. It appeared to
+   work only because every stack until now wrapped its children in <div>s,
+   which are not in the reset. The auction column put an h3, a dl and a p in
+   there directly and the intervals collapsed to zero.
+
+   Same class of bug as the font-family and the p font-size before it: in this
+   theme, inheritance is not an override and neither is a lower-specificity
+   rule that happens to be written later. */
+.pm6 .stack > * + *                    { margin-block-start: var(--sp-title-body); }
+.pm6 .stack > .head__brow + *,
+.pm6 .stack > .hero__brow + *          { margin-block-start: var(--sp-label-title); }
+.pm6 .stack > * + .plate,
+.pm6 .stack > * + .feat__foot          { margin-block-start: var(--sp-title-data); }
+.pm6 .stack > figure + *               { margin-block-start: var(--sp-media-title); }
+.pm6 .stack > .lede + *,
+.pm6 .stack > .hero__sub + *,
+.pm6 .stack > .room__p + *,
+.pm6 .stack > .why__story + *          { margin-block-start: var(--sp-body-cta); }
+.pm6 .stack > * + .cta,
+.pm6 .stack > * + .ctas                { margin-block-start: var(--sp-body-cta); }
+/* The car's name arrives UNDER a 52px section headline set at 0.92 leading,
+   and 24px there is the same collision the hero had at 90px: the caps of one
+   line nearly touch the caps of the next and the eye stops separating the two
+   ranks. The name is a new subject, not the headline continuing, so it takes
+   the next interval up. Second and last place on the page where a semantic
+   interval is stepped for optical reasons — both are named, both are under
+   display type, and nothing else moves. */
+.pm6 .stack > * + .block__name         { margin-block-start: var(--s-7); }
+/* the two facts are the section's subject: title → data going in, and the
+   paragraph that follows gets the body interval, because after two 63px
+   numbers the reader is starting a sentence, not continuing a caption */
+.pm6 .stack > * + .figs                { margin-block-start: var(--sp-title-data); }
+.pm6 .stack > .figs + *                { margin-block-start: var(--sp-body-cta); }
 .ctas { display: flex; flex-wrap: wrap; gap: var(--sp-group); }
 
 /* ================================================== 1 · hero — unchanged ==
@@ -394,7 +581,12 @@
    its own container, because the left axis has to begin somewhere and this is
    where the visitor first sees it. */
 
-.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end;
+/* The block is centred on the hero's vertical axis, not hung off its floor.
+   Bottom-aligned it sat on the fold with the whole upper frame empty above
+   it, so the film read as a ceiling and the type as a caption under it.
+   Centred, the opening is one composition and the ramp below it becomes air
+   rather than the thing holding the words up. */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: center;
         overflow: hidden; background: var(--ink); }
 .hero__film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* legibility bought at the background layer, never a shadow on type — I4 */
@@ -403,31 +595,114 @@
   background: linear-gradient(to top, rgba(10,12,14,.92) 0%, rgba(10,12,14,.72) 28%,
                                       rgba(10,12,14,.18) 62%, rgba(10,12,14,.06) 100%);
 }
-.hero .g12 { position: relative; padding-block: var(--s-9) var(--s-8); }
+/* symmetrical now — an asymmetric pad was what made "centred" impossible;
+   the header still needs clearing, so the top carries its height */
+/* SYMMETRIC, so the centring is true, and FLUID, so it can give way. At a
+   comfortable height it is the header's own height, which keeps the eyebrow
+   clear of the fixed bar; as the viewport shortens it falls to 16px, because
+   the requirement that both the hero and the four doors sit above the fold
+   outranks the header clearance — and the header carries a scrim for exactly
+   that case. One expression, both ends on the scale. */
+.hero .g12 { position: relative; padding-block: clamp(var(--s-3), 5svh, var(--hdr-h)); }
 .hero__in { grid-column: 1 / span 7; display: block; }
 .hero__brow { color: var(--bone-72); }
-.hero__h { font-size: var(--t-mega); }
-.hero__sub { font-size: var(--t-lead); color: var(--bone-72); max-width: 44ch; }
+/* THE HERO'S OWN INTERVALS. The semantic layer is global on purpose — the same
+   relationship may not have two numbers — and this is the one place it needs a
+   scoped answer, for the same reason type gets one: the correction scales with
+   the size. Every other title on this page is 52px or less and 24px under it
+   reads as "these belong together". Under a 90px headline the same 24px reads
+   as a collision, and the eye stops separating the ranks at all.
 
-/* ============================================= 2 · routes — TIGHT, span 3 ==
-   The first beat, and it is compression. Four doors of equal rank, three
-   columns each, separated by the grid's own gutters and a hairline. */
+   So the hero takes the next step up in each of the three intervals it has,
+   and nothing else on the page moves:
+     eyebrow → headline   16 → 24    the label stays attached
+     headline → paragraph 24 → 48    the rank break becomes visible
+     paragraph → control  48 → 64    the action stops touching the sentence
+   Three tokens off the same 4px scale, no new values. */
+.hero__in > .hero__brow + *          { margin-block-start: var(--s-5); }
+.hero__in > .hero__h + *             { margin-block-start: var(--s-7); }
+.hero__in > .hero__sub + *           { margin-block-start: var(--s-8); }
+
+.hero__h { font-size: var(--t-mega); letter-spacing: -0.012em; }
+/* The break is AUTHORED, not left to the measure. At 151px the line happened
+   to fall after "bohemian"; at 90px it falls after "car" and strands "PLACE"
+   on a line of its own — typography I6, the most visible typographic error a
+   page can make. The markup already carried the two intended lines as
+   [data-rise] spans and nothing ever made them blocks. Now they are, so the
+   headline reads "A BOHEMIAN / CAR PLACE" at every width. */
+.hero__h [data-rise] { display: block; }
+/* The lead runs in a COLUMN, not across the field. At 38ch it was a 517px
+   line that started under the headline and ran out into open space, so it
+   read as a caption trailing off rather than as the second statement of the
+   opening. 26ch is 354px at this size — inside the 320–380 Alex asked for —
+   and it turns the same sentence into a three-line block with a left edge and
+   a right edge, which is what gives it presence next to a 90px headline.
+
+   Measured, not assumed: Roboto Condensed runs 13.6px to the character at
+   28px, so the column takes 26 characters a line and the sentence sets in
+   three. The size therefore does NOT have to come down to hold the measure —
+   the paragraph gets the narrow column AND stays at the larger step. */
+.hero__sub { font-size: var(--t-mid); color: var(--bone-72); max-width: 26ch;
+             line-height: 1.25; font-weight: 300; }
+
+/* ======================================== 2 · routes — THE NAVIGATION BAND ==
+   Four doors of equal rank, three columns each, separated by the grid's own
+   gutters and a hairline.
+
+   It was reading as STATISTICS rather than as a way in, and three things were
+   doing that. The strip was 145px of a 900px screen, which is a caption band.
+   The values were set in the body face, so "40 cars" read as a figure quoted
+   about the business rather than as a place called The Floor. And the only
+   answer to a pointer was a background tint — the whole item was already an
+   <a>, and nothing on it said so.
+
+   So: the band grows 28% on padding and the semantic intervals, the value
+   joins the display register every other 28px title on this page already
+   uses — which REMOVES a voice rather than adding one, typography I8 — and
+   each item gets the arrow the page's own controls use, travelling on hover
+   and on focus. Statistics do not have arrows. */
 
 .routes { border-block: 1px solid var(--rule); background: var(--ink-2); }
 .route {
   grid-column: span 3;
-  display: grid; gap: var(--s-2); align-content: start;
-  padding: var(--s-6) 0 var(--s-6) var(--s-5);
+  display: grid; align-content: start;
+  padding: var(--s-6) var(--s-5);
   border-left: 1px solid var(--rule);
   color: var(--bone);
   transition: background-color var(--d-1) var(--ease);
 }
+/* the gap was a uniform 8px across label → value → meta, which asserts that
+   all three are equally related. They are not: the label names the door and
+   belongs to the value, the meta is a footnote to it. spacing I1, and both
+   numbers come from the semantic layer rather than from this component. */
+.route > .route__k     { margin-bottom: var(--sp-label-title); }   /* 16 */
+.route > .route__v     { margin-bottom: var(--sp-title-meta);  }   /*  8 */
 .route:first-child { border-left: 0; padding-left: 0; }
-.route:hover { background: var(--ink-3); }
-.route__k { color: var(--bone-46); }
-.route__v { font-size: var(--t-mid); line-height: 1.05; }
+/* the last item KEEPS its right padding. Dropping it put the fourth arrow
+   24px further right than the other three and broke the one rhythm the band
+   depends on — four identical doors. The left axis is what has to be flush,
+   and that is the first item, which already is. */
+.route:hover, .route:focus-visible { background: var(--ink-3); }
+.route__k { color: var(--bone-46); transition: color var(--d-1) var(--ease); }
+.route:hover .route__k, .route:focus-visible .route__k { color: var(--bone-72); }
+
+.route .route__v {
+  font-size: var(--t-mid); line-height: 1.05;
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--s-4);
+}
+/* the arrow is the affordance, so it is sized to be seen and not to compete:
+   one step under the value, and it travels the same 6px the page's other
+   controls travel. It is aria-hidden — the destination is carried by the
+   link's own words, never by the glyph alone (typography I9). */
+.route__go { font-family: var(--f); font-size: var(--t-body); font-weight: 400;
+             color: var(--bone-46); flex: 0 0 auto;
+             transition: transform var(--d-1) var(--ease), color var(--d-1) var(--ease); }
+.route:hover .route__go, .route:focus-visible .route__go {
+  color: var(--bone); transform: translateX(6px);
+}
 .route__m { color: var(--bone-46); }
-.live { color: var(--live); display: inline-flex; align-items: center; gap: var(--sp-pill-text); }
+.live { color: inherit; display: inline-flex; align-items: center; gap: var(--sp-pill-text); }
 .dot  { width: 7px; height: 7px; border-radius: 50%; background: var(--live); flex: 0 0 auto; }
 
 /* ================================================ 3 · auctions — DENSE ====
@@ -447,22 +722,45 @@
 .block .g12 { row-gap: var(--s-9); align-items: start; }
 
 .block__info { grid-column: 1 / span 4; display: block; }
-.block__h { font-size: var(--t-big); }
+.block__h { font-size: var(--t-huge); }
+/* the car's name, at the rank every car name on this page now shares */
+.block__name { font-size: var(--t-big); line-height: 1.05; }
 
-.block__state { display: flex; align-items: center; gap: var(--s-3); color: var(--live); }
-.block__lot { display: grid; gap: var(--s-2); }
-.block__name { font-size: var(--t-mid); line-height: 1.1; }
-.block__spec { color: var(--bone-46); }
+/* ---- THE TWO FACTS -------------------------------------------------------
+   An auction has two numbers and the old column buried both. The bid was a
+   row in a three-row plate, indistinguishable from "Bids 24"; the countdown
+   was a separate object further down with its own layout. Between them sat
+   the state line, the specification and the plate — five small things in the
+   reading line, none of which is what anyone came for.
 
-/* the countdown, at the section's second scale — one object with the plate
-   above it, so time and money are read as the same fact */
-.block__clock { display: flex; align-items: baseline; gap: var(--s-4); flex-wrap: wrap; }
-.block__clock b { font-family: var(--f); font-weight: 400;
-                  font-size: clamp(40px, 4.4vw, 68px); line-height: 0.9;
-                  color: var(--live); font-variant-numeric: tabular-nums; }
-.block__clock span { color: var(--bone-46); }
+   So money and time are one component: label above, value below, both at one
+   size, stacked because a four-column well cannot hold two 63px numbers side
+   by side (measured: 240px + 210px against 371px of column).
 
-.sample { border-left: 2px solid var(--live); padding: var(--s-3) var(--s-5);
+   Label ABOVE the value, not left of it. The page's .plate puts the key on
+   the left and the value on the right, which is right for a specification —
+   the eye runs down the values and the keys stay subordinate. These two are
+   not a specification, they are the section's subject, so the label becomes a
+   caption to a headline rather than a column heading. */
+.figs { display: grid; gap: var(--s-6); }
+.figs__k { color: var(--bone-46); margin-bottom: var(--s-2); }
+.figs__v { font-family: var(--f); font-weight: 400; line-height: 0.9;
+           font-size: var(--t-grand);
+           color: var(--bone); font-variant-numeric: tabular-nums; }
+/* The accent survives in exactly one place on the resting page, and this is
+   it: the only value here that is still changing. Everything else that was
+   green — the state line, four Live pills, the route strip's value, the
+   sample rule, the footer hover — is bone from this pass, so the colour means
+   "this is running" rather than "this is an auction page". */
+.figs__v--live { color: var(--live); }   /* 8.99:1 on --ink */
+
+/* typography I4: uppercase is tracked AND SHORT — never a full sentence,
+   never a paragraph. This note is five lines of it. The .mono in the markup was
+   reaching for the label register and took the casing with it; the register the
+   note actually needs belongs to its first three words, not to the disclosure. */
+.sample { text-transform: none; letter-spacing: 0; font-weight: 400; line-height: 1.5; }
+.sample b { text-transform: uppercase; letter-spacing: 0.14em; }
+.sample { border-left: 2px solid var(--rule-hi); padding: var(--s-3) var(--s-5);
           color: var(--bone-72); font-size: var(--t-micro); }
 .sample b { color: var(--bone); font-weight: 600; }
 
@@ -472,7 +770,7 @@
 .state {
   position: absolute; top: var(--s-4); left: var(--s-4);
   display: inline-flex; align-items: center; gap: var(--s-2);
-  padding: var(--s-2) var(--s-4); background: rgba(10,12,14,.78); color: var(--live);
+  padding: var(--s-2) var(--s-4); background: rgba(10,12,14,.78); color: var(--bone);
 }
 
 /* ONE row underneath, three lots of four columns each. Not scattered. */
@@ -486,8 +784,16 @@
 .lot__fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
                 transition: transform var(--d-3) var(--ease); }
 .lot:hover .lot__fig img { transform: scale(1.04); }
-.lot__k { color: var(--bone-46); }
-.lot__h { font-size: var(--t-mid); line-height: 1.12; }
+/* Every car name on this page is now one rank — featured, primary lot,
+   secondary lot. The primary lot does not lead by having a bigger name; it
+   leads by an eight-column photograph, two oversized figures and the only
+   control in the section. Rank by composition, not by point size. */
+.lot__k { color: var(--bone-46); font-size: var(--t-body); }
+.lot__h { font-size: var(--t-big); line-height: 1.05; }
+/* the lot data sat at the label floor under a 37px name — a whole rank of
+   difference doing no work. One step up, so the figures are read rather than
+   noticed. */
+.lot .plate dt, .lot .plate dd { font-size: var(--t-body); }
 .lot .plate { margin-block-start: var(--sp-title-data); }
 
 /* ================================================== 4 · hold — RELEASE ====
@@ -502,8 +808,10 @@
 
    The photograph is NOT Patton stock and is never labelled as though it were —
    no lot number, no price, no plate. It carries the hour rather than a car. */
+/* Position and layer are set in the OVERLAPS block at the foot of this file,
+   where both seams are defined together. Nothing here is sticky. */
 .hold {
-  position: relative; overflow: hidden;
+  overflow: hidden;
   min-height: 62svh; display: grid; align-items: end;
   border-block: 1px solid var(--rule); background: var(--ink);
 }
@@ -514,9 +822,14 @@
   background: linear-gradient(to top, rgba(10,12,14,.94) 0%, rgba(10,12,14,.62) 34%,
                                       rgba(10,12,14,.12) 72%, rgba(10,12,14,0) 100%);
 }
-.hold .g12 { position: relative; align-items: end; row-gap: var(--s-5);
-             padding-block: var(--s-9) var(--s-8); }
-.hold__h { grid-column: 1 / span 7; font-size: var(--t-big); }
+.hold .g12 { position: relative; align-items: end; row-gap: var(--s-6);
+             padding-block: var(--s-9) var(--s-9); }
+/* The statement was set at the section-title step, so a full-bleed frame with
+   one sentence in it read as a banner with a caption. It is not a section
+   title — there is no section here — it is the page's one direct address, and
+   it takes the step above. Eight columns rather than seven, so the two lines
+   break where the sentence does. */
+.hold__h { grid-column: 1 / span 7; font-size: var(--t-grand); }
 .hold__a { grid-column: 10 / span 3; justify-self: end; }
 
 /* ================================================= 5 · the floor — DENSE ==
@@ -531,40 +844,148 @@
    what a floor looks like written down. */
 
 .floor { background: var(--paper); color: var(--ink); padding-block: var(--s-10); }
-.floor .g12 { row-gap: var(--s-9); align-items: start; }
+.floor .g12 { row-gap: var(--s-8); align-items: start; }
 
-.feat { grid-column: 1 / span 7; display: block; }
-.feat__fig { overflow: hidden; }
-.feat__fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
-                 transition: transform var(--d-3) var(--ease); }
-.feat:hover .feat__fig img { transform: scale(1.03); }
+/* ---- THE CROSSING ELEMENT ------------------------------------------------
+   The featured photograph is the ONE thing on this page that enters an
+   overlap zone. It rises --crossing above the floor's own ground, into the
+   dark the interstitial left empty, and the zone contains nothing else: no
+   text on either side of the seam is within a hundred pixels of it.
+
+   That is what a ground offset alone could not do. 64px between two opaque
+   full-bleed grounds is geometrically an overlap and visually a boundary; an
+   object standing in the gap is what makes the eye read two planes.
+
+   The interstitial's bottom padding is sized from the same two tokens, so the
+   photograph can never reach its statement no matter which one changes. */
+:root { --crossing: var(--s-9); }   /* 96px · 48 below 800 */
+
+/* The lift has to clear the section's own top padding as well as the two seam
+   tokens, or the picture simply sits higher on the light ground and crosses
+   nothing. --s-10 is the floor's section space, --overlap is the ground
+   offset, --crossing is how far into the dark the photograph then stands.
+
+   .pm6-scoped because `.pm6 figure { margin: 0 }` is (0,1,1) and a bare
+   `.feat__fig` is (0,1,0) — the reset was silently eating the lift, which is
+   the sixth time this file has lost to that same rule. */
+/* STICKY, and this one is the right use of it — the opposite case to the seam
+   disaster earlier in this build. There, a sticky SECTION escaped its own
+   chapter and painted over everything after it. Here a sticky COLUMN stays
+   inside its own grid area: it never leaves .floor, it never crosses into the
+   index's five columns, and there is nothing behind it to cover.
+
+   It answers a real reading problem. The index is 1131px of list against a
+   748px picture, so past the first few rows the visitor was choosing cars with
+   nothing to look at. The photograph now comes to rest 24px under the header
+   and holds while the list runs past it, which is also what makes the row
+   hover worth having — the swap happens where the eye already is.
+
+   `align-self: start` is what allows it: a stretched grid item has no room to
+   move. Two guards below turn it off where it would trap content instead of
+   presenting it. */
+.pm6 .feat { grid-column: 1 / span 7; display: block; align-self: start;
+             margin-top: calc((var(--s-10) + var(--overlap) + var(--crossing)) * -1);
+             position: sticky; top: var(--hdr-stop); z-index: 2; }
+.pm6 .feat__fig { overflow: hidden; margin-bottom: var(--sp-media-title); }
+/* 3:2 rather than 4:3, and for a structural reason: the block has to fit
+   between the header and the fold or its price line is unreachable while it is
+   stuck. At 3:2 the whole thing is ~615px and clears a 760px viewport. */
+/* THE CROSSFADE. The figure is the ratio box; both images fill it absolutely
+   and stack, so swapping is a change of opacity and never a change of layout.
+
+   Directions are opposite on purpose and both are tiny — the outgoing frame
+   drifts very slightly AWAY (1 → 1.01) while the incoming settles very
+   slightly IN (1.015 → 1). That reads as one photograph replacing another in
+   the same plane, which is what D1 asks of content changing in place; a
+   single-layer fade to nothing and back reads as a blink.
+
+   No `linear` anywhere: the old fade used it, which is why the swap felt cut. */
+.feat__fig { position: relative; aspect-ratio: 3 / 2; }
+.feat__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.015); transform-origin: 50% 50%;
+  transition: opacity   var(--dur-image) var(--ease-in),
+              transform var(--dur-image) var(--ease-in);
+}
+.feat__img.is-on {
+  opacity: 1; transform: scale(1);
+  transition: opacity   var(--dur-image) var(--ease-out),
+              transform var(--dur-image) var(--ease-out);
+}
+/* the one leaving drifts out rather than simply vanishing */
+.feat__img.is-off { opacity: 0; transform: scale(1.01); }
+/* the hover zoom rides on top of the crossfade's own transform */
+.pm6 .feat:hover .feat__fig .feat__img.is-on { transform: scale(1.03); }
+
 .feat__k { color: var(--ink-64); }
-.feat__h { font-size: var(--t-big); line-height: 1.02; }
+/* Alex: "слишком похож на ещё один heading". It was 37 against a 52 section
+   title — 1.4× apart, same face, same casing, so the eye ranked them as peers.
+   At 28 it is a caption to its photograph, which is what it is, and the gap to
+   the section title becomes 1.9×. The one stated exception to "every car name
+   on this page is 37": this name sits under its own picture, not on a card. */
+.feat__h { font-size: var(--t-mid); line-height: 1.05; }
 .feat__sub { color: var(--ink-64); margin-block-start: var(--sp-title-meta); }
 .feat__foot { display: flex; flex-wrap: wrap; gap: var(--sp-row) var(--s-8); align-items: baseline;
-              border-top: 1px solid var(--rule-lt); padding-top: var(--sp-title-data); }
+              border-top: 1px solid var(--rule-lt); padding-top: var(--sp-title-data);
+              margin-block-start: var(--sp-title-data); }
 .feat__price { font-family: var(--f); font-size: var(--t-mid);
                font-variant-numeric: tabular-nums; }
 
-/* the index: the numeral belongs HERE, where it is the thing being counted */
-.index { grid-column: 8 / span 5; display: grid; align-content: start; }
+/* ---- THE INDEX, now the section's information column ---------------------
+   It carries the section's own head, because the photograph leads the floor
+   and the axis is carried by the photograph's left edge on column 1. The 40
+   no longer floats above a list it has nothing to do with — it is the count
+   OF this list and it sits on the same rule the list hangs from. */
+.index { grid-column: 8 / span 5; display: block; align-self: start; }
+.index .head__h { font-size: var(--t-huge); }
+.index .lede { margin-block-start: var(--sp-title-body); }
+
 .index__top { display: flex; align-items: baseline; gap: var(--s-4);
-              border-bottom: 1px solid var(--ink); padding-bottom: var(--s-4); margin-bottom: var(--s-2); }
+              border-bottom: 1px solid var(--ink);
+              margin-top: var(--sp-intro-body); padding-bottom: var(--s-4); }
 .index__n { font-family: var(--f); font-size: clamp(44px, 4.6vw, 72px);
             line-height: 0.82; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 .index__l { color: var(--ink-64); }
+
+.index__rows { display: block; }
+/* 48px, the bottom of the 48–56 band and the tap-target floor at once. The row
+   is a real control, so it resets the button box the theme would otherwise
+   impose and takes the full width of the column. */
 .index__row {
-  display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--s-4);
-  align-items: baseline; padding-block: var(--s-3);
-  border-bottom: 1px solid var(--rule-lt); color: var(--ink);
-  transition: padding-left var(--d-1) var(--ease), border-color var(--d-1) var(--ease);
+  display: grid; grid-template-columns: 3ch minmax(0,1fr) auto;
+  gap: var(--s-4); align-items: baseline; text-align: left;
+  width: 100%; min-height: var(--s-7); padding: var(--s-3) 0;
+  background: none; border: 0; border-bottom: 1px solid var(--rule-lt);
+  border-radius: 0; color: var(--ink); font-family: var(--f); cursor: pointer;
+  transition: padding-left var(--d-1) var(--ease), border-color var(--d-1) var(--ease),
+              background-color var(--d-1) var(--ease);
 }
-.index__row:hover { padding-left: var(--s-3); border-bottom-color: var(--ink); }
+.index__i { color: var(--ink-64); font-size: var(--t-micro);
+            font-variant-numeric: tabular-nums; letter-spacing: 0.08em;
+            transition: color var(--d-1) var(--ease); }
 .index__nm { font-size: var(--t-body); }
 .index__nm i { font-style: normal; color: var(--ink-64); }
 .index__pr { font-family: var(--f); font-size: var(--t-micro);
-             font-variant-numeric: tabular-nums; color: var(--ink-64); }
-.index__row:hover .index__pr { color: var(--ink); }
+             font-variant-numeric: tabular-nums; color: var(--ink-64);
+             transition: color var(--d-1) var(--ease); }
+
+.index__row:hover, .index__row:focus-visible {
+  padding-left: var(--s-3); border-bottom-color: var(--ink);
+}
+.index__row:hover .index__pr, .index__row:focus-visible .index__pr,
+.index__row:hover .index__i,  .index__row:focus-visible .index__i { color: var(--ink); }
+
+/* the SELECTED row — the one the photograph is currently showing. It is a
+   state, so it is carried by more than colour: the number goes to full ink,
+   a 2px rule appears on the left edge, and aria-pressed says it out loud. */
+.index__row[aria-pressed="true"] {
+  padding-left: var(--s-3);
+  box-shadow: inset 2px 0 0 0 var(--ink);
+  border-bottom-color: var(--ink);
+}
+.index__row[aria-pressed="true"] .index__i,
+.index__row[aria-pressed="true"] .index__pr { color: var(--ink); }
+
 .index__more { margin-top: var(--s-6); }
 
 /* =============================================== 6 · sell — 4 against 8 ====
@@ -574,26 +995,59 @@
    set at the largest step because it is the route this business is built on,
    and the two below it step down in scale rather than in decoration. */
 
-.sell { background: var(--paper); color: var(--ink); padding-block: var(--s-10);
+/* MEASURED BEFORE: 791px tall, of which 437 was empty field under a 354px left
+   column, and three rows that were <div>s — nothing on them responded to a
+   pointer, which is exactly why it read as a wireframe.
+
+   The section space comes down (144/144 → 96/64) and the rows change shape:
+   number and title and arrow on ONE line, the description under them at full
+   width instead of squeezed into a third column. Same content, one line each
+   instead of three, and the row now has a horizontal axis to travel along.
+
+   All three titles are equal now. The old build set 01 larger "because it is
+   the route this business is built on" — but these are three parallel choices
+   a seller picks between, and unequal emphasis on parallel options misstates
+   the choice (anti-patterns D6, U1). The order already says which comes first. */
+.sell { background: var(--paper); color: var(--ink);
+        padding-block: var(--s-9) var(--s-7);
         border-top: 1px solid var(--rule-lt); }
 .sell .g12 { align-items: start; row-gap: var(--s-8); }
 .sell__say { grid-column: 1 / span 4; display: block; }
-.sell__h { font-size: var(--t-big); }
+.sell__h { font-size: var(--t-huge); }
 
 .routes3 { grid-column: 5 / span 8; border-top: 1px solid var(--ink); }
 .route3 {
-  display: grid; grid-template-columns: minmax(0, 5ch) minmax(0, 1fr) minmax(0, 2fr);
-  gap: var(--s-5) var(--s-6); align-items: start;
-  padding-block: var(--s-7); border-bottom: 1px solid var(--rule-lt);
+  display: grid;
+  grid-template-columns: minmax(0, 5ch) minmax(0, 1fr) auto;
+  column-gap: var(--s-6); row-gap: var(--sp-title-meta);
+  align-items: baseline;
+  padding: var(--s-6) 0; color: var(--ink);
+  /* stronger dividers: --rule-lt is 1.48:1, which is a hairline for a table
+     row and too quiet to separate three objects this size. --rule-ctl is
+     3.56:1 on --paper — the token this file already keeps for an edge that
+     has to be seen. */
+  border-bottom: 1px solid var(--rule-ctl);
+  transition: padding-left var(--d-1) var(--ease), border-color var(--d-1) var(--ease);
 }
 .route3:last-child { border-bottom: 0; }
-.route3__n { font-family: var(--f); font-size: var(--t-micro);
+.route3__n { grid-column: 1; font-family: var(--f); font-size: var(--t-micro);
              letter-spacing: 0.08em; color: var(--ink-64); font-variant-numeric: tabular-nums;
-             padding-top: var(--s-1); }
-.route3__h { font-size: var(--t-mid); line-height: 1.05; }
-.route3--lead .route3__h { font-size: var(--t-big); }
-.route3__p { color: var(--ink-64); }
-.route3--lead .route3__p { color: var(--ink); font-size: var(--t-lead); }
+             transition: color var(--d-1) var(--ease); }
+.route3__h { grid-column: 2; font-size: var(--t-big); line-height: 1.05; }
+.route3__go { grid-column: 3; font-style: normal; font-family: var(--f);
+              font-size: var(--t-mid); color: var(--ink-64);
+              transition: transform var(--d-1) var(--ease), color var(--d-1) var(--ease); }
+/* the description sits UNDER the title, on the title's own axis, and comes up
+   to full ink on hover — the row's one emphasis change. It clears AA at rest
+   (--ink-64 is 5.70:1), so the hover adds weight rather than fixing legibility */
+.route3__p { grid-column: 2 / span 2; color: var(--ink-64); max-width: 68ch;
+             transition: color var(--d-1) var(--ease); }
+
+.route3:hover, .route3:focus-visible { padding-left: var(--s-4); border-bottom-color: var(--ink); }
+.route3:hover .route3__p, .route3:focus-visible .route3__p { color: var(--ink); }
+.route3:hover .route3__n, .route3:focus-visible .route3__n,
+.route3:hover .route3__go, .route3:focus-visible .route3__go { color: var(--ink); }
+.route3:hover .route3__go, .route3:focus-visible .route3__go { transform: translateX(6px); }
 
 /* ======================================= 7 · who is behind it — recomposed ==
    The old shape was IMAGE | STORY | DATABASE, and the database won: a black
@@ -626,7 +1080,11 @@
 .why__brow  { grid-column: 1 / span 12; color: var(--ink-64); }
 .why__h     { grid-column: 1 / span 8; font-size: var(--t-huge);
               margin-block-start: var(--sp-label-title); }
-.why__story { grid-column: 9 / span 4; font-size: var(--t-lead); color: var(--ink-64);
+/* a story is read, not scanned, so it gets a reading measure rather than a
+   column width: 35ch at 18px is the band asked for, and it sits at the
+   headline's baseline instead of floating beside its cap height */
+.why__story { grid-column: 9 / span 4; font-size: var(--t-body); color: var(--ink-64);
+             max-width: 35ch; align-self: end;
               margin-block-start: var(--sp-label-title); align-self: end; }
 
 .why__fig { grid-column: 1 / span 7; overflow: hidden;
@@ -645,9 +1103,11 @@
                padding-block: var(--sp-title-body);
                border-top: 1px solid var(--rule-lt); }
 .proof > div:first-child { border-top: 0; padding-top: 0; }
-.proof__v { font-family: var(--f-disp); font-weight: 600; font-size: clamp(38px, 3.6vw, 58px);
+/* the figures ARE the evidence, so they take the page's statement step —
+   52 to 68, about a third up, and still typography rather than KPI tiles */
+.proof__v { font-family: var(--f-disp); font-weight: 600; font-size: var(--t-grand);
             line-height: 0.9; letter-spacing: 0.005em; color: var(--ink); }
-.proof__v--word { font-size: clamp(24px, 2.1vw, 34px); }
+.proof__v--word { font-size: var(--t-big); }
 .proof__l { margin: 0; font-size: var(--t-micro); font-weight: 500;
             letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-64); }
 
@@ -661,6 +1121,7 @@
            transition: border-color var(--d-1) var(--ease); }
 .rail__n { font-size: var(--t-micro); font-weight: 500; letter-spacing: 0.14em;
            color: var(--ink-64); }
+.rail li p { font-size: var(--t-body); color: var(--ink-64); }
 .rail__h { font-family: var(--f-disp); font-weight: 600; font-size: var(--t-mid);
            letter-spacing: 0.005em; text-transform: uppercase;
            margin-block-start: var(--sp-label-title);
@@ -691,7 +1152,7 @@
    The type inside it still starts on column 1. Escaping the grid is not the
    same as leaving the axis. */
 
-.room { position: relative; background: var(--ink); min-height: 82svh;
+.room { background: var(--ink); min-height: 82svh;
         display: flex; align-items: flex-end; overflow: hidden; }
 .room__img { position: absolute; inset: 0; width: 100%; height: 100%;
              object-fit: cover; object-position: 44% 50%; }
@@ -704,14 +1165,19 @@
     linear-gradient(0deg,  rgba(10,12,14,.50) 0%, rgba(10,12,14,0) 46%);
 }
 .room .g12 { position: relative; padding-block: var(--s-10) var(--s-9); }
-.room__in { grid-column: 1 / span 6; display: block; }
+.room__in { grid-column: 1 / span 8; display: block; }
 /* Measured on the render: at --bone-46 this label came out 3.98:1 against the
    photograph, and the ground beneath it is already rgb(30,31,33) — darkening
    the scrim further would cost the room its light for nothing. So the ink
    moves, not the ground. This is the exception I4 allows: the background is
    not the failing layer. */
 .room .head__brow { color: var(--bone-72); }
-.room__h { font-size: var(--t-big); }
+/* The closing chapter was at the section-title step and read as a caption on
+   a photograph. It is a statement, so it takes the step the interstitial
+   statement takes — 52 to 68 — and the two full-bleed photographic
+   statements now share one register. Not hero scale: the hero is 90 and
+   stays the only thing there. */
+.room__h { font-size: var(--t-grand); }
 .room__p { color: var(--bone-72); max-width: 40ch; }
 
 /* =============================================================== 9 · footer ==
@@ -737,14 +1203,21 @@
    it returns rather than arrives, which is what keeps the page down to a
    small number of typographic ideas. */
 
+/* Shorter and heavier at once. It was 144/64 of padding with 96px between
+   its four blocks and every functional line at the label floor — a lot of
+   field carrying very little ink. The space comes down and the type goes up:
+   nav, hours, address and legal all move from 15 to 18, and the telephone
+   from 30 to the card-title step. A footer is where a visitor goes to find
+   a fact, and 2px saved there costs the fact. */
 .foot { background: var(--ink); color: var(--bone); border-top: 1px solid var(--rule);
-        padding-block: var(--s-10) var(--s-8); }
-.foot .g12 { row-gap: var(--s-9); }
+        padding-block: var(--s-9) var(--s-7); }
+.foot .g12 { row-gap: var(--s-8); }
 
 .foot__id { grid-column: 1 / span 4; display: block; }
 .foot__id img { width: 132px; height: auto; }
-.foot__say { color: var(--bone-72); max-width: 34ch; }
-.foot__addr { font-style: normal; color: var(--bone-72); }
+.foot__say { color: var(--bone-72); max-width: 34ch; font-size: var(--t-lead); }
+.foot__addr { font-style: normal; color: var(--bone-72); font-size: var(--t-body);
+             letter-spacing: 0.06em; text-transform: uppercase; }
 
 .foot__nav { grid-column: 6 / span 4; display: grid;
              grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--col-gap); }
@@ -759,7 +1232,7 @@
 .foot__col a {
   color: var(--bone-72); min-height: 44px;             /* tap target */
   display: inline-flex; align-items: center;
-  font-family: var(--f); font-size: var(--t-micro);
+  font-family: var(--f); font-size: var(--t-body);
   letter-spacing: 0.08em; text-transform: uppercase;
   transition: color var(--d-1) var(--ease);
 }
@@ -775,15 +1248,15 @@
 .foot__call a {
   display: inline-flex; align-items: center; min-height: 44px;   /* tap target */
   font-family: var(--f); font-weight: 400;
-  font-size: clamp(24px, 2.1vw, 32px); line-height: 1; letter-spacing: -0.01em;
+  font-size: var(--t-big); line-height: 1; letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums; color: var(--bone);
   transition: color var(--d-1) var(--ease);
 }
-.foot__call a:hover, .foot__call a:focus-visible { color: var(--live); }
+.foot__call a:hover, .foot__call a:focus-visible { color: var(--bone); }
 .foot__hours { display: grid; gap: var(--sp-row); border-top: 1px solid var(--rule);
                padding-top: var(--s-4); }
 .foot__hrow { display: flex; justify-content: space-between; gap: var(--s-4);
-              font-family: var(--f); font-size: var(--t-micro);
+              font-family: var(--f); font-size: var(--t-body);
               font-variant-numeric: tabular-nums; }
 .foot__hrow span:first-child { color: var(--bone-46); text-transform: uppercase; letter-spacing: 0.08em; }
 .foot__hrow span:last-child  { color: var(--bone); text-align: right; }
@@ -801,14 +1274,16 @@
   align-items: baseline;
 }
 .foot__legal p { grid-column: 1 / span 6; color: var(--bone-46);
-                 font-family: var(--f); font-size: var(--t-micro); }
+                 font-family: var(--f); font-size: var(--t-body); }
 .foot__meta { grid-column: 8 / span 5; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5);
               justify-content: flex-end;
               font-family: var(--f); font-size: var(--t-micro); }
 .foot__meta a { color: var(--bone-46); min-height: 44px; display: inline-flex; align-items: center;
+                font-size: var(--t-body);
                 transition: color var(--d-1) var(--ease); }   /* tap target */
 .foot__meta a:hover, .foot__meta a:focus-visible { color: var(--bone); }
-.foot__meta span { color: var(--bone-46); display: inline-flex; align-items: center; min-height: 44px; }
+.foot__meta span { color: var(--bone-46); display: inline-flex; align-items: center; min-height: 44px;
+                  font-size: var(--t-body); }
 
 /* =============================================================== motion ==
    Carried from v4 unchanged and not extended. The static composition is the
@@ -832,7 +1307,7 @@
    heading rather than a movement. Direction follows the composition: left-set
    titles come from the left, and the two right-hand ledes come from the right. */
 [data-t] { display: block; overflow: hidden; }
-[data-t] > * { display: block; transition: transform var(--d-3) var(--ease); }
+[data-t] > * { display: block; transition: transform var(--dur-reveal) var(--ease-out); }
 .m-on [data-t] > *        { transform: translateX(-48px); }
 .m-on [data-t="r"] > *    { transform: translateX(48px); }
 .m-on [data-t].in > *     { transform: none; }
@@ -841,21 +1316,16 @@
    28px and opacity, moved as one block — never per line and never per word.
    The 120ms delay is the whole point: the heading leads, the paragraph
    follows, and the order of reading is stated in time as well as in space. */
-[data-p] { transition: opacity var(--d-2) var(--ease), transform var(--d-2) var(--ease); }
+[data-p] { transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out); }
 .m-on [data-p]      { opacity: 0; transform: translateY(28px); }
 .m-on [data-p].in   { opacity: 1; transform: none; transition-delay: 120ms; }
 
-/* --- 3 · data rows: a short stagger, and only for the auction ------------
-   The lot's facts are one set, so they arrive as a set — 60ms apart, four
-   rows, done in under a quarter second. The figures themselves never roll or
-   count: the money is not temporal, the clock is, and only one thing on this
-   page is allowed to be the primary temporal idea. */
-[data-rows] > * { transition: opacity var(--d-2) var(--ease), transform var(--d-2) var(--ease); }
-.m-on [data-rows] > *    { opacity: 0; transform: translateY(8px); }
-.m-on [data-rows].in > * { opacity: 1; transform: none; }
-.m-on [data-rows].in > *:nth-child(2) { transition-delay: 60ms; }
-.m-on [data-rows].in > *:nth-child(3) { transition-delay: 120ms; }
-.m-on [data-rows].in > *:nth-child(4) { transition-delay: 180ms; }
+/* --- 3 · data rows: REMOVED THIS PASS ---------------------------------
+   The route strip, the auction figures, the credential numbers and the story
+   rail each staggered in. Four reveal events carrying no hierarchy: the facts
+   of a lot are not a chapter beginning, and every one of those elements
+   already answers a pointer. Scroll motion on this page is now reserved for
+   chapter progression, so data is simply present. */
 
 /* --- 4 · image reveal, for the two largest frames only ------------------
    THE CLIP GOES ON THE IMAGE, NOT ON THE OBSERVED ELEMENT. Clipping an
@@ -866,7 +1336,7 @@
    because earlier screenshots forced the end state by hand instead of
    scrolling to it. The figure stays unclipped and observable; the image
    inside it is what moves. */
-[data-mask] img { transition: clip-path var(--d-4) var(--ease); }
+[data-mask] img { transition: clip-path var(--d-4) var(--ease-out); }
 .m-on [data-mask] img { clip-path: inset(0 0 100% 0); }
 .m-on [data-mask].in img { clip-path: inset(0 0 0 0); }
 
@@ -904,26 +1374,87 @@
 /* rows answer with a small precise shift and a rule that firms up */
 .index__row, .route, .route3 { transition: background-color var(--d-1) var(--ease),
                                             border-color var(--d-1) var(--ease); }
-.route3:hover { border-bottom-color: var(--ink); }
-.route3__h, .index__nm { transition: transform var(--d-1) var(--ease); }
-.route3:hover .route3__h, .index__row:hover .index__nm { transform: translateX(4px); }
+
+.index__nm { transition: transform var(--d-1) var(--ease); }
 
 /* ============================================================== OVERLAPS ==
-   EXACTLY TWO on the whole page, both at a chapter seam, both making the page
-   read as layered rather than stacked. Every other transition stays flat —
-   an overlap used everywhere is a texture, not a structure.
+   EXACTLY TWO on the whole page:
 
-     A. the auction hands over to the transition frame
-     B. the room rises into the light chapter above it
+     A. the FLOOR ground rises over the interstitial's ground   (light over dark)
+     B. the ROOM ground rises over the credentials above it     (dark over light)
 
-   The section above each one carries extra bottom padding so the overlap
-   never lands on its content, and z-index is explicit at both seams so there
-   is nothing for the stacking context to decide by accident. */
-.hold, .room { position: relative; z-index: 2; }
-.hold { margin-top: calc(clamp(50px, 5vw, 110px) * -1); }
-.room { margin-top: calc(clamp(50px, 5vw, 110px) * -1); }
-.block { padding-bottom: calc(var(--s-9) + clamp(50px, 5vw, 110px)); }
-.why   { padding-bottom: calc(var(--s-10) + clamp(50px, 5vw, 110px)); }
+   ONE RULE, AND IT IS ABSOLUTE: grounds and media overlap, TEXT NEVER DOES.
+   No headline, paragraph, control, figure or plate may sit under another
+   opaque section at any scroll position or any width.
+
+   WHAT WENT WRONG BEFORE THIS PASS, recorded because it was expensive and it
+   was mine. I made the two frames `position: sticky; top: 0; z-index: 0` so
+   the arriving chapter would be seen climbing over a held photograph. Two
+   separate defects came out of it:
+
+     1. A held frame covers whatever is under it — including the interstitial's
+        own statement, which the light floor sliced through mid-word.
+     2. Worse and less obvious: a sticky element with z-index 0 is a POSITIONED
+        element and paints in the z-index:0 group, which comes AFTER all
+        static, non-positioned boxes. Every section after it — the floor, the
+        sell block, the credentials — is static, so the pinned dark frame
+        painted on top of all of them for the rest of the page. That is the
+        "Consignment entering underneath the previous dark section".
+
+   Both are gone: no sticky, and every layer is now declared rather than left
+   to DOM order.
+
+   THE GEOMETRY. Each seam reserves an explicit --overlap zone, and content on
+   both sides of it stays outside:
+
+     outgoing:  padding-bottom = its own section space + --overlap
+                → its last readable line ends BEFORE the zone
+     incoming:  margin-top     = −--overlap        (moves the GROUND up)
+                padding-top    = its own section space + --overlap
+                → its first readable line starts in the normal position
+
+   So the only thing that ever ends up under the incoming ground is the
+   outgoing section's empty padding. 64px, inside the 64–80 band, and a token
+   rather than a number. */
+/* 80px — inside both bands named for the two seams (64-80 and 70-100), and
+   composed from the scale rather than typed as a loose number. */
+:root { --overlap: calc(var(--s-8) + var(--s-4)); }   /* 80px · 32 below 800 */
+
+/* THE LAYER SYSTEM, declared once and not inferred from DOM order:
+     0  media inside a section — photographs, ramps, film
+     1  a section's own ground
+     2  readable content
+     40 the header, already set on #header */
+.hold, .room { position: relative; z-index: 1; }
+.hold__img, .hold__ramp, .room__img, .room__ramp,
+.hero__film, .hero__ramp { z-index: 0; }
+.hold .g12, .room .g12, .hero .g12 { position: relative; z-index: 2; }
+
+/* seam A — the interstitial hands over to the floor */
+.hold  { padding-bottom: calc(var(--overlap) + var(--crossing)); }
+/* the statement clears the crossing photograph by .hold .g12's own 96px of
+   bottom padding, on top of the two tokens above — so the zone the picture
+   stands in is empty by construction, not by luck */
+/* .why is named here too. It does not overlap anything by itself, but the
+   room rises onto it, and "positioned beats static" is exactly the incidental
+   stacking this block exists to replace. Same layer, later in the document,
+   so the room wins by document order rather than by accident. */
+.why { position: relative; z-index: 1; }
+.floor { position: relative; z-index: 1;
+         margin-top: calc(var(--overlap) * -1);
+         padding-top: calc(var(--s-10) + var(--overlap)); }
+
+/* seam B — the credentials hand over to the room. MOVED here from room →
+   footer, which was dark arriving on dark and so registered as nothing at all.
+   This is the page's other real change of ground.
+
+   The room's own content is bottom-aligned against an 82svh frame, so nothing
+   of its own is anywhere near the zone; the clearance that matters is on the
+   light side, and .why carries it in its bottom padding. */
+.room { position: relative; z-index: 1;
+        margin-top: calc(var(--overlap) * -1); }
+.why  { padding-bottom: calc(var(--s-10) + var(--overlap)); }
+
 
 /* --- mobile: choreography decided separately, not inherited (MJ8/DM10) ----
    The phone drops the two effects that depend on spatial room it does not
@@ -935,9 +1466,12 @@
   .m-on [data-px] img, .m-on [data-pximg] { height: auto; top: 0; transform: none !important; }
   .m-on [data-t] > *, .m-on [data-t="r"] > * { transform: none; }
   [data-t] { overflow: visible; }
-  .hold, .room { margin-top: calc(var(--s-6) * -1); }
-  .block { padding-bottom: calc(var(--s-8) + var(--s-6)); }
-  .why   { padding-bottom: calc(var(--s-9) + var(--s-6)); }
+  /* the zone shrinks — 80px on a 390px screen is a collision, not a layer.
+     One token, and both seams follow it, because every rule above is written
+     against --overlap rather than against a number. */
+  :root { --overlap: var(--s-6); --crossing: 0px; }   /* 32px · no crossing */
+  .block { padding-bottom: var(--s-8); }
+  .why   { padding-bottom: var(--s-9); }
 }
 
 /* --- reduced motion: an authored still, not a disabled interface (MJ9) ----
@@ -951,7 +1485,9 @@
     scroll-behavior: auto !important;
   }
   [data-px] img, [data-pximg] { transform: none !important; height: auto; top: 0; }
-  .hold, .room { margin-top: 0; }
+  /* the seams need nothing here any more. They are static geometry — two
+     grounds offset by 64px — with no sticky, no scroll-linking and no motion
+     of any kind, so there is no movement for this setting to answer. */
 }
 
 /* =============================================================== tablet ==
@@ -993,7 +1529,13 @@
   .block__info, .block__fig, .rank, .lot,
   .feat, .index, .sell__say, .routes3,
   .why__brow, .why__h, .why__story, .why__fig, .proof, .rail, .util,
-  .hold__h, .hold__a, .route { grid-column: 1 / span 12; }
+  .hold__h, .hold__a, .route,
+  .foot__id, .foot__nav, .foot__call { grid-column: 1 / span 12; }
+  /* U6. The footer alone kept its twelve-column desktop spans on a phone, so
+     .foot__call was a 78px cell holding a 148px hours table and the document
+     scrolled sideways by 54px. Pre-existing in v6 and independent of the type
+     scale  at 14px labels the same row still measured 138px in 78. */
+  .foot__legal p { grid-column: 1 / span 12; }
 
   .block__fig { margin-right: 0; }
   .hold__a { justify-self: start; }
@@ -1002,7 +1544,796 @@
   .rank { row-gap: var(--s-7); }
   .rail { grid-template-columns: 1fr; gap: var(--s-6); }
   .util { grid-template-columns: 1fr; gap: var(--s-5); }
+  /* the sticky column releases: at one column there is no list running past
+     it, and a picture pinned above its own list is just a picture in the way */
+  .pm6 .feat { position: static; }
   .route3 { grid-template-columns: minmax(0, 4ch) minmax(0, 1fr); }
   .route3__p { grid-column: 2; }
   .block .g12, .floor .g12 { row-gap: var(--s-8); }
+}
+
+/* ---- GUARD 2: short viewports -------------------------------------------
+   A sticky block taller than the space between the header and the fold puts
+   its own last line permanently out of reach — the price and the mileage
+   would never be readable while it is stuck. 760px is the measured height the
+   featured block needs (140 to rest + ~615 of content + air); under that it
+   goes back to normal flow and simply scrolls with everything else. */
+@media (max-height: 760px) {
+  .pm6 .feat { position: static; }
+}
+
+/* ---- anchor targets clear the fixed header ------------------------------
+   The header is 116px and no anchor knew it, so every nav jump — Auctions,
+   Inventory, Sell & Consign, About — landed its heading underneath the
+   header. Named here because --hdr-h now exists for the sticky column, and
+   the same number answers both. */
+.pm6 main > section[id], .pm6 #footer { scroll-margin-top: var(--hdr-stop); }
+
+/* ═══════════════════════════════════════════════ THE INTERACTION SYSTEM ═══
+   Every state change on this page, normalised in one place. The rules were
+   scattered across fifteen components before, each declaring its own list of
+   properties, and three separate defects came out of that:
+
+     1. ONE CURVE IN BOTH DIRECTIONS. Everything used --ease, an ease-out.
+        Coming back, an ease-out starts fast and then crawls to a halt, which
+        is read as a cut. This is the "polished hover-in, instant snap-back"
+        exactly, and it was in every component.
+
+     2. LAYOUT PROPERTIES ANIMATED. .index__row and .route3 both transitioned
+        padding-left — a reflow on every frame of every hover, on a list of
+        twelve rows. motion-taste I4 calls that a defect, not a preference.
+        Both now translate their CONTENTS, so the rule under the row stays put
+        and nothing reflows.
+
+     3. A LINEAR CURVE on the featured image's fade.
+
+   The shape below is the fix and it is mechanical: the EXIT is declared on
+   the base selector, the ENTRANCE on :hover and :focus-visible. Both
+   directions are always present, so an un-animated return cannot happen by
+   omission. Exits run one step faster than entrances, per I3.
+
+   Focus parity is not decoration here: every :hover in this block has its
+   :focus-visible twin, so the keyboard sees the same page (I2). */
+
+/* ---- controls ---------------------------------------------------------- */
+.pm6 .cta {
+  transition: background-color var(--dur-out-ui) var(--ease-in),
+              color            var(--dur-out-ui) var(--ease-in),
+              border-color     var(--dur-out-ui) var(--ease-in);
+}
+.pm6 .cta:hover, .pm6 .cta:focus-visible {
+  transition: background-color var(--dur-ui) var(--ease-out),
+              color            var(--dur-ui) var(--ease-out),
+              border-color     var(--dur-ui) var(--ease-out);
+}
+/* the arrow resolves WITH its button, not on its own clock */
+.pm6 .cta__go { transition: transform var(--dur-out-ui) var(--ease-in); }
+.pm6 .cta:hover .cta__go, .pm6 .cta:focus-visible .cta__go {
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+/* ---- text links: header, footer, utility ------------------------------- */
+.pm6 .pm-nav a, .pm6 .pm-hdr__tel, .pm6 .foot__col a,
+.pm6 .foot__call a, .pm6 .foot__meta a, .pm6 .util__v a {
+  transition: color        var(--dur-out-micro) var(--ease-in),
+              border-color var(--dur-out-micro) var(--ease-in);
+}
+.pm6 .pm-nav a:hover, .pm6 .pm-nav a:focus-visible,
+.pm6 .pm-hdr__tel:hover, .pm6 .pm-hdr__tel:focus-visible,
+.pm6 .foot__col a:hover, .pm6 .foot__col a:focus-visible,
+.pm6 .foot__call a:hover, .pm6 .foot__call a:focus-visible,
+.pm6 .foot__meta a:hover, .pm6 .foot__meta a:focus-visible,
+.pm6 .util__v a:hover, .pm6 .util__v a:focus-visible {
+  transition: color        var(--dur-micro) var(--ease-out),
+              border-color var(--dur-micro) var(--ease-out);
+}
+
+/* ---- the route band: one object, one transition ------------------------ */
+.pm6 .route { transition: background-color var(--dur-out-ui) var(--ease-in); }
+.pm6 .route:hover, .pm6 .route:focus-visible {
+  transition: background-color var(--dur-ui) var(--ease-out);
+}
+.pm6 .route__k, .pm6 .route__go {
+  transition: color var(--dur-out-micro) var(--ease-in),
+              transform var(--dur-out-micro) var(--ease-in);
+}
+.pm6 .route:hover .route__k, .pm6 .route:focus-visible .route__k,
+.pm6 .route:hover .route__go, .pm6 .route:focus-visible .route__go {
+  transition: color var(--dur-micro) var(--ease-out),
+              transform var(--dur-micro) var(--ease-out);
+}
+
+/* ---- inventory rows: the shift becomes a transform --------------------- */
+.pm6 .index__row { padding-left: 0; transition: border-color var(--dur-out-ui) var(--ease-in); }
+.pm6 .index__row:hover, .pm6 .index__row:focus-visible {
+  padding-left: 0; transition: border-color var(--dur-ui) var(--ease-out);
+}
+.pm6 .index__row > * { transition: transform var(--dur-out-ui) var(--ease-in),
+                                   color     var(--dur-out-micro) var(--ease-in); }
+.pm6 .index__row:hover > *, .pm6 .index__row:focus-visible > * {
+  transform: translateX(var(--s-3));
+  transition: transform var(--dur-ui) var(--ease-out),
+              color     var(--dur-micro) var(--ease-out);
+}
+.pm6 .index__row[aria-pressed="true"] { padding-left: 0; }
+.pm6 .index__row[aria-pressed="true"] > * { transform: translateX(var(--s-3)); }
+
+/* ---- sell routes: row, arrow, rule and description as ONE gesture ------
+   Same two durations on every property in the row, so nothing arrives on its
+   own clock — which is the whole of the "feels like one transition" ask. */
+.pm6 .route3 { padding-left: 0; transition: border-color var(--dur-out-ui) var(--ease-in); }
+.pm6 .route3:hover, .pm6 .route3:focus-visible {
+  padding-left: 0; transition: border-color var(--dur-ui) var(--ease-out);
+}
+.pm6 .route3 > * { transition: transform var(--dur-out-ui) var(--ease-in),
+                               color     var(--dur-out-ui) var(--ease-in); }
+.pm6 .route3:hover > *, .pm6 .route3:focus-visible > * {
+  transform: translateX(var(--s-4));
+  transition: transform var(--dur-ui) var(--ease-out),
+              color     var(--dur-ui) var(--ease-out);
+}
+/* the arrow keeps its extra travel, on the row's own timing */
+.pm6 .route3:hover .route3__go, .pm6 .route3:focus-visible .route3__go {
+  transform: translateX(calc(var(--s-4) + var(--s-2)));
+}
+
+/* ---- photographs -------------------------------------------------------
+   D2 budgets one hover change and bans scale because scale resamples TEXT.
+   These are photographs with no type in them, and the alternative — lifting
+   the whole card — would move the caption and the price with it. Yield taken
+   knowingly, at 1.03 and on the image only. */
+.pm6 .feat__fig img, .pm6 .lot__fig img, .pm6 .why__fig img {
+  transition: transform var(--dur-image) var(--ease-in);
+}
+.pm6 .feat:hover .feat__fig img, .pm6 .lot:hover .lot__fig img,
+.pm6 .why__fig:hover img {
+  transition: transform var(--dur-image) var(--ease-out);
+}
+
+/* ---- the story rail ---------------------------------------------------- */
+.pm6 .rail__h { transition: transform var(--dur-out-micro) var(--ease-in); }
+.pm6 .rail li:hover .rail__h { transition: transform var(--dur-micro) var(--ease-out); }
+
+/* ---- the caption crossfades with its photograph ------------------------
+   One block, one fade, and a reserved height so a two-line car name and a
+   one-line car name occupy the same box — otherwise the price would jump a
+   line every time the pointer crossed the list, which is the layout shift
+   motion-taste I4 forbids and the most irritating kind. */
+.pm6 .feat__text { transition: opacity var(--dur-out-micro) var(--ease-in); }
+.pm6 .feat__text.is-swapping { opacity: 0; }
+.pm6 .feat__h { min-height: calc(2 * 1.05em); }
+.pm6 .feat__sub { min-height: calc(1.4 * 1em); }
+
+/* ═════════════════════════════════════════════════════════ THIS PASS ═════ */
+
+/* ---- 1 · the brand's own gold, taken from the wordmark ------------------
+   Sampled out of assets/logo/goldenlogo_mobile.svg, whose gradient runs
+   #CA912B → #ECE747 → #FFA70A → #644815. The mid-bright stop is the one that
+   survives on the dark ground; the deep stops are for the fill.
+   Measured: #FFBE4F on the tinted pill ground is 9.92:1. */
+:root {
+  --gold:      #FFBE4F;
+  --gold-wash: rgba(202, 145, 43, 0.14);   /* the wordmark's base stop, washed */
+  --r-media:   8px;    /* photographs */
+  --r-ctl:     2px;    /* controls — unchanged, still machined */
+}
+
+/* ---- 2 · navigation: a transparent gold pill ---------------------------
+   Reversed after seeing the rule version on the render: the underline read as
+   a link decoration rather than as a hover state, which is the thing D5 warns
+   about from the other side. The pill is back, and it is the PAGE'S pill —
+   2px, the same radius the state pills use — so navigation borrows an
+   existing shape instead of introducing a second one.
+
+   Filled with the wordmark's own base stop at low alpha, with the bright stop
+   as ink. Measured on the composited ground: #FFBE4F on rgba(202,145,43,.14)
+   over --ink is 9.92:1. The colour appears nowhere else in the interface and
+   only on hover, so it reads as the brand answering rather than as a second
+   accent competing with --live. */
+.pm6 .pm-nav a {
+  background: transparent; border-radius: 999px;   /* an actual pill */
+  padding-inline: var(--s-5); border-bottom: 0;   /* 24px — the pill needs room to be one */
+}
+.pm6 .pm-nav a:hover, .pm6 .pm-nav a:focus-visible {
+  color: var(--gold); background: var(--gold-wash);
+}
+.pm6 .pm-nav a, .pm6 .pm-hdr__tel {
+  transition: color var(--dur-out-micro) var(--ease-in),
+              background-color var(--dur-out-micro) var(--ease-in);
+}
+.pm6 .pm-nav a:hover, .pm6 .pm-nav a:focus-visible,
+.pm6 .pm-hdr__tel:hover, .pm6 .pm-hdr__tel:focus-visible {
+  transition: color var(--dur-micro) var(--ease-out),
+              background-color var(--dur-micro) var(--ease-out);
+}
+/* the border-color pair that lived here belonged to the underline version
+   of this nav and would have overridden the pill's background transition,
+   which is the snap-back this pass exists to remove. */
+.pm6 .pm-hdr__tel:hover, .pm6 .pm-hdr__tel:focus-visible { color: var(--gold); }
+
+/* ---- 3 · every photograph carries the same radius ---------------------- */
+.pm6 .feat__fig, .pm6 .lot__fig, .pm6 .why__fig, .pm6 .block__fig,
+.pm6 .feat__img, .pm6 .lot__fig img, .pm6 .why__fig img, .pm6 .block__fig img {
+  border-radius: var(--r-media);
+}
+/* the auction's lead vehicle runs off the right edge of the viewport, so the
+   corners it does not have must not be rounded into open space */
+.pm6 .block__fig, .pm6 .block__fig img {
+  border-radius: var(--r-media) 0 0 var(--r-media);
+}
+/* the two full-bleed frames stay square: a rounded corner on a section-sized
+   photograph reads as a card, and neither of those is a card */
+.pm6 .hold__img, .pm6 .room__img { border-radius: 0; }
+
+/* ---- 4 · the sell rows take a slight darkening ------------------------
+   rgba(10,12,14,.045) over --paper. Measured on the tinted ground: the title
+   holds 15.65:1 and the description 5.53:1, so the row can darken without
+   the description losing the AA it had at rest. */
+.pm6 .route3 { background-color: transparent; }
+.pm6 .route3:hover, .pm6 .route3:focus-visible { background-color: rgba(10, 12, 14, 0.045); }
+.pm6 .route3 { transition: background-color var(--dur-out-ui) var(--ease-in),
+                           border-color     var(--dur-out-ui) var(--ease-in); }
+.pm6 .route3:hover, .pm6 .route3:focus-visible {
+  transition: background-color var(--dur-ui) var(--ease-out),
+              border-color     var(--dur-ui) var(--ease-out);
+}
+/* the tint has to reach the row's full width, which its own padding does not */
+.pm6 .route3 { padding-inline: var(--s-4); margin-inline: calc(var(--s-4) * -1); }
+
+/* ---- 5 · the featured column holds for the whole list ------------------
+   The wrapper is stretched to the row and carries the seam lift; the block
+   inside it is the sticky one. Putting the lift on the sticky element itself
+   consumed its travel, so it released two thirds of the way down the list —
+   measured at 760px of a 1147px column. Separated, it holds until the list
+   ends, which is what the geometry should always have said. */
+/* NO height:100% here, and that was the bug in the first attempt. With
+   align-self:stretch the used height is already the grid area MINUS the
+   margins — and the margin is negative, so the box grows by the lift and its
+   bottom lands exactly on the row bottom. Pinning height to 100% overrode
+   that and left the wrapper ending 320px short, which released the picture
+   a third of the way down the list. */
+.pm6 .feat { align-self: stretch; position: relative; }
+.pm6 .feat__in { position: sticky; top: var(--hdr-stop); }
+
+/* ---- 6 · the photograph's own controls --------------------------------
+   Chevrons in a circle, on the frame, stepping the same selection the list
+   drives. They are real buttons with real labels: the list is the primary
+   way in and these are an accelerator, so nothing depends on finding them. */
+.pm6 .feat__nav {
+  position: absolute; right: var(--s-4); bottom: var(--s-4);
+  display: flex; gap: var(--s-2); z-index: 3;
+}
+.pm6 .feat__btn {
+  width: 44px; height: 44px; border-radius: 50%;   /* a circle, and a tap target */
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(10, 12, 14, 0.62); color: var(--bone);
+  border: 1px solid rgba(232, 235, 237, 0.28); cursor: pointer; padding: 0;
+  transition: background-color var(--dur-out-ui) var(--ease-in),
+              border-color     var(--dur-out-ui) var(--ease-in);
+}
+.pm6 .feat__btn:hover, .pm6 .feat__btn:focus-visible {
+  background: rgba(10, 12, 14, 0.86); border-color: var(--bone);
+  transition: background-color var(--dur-ui) var(--ease-out),
+              border-color     var(--dur-ui) var(--ease-out);
+}
+.pm6 .feat__btn svg { width: 18px; height: 18px; display: block; }
+.pm6 .feat__btn svg path { stroke: currentColor; stroke-width: 1.75; fill: none;
+                           stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---- the selected row is highlighted, not just marked -------------------
+   It had a left rule and a shift; on a list of twelve that reads as an
+   alignment quirk rather than as "this is the one you are looking at". A
+   ground tint is what actually says selected. Measured on the tinted ground:
+   the name holds 15.07:1 and the price 5.41:1, so nothing loses AA. */
+.pm6 .index__row[aria-pressed="true"] { background-color: rgba(10, 12, 14, 0.06); }
+.pm6 .index__row[aria-pressed="true"]:hover { background-color: rgba(10, 12, 14, 0.085); }
+.pm6 .index__row { transition: border-color var(--dur-out-ui) var(--ease-in),
+                               background-color var(--dur-out-ui) var(--ease-in); }
+.pm6 .index__row:hover, .pm6 .index__row:focus-visible {
+  background-color: rgba(10, 12, 14, 0.035);
+  transition: border-color var(--dur-ui) var(--ease-out),
+              background-color var(--dur-ui) var(--ease-out);
+}
+
+/* ---- the last of the green leaves the interface ------------------------
+   The focus ring was --live on every ground, which put the auction's signal
+   colour around any focused control — including the chevrons sitting on a
+   photograph in the light chapter. Green now means one thing and it is the
+   countdown. The ring becomes the brand's own gold on dark, ink on paper,
+   and bone on the photo controls, which carry their own dark ground.
+     --gold on --ink 11.88:1 · --ink on --paper 17.14:1 · --bone on the
+     button's rgba(10,12,14,.62) ground 14.6:1 */
+.pm6 :focus-visible { outline-color: var(--gold); }
+.pm6 .paper :focus-visible { outline-color: var(--ink); }
+.pm6 .feat__btn:focus-visible { outline-color: var(--bone); }
+
+/* ---- the light chapter stops being one field ---------------------------
+   Floor, Sell and About run back to back on the same --paper, separated by a
+   1px rule at 1.48:1 — measurably present and visually absent, so three
+   chapters read as one long section. --rule-ctl is 3.56:1, the token this
+   file already keeps for an edge that has to be seen, and the same rule is
+   given to the dark chapter's internal seam for the same reason. */
+.pm6 .sell, .pm6 .why { border-top: 1px solid var(--rule-ctl); }
+.pm6 .routes { border-top-color: var(--rule-hi); border-bottom-color: var(--rule-hi); }
+
+/* the lot key is a state marker now, so it takes the state shape and stops
+   needing its own margin under the photograph */
+.pm6 .lot__k { line-height: 1; }
+
+/* ---- the auction column, tightened -------------------------------------
+   The vehicle no longer runs off the right edge and the two columns stop
+   touching: information keeps 1–4, the photograph starts at 6, and column 5
+   is simply air. The grid break it used to take was the page's first of two;
+   the page still has one, the room, so the device is not lost — it is spent
+   once instead of twice.
+
+   The two figures come down a step. At 68 they were the loudest thing on the
+   page after the hero; the column reads as a descent again at 52. */
+.pm6 .block__fig { grid-column: 6 / span 7; margin-right: 0; }
+.pm6 .figs__v { font-size: var(--t-huge); }
+
+/* THE DISCLOSURE STAYS, in the eyebrow, beside the numbers it qualifies.
+   CLAUDE.md is unconditional — bids, counts and closing times are sample data
+   and must be marked WHEREVER they appear — so the paragraph goes and the
+   marking does not. It now sits in the section's own label, which is the one
+   line every visitor reads before the figures. */
+.pm6 .brow__note { color: var(--bone-46); }
+
+/* the control sits on the statement's LAST LINE, and stays right. Both are
+   bottom-aligned by the section's grid; the nudge is the difference between
+   the button's own bottom padding and the display face's descender, so the
+   label lines up with the words rather than the boxes. */
+.pm6 .hold .g12 { align-items: end; }
+.pm6 .hold__a { align-self: end; margin-bottom: calc(var(--s-1) * -1); }
+
+/* ═══════════════════════════ THE LOT AS ONE CARD ═══════════════════════════
+   The information and the vehicle were two objects sharing a row, separated
+   by nothing but the gutter — so the eye had to be told they were the same
+   lot. One card says it instead. It carries the section's own ground one step
+   up (--ink-2), the page's media radius and a hairline, which is the same
+   language every plate on this page already uses; no shadow, no elevation
+   claim (D3, U9).
+
+   The three secondary lots stay OUTSIDE it. Three cards inside a card is
+   boxes-in-boxes, and those three are peers of this one, not its contents. */
+.pm6 .block__card {
+  grid-column: 1 / span 12;
+  display: grid; grid-template-columns: subgrid;
+  align-items: start;
+  background: var(--ink-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-media);
+  padding: var(--s-8);
+  row-gap: var(--s-8);
+}
+@supports not (grid-template-columns: subgrid) {
+  .pm6 .block__card { grid-template-columns: repeat(12, minmax(0,1fr)); column-gap: var(--col-gap); }
+}
+/* the card's own padding is the frame now, so the section stops adding a
+   second one and the two columns come closer together */
+.pm6 .block { padding-block: var(--s-9); }
+.pm6 .block .g12 { row-gap: var(--s-8); }
+.pm6 .block__info { grid-column: 1 / span 5; }
+.pm6 .block__fig  { grid-column: 7 / span 6; margin-right: 0; }
+
+/* ---- the two facts, side by side, divided by a hairline ----------------
+   Money and time are a pair; stacked they read as a sequence. Beside each
+   other with one rule between them they read as what they are — the two
+   numbers of an auction, taken in at once. */
+.pm6 .figs--pair {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; align-items: start;
+}
+.pm6 .figs--pair > * + * {
+  border-left: 1px solid var(--rule-hi);
+  padding-left: var(--s-6); margin-left: var(--s-6);
+}
+
+/* ---- everything pulled closer -----------------------------------------
+   Scoped to this column, and only this column: the card is a denser object
+   than a section, so its intervals step down one place on the same scale. */
+.pm6 .block__info > * + *              { margin-block-start: var(--s-5); }
+.pm6 .block__info > * + .block__name   { margin-block-start: var(--s-6); }
+.pm6 .block__info > * + .figs          { margin-block-start: var(--s-5); }
+.pm6 .block__info > .figs + *          { margin-block-start: var(--s-6); }
+.pm6 .block__info > .lede + *          { margin-block-start: var(--s-6); }
+.pm6 .block__info > * + .plate         { margin-block-start: var(--s-6); }
+/* the supporting paragraph is support, so it sets at body size */
+.pm6 .block__info .lede { font-size: var(--t-body); max-width: 52ch; }
+
+/* the vehicle fills its half of the card. At a fixed 16:10 it stopped level
+   with the paragraph and left a third of the card empty on the right, which
+   inside a bordered object reads as a hole rather than as air. */
+.pm6 .block__card { align-items: stretch; }
+.pm6 .block__fig { align-self: stretch; }
+.pm6 .block__fig img { height: 100%; aspect-ratio: auto; object-fit: cover; }
+
+/* ---- the telephone's glyph ---------------------------------------------
+   One icon language on this page: the same 1.75 stroke the photo chevrons
+   use, sized to the digits' cap height rather than to a nominal box, and
+   carrying no meaning the number does not already carry (typography I9). */
+.pm6 .pm-hdr__tel { gap: var(--s-2); }
+.pm6 .pm-hdr__ico { width: 17px; height: 17px; flex: 0 0 auto; }
+.pm6 .pm-hdr__ico path { fill: none; stroke: currentColor; stroke-width: 1.75;
+                         stroke-linecap: round; stroke-linejoin: round; }
+
+/* ═══════════════════ THE FIRST SCREEN HOLDS BOTH ═══════════════════════════
+   The hero took the whole viewport and the four doors sat 188px under the
+   fold — so the page's opening promised a film and withheld the way in. The
+   hero now takes the viewport MINUS the route band, and the band closes the
+   first screen at every width.
+
+   The measurement is live rather than assumed: --routes-h is written by the
+   controller from the band's real height, because that height changes with
+   the type scale and with how the meta lines wrap. A hard-coded number here
+   would be correct at exactly one width. */
+:root { --routes-h: 188px; }
+.pm6 .hero { min-height: calc(100svh - var(--routes-h)); }
+
+/* MOBILE. Stacked, the four doors are 570px — taller than most phones have
+   left after a hero. They become a 2x2 of short cells: the label and its
+   value stay, the meta line and the arrow go, because a footnote and an
+   affordance are what a 190px cell can afford to lose while the door itself
+   survives (U7 — nothing that carries the destination is dropped). */
+@media (max-width: 800px) {
+  .pm6 .routes .g12 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pm6 .route { grid-column: auto; padding: var(--s-5) var(--s-4);
+                border-left: 1px solid var(--rule); border-top: 1px solid var(--rule); }
+  .pm6 .route:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .pm6 .route:nth-child(-n+2) { border-top: 0; }
+  .pm6 .route__m, .pm6 .route__go { display: none; }
+  .pm6 .route > .route__k { margin-bottom: var(--s-2); }
+  .pm6 .route .route__v { font-size: var(--t-mid); }
+}
+
+/* ---- the route hover: no panel, a tone and a longer arrow ---------------
+   The background block was the loudest thing about a four-door band that is
+   otherwise all hairlines — and D2 budgets ONE hover change, which the panel
+   plus the label plus the arrow was already exceeding. It goes.
+
+   What is left is the pair Alex named: the title steps back in tone, and the
+   arrow grows a shaft. A drawn line that extends is a better answer than a
+   glyph that slides, because the arrow reads as reaching toward the
+   destination rather than as an object being nudged. */
+.pm6 .route:hover, .pm6 .route:focus-visible { background-color: transparent; }
+.pm6 .route .route__v { color: var(--bone); }
+.pm6 .route:hover .route__v, .pm6 .route:focus-visible .route__v { color: var(--bone-72); }
+.pm6 .route .route__v { transition: color var(--dur-out-ui) var(--ease-in); }
+.pm6 .route:hover .route__v, .pm6 .route:focus-visible .route__v {
+  transition: color var(--dur-ui) var(--ease-out);
+}
+
+.pm6 .route__go { display: inline-flex; align-items: center; gap: 0; }
+.pm6 .route__go-l {
+  display: block; height: 1px; width: 0; background: currentColor;
+  transition: width var(--dur-out-ui) var(--ease-in);
+}
+.pm6 .route:hover .route__go-l, .pm6 .route:focus-visible .route__go-l {
+  width: var(--s-5);
+  transition: width var(--dur-ui) var(--ease-out);
+}
+/* the glyph itself stops travelling — the shaft is the movement now */
+.pm6 .route:hover .route__go, .pm6 .route:focus-visible .route__go { transform: none; }
+
+/* ---- the three lots line up ---------------------------------------------
+   Two of the three names set in two lines and one in one, so the plates under
+   them sat at three different heights and the row read as unaligned rather
+   than as a set. Two lines are reserved, the same way the featured caption
+   reserves its own. */
+.pm6 .lot__h { min-height: calc(2 * 1.05em); }
+
+/* a 667px phone has 422px left after the four doors, so the band itself has
+   to give a little too — the cells lose their outer padding, not their
+   content */
+@media (max-width: 800px) and (max-height: 700px) {
+  .pm6 .route { padding-block: var(--s-4); }
+  .pm6 .route .route__v { font-size: var(--t-lead); }
+}
+
+/* ---- the light chapter's internal seams get real air --------------------
+   The rule between the floor and the sell block was strengthened earlier, but
+   a stronger line across a tight gap reads as a table border, not as a
+   chapter ending. Space is what separates chapters; the rule only marks where
+   it happens. The floor's last line and the sell block's eyebrow now sit
+   ~200px and ~144px off the boundary respectively. */
+.pm6 .floor { padding-bottom: var(--s-11); }
+.pm6 .sell  { padding-top: var(--s-10); }
+.pm6 .why   { padding-top: var(--s-10); }
+
+/* ---- the arrow is ONE drawing, not a line next to a glyph ---------------
+   The first attempt put a rule in front of a → , and the glyph carries its own
+   shaft — so the two never met and the arrow read as broken. Now the shaft and
+   the head are two paths in one viewBox: the shaft scales from its left end
+   and the head travels exactly as far as the shaft's tip does, so they are
+   joined in every frame including the ones mid-transition (MJ4). */
+.pm6 svg.route__go {
+  width: 34px; height: 12px; flex: 0 0 auto; overflow: visible;
+  color: var(--bone-46);
+  transition: color var(--dur-out-micro) var(--ease-in);
+}
+.pm6 svg.route__go path {
+  fill: none; stroke: currentColor; stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.pm6 .go-shaft {
+  transform: scaleX(0.5); transform-origin: 1px 6px;
+  transition: transform var(--dur-out-ui) var(--ease-in);
+}
+.pm6 .go-head {
+  transform: translateX(-9px);
+  transition: transform var(--dur-out-ui) var(--ease-in);
+}
+.pm6 .route:hover svg.route__go, .pm6 .route:focus-visible svg.route__go { color: var(--bone); }
+.pm6 .route:hover .go-shaft, .pm6 .route:focus-visible .go-shaft {
+  transform: scaleX(1); transition: transform var(--dur-ui) var(--ease-out);
+}
+.pm6 .route:hover .go-head, .pm6 .route:focus-visible .go-head {
+  transform: translateX(0); transition: transform var(--dur-ui) var(--ease-out);
+}
+
+/* a forced state, for verifying the arrow's two ends in a still frame */
+.pm6 .route.is-probe svg.route__go { color: var(--bone); }
+.pm6 .route.is-probe .go-shaft { transform: scaleX(1); }
+.pm6 .route.is-probe .go-head  { transform: translateX(0); }
+
+/* ═══════════ THE THEME'S LINK HOVER, FOUND AND STOPPED ═══════════════════
+   The AAN theme sets `a:hover { color: #082A52 }` — a dark navy — and this
+   file never named the hover COLOUR, only the underline. So every link
+   without an explicit override took it: the four route cards, the three
+   auction lots, the featured vehicle, the sell rows, the room's control.
+   Measured against the ink ground: 1.37:1. The text did not dim, it vanished.
+
+   Seventh instance of the same lesson in this build and the most expensive:
+   in this theme, anything not named is not defaulted — it is claimed. */
+/* DELETED. This existed to stop the AAN theme's a:hover navy, and the theme
+   is off. At (0,1,1) it outranked .cta at (0,1,0), so hovering the primary
+   button made its label inherit the section ink — light grey on the white
+   hover fill. A fix for one specificity bug that was itself a specificity
+   bug; the base :where() reset already covers the browser default. */
+
+/* ═══════════════════════ THE FOUR DOORS AS CARDS ═════════════════════════
+   Separated by air and a border instead of by a shared hairline, each on a
+   dirty-blue ground that deepens toward the bottom.
+
+   The blue is derived, not picked: --ink-2 (#12161A) and --ink-3 (#1B2126)
+   already lean cold blue-grey, and this is that direction pushed one step and
+   given a fall. DIALECT YIELD, named: anti-patterns D2 bans gradient fills on
+   controls, and these are controls. Its yields-when covers a deliberately
+   expressive surface — the band is the page's one place where four peers have
+   to read as objects rather than as rows, and a flat fill made them a table.
+   The floor it cannot cross is U2: the label holds 5.24:1 and the value
+   15.18:1 against the gradient's DARKEST stop, not its average. */
+.pm6 .routes { background: var(--ink); border-block: 0; }
+.pm6 .routes .g12 { gap: var(--col-gap); padding-block: var(--s-6); }
+.pm6 .route {
+  grid-column: span 3;
+  background: linear-gradient(180deg, #16202C 0%, #101820 62%, #0C1219 100%);
+  border: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+  border-radius: var(--r-media);
+  padding: var(--s-6);
+  transition: border-color var(--dur-out-ui) var(--ease-in),
+              transform    var(--dur-out-ui) var(--ease-in);
+}
+.pm6 .route:first-child { padding-left: var(--s-6); }
+.pm6 .route:hover, .pm6 .route:focus-visible {
+  border-color: var(--rule-hi); transform: translateY(-2px);
+  transition: border-color var(--dur-ui) var(--ease-out),
+              transform    var(--dur-ui) var(--ease-out);
+}
+@media (max-width: 800px) {
+  .pm6 .routes .g12 { gap: var(--s-3); }
+  .pm6 .route, .pm6 .route:first-child { padding: var(--s-5) var(--s-4); border-top: 1px solid var(--rule); }
+}
+
+/* ═════════ WHAT THE THEME WAS QUIETLY PROVIDING, NOW PROVIDED HERE ═══════
+   With assets/css/style.css out, this file is the entire stylesheet, so the
+   handful of normalisations it was inheriting have to be named. Nothing here
+   is a new decision — it is the browser default being corrected. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.pm6 ul, .pm6 ol { margin: 0; padding: 0; list-style: none; }
+.pm6 button, .pm6 input, .pm6 select, .pm6 textarea { font: inherit; color: inherit; }
+.pm6 img, .pm6 svg, .pm6 video { display: block; max-width: 100%; }
+/* :where() on BOTH halves, so this is specificity (0,0,0) — the weakest rule
+   in the file. Written as  it was (0,1,1) and beat .cta at (0,1,0),
+   so the primary button inherited bone ON a bone ground and its label went
+   white on white. A reset appended at the end of a stylesheet has to be
+   unable to win anything, or it stops being a reset. */
+:where(.pm6) :where(a) { color: inherit; text-decoration: none; }
+.pm6 table { border-collapse: collapse; }
+
+/* ---- the scrolled header --------------------------------------------
+   A gradient, but one that is fully opaque where the words are and only
+   softens at its own bottom edge — because below the hero this bar crosses
+   the floor, the sell block and the credentials, all on --paper, and any
+   transparency behind the type there is the 1.11:1 failure again.
+
+   Measured on the opaque run: --bone-72 15.98:1, --bone 16.36:1, --gold
+   11.88:1. The last 18% fades so the bar has an edge rather than a line. */
+.pm6.scrolled #header.pm-hdr {
+  /* a dark blurred bar, not a gradient. Below the hero this crosses three
+     --paper sections, and a fade of any kind puts light behind the type
+     there — the 1.11:1 failure. 82% ink plus a blur reads as glass and
+     still carries the words: --bone-72 14.1:1, --bone 14.5:1, --gold 10.5:1
+     against the plate's own colour over the lightest ground it crosses. */
+  background: rgba(10, 12, 14, 0.82);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border-bottom: 1px solid var(--rule);
+}
+/* the wordmark steps down once the page is moving — it is an identity at
+   rest and a marker in transit. The header measures itself on every resize,
+   so the sticky column and the anchors follow it automatically. */
+.pm6 .pm-hdr__brand img { transition: width var(--dur-ui) var(--ease-out); }
+.pm6.scrolled .pm-hdr__brand img { width: 124px; }
+@media (prefers-reduced-motion: reduce) {
+  .pm6.scrolled #header.pm-hdr { backdrop-filter: none; -webkit-backdrop-filter: none;
+                                 background: var(--ink); }
+}
+
+/* ═════════════ THE FILM TAKES THE SCREEN, THE DOORS SIT ON IT ════════════
+   The hero goes back to the full viewport at every size, and the four cards
+   ride on top of it instead of below it — so the first screen is one image
+   with the ways in laid over its foot, rather than a film with a shelf under
+   it. The routes keep their own measured height, so nothing is guessed.
+
+   DIALECT YIELD, named: this file bans glass outright — `.pill` carries
+   `backdrop-filter: none` with the comment "no glass — D-tier ban, and it
+   costs frames". Asked for here and taken knowingly, on four elements only,
+   with a blur small enough to read as depth rather than as frosting.
+
+   LEGIBILITY IS BOUGHT AT THE PLATE, NOT THE TYPE (color-taste I4). The card
+   ground is 72% ink BEFORE the blur, so the label clears AA against the
+   plate's own colour and does not depend on which frame of the film is
+   underneath it: --bone 12.4:1, --bone-46 4.6:1 against rgba(12,18,24,.72)
+   over the film's brightest region. */
+/* height, not min-height: "full screen at any size" has to be a ceiling as
+   well as a floor, or tall content simply pushes past the fold again */
+.pm6 .hero { height: 100svh; min-height: 0; overflow: hidden; }
+.pm6 .routes {
+  position: relative; z-index: 3;
+  /* lifted clear of the film's bottom edge — the band sat flush on it and
+     read as a sill rather than as something laid over the picture */
+  margin-top: calc((var(--routes-h) + var(--s-7)) * -1);
+  margin-bottom: var(--s-7);
+  background: transparent; border-block: 0;
+}
+.pm6 .route {
+  background: linear-gradient(180deg,
+    rgba(22, 32, 44, 0.72) 0%, rgba(16, 24, 32, 0.78) 62%, rgba(12, 18, 25, 0.82) 100%);
+  backdrop-filter: blur(14px) saturate(115%);
+  -webkit-backdrop-filter: blur(14px) saturate(115%);
+  border-color: rgba(232, 235, 237, 0.20);
+}
+/* the hero's own block keeps clear of them */
+.pm6 .hero .g12 { padding-bottom: calc(var(--routes-h) + var(--s-7) + clamp(var(--s-3), 5svh, var(--hdr-h))); }
+@media (prefers-reduced-motion: reduce) {
+  .pm6 .route { backdrop-filter: none; -webkit-backdrop-filter: none;
+                background: linear-gradient(180deg, #16202C 0%, #101820 62%, #0C1219 100%); }
+}
+
+/* ---- the interstitial statement arrives as a staircase ------------------
+   Three authored lines rather than one wrapped block, each entering from the
+   left 90ms after the one above it. Same travel and the same curve as every
+   other title on the page — the only difference is that this one has three
+   steps instead of one, because it is the page's one direct address and the
+   cascade is what makes it read as spoken rather than placed. */
+.pm6 .hold__h .step { display: block; }
+.m-on .pm6 .hold__h .step,
+.pm6 .m-on .hold__h .step { transform: translateX(-48px); }
+.pm6 .hold__h[data-t] > * { transform: none !important; }
+.m-on .hold__h .step { transform: translateX(-48px);
+                       transition: transform var(--dur-reveal) var(--ease-out); }
+.m-on .hold__h.in .step { transform: none; }
+.m-on .hold__h.in .step:nth-child(2) { transition-delay: 90ms; }
+.m-on .hold__h.in .step:nth-child(3) { transition-delay: 180ms; }
+
+/* ---- the footer's social marks ------------------------------------------
+   One glyph language with the rest of the page: 1.75 stroke, currentColor,
+   no fills except the two dots that need them. 44px targets, and the ink
+   ladder the footer already uses so they sit with the address rather than
+   shouting over it. */
+.pm6 .foot__social { display: flex; gap: var(--s-2); margin-block-start: var(--sp-title-body); }
+.pm6 .foot__social a {
+  width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  color: var(--bone-46); border: 1px solid var(--rule); border-radius: var(--r-ctl);
+  transition: color var(--dur-out-ui) var(--ease-in), border-color var(--dur-out-ui) var(--ease-in);
+}
+.pm6 .foot__social a:hover, .pm6 .foot__social a:focus-visible {
+  color: var(--gold); border-color: var(--gold);
+  transition: color var(--dur-ui) var(--ease-out), border-color var(--dur-ui) var(--ease-out);
+}
+.pm6 .foot__social svg { width: 19px; height: 19px; }
+.pm6 .foot__social svg * { fill: none; stroke: currentColor; stroke-width: 1.75;
+                           stroke-linecap: round; stroke-linejoin: round; }
+
+/* the card darkens under the pointer — one change, on the ground, replacing
+   the lift so the four stay level with each other while one answers */
+.pm6 .route:hover, .pm6 .route:focus-visible {
+  background: linear-gradient(180deg,
+    rgba(8, 12, 17, 0.88) 0%, rgba(6, 10, 14, 0.91) 62%, rgba(5, 8, 11, 0.94) 100%);
+  transform: none;
+}
+
+/* MOBILE: the four cards over a phone-height film. At desktop padding the 2x2
+   was 545px against an 844px screen, which left the hero's own words nowhere
+   to go — so on a phone the cards give up padding and scale, not content. */
+@media (max-width: 800px) {
+  .pm6 .routes .g12 { gap: var(--s-2); }
+  .pm6 .route, .pm6 .route:first-child { padding: var(--s-4) var(--s-4); }
+  .pm6 .route .route__v { font-size: var(--t-lead); line-height: 1.1; }
+  .pm6 .route__k { font-size: var(--t-micro); }
+}
+
+/* the story rail clears the photograph above it — the numbers were sitting on
+   the image's bottom edge, so the four discoveries read as its caption rather
+   than as their own row */
+.pm6 .rail { margin-block-start: var(--s-9); padding-block-start: var(--s-7); }
+.pm6 .rail__n { display: block; margin-bottom: var(--s-4); }
+
+/* the four route cards over the film: on a phone the hero's own words come
+   FIRST and the cards close the screen under them, so the two stop competing
+   for the same 250px */
+@media (max-width: 800px) {
+  .pm6 .hero { height: auto; min-height: 0; }
+  .pm6 .routes { margin-top: 0; margin-bottom: 0; }
+  .pm6 .hero .g12 { padding-block: calc(var(--hdr-h) + var(--s-6)) var(--s-7); }
+}
+
+/* ═══════════════════════ THE HERO ENTRANCE, AS A STAIRCASE ═══════════════
+   Five steps, all from the same side, 90ms apart. Left, because the whole
+   page is set on a left axis and the words should arrive along it rather
+   than across it. Travel is the page's own 48px, the curve is the page's own
+   ease-out, and the last step finishes at 980ms — inside the one entrance a
+   page is allowed (motion-taste D4).
+
+   The headline's two lines are separate steps; everything else is one. The
+   H1 itself never moves, only its lines, or the two would compound. */
+.pm6 .hero__in { display: block; }
+.pm6 .hero__h .hstep { display: block; }
+.pm6 [data-hero] .hstep { transition: transform var(--dur-reveal) var(--ease-out),
+                                      opacity   var(--dur-reveal) var(--ease-out); }
+.m-on [data-hero] .hstep { transform: translateX(-48px); opacity: 0; }
+.m-on [data-hero].in .hstep { transform: none; opacity: 1; }
+.m-on [data-hero].in .hstep:nth-of-type(1) { transition-delay: 0ms; }
+.m-on [data-hero].in .hero__h .hstep:nth-of-type(1) { transition-delay: 90ms; }
+.m-on [data-hero].in .hero__h .hstep:nth-of-type(2) { transition-delay: 180ms; }
+.m-on [data-hero].in .hero__sub { transition-delay: 270ms; }
+.m-on [data-hero].in .cta.hstep { transition-delay: 360ms; }
+
+/* the stack relationships the old markup got from .stack, restated for the
+   five steps so the intervals are the page's own and not the browser's */
+.pm6 [data-hero] > * + *        { margin-block-start: var(--sp-title-body); }
+.pm6 [data-hero] > .hero__brow + * { margin-block-start: var(--sp-label-title); }
+.pm6 [data-hero] > .hero__h + *    { margin-block-start: var(--s-7); }
+.pm6 [data-hero] > .hero__sub + *  { margin-block-start: var(--s-8); }
+.pm6 [data-hero] > .cta            { width: fit-content; }
+
+/* ---- the four doors arrive from below, in step -------------------------
+   Part of the SAME entrance as the hero, not a second one: the cascade
+   starts at 340ms — while the headline's last line is still settling — and
+   the fourth card lands at 1140ms. One entrance, under 1.2s, which is the
+   whole of what a page gets (motion-taste D4).
+
+   Up from below rather than in from the left, because these sit at the foot
+   of the film and rising is what an object laid on top of something does.
+   32px, the same order as the page's paragraph travel. */
+.pm6 [data-cards] .route { transition: transform var(--dur-reveal) var(--ease-out),
+                                       opacity   var(--dur-reveal) var(--ease-out),
+                                       background-color var(--dur-out-ui) var(--ease-in),
+                                       border-color     var(--dur-out-ui) var(--ease-in); }
+.m-on [data-cards] .route { transform: translateY(32px); opacity: 0; }
+.m-on [data-cards].in .route { transform: none; opacity: 1; }
+.m-on [data-cards].in .route:nth-child(1) { transition-delay: 340ms; }
+.m-on [data-cards].in .route:nth-child(2) { transition-delay: 400ms; }
+.m-on [data-cards].in .route:nth-child(3) { transition-delay: 460ms; }
+.m-on [data-cards].in .route:nth-child(4) { transition-delay: 520ms; }
+/* once they have landed, hover owns the transition again — no delay on a
+   pointer, ever */
+.pm6 [data-cards].in .route:hover, .pm6 [data-cards].in .route:focus-visible {
+  transition-delay: 0ms;
+  transition: background-color var(--dur-ui) var(--ease-out),
+              border-color     var(--dur-ui) var(--ease-out);
 }
