@@ -596,8 +596,26 @@
    it, so the film read as a ceiling and the type as a caption under it.
    Centred, the opening is one composition and the ramp below it becomes air
    rather than the thing holding the words up. */
-.hero { position: relative; min-height: 100svh; display: flex; align-items: center;
+/* Built as v7's hero is: a column, with the type block taking the free space
+   and the routes riding at its foot INSIDE the frame. Nothing is pulled up by
+   a negative margin any more, so there is nothing for a breakpoint to switch
+   off — which is exactly what max-height: 945px was doing, on every laptop. */
+.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column;
         overflow: hidden; background: var(--ink); }
+.hero > .g12 { flex: 1 1 auto; min-height: 0; align-content: center; }
+/* Inside the hero the band keeps only the padding it needs to sit off the
+   frame's foot. As a section it carried section-scale padding on three levels
+   at once — its own, its grid's and each card's — and measured 439px, which
+   pushed the hero past the screen on any normal laptop. */
+.hero__strip { flex: 0 0 auto; position: relative; z-index: 2;
+               background: none; border: 0; margin: 0; padding-bottom: var(--s-6); }
+/* .pm6-scoped so these outrank `.pm6 .route`, which sets the card's own
+   padding later in the file and won the first time this was written. */
+.pm6 .hero__strip > .g12 { padding-block: 0; }
+.pm6 .hero__strip .route { padding-block: 0; }
+.pm6 .hero__strip .route__m { min-height: 0; }   /* the two-line reservation is
+                                                    for a card, not for a band
+                                                    that has to fit a screen */
 .hero__film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* legibility bought at the background layer, never a shadow on type — I4 */
 /* The band of routes sits at 70–95% of the frame and now has no plate under
@@ -2305,15 +2323,15 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
    Re-doing the overlay properly means putting the band inside the hero as an
    absolutely-positioned child so there is only one number — worth doing, but
    not worth guessing at. */
-.pm6 .hero { height: 100svh; min-height: 0; overflow: hidden; align-items: center; }
-.pm6 .routes {
-  position: relative; z-index: 3;
-  /* lifted clear of the film's bottom edge — the band sat flush on it and
-     read as a sill rather than as something laid over the picture */
-  margin-top: calc((var(--routes-h) + var(--s-7)) * -1);
-  margin-bottom: var(--s-7);
-  background: transparent; border-block: 0;
-}
+/* min-height, never a fixed height. A hard 100svh clipped the type block on a
+   700px window — the headline was 39px above the top of the screen. The hero
+   fills the screen and grows past it when the content genuinely needs more,
+   which it can now do safely: the routes are inside it, so growing the hero
+   grows the film with it rather than exposing a band. */
+.pm6 .hero { min-height: 100svh; height: auto; overflow: hidden; }
+/* the band is a child of the hero now — no pull, no reset, nothing to undo */
+.pm6 .routes { position: relative; z-index: 2; margin: 0;
+               background: transparent; border-block: 0; }
 /* NO PLATE UNDER THE CARDS. This rule used to paint a translucent gradient and
    a blur under each route, and a translucent plate is still a plate — it ended
    the picture behind every label. The routes stand on the film itself.
@@ -2336,8 +2354,8 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
 /* the top clears the header outright rather than being centred into it —
    anchored, the eyebrow is always one header plus 24px down, at every height,
    which is the single collision this arrangement had. */
-.pm6 .hero .g12 { padding-top: calc(var(--hdr-h) + var(--s-5));
-                  padding-bottom: calc(var(--routes-h) + var(--s-7) + var(--s-6)); }
+.pm6 .hero .g12 { padding-top: calc(var(--hdr-h) + var(--s-4));
+                  padding-bottom: var(--s-5); }
 @media (prefers-reduced-motion: reduce) {
   .pm6 .route { backdrop-filter: none; -webkit-backdrop-filter: none; background: none; }
 }
@@ -2405,9 +2423,12 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
    FIRST and the cards close the screen under them, so the two stop competing
    for the same 250px */
 @media (max-width: 800px) {
-  .pm6 .hero { height: auto; min-height: 0; }
-  .pm6 .routes { margin-top: 0; margin-bottom: 0; }
-  .pm6 .hero .g12 { padding-block: calc(var(--hdr-h) + var(--s-6)) var(--s-7); }
+  .pm6 .hero { min-height: 100svh; height: auto; }
+  .pm6 .routes { margin: 0; }
+  /* clears the header and no more — this used to add another 32px on top of
+     an already generous block, and with the routes now inside the hero every
+     pixel here pushes the cards off the screen */
+  .pm6 .hero .g12 { padding-block: calc(var(--hdr-h) + var(--s-4)) var(--s-5); }
 }
 
 /* ═══════════════════════ THE HERO ENTRANCE, AS A STAIRCASE ═══════════════
@@ -2475,10 +2496,14 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
    content and the band follows underneath, which costs the fold and keeps the
    Measured: 946 = 121 + 494 + 251 + 48 + 32, and centring needs the whole
    box to fit or it splits the overflow into the header. */
+/* This block used to switch the overlap off below 945px of viewport height —
+   which is most laptops, and is why the band kept reappearing on Alex's screen
+   while it looked correct on a taller one. The hero now holds the routes, so
+   the height only decides how much air the type block gets. */
 @media (max-height: 945px) {
-  .pm6 .hero { height: auto; min-height: 0; }
-  .pm6 .routes { margin-top: 0; margin-bottom: 0; }
-  .pm6 .hero .g12 { padding-bottom: var(--s-8); }
+  .pm6 .hero { min-height: 100svh; height: auto; }
+  .pm6 .routes { margin: 0; }
+  .pm6 .hero .g12 { padding-bottom: var(--s-5); }
 }
 
 
