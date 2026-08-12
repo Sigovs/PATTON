@@ -292,6 +292,15 @@
 .cta__go { transition: transform var(--d-1) var(--ease); }
 .cta:hover .cta__go, .cta:focus-visible .cta__go { transform: translateX(5px); }
 
+
+/* the lot frames need the pill positioned the way the lead one already is —
+   on the frame, top-left, over the darkest corner of a showroom shot */
+.lot__fig { position: relative; }
+.lot__fig .pill { position: absolute; top: var(--s-3); left: var(--s-3); }
+.feat__fig { position: relative; }
+/* a pill sitting inside a line of label text needs the label's own rhythm */
+.head__brow .pill { margin-left: var(--sp-pill-text); vertical-align: baseline; }
+
 /* ================================================================= PILLS ==
    SEMANTIC ONLY. A pill on this page means a STATE — something that is true
    now and can stop being true. Live, featured, open. Nothing decorative and
@@ -586,52 +595,92 @@
 .route3__p { color: var(--ink-64); }
 .route3--lead .route3__p { color: var(--ink); font-size: var(--t-lead); }
 
-/* ======================================= 7 · who is behind it — 7 / 5 ======
-   A chapter, not an appendix. Seven columns of story and identity against
-   five columns of verifiable fact, on the same axis as everything above it.
-   The fact column is the page's one dark object on the light ground, which
-   is what gives the section mass rather than a border. */
+/* ======================================= 7 · who is behind it — recomposed ==
+   The old shape was IMAGE | STORY | DATABASE, and the database won: a black
+   panel with the visual weight of the section's subject, carrying its least
+   important content. Opening hours were the heaviest object in a chapter about
+   people and a place.
 
-/* The light chapter is three sections on one ground, so its internal
-   boundaries have to be marked or 288px of pale reads as a void rather than a
-   chapter break. `.sell` already carries this rule; measured on the rendered
-   page, `.why` did not, so one of the two boundaries said "new chapter" and
-   the other said "nothing here". Same rule, both boundaries. */
+   Recomposed as PEOPLE + PLACE + PROOF, on the same twelve columns:
+
+     eyebrow          1–12   a quiet line, not a pill
+     HEADLINE         1–8    the anchor. It gets the width and the scale, and
+                             it is no longer wedged between an image and a
+                             table of hours
+     founding story   9–12   next to the headline, at a readable measure
+     IMAGE            1–7    a wide crop, substantial — the real place
+     PROOF            8–12   four values, large, with small labels. No cards,
+                             no rounded rectangles, no KPI tiles: the numbers
+                             ARE the evidence and a box would be decoration
+     STORY RAIL       1–12   four discoveries as a rail, numbered because they
+                             read as a sequence rather than compare as a set
+     UTILITY          1–12   address, hours, telephone. Findable, and quiet.
+
+   Every interval is a semantic token from the page's own set — no one-off
+   values were introduced for this section. */
+
 .why { background: var(--paper); color: var(--ink); padding-block: var(--s-10);
        border-top: 1px solid var(--rule-lt); }
-.why .g12 { align-items: start; row-gap: var(--s-8); }
-/* The seven columns Alex specified carry "story / visual / identity", and v5
-   delivered only two of the three — which is most of why the section read as
-   an appendix. The visual is now in it: a portrait frame on columns 1–3
-   against the story on 4–7, so the field has mass as well as text. */
-.why__fig { grid-column: 1 / span 3; overflow: hidden; }
-.why__fig img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
-                transition: transform var(--d-3) var(--ease); }
-.why__fig:hover img { transform: scale(1.03); }
-.why__say { grid-column: 4 / span 4; display: block; }
-.why__h { font-size: var(--t-big); }
-.why__story { font-size: var(--t-lead); }
-/* One column, not two. The story field is four columns wide now that the
-   visual takes three of the seven, and two sub-columns inside four grid
-   columns gave each item about 200px — a measure no sentence survives. */
-.why__items { display: grid; gap: var(--s-5); margin-top: var(--s-2); }
-.why__item { display: grid; grid-template-columns: minmax(0, 11ch) minmax(0, 1fr);
-             gap: var(--s-5); align-items: baseline;
-             border-top: 1px solid var(--rule-lt); padding-top: var(--s-4); }
-.why__item h3 { font-family: var(--f); font-weight: 400;
-                font-size: var(--t-mid); line-height: 1.1; margin-bottom: var(--s-2); }
-.why__item p { color: var(--ink-64); }
+.why .g12 { align-items: start; }
 
-.facts { grid-column: 8 / span 5; background: var(--ink); color: var(--bone);
-         padding: var(--s-8) var(--s-7); display: grid; gap: var(--sp-row); align-content: start; }
-.facts__k { color: var(--bone-46); }
-.facts__row { display: flex; justify-content: space-between; gap: var(--s-5);
-              padding-bottom: var(--s-3); border-bottom: 1px solid var(--rule);
-              font-family: var(--f); font-size: var(--t-micro);
-              font-variant-numeric: tabular-nums; }
-.facts__row:last-of-type { border-bottom: 0; padding-bottom: 0; }
-.facts__row span:first-child { color: var(--bone-46); text-transform: uppercase; letter-spacing: 0.08em; }
-.facts__row span:last-child  { color: var(--bone); text-align: right; }
+.why__brow  { grid-column: 1 / span 12; color: var(--ink-64); }
+.why__h     { grid-column: 1 / span 8; font-size: var(--t-huge);
+              margin-block-start: var(--sp-label-title); }
+.why__story { grid-column: 9 / span 4; font-size: var(--t-lead); color: var(--ink-64);
+              margin-block-start: var(--sp-label-title); align-self: end; }
+
+.why__fig { grid-column: 1 / span 7; overflow: hidden;
+            margin-block-start: var(--sp-intro-body); }
+.why__fig img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
+                object-position: 50% 62%;    /* keeps the car and the building,
+                                                loses only sky */
+                transition: transform var(--d-3) var(--ease); }
+
+/* PROOF — values large, labels small, separated by rules and air rather than
+   by containers. anti-patterns D4: whitespace first, then a hairline, and a
+   card only when nothing else will do. Nothing else was needed. */
+.proof { grid-column: 8 / span 5; display: grid; align-content: start;
+         margin-block-start: var(--sp-intro-body); }
+.proof > div { display: grid; gap: var(--sp-title-meta);
+               padding-block: var(--sp-title-body);
+               border-top: 1px solid var(--rule-lt); }
+.proof > div:first-child { border-top: 0; padding-top: 0; }
+.proof__v { font-family: var(--f-disp); font-weight: 600; font-size: clamp(38px, 3.6vw, 58px);
+            line-height: 0.9; letter-spacing: 0.005em; color: var(--ink); }
+.proof__v--word { font-size: clamp(24px, 2.1vw, 34px); }
+.proof__l { margin: 0; font-size: var(--t-micro); font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-64); }
+
+/* THE RAIL — four discoveries across the full twelve, three columns each. */
+.rail { grid-column: 1 / span 12; list-style: none; margin: 0; padding: 0;
+        display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--col-gap);
+        margin-block-start: var(--sp-intro-body); }
+.rail li { display: grid; align-content: start;
+           border-top: 1px solid var(--ink); padding-top: var(--sp-title-body);
+           transition: border-color var(--d-1) var(--ease); }
+.rail__n { font-size: var(--t-micro); font-weight: 500; letter-spacing: 0.14em;
+           color: var(--ink-64); }
+.rail__h { font-family: var(--f-disp); font-weight: 600; font-size: var(--t-mid);
+           letter-spacing: 0.005em; text-transform: uppercase;
+           margin-block-start: var(--sp-label-title);
+           transition: transform var(--d-1) var(--ease); }
+.rail li p { color: var(--ink-64); margin-block-start: var(--sp-title-meta); }
+.rail li:hover .rail__h { transform: translateX(4px); }
+
+/* UTILITY — the operational strip. One row, four groups, quiet by scale and
+   by colour rather than by being hidden. */
+.util { grid-column: 1 / span 12; display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--s-6) var(--col-gap);
+        border-top: 1px solid var(--rule-lt); padding-top: var(--sp-title-body);
+        margin-block-start: var(--sp-intro-body); }
+.util > div { display: grid; gap: var(--sp-title-meta); align-content: start; }
+.util__k { font-size: var(--t-micro); font-weight: 500; letter-spacing: 0.12em;
+           text-transform: uppercase; color: var(--ink-64); }
+.util__v { font-size: var(--t-micro); color: var(--ink); }
+.util__v a { color: var(--ink); border-bottom: 1px solid var(--rule-ctl);
+             display: inline-flex; align-items: center; min-height: 44px; }
+.util__v a:hover, .util__v a:focus-visible { border-bottom-color: var(--ink); }
 
 /* ================================================ 8 · the room — RELEASE ==
    Ground change two, and the page's one full-bleed object. This is the second
@@ -917,8 +966,12 @@
   .index { grid-column: 7 / span 6; }
   .sell__say { grid-column: 1 / span 5; }
   .routes3   { grid-column: 6 / span 7; }
-  .why__say  { grid-column: 1 / span 6; }
-  .facts     { grid-column: 7 / span 6; }
+  .why__h     { grid-column: 1 / span 7; }
+  .why__story { grid-column: 8 / span 5; }
+  .why__fig   { grid-column: 1 / span 6; }
+  .proof      { grid-column: 7 / span 6; }
+  .rail       { grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--s-7) var(--col-gap); }
+  .util       { grid-template-columns: 1fr 1fr; }
   .hero__in  { grid-column: 1 / span 9; }
   .room__in  { grid-column: 1 / span 8; }
   .hold__h   { grid-column: 1 / span 7; }
@@ -938,7 +991,8 @@
 
   .hero__in, .room__in,
   .block__info, .block__fig, .rank, .lot,
-  .feat, .index, .sell__say, .routes3, .why__say, .facts,
+  .feat, .index, .sell__say, .routes3,
+  .why__brow, .why__h, .why__story, .why__fig, .proof, .rail, .util,
   .hold__h, .hold__a, .route { grid-column: 1 / span 12; }
 
   .block__fig { margin-right: 0; }
@@ -946,7 +1000,8 @@
   .route { border-left: 0; padding: var(--s-5) 0; border-top: 1px solid var(--rule); }
   .route:first-child { border-top: 0; }
   .rank { row-gap: var(--s-7); }
-  .why__items { grid-template-columns: 1fr; }
+  .rail { grid-template-columns: 1fr; gap: var(--s-6); }
+  .util { grid-template-columns: 1fr; gap: var(--s-5); }
   .route3 { grid-template-columns: minmax(0, 4ch) minmax(0, 1fr); }
   .route3__p { grid-column: 2; }
   .block .g12, .floor .g12 { row-gap: var(--s-8); }

@@ -106,7 +106,7 @@
 
     <div class="block__info stack">
       <div>
-        <p class="head__brow mono">On the block</p>
+        <p class="head__brow">On the block <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>4 lots live</span></p>
         <h2 class="block__h head__h disp" id="block-h" data-t><span>Four lots, and a clock on each</span></h2>
       </div>
 
@@ -141,7 +141,9 @@
 
     <div class="rank">
       <a class="lot" href="#block">
-        <figure class="lot__fig"><img src="assets/img/car-73.jpg" alt="1972 Lamborghini Miura P400 SV" loading="lazy"></figure>
+        <figure class="lot__fig"><img src="assets/img/car-73.jpg" alt="1972 Lamborghini Miura P400 SV" loading="lazy">
+            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
+          </figure>
         <p class="lot__k mono">Lot 02</p>
         <h4 class="lot__h disp">1972 Lamborghini Miura P400&nbsp;SV</h4>
         <dl class="plate mono tab">
@@ -150,7 +152,9 @@
         </dl>
       </a>
       <a class="lot" href="#block">
-        <figure class="lot__fig"><img src="assets/img/car-79.jpg" alt="2024 Aston Martin Valour" loading="lazy"></figure>
+        <figure class="lot__fig"><img src="assets/img/car-79.jpg" alt="2024 Aston Martin Valour" loading="lazy">
+            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
+          </figure>
         <p class="lot__k mono">Lot 03</p>
         <h4 class="lot__h disp">2024 Aston Martin Valour</h4>
         <dl class="plate mono tab">
@@ -159,7 +163,9 @@
         </dl>
       </a>
       <a class="lot" href="#block">
-        <figure class="lot__fig"><img src="assets/img/car-41.jpg" alt="1955 Mercedes-Benz 300 SLR" loading="lazy"></figure>
+        <figure class="lot__fig"><img src="assets/img/car-41.jpg" alt="1955 Mercedes-Benz 300 SLR" loading="lazy">
+            <span class="pill pill--live"><span class="dot" aria-hidden="true"></span>Live</span>
+          </figure>
         <p class="lot__k mono">Lot 04</p>
         <h4 class="lot__h disp">1955 Mercedes-Benz 300&nbsp;SLR&nbsp;#658</h4>
         <dl class="plate mono tab">
@@ -202,7 +208,7 @@
   <div class="g12">
 
     <div class="c1-7">
-      <p class="head__brow mono">The floor &middot; Pompano Beach</p>
+      <p class="head__brow">The floor &middot; Pompano Beach <span class="pill pill--onlight">40 available</span></p>
       <h2 class="head__h disp" id="floor-h" data-t><span>Seventeen marques, seventy years apart</span></h2>
     </div>
     <p class="lede c8-12" data-p data-t="r">A Chiron stands feet from a 997 GT3 RS and a Fiat Jolly.
@@ -301,62 +307,56 @@
 <section class="why paper" id="why" aria-labelledby="why-h">
   <div class="g12">
 
-    <figure class="why__fig">
+    <p class="head__brow why__brow">Who is behind it</p>
+
+    <h2 class="why__h disp" id="why-h" data-t><span>Built by people<br>who keep the cars</span></h2>
+
+    <p class="why__story" data-p>Founded by Martin Patton, the building sits between
+      Palm Beach and Miami, in one of the largest car cultures in the country.
+      Three businesses share its floor: a dealership, an auction house, and a room
+      that opens on Saturday mornings for anyone who wants to stand next to the
+      cars.</p>
+
+    <figure class="why__fig" data-px>
       <img src="assets/img/atmo-356-speedster.jpg" loading="lazy"
-           alt="A Porsche 356 Speedster photographed on a street in autumn">
+           alt="A Porsche 356 Speedster photographed on the street outside the building">
     </figure>
 
-    <div class="why__say stack">
-      <div>
-        <p class="head__brow mono">Who is behind it</p>
-        <h2 class="why__h head__h disp" id="why-h">
-          <span data-rise><span>Built by people</span></span>
-          <span data-rise><span>who keep the cars</span></span>
-        </h2>
-      </div>
+    <!-- PROOF. Values large, labels small, and not one of them inside a card —
+         the numbers are the evidence and a box would be the decoration. Every
+         figure is real: the floor count, the marque count, the range the
+         inventory actually spans, and where the building is. -->
+    <dl class="proof" data-rows>
+      <div><dt class="proof__v tab">40</dt><dd class="proof__l">Cars on the floor</dd></div>
+      <div><dt class="proof__v tab">17</dt><dd class="proof__l">Marques represented</dd></div>
+      <div><dt class="proof__v tab">70</dt><dd class="proof__l">Years covered &middot; 1955&ndash;2025</dd></div>
+      <div><dt class="proof__v proof__v--word">Pompano&nbsp;Beach</dt><dd class="proof__l">Florida, between Palm Beach and Miami</dd></div>
+    </dl>
 
-      <!-- Every fact here is the client's own, off their About page: the
-           founder's name, the position between Palm Beach and Miami, the car
-           culture, and the three businesses. The previous draft joined them
-           with a "because" that stated a motive the client never gave. The
-           facts stay; the invented reason goes. -->
-      <p class="why__story" data-p>Founded by Martin Patton, the building sits between
-        Palm Beach and Miami, in one of the largest car cultures in the country.
-        Three businesses share its floor: a dealership, an auction house, and a
-        room that opens on Saturday mornings for anyone who wants to stand next
-        to the cars.</p>
+    <!-- Four small discoveries about Patton as one rail rather than four rows
+         of a table. Numbered because they are a sequence to read, not a set to
+         compare. -->
+    <ol class="rail" data-rows>
+      <li><span class="rail__n tab">01</span><h3 class="rail__h">The logo</h3>
+          <p>Drawn by Dave Kindig, of Kindig Design.</p></li>
+      <li><span class="rail__n tab">02</span><h3 class="rail__h">S-Klub</h3>
+          <p>Exclusive United States dealer, Los Angeles.</p></li>
+      <li><span class="rail__n tab">03</span><h3 class="rail__h">Built here</h3>
+          <p>John and Edison Sarkisyan, whose cars place at SEMA.</p></li>
+      <li><span class="rail__n tab">04</span><h3 class="rail__h">In the back</h3>
+          <p>An art studio: paintings, sculpture, slot cars, made on site.</p></li>
+    </ol>
 
-      <div class="why__items">
-        <div class="why__item">
-          <h3>The logo</h3>
-          <p>Drawn by Dave Kindig, of Kindig Design.</p>
-        </div>
-        <div class="why__item">
-          <h3>S-Klub</h3>
-          <p>Exclusive United States dealer for S-Klub, Los Angeles.</p>
-        </div>
-        <div class="why__item">
-          <h3>Built here</h3>
-          <p>John and Edison Sarkisyan build in this building, and their cars
-            place at SEMA.</p>
-        </div>
-        <div class="why__item">
-          <h3>In the back</h3>
-          <p>An art studio: paintings, sculpture, 3D-printed cars and
-            personalised slot-car sets, all made on site.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="facts">
-      <p class="facts__k mono">The building</p>
-      <div class="facts__row"><span>Address</span><span>2901 Center Port Circle<br>Pompano Beach, FL 33064</span></div>
-      <div class="facts__row"><span>Weekdays</span><span>8:00 &ndash; 18:00</span></div>
-      <div class="facts__row"><span>Saturday</span><span>9:00 &ndash; 13:00</span></div>
-      <div class="facts__row"><span>Sunday</span><span>By appointment</span></div>
-      <div class="facts__row"><span>On the floor</span><span>40 cars &middot; 17 marques</span></div>
-      <div class="facts__row"><span>Years covered</span><span>1955 &ndash; 2025</span></div>
-      <div class="facts__row"><span>Telephone</span><span>630 550 0741</span></div>
+    <!-- The operational facts: findable, and deliberately quiet. This replaces
+         the black panel, which carried the visual weight of the section's
+         subject while holding its least important content. -->
+    <div class="util">
+      <div><span class="util__k">The building</span>
+           <span class="util__v">2901 Center Port Circle, Pompano Beach, FL 33064</span></div>
+      <div><span class="util__k">Mon&ndash;Fri</span><span class="util__v tab">8:00 &ndash; 18:00</span></div>
+      <div><span class="util__k">Saturday</span><span class="util__v tab">9:00 &ndash; 13:00</span></div>
+      <div><span class="util__k">Telephone</span>
+           <span class="util__v tab"><a href="tel:+16305500741">630 550 0741</a></span></div>
     </div>
 
   </div>
