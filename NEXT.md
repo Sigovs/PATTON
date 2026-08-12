@@ -3,14 +3,30 @@
 Updated 12 Aug 2026. Read `CLAUDE.md` first; this is the state, that is the
 rules. The memory files under the project's `memory/` folder load automatically.
 
-## The live file is `mockup/index7.html`
+## PARKED — with the client, waiting on approval
+
+**Both v6 and v7 are finished to review standard and both are pushed.** Work
+stopped here on 12 Aug at Alex's word: *"sohranjaemsja poka. zhdem ot klienta
+approval."* Nothing is half-done and nothing is uncommitted — `main` and
+`origin/main` are level at `e6acf52`.
+
+**Do not start the next pass on either file until the client comes back.**
+Which of the two survives is the client's decision, not a design one, and
+polishing the losing candidate is the specific way this project wastes a day.
+When the answer arrives, the open items are listed at the bottom of this file.
+
+Two candidates, not a version and its predecessor:
+
+| Candidate | What it is |
+|---|---|
+| `mockup/index7.html` · `css/patton7.css` | v7 — the Halo system adapted to Patton. Anybody + Archivo, gold accent, image-led cards, nine masses. |
+| `mockup/index6.html` · `css/patton6.css` | v6 — Oswald / Roboto Condensed. Its hero is the more resolved of the two: the film runs full-screen, the four route cards stand on it with no plate, and the band clears the fold at every height. |
+
+The rest are history, in order:
 
 | File | What it is |
 |---|---|
-| **`mockup/index7.html`** | **the work.** v7 — the Halo system, adapted to Patton. |
-| `mockup/css/patton7.css` | its stylesheet, its own token system |
-| `mockup/index6.html` · `css/patton6.css` | v6 — Oswald/Roboto Condensed, state pills, the finishing pass. Superseded on type and card grounds, not wrong. |
-| `mockup/index5.html` · `css/patton5.css` | v5 — the one 12-column master grid the later versions inherit |
+| `mockup/index5.html` · `css/patton5.css` | v5 — the one 12-column master grid both candidates inherit |
 | `mockup/index4.html` · `css/patton4.css` | v4 — the page recomposed for rhythm |
 | `mockup/index3.html` · `css/patton3.css` | v3 — the six masses; the palette derivations were made here |
 | `mockup/index.html` | an earlier marketplace redesign Alex rejected |
@@ -131,3 +147,45 @@ third = `#D2CBC3`, lifted at the same hue → `--paper: #EFECE6`.
   site ships the **same body text under two different attributions** (Rachel M.
   and Jonathan M.); v7 quotes a different verbatim sentence from that shared body
   for each, rather than printing the duplicate twice.
+
+## The last thing done to v6, so the reasoning is not lost
+
+Two passes on 12 Aug, both on the hero, both at Alex's direction:
+
+- **The eyebrow is gone**, the sentence runs wide on two authored lines, and
+  hover on a route card is a 2px rule that grows from a short mark to the full
+  card width — replacing a darkening plate, on a band whose whole argument is
+  that the cards stand on the film with nothing behind them.
+- **The band clears the fold by 48px** at desktop, 24 below 800px of height, 8
+  on a phone. The room came from the card's own type: label 15 → 14, value
+  28 → 20.
+
+**One real bug was behind all of it, and it will come back if the routes are
+ever moved again.** When the strip became a child of the hero, the descendant
+selector `.pm6 .hero .g12` started matching the routes' own grid and handed it
+the hero's 166px top clearance — 166px of empty film between the buttons and
+the cards, which no amount of spacing work would have fixed. It is now written
+`.pm6 .hero > .g12`. **Child combinator, not descendant**, for anything scoped
+to the hero's own grid.
+
+**A judgement left open on purpose:** the card value went 28 → 20 because
+`--t-lead` is the only step below `--t-mid` in the scale. That is a 29% drop
+where Alex asked for "a little". It reads well against the 14px label, but if
+he wants it nearer the old weight the honest fix is a named step at 24 — not a
+one-off number in a rule.
+
+`--t-floor: 14px` is now named, and has exactly one occupant: the four route
+labels. **A second occupant means it has become a rank and should be argued
+again**, not quietly reused.
+
+## When the client answers
+
+- If **v7** wins: the S-Klub badge still sits on its own line beneath the
+  buttons rather than beside them. Shortening or dropping "Exclusive US dealer"
+  is the fix Alex has already been offered.
+- If **v6** wins: the AAN theme is still linked in `index6.html` — v7 is the
+  one running with it commented out. Decide which way that goes before any
+  further CSS is written against it.
+- Either way: `docs/claude-memory/*.md` still needs copying into the Windows
+  `.claude/projects/<slug>/memory/` folder after the first run there, and
+  `~/.local/bin/gh auth login` is Alex's to run, not mine.
