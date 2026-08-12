@@ -497,13 +497,40 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
 #header.hdr {
   position: sticky; top: 0; z-index: 60;
   height: 84px; min-height: 0; padding: 0; margin: 0; border: 0;
+  /* OVER THE HERO THE CHROME HAS NO PANEL. The film runs edge to edge and
+     unbroken to the top of the window; a bar across it cuts the frame in two
+     and turns the first thing on the page into a strip of interface.
+     Legibility is bought where it belongs — the hero's own ramp already
+     darkens this band, and the nav is measured against the brightest frame
+     the film actually reaches there rather than against an average.
+     The panel returns the moment the page scrolls, because past the hero the
+     header sits over content of unknown value and the ramp is gone. */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--d-2) var(--ease),
+              border-color var(--d-2) var(--ease),
+              backdrop-filter var(--d-2) var(--ease);
+}
+#header.hdr.is-scrolled {
   background: rgba(18,14,15,.86);
   -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--rule);
+  border-bottom-color: var(--rule);
+  /* Once the panel exists it has edges, and the mark was sitting 7px off the
+     top of them — measured. The bar keeps its 84px so nothing jumps as the
+     state flips; the padding is real inside that height and the mark comes
+     down to suit it, which is 56px of lockup in a 60px content box. */
+  padding-block: var(--s-3);
 }
+#header.hdr.is-scrolled .hdr__logo { width: 112px; }
+.hdr__logo { transition: width var(--d-2) var(--ease); }
 .hdr .g12 { height: 100%; align-items: center; }
 .hdr__brand { grid-column: 1 / span 3; display: flex; align-items: center; min-height: 44px; }
-.hdr__brand img { width: 182px; height: auto; }   /* +30% */
+/* ONE MARK. The full lockup is a 201×100 raster from their own theme, so it is
+   held at 140px wide rather than the 182 the old wordmark used: at 182 it is
+   upscaled on any 2× screen and reads soft. Sized down it is sharp. If a larger
+   export or a vector carrying COLLECTION ever exists, this is the one number
+   to change. */
+.hdr__logo { width: 140px; height: auto; display: block; }
 .hdr__nav {
   grid-column: 4 / span 6;
   display: flex; gap: clamp(18px, 2.3vw, 40px); justify-content: center;
@@ -1749,12 +1776,20 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
    the browser chrome pushes the last band below the fold. `svh` is the
    smallest, which is the only value that guarantees the four facts are
    visible before the fold. vh is kept as the fallback for old engines. */
-/* the header is sticky, so it takes real space in flow — the hero is one
-   screen MINUS the header, or the last band lands below the fold. */
+/* THE FILM RUNS UNDER THE CHROME. The header is sticky, so it holds real space
+   in flow, and the hero used to begin below it — which left an 84px band of
+   page ground across the top and put a bar over a full-bleed frame. That band
+   was the thing being read as "a panel behind the nav" even after the header
+   itself went transparent: the panel was never the header, it was the gap.
+
+   The hero is pulled up by exactly the header's height and given that height
+   back as padding, so the frame is a full screen edge to edge while the type
+   inside it still starts below the chrome and is never overlapped. */
 .hero {
   --hdr-h: 84px;
-  min-height: calc(100vh - var(--hdr-h));
-  min-height: calc(100svh - var(--hdr-h));
+  margin-top: calc(var(--hdr-h) * -1);
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -1763,7 +1798,7 @@ a:hover .go, .car:hover .go, .feat:hover .go { transform: translateX(4px); }
   flex: 1 1 auto;
   min-height: 0;
   align-content: center;
-  padding-block: var(--s-7) var(--s-7);
+  padding-block: calc(var(--hdr-h) + var(--s-7)) var(--s-7);
 }
 .hero__strip {
   flex: 0 0 auto;

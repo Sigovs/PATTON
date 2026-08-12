@@ -36,7 +36,7 @@
      overrides written against it are still in patton7.css and still correct.
 <link rel="stylesheet" href="assets/css/style.css">
 -->
-<link rel="stylesheet" href="css/patton7.css?v=8">
+<link rel="stylesheet" href="css/patton7.css?v=13">
 </head>
 
 <body class="home pm7">
@@ -49,7 +49,12 @@
 <header class="hdr" id="header">
   <div class="g12">
     <a class="hdr__brand" href="/" aria-label="Patton Motors — home">
-      <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors" width="182" height="59">
+      <!-- The real mark, taken from their own theme: PATTON MOTORS COLLECTION
+           with the car silhouette. One mark, every state — a header that swaps
+           its own logo mid-scroll asks the visitor to hold two identities for
+           one business. -->
+      <img class="hdr__logo" src="assets/logo/patton-collection.png"
+           alt="Patton Motors Collection" width="140" height="70">
     </a>
     <nav class="hdr__nav" aria-label="Primary">
       <a href="#auctions">Auctions</a>
@@ -674,7 +679,7 @@
   <div class="g12">
 
     <div class="foot__id">
-      <img src="assets/logo/goldenlogo_mobile.svg" alt="Patton Motors" width="132" height="42">
+      <img src="assets/logo/patton-collection.png" alt="Patton Motors Collection" width="150" height="75">
       <p class="foot__say">Collector cars on the floor, four lots on the block most weeks, and a room
         that opens on Saturday mornings. Pompano Beach, Florida, between Palm Beach and Miami.</p>
       <address class="foot__addr">2901 Center Port Circle<br>Pompano Beach, FL 33064</address>
@@ -938,6 +943,25 @@
     window.addEventListener('resize', onScroll, { passive: true });
     onScroll();
   }
+
+  /* The header's panel, and nothing else — the logo does not change. This is a
+     STATE, not an animation, so it runs regardless of prefers-reduced-motion;
+     under that setting the global duration reset makes the change instant,
+     which is correct. rAF-throttled and passive. */
+  (function () {
+    var hdr = document.getElementById('header');
+    if (!hdr) return;
+    var tick = 0, on = false;
+    var read = function () {
+      tick = 0;
+      var now = window.scrollY > 24;
+      if (now !== on) { on = now; hdr.classList.toggle('is-scrolled', on); }
+    };
+    window.addEventListener('scroll', function () {
+      if (!tick) tick = requestAnimationFrame(read);
+    }, { passive: true });
+    read();
+  })();
 
   function apply() { stop(); if (!mq.matches) start(); }
   (mq.addEventListener  ? mq.addEventListener.bind(mq, 'change')   : mq.addListener.bind(mq))(apply);

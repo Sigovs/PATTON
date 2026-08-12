@@ -500,7 +500,11 @@
    after: 116px both times. */
 .pm6 .pm-hdr__brand { grid-column: 1 / span 2; display: inline-flex; align-items: center;
                       min-height: 44px; justify-self: start; }   /* tap target */
-.pm6 .pm-hdr__brand img { width: 172px; height: auto; }   /* +30% */
+/* The real mark from their own theme — PATTON MOTORS COLLECTION, 201×100.
+   It is a 2:1 lockup where the old wordmark was 3:1, so the width that suited
+   one over-sizes the other. Held at 140px, which is a downscale from the
+   source and therefore sharp, rather than the 172 the wide wordmark used. */
+.pm6 .pm-hdr__brand img { width: 140px; height: auto; }
 .pm6 .pm-nav { grid-column: 3 / span 8; display: flex; gap: var(--s-7); justify-content: flex-end; }
 .pm6 .pm-nav a {
   color: var(--bone-72); font-family: var(--f);
@@ -1214,7 +1218,7 @@
 .foot .g12 { row-gap: var(--s-8); }
 
 .foot__id { grid-column: 1 / span 4; display: block; }
-.foot__id img { width: 132px; height: auto; }
+.foot__id img { width: 150px; height: auto; }
 .foot__say { color: var(--bone-72); max-width: 34ch; font-size: var(--t-lead); }
 .foot__addr { font-style: normal; color: var(--bone-72); font-size: var(--t-body);
              letter-spacing: 0.06em; text-transform: uppercase; }
@@ -2167,7 +2171,10 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
    rest and a marker in transit. The header measures itself on every resize,
    so the sticky column and the anchors follow it automatically. */
 .pm6 .pm-hdr__brand img { transition: width var(--dur-ui) var(--ease-out); }
-.pm6.scrolled .pm-hdr__brand img { width: 124px; }
+.pm6.scrolled .pm-hdr__brand img { width: 112px; }
+/* the same correction as v7: the panel has edges, so the bar gets real
+   padding inside its own height and the mark is sized to sit inside it */
+.pm6.scrolled #header.pm-hdr { padding-block: var(--s-3); }
 @media (prefers-reduced-motion: reduce) {
   .pm6.scrolled #header.pm-hdr { backdrop-filter: none; -webkit-backdrop-filter: none;
                                  background: var(--ink); }
