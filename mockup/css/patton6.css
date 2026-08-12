@@ -174,6 +174,13 @@
                                               14 and still binds — nothing
                                               goes below it, and after this
                                               pass nothing rests on it. */
+  /* Except here. The floor is named rather than typed into a rule, because it
+     now has exactly one occupant: the four route labels in the hero band, at
+     Alex's direction, so the band can come up off the fold. They are all-caps,
+     tracked at 2.1px, and measure 14:1 against their ground — which is the
+     case the floor exists for. A second occupant means this is a rank, and it
+     should be argued again before it gets one. */
+  --t-floor:  14px;
 
   /* ---- SPACE: the scale, and then the RELATIONSHIPS ---------------------
      The scale is 4px-based and carried from v4. It is the only source of
@@ -2238,7 +2245,26 @@
    from the band's head, 16 from the card's own top and bottom. No type moved,
    no interval inside a card changed, and the text block keeps the lower
    position it was just given. */
-.pm6 .hero__strip { padding-bottom: var(--s-2); }
+/* THE BAND COMES UP OFF THE FOLD. It was ending 8px above the screen's edge,
+   which reads as the cards having fallen to the bottom rather than having been
+   placed there. 48px is the clearance the band needs to sit IN the frame; the
+   room for it comes from the card's own type, one step down on both lines. */
+.pm6 .hero__strip { padding-bottom: var(--s-7); }
+.pm6 .route__k { font-size: var(--t-floor); }
+.pm6 .route .route__v { font-size: var(--t-lead); }
+/* On a short screen the clearance is the first thing to give. At 720 the full
+   48 left only 16px between the button row and the band — the two objects
+   collided, which is worse than the band sitting closer to the edge. Measured,
+   not guessed: 24 restores a 40px separation and the hero fits in 697. */
+@media (max-height: 800px) {
+  .pm6 .hero__strip { padding-bottom: var(--s-5); }
+}
+/* and on a phone it gives the clearance back entirely — there the four cards
+   are a stacked 2x2 under the words and the hero already runs past the fold,
+   so 48px of bottom air buys nothing and costs 48px of scroll */
+@media (max-width: 800px) {
+  .pm6 .hero__strip { padding-bottom: var(--s-2); }
+}
 .pm6 .route {
   grid-column: span 3;
   /* NO PLATE. The four routes stand on the film itself — no panel, no blur, no
