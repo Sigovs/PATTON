@@ -2210,7 +2210,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
    Re-doing the overlay properly means putting the band inside the hero as an
    absolutely-positioned child so there is only one number — worth doing, but
    not worth guessing at. */
-.pm6 .hero { height: 100svh; min-height: 0; overflow: hidden; align-items: flex-start; }
+.pm6 .hero { height: 100svh; min-height: 0; overflow: hidden; align-items: center; }
 .pm6 .routes {
   position: relative; z-index: 3;
   /* lifted clear of the film's bottom edge — the band sat flush on it and
@@ -2375,8 +2375,9 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
    exactly as intended. Below it there is no arrangement of the two that does
    not put a card over a line of the headline — so the film grows to its
    content and the band follows underneath, which costs the fold and keeps the
-   words. Measured, not guessed: 914 = 121 + 494 + 251 + 48. */
-@media (max-height: 913px) {
+   Measured: 946 = 121 + 494 + 251 + 48 + 32, and centring needs the whole
+   box to fit or it splits the overflow into the header. */
+@media (max-height: 945px) {
   .pm6 .hero { height: auto; min-height: 0; }
   .pm6 .routes { margin-top: 0; margin-bottom: 0; }
   .pm6 .hero .g12 { padding-bottom: var(--s-8); }
